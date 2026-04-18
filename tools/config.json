@@ -1,0 +1,16 @@
+{
+  "GITHUB_HANDLE": "your-github-handle",
+  "LINKEDIN_PROFILE": "your-linkedin-profile",
+  "EMAIL_ADDRESS": "your.email@example.com",
+  "FORMSPREE_ID": "your-formspree-id",
+  "HASHNODE_HANDLE": "your-hashnode-handle",
+  "MEDIUM_HANDLE": "your-medium-handle",
+  "PORTFOLIO_URL": "https://yourportfolio.com",
+  "JOB_TITLE": "DevOps Engineer",
+  "COMPANY_NAME": "Company Name",
+  "PREVIOUS_COMPANY": "Previous Company",
+  "JOB_START_DATE": "Jan 2024",
+  "JOB_END_DATE": "Present",
+  "INTERNSHIP_START_DATE": "Jun 2023",
+  "INTERNSHIP_END_DATE": "Dec 2023"
+}

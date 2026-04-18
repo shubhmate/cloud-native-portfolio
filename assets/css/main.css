@@ -1,0 +1,194 @@
+/* Custom CSS variables for theming */
+:root {
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --border: #2a2d3a;
+  --text: #e2e8f0;
+  --accent: #3b82f6;
+  --green: #22c55e;
+  --muted: #6b7280;
+}
+
+/* Light theme variables */
+html.light {
+  --bg: #f8f9fa;
+  --surface: #ffffff;
+  --border: #e0e0e0;
+  --text: #212121;
+}
+
+/* Basic reset and body styles */
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Tailwind overrides for custom variables */
+.bg-bg { background-color: var(--bg) !important; }
+.bg-surface { background-color: var(--surface) !important; }
+.border-border { border-color: var(--border) !important; }
+.text-text { color: var(--text) !important; }
+.text-muted { color: var(--muted) !important; }
+.text-accent { color: var(--accent) !important; }
+.bg-accent { background-color: var(--accent) !important; }
+
+/* Selection styles */
+::selection { background: var(--accent); color: #fff; }
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+/* Font utility */
+.font-mono { font-family: var(--font-mono); }
+
+/* Text gradient for hero title */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2); /* Using a fixed color for shadow */
+}
+
+/* Marquee animation */
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Fade-up animation for sections */
+.animate-fade-up {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse animation for status indicator */
+.animate-pulse2 {
+  animation: pulse 3s ease-in-out infinite;
+}
+
+/* Flip card styles */
+.flip-card { perspective: 1000px; }
+.flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 0.75rem; border: 1px solid var(--border); background-color: var(--surface); }
+.flip-card-back { transform: rotateY(180deg); }
+
+/* Theme toggle icon animation */
+.theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
+.theme-toggle:hover { transform: rotate(20deg); }
+
+/* Scroll-to-Top Button */
+#scroll-to-top { position: fixed; bottom: 2rem; right: 2rem; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 40; }
+#scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+/* Toast Notifications */
+#toast-container { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; pointer-events: none; }
+.toast { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text); font-size: 0.875rem; animation: slideIn 0.3s ease forwards; pointer-events: all; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
+.toast.success { border-color: var(--green); }
+.toast.success::before { content: '✓'; color: var(--green); font-weight: bold; }
+.toast.error { border-color: #ef4444; } /* Using fixed red for error */
+.toast.error::before { content: '✕'; color: #ef4444; font-weight: bold; }
+@keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+.toast.removing { animation: slideOut 0.3s ease forwards; }
+
+/* Copy Feedback */
+.copy-btn { position: relative; overflow: hidden; }
+.copy-btn::after { content: 'Copied!'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; font-size: 0.7rem; font-weight: bold; color: var(--green); transition: opacity 0.3s ease; }
+.copy-btn.copied::after { opacity: 1; }
+
+/* Enhanced Animations (for staggered fade-up if needed) */
+@keyframes fadeInStagger { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+.animate-fade-up-stagger { animation: fadeInStagger 0.6s ease forwards; }
+
+/* Specific styles for light mode overrides */
+html.light .bg-bg { background-color: var(--bg) !important; }
+html.light .bg-surface { background-color: var(--surface) !important; }
+html.light .border-border { border-color: var(--border) !important; }
+html.light .text-text { color: var(--text) !important; }
+html.light .text-muted { color: #666666 !important; } /* Using fixed gray for muted in light mode */
+html.light ::selection { background: var(--accent); color: #fff; }
+html.light ::-webkit-scrollbar-track { background: var(--bg); }
+html.light ::-webkit-scrollbar-thumb { background: var(--border); }
+html.light .text-gradient {
+  background: linear-gradient(135deg, var(--accent), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+html.light .card-hover:hover {
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.1); /* Lighter shadow for light mode */
+}
+
+/* --- Preloader Styles --- */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg); /* Use background color from theme */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it's on top of everything */
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+#preloader.hidden {
+  opacity: 0;
+  pointer-events: none; /* Allow clicks through once hidden */
+}
+
+.spinner {
+  border: 4px solid var(--border);
+  border-top: 4px solid var(--accent); /* Accent color for the spinning part */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.loading-text {
+  font-family: var(--font-mono);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }

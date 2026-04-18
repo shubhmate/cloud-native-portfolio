@@ -28,42 +28,17 @@
    4. SUGGESTIONS_AND_IMPROVEMENTS.md - Features overview
    5. ENHANCEMENTS_APPLIED.txt - Changes summary
 
-💻 Code Files Provided:
-✅ INTEGRATION COMPLETE - All enhancements have been successfully integrated into index.html!
-
-The following code has been added:
-   1. NEW_CSS_STYLES.css - Theme toggle, scroll button, toast CSS ✅ INTEGRATED
-   2. NEW_JAVASCRIPT_FEATURES.js - Functions for all new features ✅ INTEGRATED
-   3. UPDATED_TERMINAL_COMMANDS.js - Enhanced terminal with 6 new commands ✅ INTEGRATED
+💻 Code Files:
+   All enhancements have been successfully integrated into `assets/css/main.css` and `assets/js/main.js`.
 
 ═══════════════════════════════════════════════════════════════════════════
 
 🎯 NEXT IMMEDIATE STEPS (5-15 MINUTES)
 ═══════════════════════════════════════════════════════════════════════════
 
-Step 1: Copy CSS Styles
-───────────────────────
-✓ Open: NEW_CSS_STYLES.css
-✓ Copy all content
-✓ Paste into index.html <style> section (before </style>)
-✓ Save
-Time: 2 minutes
-
-Step 2: Copy JavaScript Functions  
-─────────────────────────────────
-✓ Open: NEW_JAVASCRIPT_FEATURES.js
-✓ Copy all content
-✓ Paste into index.html script section (before "// Terminal simulation")
-✓ Save
-Time: 2 minutes
-
-Step 3: Update Terminal Commands
-────────────────────────────────
-✓ Open: UPDATED_TERMINAL_COMMANDS.js
-✓ Find: const commands = { ... };
-✓ Replace in index.html with new commands object
-✓ Save
-Time: 1 minute
+Step 1: Customize Your Information
+──────────────────────────────────
+   (See details below)
 
 Step 4: Customize Your Information
 ──────────────────────────────────
@@ -76,12 +51,14 @@ Use Find & Replace (Ctrl+H) to replace:
    ✓ Previous Company → Your company
 Time: 5-10 minutes
 
-Step 5: Add Your Resume
+Step 2: Add Your Resume
 ──────────────────────
-✓ Rename: YourResume.pdf → resume.pdf
-✓ Place in same folder as index.html
+   ✓ Rename: YourResume.pdf → resume.pdf
+   ✓ Place in same folder as index.html
 Time: 1 minute
 
+Step 3: Test Everything
+──────────────────────
 Step 6: Test Everything
 ──────────────────────
 ✓ Open index.html in browser
@@ -108,11 +85,8 @@ In Your Folder:
 │   ├── IMPLEMENTATION_GUIDE.md (Integration steps)
 │   ├── SUGGESTIONS_AND_IMPROVEMENTS.md (Feature details)
 │   └── ENHANCEMENTS_APPLIED.txt (Summary)
-│
-└── 💻 Code to Integrate:
-    ├── ⭐ NEW_CSS_STYLES.css (10KB)
-    ├── ⭐ NEW_JAVASCRIPT_FEATURES.js (4KB)
-    └── ⭐ UPDATED_TERMINAL_COMMANDS.js (2KB)
+│   ├── assets/css/main.css (All custom CSS)
+│   └── assets/js/main.js (All custom JavaScript)
 
 ═══════════════════════════════════════════════════════════════════════════
 
@@ -189,11 +163,6 @@ Before Starting:
 [ ] Have your resume PDF ready
 
 During Integration:
-[ ] Keep documentation open while editing
-[ ] Copy/paste code carefully
-[ ] Save after each step  
-[ ] Use Find & Replace for consistency
-
 After Integration:
 [ ] Test in browser (open index.html)
 [ ] Test all new features
@@ -268,11 +237,9 @@ Interview Talking Points:
 🎉 YOU'RE ALL SET!
 ═══════════════════════════════════════════════════════════════════════════
 
-✅ Portfolio framework enhanced
-✅ Documentation provided  
-✅ Code ready to integrate
-✅ Ready for customization
-✅ Ready for deployment
+✅ Portfolio framework enhanced and integrated
+✅ Documentation updated
+✅ Ready for customization and deployment
 
 NEXT: Open START_HERE.md or MASTER_CHECKLIST.md 
 
