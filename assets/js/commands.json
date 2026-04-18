@@ -1,0 +1,84 @@
+{
+  "whoami": [
+    "DevOps Engineer · ~2 years experience",
+    "Focused on AWS, Docker, Terraform, CI/CD"
+  ],
+  "skills": [
+    "Infrastructure  → AWS, Terraform, Ansible, Linux",
+    "Containers      → Docker, Kubernetes, Helm",
+    "CI/CD           → GitHub Actions, Jenkins, ArgoCD",
+    "Monitoring      → Prometheus, Grafana",
+    "Languages       → Python, Bash, Go (learning)"
+  ],
+  "projects": [
+    "1. 3-Tier App with Docker Compose",
+    "2. AWS VPC with Terraform",
+    "3. CI/CD Pipeline with GitHub Actions",
+    "4. EC2 Monitoring with Prometheus & Grafana",
+    "",
+    "Run 'open projects' to jump to the section."
+  ],
+  "experience": [
+    "DevOps Engineer        Jan 2024 – Present",
+    "Junior DevOps Intern   Jun 2023 – Dec 2023"
+  ],
+  "contact": [
+    "Email    → your.email@example.com",
+    "GitHub   → github.com/your-github-handle",
+    "LinkedIn → linkedin.com/in/your-linkedin-profile"
+  ],
+  "build": [
+    "Build Process:",
+    "  1. Git push to main branch",
+    "  2. GitHub Actions triggers workflow",
+    "  3. ESLint + TypeScript validation",
+    "  4. Terraform plans infrastructure",
+    "  5. S3 deployment & CloudFront invalidation",
+    "  6. Portfolio live!"
+  ],
+  "deploy": [
+    "Deployment Steps:",
+    "  Deploy to GitHub Pages: git push origin main",
+    "  Deploy to Netlify: npm run build && netlify deploy",
+    "  Deploy to AWS S3: aws s3 sync out/ s3://bucket",
+    "  Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ID --paths '/*'"
+  ],
+  "email": [
+    "📧 Email: your@email.com"
+  ],
+  "social": [
+    "🔗 Social Links:",
+    "  GitHub   → github.com/your-github-handle",
+    "  LinkedIn → linkedin.com/in/your-linkedin-profile",
+    "  Hashnode → hashnode.com/@your-hashnode-handle"
+  ],
+  "secret": {
+    "output": [
+      "🎉 You found the easter egg!",
+      "Thanks for trying the terminal!",
+      "Type 'help' for more commands."
+    ],
+    "color": "text-green-400"
+  },
+  "help": {
+    "output": [
+      "Available commands:",
+      "  <b>whoami</b>    : About me",
+      "  <b>skills</b>    : Tech stack",
+      "  <b>projects</b>  : Featured work",
+      "  <b>experience</b>: Work history",
+      "  <b>contact</b>   : Get in touch",
+      "  <b>build</b>     : Build process",
+      "  <b>deploy</b>    : Deployment options",
+      "  <b>email</b>     : Show email",
+      "  <b>social</b>    : Show social links",
+      "  <b>secret</b>    : Find the easter egg",
+      "  <b>clear</b>     : Clear terminal"
+    ],
+    "color": "text-accent"
+  },
+  "open projects": [
+    "Navigating to projects..."
+  ],
+  "clear": []
+}

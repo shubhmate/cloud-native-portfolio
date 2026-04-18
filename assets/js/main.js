@@ -277,27 +277,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminalInput = document.getElementById('terminal-input');
     const terminalOutput = document.getElementById('terminal-output');
 
-    const commands = {
-        'help': "Available commands: `whoami`, `skills`, `projects`, `contact`, `clear`",
-        'whoami': "I am a DevOps Engineer with ~2 years of experience in AWS, Docker, Kubernetes, and CI/CD.",
-        'skills': "My key skills include AWS, Docker, Kubernetes, Terraform, CI/CD (GitHub Actions, Jenkins), Prometheus, Grafana, Python, Go, and Linux.",
-        'projects': "Check out my projects section above for detailed examples of my work.",
-        'contact': "You can reach me via email or connect on LinkedIn/GitHub. See the contact section below.",
-        'clear': () => { terminalOutput.innerHTML = '<div class="text-slate-400">Welcome to devops.sh — type \'help\' to get started.</div>'; },
-        'ls': "No files here. This is a simulated terminal.",
-        'cd': "Directory change not supported in this simulation.",
-        'pwd': "/home/devops",
-        'echo': (args) => args.join(' '),
-        'date': new Date().toLocaleString(),
-        'uptime': "Simulated uptime: 120 days, 5 hours, 30 minutes"
-    };
+    let commands = {}; // Declare commands as a mutable object
 
+    // Fetch commands from JSON file
+    fetch('assets/js/commands.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            commands = data; // Assign fetched data to commands
+            // Re-assign functions as they cannot be stored directly in JSON
+            commands.clear = () => { // Clear function
+                terminalOutput.innerHTML = '';
+                addOutput('Welcome to devops.sh — type \'help\' to get started.');
+            };
+            commands.echo = (args) => ({ output: args.join(' '), color: 'text-yellow-400' });
+            commands.date = () => ({ output: new Date().toLocaleString(), color: 'text-purple-400' }); // Dynamic date
+            commands.uptime = () => ({ output: "Simulated uptime: 120 days, 5 hours, 30 minutes", color: 'text-purple-400' }); // Simulated uptime
+            commands['open projects'] = () => {
+                window.location.hash = '#projects'; // Scroll to projects section
+                return { output: "Navigating to projects...", color: 'text-accent' };
+            };
+
+            // Update dynamic commands
+            // Initial welcome message after commands are loaded
+            if (terminalOutput) {
+                addOutput('Welcome to devops.sh — type \'help\' to get started.');
+            }
+        })
+        .catch(error => console.error('Error loading terminal commands:', error));
     if (terminalInput && terminalOutput) {
         terminalInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
                 const input = terminalInput.value.trim();
                 terminalInput.value = '';
-                addOutput(`$ ${input}`);
+                addOutput(`$ ${input}`, 'text-green-400'); // Apply green color to the echoed command
                 executeCommand(input);
                 terminalOutput.scrollTop = terminalOutput.scrollHeight; // Scroll to bottom
             }
@@ -306,7 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
         function addOutput(text, color = 'text-slate-200') {
             const div = document.createElement('div');
             div.className = `font-mono text-xs ${color}`;
-            div.innerHTML = text;
+            if (Array.isArray(text)) { // If text is an array, join with <br> and set as innerHTML
+                div.innerHTML = text.join('<br>');
+            } else {
+                // For string content, create a text node to prevent HTML injection/misinterpretation
+                const textNode = document.createTextNode(text);
+                div.appendChild(textNode);
+            }
             terminalOutput.appendChild(div);
         }
 
@@ -316,8 +339,22 @@ document.addEventListener('DOMContentLoaded', () => {
             const args = parts.slice(1);
 
             if (commands[command]) {
-                const result = typeof commands[command] === 'function' ? commands[command](args) : commands[command]; // Fixed typo here
-                if (result) addOutput(result);
+                let commandResponse = commands[command];
+                let outputText;
+                let outputColor = 'text-slate-200'; // Default color for command output
+
+                if (typeof commandResponse === 'function') {
+                    commandResponse = commandResponse(args);
+                }
+
+                if (typeof commandResponse === 'object' && commandResponse !== null && 'output' in commandResponse) {
+                    outputText = commandResponse.output;
+                    outputColor = commandResponse.color || outputColor;
+                } else {
+                    outputText = commandResponse;
+                }
+
+                if (outputText) addOutput(outputText, outputColor);
             } else {
                 addOutput(`Command not found: ${command}`, 'text-red-400');
             }
