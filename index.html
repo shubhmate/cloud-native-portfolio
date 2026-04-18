@@ -3,11 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps Portfolio</title>
+  <meta name="description" content="DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.">
+  <meta name="keywords" content="DevOps, AWS, Docker, Kubernetes, Terraform, CI/CD, GitHub Actions, DevOps Engineer">
+  <meta name="author" content="DevOps Engineer">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#0f1117">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DevOps Portfolio - Cloud Infrastructure & Automation">
+  <meta property="og:description" content="Building & automating cloud infrastructure. AWS, Docker, Terraform, CI/CD pipelines.">
+  <meta property="og:url" content="https://yourportfolio.com">
+  <meta property="og:image" content="https://yourportfolio.com/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DevOps Portfolio">
+  <meta name="twitter:description" content="Building & automating cloud infrastructure. AWS, Docker, Terraform, CI/CD.">
+  <meta name="twitter:image" content="https://yourportfolio.com/og-image.png">
+  <link rel="canonical" href="https://yourportfolio.com">
+  <title>DevOps Portfolio - Cloud Infrastructure & Automation</title>
+  
+  <!-- Preload critical resources -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "DevOps Engineer",
+    "url": "https://yourportfolio.com",
+    "jobTitle": "DevOps Engineer",
+    "sameAs": [
+      "https://github.com/your-github-handle",
+      "https://linkedin.com/in/your-linkedin-profile",
+      "https://hashnode.com/@your-hashnode-handle"
+    ],
+    "knowsAbout": ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "GitHub Actions", "Prometheus", "Grafana"]
+  }
+  </script>
+  
+  <script src="https://cdn.tailwindcss.com/3.4.0"></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
   <style>
     :root {
@@ -25,11 +61,29 @@
     * { box-sizing: border-box; }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-sans);
+      background-color: #0f1117;
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
       scroll-behavior: smooth;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
     }
+
+    /* Basic fallback styles in case Tailwind doesn't load */
+    h1, h2, h3, h4, h5, h6 {
+      color: #3b82f6;
+      font-weight: 600;
+    }
+
+    p { margin-bottom: 1rem; }
+    a { color: #3b82f6; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+    .text-center { text-align: center; }
+    .mb-4 { margin-bottom: 1rem; }
+    .mb-8 { margin-bottom: 2rem; }
 
     .bg-bg { background-color: var(--bg) !important; }
     .bg-surface { background-color: var(--surface) !important; }
@@ -120,9 +174,51 @@
     .flip-card-back {
       transform: rotateY(180deg);
     }
+
+    /* Theme Toggle */
+    .theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
+    .theme-toggle:hover { transform: rotate(20deg); }
+    html.light { --bg: #f8f9fa; --surface: #ffffff; --border: #e0e0e0; --text: #212121; }
+    html.light .bg-bg { background-color: #f8f9fa !important; }
+    html.light .bg-surface { background-color: #ffffff !important; }
+    html.light .border-border { border-color: #e0e0e0 !important; }
+    html.light .text-text { color: #212121 !important; }
+    html.light .text-muted { color: #666666 !important; }
+
+    /* Scroll-to-Top Button */
+    #scroll-to-top { position: fixed; bottom: 2rem; right: 2rem; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 40; }
+    #scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+    /* Toast Notifications */
+    #toast-container { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; pointer-events: none; }
+    .toast { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text); font-size: 0.875rem; animation: slideIn 0.3s ease forwards; pointer-events: all; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
+    .toast.success { border-color: #22c55e; }
+    .toast.success::before { content: '✓'; color: #22c55e; font-weight: bold; }
+    .toast.error { border-color: #ef4444; }
+    .toast.error::before { content: '✕'; color: #ef4444; font-weight: bold; }
+    @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+    .toast.removing { animation: slideOut 0.3s ease forwards; }
+
+    /* Copy Feedback */
+    .copy-btn { position: relative; overflow: hidden; }
+    .copy-btn::after { content: 'Copied!'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; font-size: 0.7rem; font-weight: bold; color: #22c55e; transition: opacity 0.3s ease; }
+    .copy-btn.copied::after { opacity: 1; }
+
+    /* Enhanced Animations */
+    @keyframes fadeInStagger { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+    .animate-fade-up-stagger { animation: fadeInStagger 0.6s ease forwards; }
   </style>
 </head>
 <body>
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top" aria-label="Scroll to top" title="Back to top" class="p-3 rounded-xl border bg-accent hover:bg-blue-500 text-white transition-all">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
+
   <!-- Navbar -->
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -132,28 +228,34 @@
       </a>
 
       <!-- Desktop -->
-      <div class="hidden md:flex items-center gap-4">
+      <div class="hidden md:flex items-center gap-6">
         <a href="#home" class="font-mono text-sm text-muted hover:text-accent transition-colors">Home</a>
         <a href="#skills" class="font-mono text-sm text-muted hover:text-accent transition-colors">Stack</a>
         <a href="#projects" class="font-mono text-sm text-muted hover:text-accent transition-colors">Projects</a>
         <a href="#pipeline" class="font-mono text-sm text-muted hover:text-accent transition-colors">Pipeline</a>
         <a href="#experience" class="font-mono text-sm text-muted hover:text-accent transition-colors">Experience</a>
         <a href="#contact" class="font-mono text-sm text-muted hover:text-accent transition-colors">Contact</a>
-        <a href="./resume.pdf" download class="px-4 py-1.5 border border-accent text-accent hover:bg-accent hover:text-white font-mono text-sm rounded-lg transition-colors">
+        <a href="./resume.pdf" download class="px-4 py-1.5 border border-accent text-accent hover:bg-accent hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="Download Resume">
           Resume
         </a>
+        <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" class="theme-toggle p-2 rounded-lg border border-border hover:border-accent text-muted hover:text-accent transition-colors">
+          <i data-lucide="sun" class="w-5 h-5"></i>
+        </button>
       </div>
 
       <!-- Mobile toggle -->
-      <div class="flex items-center gap-2 md:hidden">
-        <button id="mobile-menu-btn" class="text-muted hover:text-accent">
+      <div class="flex items-center gap-3 md:hidden">
+        <button id="theme-toggle-mobile" aria-label="Toggle dark/light theme" class="theme-toggle p-2 rounded-lg border border-border hover:border-accent text-muted hover:text-accent transition-colors">
+          <i data-lucide="sun" class="w-5 h-5"></i>
+        </button>
+        <button id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" class="text-muted hover:text-accent">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
     </div>
 
     <!-- Mobile menu -->
-    <div id="mobile-menu" class="md:hidden bg-bg/95 backdrop-blur-md border-b border-border px-6 py-4 space-y-3 hidden">
+    <div id="mobile-menu" class="md:hidden bg-bg/95 backdrop-blur-md border-b border-border px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
       <a href="#home" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Home</a>
       <a href="#skills" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Stack</a>
       <a href="#projects" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Projects</a>
@@ -209,10 +311,10 @@
       </div>
 
       <div class="flex justify-center gap-6 text-muted">
-        <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-all hover:scale-110">
+        <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile" class="hover:text-accent transition-all hover:scale-110">
           <i data-lucide="github" class="w-6 h-6"></i>
         </a>
-        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-all hover:scale-110">
+        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile" class="hover:text-accent transition-all hover:scale-110">
           <i data-lucide="linkedin" class="w-6 h-6"></i>
         </a>
       </div>
@@ -1007,25 +1109,25 @@ jobs:
           </p>
 
           <div class="space-y-4">
-            <a href="mailto:your.email@example.com" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group">
+            <button onclick="copyToClipboard('your.email@example.com')" class="copy-btn flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group w-full text-left" title="Click to copy">
               <div class="p-2 rounded-lg border border-border group-hover:border-accent/50 bg-surface">
                 <i data-lucide="mail" class="w-4 h-4"></i>
               </div>
               <span class="font-mono text-sm">your@email.com</span>
-            </a>
-            <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group">
+            </button>
+            <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group" aria-label="GitHub profile">
               <div class="p-2 rounded-lg border border-border group-hover:border-accent/50 bg-surface">
                 <i data-lucide="github" class="w-4 h-4"></i>
               </div>
               <span class="font-mono text-sm">github.com/your-github-handle</span>
             </a>
-            <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group">
+            <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group" aria-label="LinkedIn profile">
               <div class="p-2 rounded-lg border border-border group-hover:border-accent/50 bg-surface">
                 <i data-lucide="linkedin" class="w-4 h-4"></i>
               </div>
               <span class="font-mono text-sm">linkedin.com/in/your-linkedin-profile</span>
             </a>
-            <a href="https://hashnode.com/@your-hashnode-handle" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group">
+            <a href="https://hashnode.com/@your-hashnode-handle" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group" aria-label="Hashnode blog">
               <div class="p-2 rounded-lg border border-border group-hover:border-accent/50 bg-surface">
                 <i data-lucide="hash" class="w-4 h-4"></i>
               </div>
@@ -1113,7 +1215,9 @@ jobs:
 
   <script>
     // Initialize Lucide icons
-    lucide.createIcons();
+    if (window.lucide) {
+      lucide.createIcons();
+    }
 
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
@@ -1136,6 +1240,75 @@ jobs:
         icon.setAttribute('data-lucide', 'x');
       }
       lucide.createIcons();
+    });
+
+    // Theme Toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.toggle('light');
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+      updateThemeIcons();
+      lucide.createIcons();
+    }
+
+    function updateThemeIcons() {
+      const isDark = !document.documentElement.classList.contains('light');
+      const icon = isDark ? 'moon' : 'sun';
+      document.querySelectorAll('[id*="theme-toggle"] i').forEach(el => {
+        el.setAttribute('data-lucide', icon);
+      });
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.documentElement.classList.add('light');
+    }
+    updateThemeIcons();
+    lucide.createIcons(); // Ensure icons are updated after theme initialization
+
+    document.getElementById('theme-toggle')?.addEventListener('click', toggleTheme);
+    document.getElementById('theme-toggle-mobile')?.addEventListener('click', toggleTheme);
+
+    // Scroll to Top Button
+    const scrollBtn = document.getElementById('scroll-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        scrollBtn.classList.add('visible');
+      } else {
+        scrollBtn.classList.remove('visible');
+      }
+    });
+    scrollBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    // Toast Notifications
+    function showToast(message, type = 'success', duration = 3000) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `toast ${type}`;
+      toast.textContent = message;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('removing');
+        setTimeout(() => toast.remove(), 300);
+      }, duration);
+    }
+
+    // Copy to Clipboard
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied to clipboard!', 'success', 2000);
+      }).catch(() => {
+        showToast('Failed to copy', 'error');
+      });
+    }
+
+    // Keyboard navigation for flip cards
+    document.addEventListener('keydown', (e) => {
+      if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.flip-card')) {
+        e.preventDefault();
+        const card = e.target.closest('.flip-card');
+        if (card) flipCard(card.querySelector('button'));
+      }
     });
 
     // Typewriter effect
@@ -1284,6 +1457,34 @@ jobs:
         "GitHub   → github.com/your-github-handle",
         "LinkedIn → linkedin.com/in/your-linkedin-profile",
       ],
+      build: [
+        "Build Process:",
+        "  1. Git push to main branch",
+        "  2. GitHub Actions triggers workflow",
+        "  3. ESLint + TypeScript validation",
+        "  4. Terraform plans infrastructure",
+        "  5. S3 deployment & CloudFront invalidation",
+        "  6. Portfolio live!",
+      ],
+      deploy: [
+        "Deployment Steps:",
+        "  Deploy to GitHub Pages: git push origin main",
+        "  Deploy to Netlify: npm run build && netlify deploy",
+        "  Deploy to AWS S3: aws s3 sync out/ s3://bucket",
+        "  Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ID --paths '/*'",
+      ],
+      email: ["📧 Email: your@email.com"],
+      social: [
+        "🔗 Social Links:",
+        "  GitHub   → github.com/your-github-handle",
+        "  LinkedIn → linkedin.com/in/your-linkedin-profile",
+        "  Hashnode → hashnode.com/@your-hashnode-handle",
+      ],
+      secret: [
+        "🎉 You found the easter egg!",
+        "Thanks for trying the terminal!",
+        "Type 'help' for more commands.",
+      ],
       help: [
         "Available commands:",
         "  whoami      About me",
@@ -1291,6 +1492,11 @@ jobs:
         "  projects    Featured work",
         "  experience  Work history",
         "  contact     Get in touch",
+        "  build       Build process",
+        "  deploy      Deployment options",
+        "  email       Show email",
+        "  social      Show social links",
+        "  secret      Find the easter egg",
         "  clear       Clear terminal",
       ],
       "open projects": ["Navigating to projects..."],
@@ -1349,6 +1555,9 @@ jobs:
       // Honeypot check
       if (form.querySelector('[name="_gotcha"]').value) return;
 
+      // Add toast feedback before form submission
+      showToast('Please check all fields are filled correctly.', 'error');
+
       submitText.textContent = 'Sending...';
       submitBtn.disabled = true;
 
@@ -1375,6 +1584,8 @@ jobs:
           form.reset();
           submitText.textContent = 'Message Sent!';
           statusMessage.classList.add('hidden');
+          // Add toast on success
+          showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
         } else {
           throw new Error();
         }
@@ -1382,8 +1593,24 @@ jobs:
         statusMessage.textContent = 'Something went wrong. Try emailing directly.';
         statusMessage.classList.remove('hidden');
         submitText.textContent = 'Send Message';
+        // Add toast on error
+        showToast('Failed to send message. Please try again.', 'error');
       }
       submitBtn.disabled = false;
+    });
+
+    // Add Ctrl+Enter support to submit form from anywhere
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
+        const activeElement = document.activeElement;
+        if (activeElement && (activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'INPUT')) {
+          const form = activeElement.closest('form');
+          if (form) {
+            e.preventDefault();
+            form.dispatchEvent(new Event('submit'));
+          }
+        }
+      }
     });
   </script>
 </body>
