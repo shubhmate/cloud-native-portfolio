@@ -171,24 +171,7 @@ html.light .card-hover:hover {
   pointer-events: none; /* Allow clicks through once hidden */
 }
 
-.spinner {
-  border: 4px solid var(--border);
-  border-top: 4px solid var(--accent); /* Accent color for the spinning part */
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
-}
-
-.loading-text {
-  font-family: var(--font-mono);
-  color: var(--text);
-  font-size: 1rem;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+
+/* The animate-pulse2 class is now applied directly to the icon in HTML */
+/* The loading-text styles are replaced by direct Tailwind classes in HTML */
