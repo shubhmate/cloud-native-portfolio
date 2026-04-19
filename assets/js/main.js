@@ -39,6 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // --- Robust Lucide Icons initialization for all static icons ---
+    // This function will be called once at the end of DOMContentLoaded
+    function initializeAllLucideIcons() {
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+            lucide.createIcons();
+        } else {
+            setTimeout(initializeAllLucideIcons, 50); // Retry if lucide is not yet available
+        }
+    }
+
     const currentTheme = localStorage.getItem('theme'); // Now themeToggleBtn is defined
     if (currentTheme) {
         htmlElement.classList.add(currentTheme);
@@ -368,6 +378,16 @@ document.addEventListener('DOMContentLoaded', () => {
             card.classList.toggle('flipped');
         }
     };
+
+    // Add keyboard support for flip cards
+    document.querySelectorAll('.flip-card button').forEach(button => {
+        button.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault(); // Prevent default scroll for spacebar
+                window.flipCard(button);
+            }
+        });
+    });
 
     // --- Copy to Clipboard & Toast Notifications ---
     const toastContainer = document.getElementById('toast-container');

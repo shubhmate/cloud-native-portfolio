@@ -22,11 +22,14 @@
     "DevOps Engineer        Jan 2024 – Present",
     "Junior DevOps Intern   Jun 2023 – Dec 2023"
   ],
-  "contact": [
-    "Email    → your.email@example.com",
-    "GitHub   → github.com/your-github-handle",
-    "LinkedIn → linkedin.com/in/your-linkedin-profile"
-  ],
+  "contact": {
+    "output": [
+      "Email    → your.email@example.com",
+      "GitHub   → github.com/your-github-handle",
+      "LinkedIn → linkedin.com/in/your-linkedin-profile"
+    ],
+    "color": "text-accent"
+  },
   "build": [
     "Build Process:",
     "  1. Git push to main branch",
@@ -43,15 +46,19 @@
     "  Deploy to AWS S3: aws s3 sync out/ s3://bucket",
     "  Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ID --paths '/*'"
   ],
-  "email": [
-    "📧 Email: your@email.com"
-  ],
-  "social": [
-    "🔗 Social Links:",
-    "  GitHub   → github.com/your-github-handle",
-    "  LinkedIn → linkedin.com/in/your-linkedin-profile",
-    "  Hashnode → hashnode.com/@your-hashnode-handle"
-  ],
+  "email": {
+    "output": "📧 Email: your@email.com",
+    "color": "text-yellow-400"
+  },
+  "social": {
+    "output": [
+      "🔗 Social Links:",
+      "  GitHub   → github.com/your-github-handle",
+      "  LinkedIn → linkedin.com/in/your-linkedin-profile",
+      "  Hashnode → hashnode.com/@your-hashnode-handle"
+    ],
+    "color": "text-purple-400"
+  },
   "secret": {
     "output": [
       "🎉 You found the easter egg!",
