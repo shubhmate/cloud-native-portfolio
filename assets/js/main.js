@@ -34,19 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(newIcon); // Add the new <i> element
 
         // Re-render only the newly added icon using Lucide
-        if (typeof lucide !== 'undefined' && lucide.createIcons) {
-            lucide.createIcons({ container: newIcon });
-        }
-    }
-
-    // --- Robust Lucide Icons initialization for all static icons ---
-    // This function will be called once at the end of DOMContentLoaded
-    function initializeAllLucideIcons() {
-        if (typeof lucide !== 'undefined' && lucide.createIcons) {
-            lucide.createIcons();
-        } else {
-            setTimeout(initializeAllLucideIcons, 50); // Retry if lucide is not yet available
-        }
+        // Use a retry mechanism to ensure Lucide's internal icon registry is populated
+        // before attempting to render dynamic icons. This is crucial because lucide.js
+        // might be loaded with 'defer' and its internal icon definitions might not be
+        // ready immediately, even if the 'lucide' object itself exists.
+        const tryRenderLucideIcon = () => {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                // Check if the icons object is populated with any icons
+                if (lucide.icons && Object.keys(lucide.icons).length > 0) {
+                lucide.createIcons({ container: newIcon });
+                } else {
+                    console.warn(`Lucide.icons object not yet populated for dynamic icon "${iconName}", retrying...`);
+                    setTimeout(tryRenderLucideIcon, 50); // Retry after a short delay
+                }
+            } else {
+                console.warn('Lucide library not available for dynamic icon, retrying...');
+                setTimeout(tryRenderLucideIcon, 50); // Retry if lucide is not yet available
+            }
+        };
+        tryRenderLucideIcon();
     }
 
     const currentTheme = localStorage.getItem('theme'); // Now themeToggleBtn is defined
@@ -518,6 +524,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Final Lucide Icons initialization after all elements are in DOM and attributes are set ---
-    initializeAllLucideIcons(); // Corrected function call
+    // --- Final Lucide Icons initialization ---
+    // Ensure all static Lucide icons are rendered after the entire page (including lucide.js) has loaded.
+    window.addEventListener('load', () => { // Use window.load to ensure all resources are loaded
+        // Use a retry mechanism to ensure Lucide's internal icon registry is fully populated
+        // before attempting to render all static icons. This is crucial because lucide.js
+        // might be loaded with 'defer' and its internal icon definitions might not be
+        // ready immediately, even if the 'lucide' object itself exists.
+        const tryRenderAllLucideIcons = () => {
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                // Check if the icons object is populated with any icons
+                if (lucide.icons && Object.keys(lucide.icons).length > 0) {
+                lucide.createIcons();
+                } else {
+                    console.warn('Lucide icons library not fully initialized for static icons, retrying...');
+                    setTimeout(tryRenderAllLucideIcons, 100); // Retry with a slightly longer delay
+                }
+            } else {
+                console.error('Lucide icons library not found or createIcons method missing on window.load.'); // This is a more critical error
+            }
+        };
+        tryRenderAllLucideIcons();
+    });
 });
