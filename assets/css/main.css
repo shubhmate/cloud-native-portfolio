@@ -80,6 +80,10 @@ body {
   100% { transform: translateX(-50%); }
 }
 
+/* Pause marquee on group hover */
+.group:hover .animate-marquee {
+  animation-play-state: paused;
+}
 /* Fade-up animation for sections */
 .animate-fade-up {
   animation: fadeUp 0.6s ease forwards;
