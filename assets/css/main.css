@@ -37,13 +37,16 @@ body {
 
 /* Tailwind CSS Overrides for Custom Variables */
 /* These rules ensure that Tailwind's utility classes correctly use the defined CSS variables. */
-.bg-bg { background-color: var(--bg) !important; }
-.bg-surface { background-color: var(--surface) !important; }
-.border-border { border-color: var(--border) !important; }
-.text-text { color: var(--text) !important; }
-.text-muted { color: var(--muted) !important; }
-.text-accent { color: var(--accent) !important; }
-.bg-accent { background-color: var(--accent) !important; }
+/* These custom utility classes are now largely redundant if using Tailwind's arbitrary value syntax. */
+/* They can be removed to simplify the CSS, as the arbitrary values in HTML will directly reference the CSS variables. */
+/* Keeping them for now as a fallback or if some elements still use them without arbitrary values. */
+/* .bg-bg { background-color: var(--bg); } */
+/* .bg-surface { background-color: var(--surface); } */
+/* .border-border { border-color: var(--border); } */
+/* .text-text { color: var(--text); } */
+/* .text-muted { color: var(--muted); } */
+/* .text-accent { color: var(--accent); } */
+/* .bg-accent { background-color: var(--accent); } */
 
 /* Selection Styles */
 /* Customizes the appearance of selected text. */

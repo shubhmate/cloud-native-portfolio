@@ -87,33 +87,33 @@
   <!-- Navbar --> 
   <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-2 font-mono font-bold text-accent">
+      <a href="#home" class="flex items-center gap-2 font-mono font-bold text-[var(--accent)]">
         <i data-lucide="terminal" class="w-5 h-5"></i>
         <span>devops.sh</span>
       </a>
 
       <!-- Desktop Navigation Links -->
       <div class="hidden md:flex items-center gap-6">
-        <a href="#home" class="font-mono text-sm text-muted hover:text-accent transition-colors">Home</a>
-        <a href="#skills" class="font-mono text-sm text-muted hover:text-accent transition-colors">Stack</a>
-        <a href="#projects" class="font-mono text-sm text-muted hover:text-accent transition-colors">Projects</a>
-        <a href="#pipeline" class="font-mono text-sm text-muted hover:text-accent transition-colors">Pipeline</a>
-        <a href="#experience" class="font-mono text-sm text-muted hover:text-accent transition-colors">Experience</a>
-        <a href="#contact" class="font-mono text-sm text-muted hover:text-accent transition-colors">Contact</a>
-        <a href="./resume.pdf" download class="px-4 py-1.5 border border-accent text-accent hover:bg-accent hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="Download Resume">
+        <a href="#home" class="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors">Home</a>
+        <a href="#skills" class="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors">Stack</a>
+        <a href="#projects" class="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors">Projects</a>
+        <a href="#pipeline" class="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors">Pipeline</a>
+        <a href="#experience" class="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors">Experience</a>
+        <a href="#contact" class="font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors">Contact</a>
+        <a href="./resume.pdf" download class="px-4 py-1.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="Download Resume">
           Resume
         </a> 
-        <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" class="theme-toggle p-2 rounded-lg border border-border hover:border-accent text-muted hover:text-accent transition-colors">
+        <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" class="theme-toggle p-2 rounded-lg border border-border hover:border-accent text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
           <i data-lucide="sun" class="w-5 h-5"></i>
         </button>
       </div>
 
       <!-- Mobile Menu Toggle Button -->
       <div class="flex items-center gap-3 md:hidden">
-        <button id="theme-toggle-mobile" aria-label="Toggle dark/light theme" class="theme-toggle p-2 rounded-lg border border-border hover:border-accent text-muted hover:text-accent transition-colors">
+        <button id="theme-toggle-mobile" aria-label="Toggle dark/light theme" class="theme-toggle p-2 rounded-lg border border-border hover:border-accent text-[var(--muted)] hover:text-[var(--accent)] transition-colors">
           <i data-lucide="sun" class="w-5 h-5"></i>
         </button>
-        <button id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" class="text-muted hover:text-accent">
+        <button id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" class="text-[var(--muted)] hover:text-[var(--accent)]">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -121,12 +121,15 @@
 
     <!-- Mobile Navigation Menu (hidden by default, toggled by JS) -->
     <div id="mobile-menu" class="md:hidden bg-bg/95 backdrop-blur-md border-b border-border px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
-      <a href="#home" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Home</a>
-      <a href="#skills" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Stack</a>
-      <a href="#projects" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Projects</a>
-      <a href="#pipeline" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Pipeline</a>
-      <a href="#experience" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Experience</a>
-      <a href="#contact" class="block font-mono text-sm text-muted hover:text-accent transition-colors py-1">Contact</a>
+      <a href="#home" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Home</a>
+      <a href="#skills" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Stack</a>
+      <a href="#projects" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Projects</a>
+      <a href="#pipeline" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Pipeline</a>
+      <a href="#experience" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Experience</a>
+      <a href="#contact" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Contact</a>
+      <a href="./resume.pdf" download class="block font-mono text-sm text-[var(--accent)] hover:bg-[var(--accent)] transition-colors py-1" aria-label="Download Resume">
+        Resume
+      </a>
     </div>
   </nav>
 
@@ -137,7 +140,7 @@
     <!-- Canvas for interactive particle background -->
     <canvas id="hero-canvas" class="absolute inset-0 opacity-50"></canvas>
     <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-accent/30 bg-accent/10 text-accent text-sm font-mono mb-6 animate-fade-up">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 text-[var(--accent)] text-sm font-mono mb-6 animate-fade-up">
         <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
         Open to new opportunities · ~2 years experience
       </div>
@@ -164,13 +167,13 @@
       </p>
       <!-- Call-to-action buttons -->
       <div class="flex flex-wrap gap-4 justify-center mb-12">
-        <a href="#projects" class="px-6 py-3 bg-accent hover:bg-blue-500 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105">
+        <a href="#projects" class="px-6 py-3 bg-[var(--accent)] hover:bg-blue-500 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105">
           View Projects
         </a>
         <a
           href="./resume.pdf"
           download
-          class="px-6 py-3 border border-border hover:border-accent text-slate-300 hover:text-accent font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 hover:scale-105"
+          class="px-6 py-3 border border-[var(--border)] hover:border-[var(--accent)] text-slate-300 hover:text-[var(--accent)] font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 hover:scale-105"
         >
           <i data-lucide="download" class="w-4 h-4"></i>
           Download Resume
@@ -178,16 +181,16 @@
       </div>
       <!-- Social media links -->
       <div class="flex justify-center gap-6 text-muted">
-        <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile" class="hover:text-accent transition-all hover:scale-110">
+        <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile" class="hover:text-[var(--accent)] transition-all hover:scale-110">
           <i data-lucide="github" class="w-6 h-6"></i>
         </a>
-        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile" class="hover:text-accent transition-all hover:scale-110">
+        <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" aria-label="Visit LinkedIn profile" class="hover:text-[var(--accent)] transition-all hover:scale-110">
           <i data-lucide="linkedin" class="w-6 h-6"></i>
         </a>
       </div>
     </div>
     <!-- Scroll down indicator -->
-    <a href="#skills" class="flex items-center justify-center absolute bottom-8 left-0 right-0 mx-auto text-muted hover:text-accent transition-colors animate-bounce w-fit">
+    <a href="#skills" class="flex items-center justify-center absolute bottom-8 left-0 right-0 mx-auto text-[var(--muted)] hover:text-[var(--accent)] transition-colors animate-bounce w-fit">
       <i data-lucide="arrow-down" class="w-5 h-5 relative -top-[1px]"></i>
     </a>
   </section>
@@ -197,8 +200,8 @@
     <div class="max-w-6xl mx-auto px-6 mb-12">
       <div class="animate-fade-up">
         <div class="flex items-center gap-2 mb-2">
-          <i data-lucide="layers" class="w-5 h-5 text-accent"></i>
-          <p class="font-mono text-accent text-sm">// the stack</p>
+          <i data-lucide="layers" class="w-5 h-5 text-[var(--accent)]"></i>
+          <p class="font-mono text-[var(--accent)] text-sm">// the stack</p>
         </div>
         <h2 class="font-mono text-3xl font-bold">Tools & Technologies</h2>
       </div>
@@ -209,160 +212,160 @@
       <div class="flex gap-8 animate-marquee group-hover:pause">
         <!-- First set of items for continuous scroll -->
         <div class="flex gap-8">
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="cloud" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">AWS</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="cloud" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">AWS</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="server" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Linux</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="server" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Linux</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="cloud" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GCP</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="cloud" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GCP</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="cloud" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Azure</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="cloud" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Azure</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="container" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Kubernetes</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="container" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Kubernetes</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="box" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Docker</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="box" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Docker</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="settings" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Terraform</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="settings" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Terraform</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="zap" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Ansible</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="zap" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Ansible</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="git-branch" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Git</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="git-branch" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Git</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="github" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GitHub</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="github" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GitHub</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="gitlab" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GitLab</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="gitlab" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GitLab</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="git-branch" class="w-7 h-7 text-muted hover:text-accent transition-colors"></i>
-            <span class="text-xs text-muted font-mono">Jenkins</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px]">
+            <i data-lucide="git-branch" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Jenkins</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="activity" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GitHub Actions</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px]">
+            <i data-lucide="activity" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GitHub Actions</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="repeat" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">ArgoCD</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px]">
+            <i data-lucide="repeat" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">ArgoCD</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="bar-chart" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Prometheus</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px]">
+            <i data-lucide="bar-chart" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Prometheus</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="pie-chart" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Grafana</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px]">
+            <i data-lucide="pie-chart" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Grafana</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="code" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Python</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px]">
+            <i data-lucide="code" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Python</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="code" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Go</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px]">
+            <i data-lucide="code" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Go</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px]">
-            <i data-lucide="shield" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Vault</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="shield" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Vault</span>
           </div>
         </div>
         <!-- Duplicate for seamless loop -->
         <div class="flex gap-8">
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="cloud" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">AWS</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="cloud" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">AWS</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="server" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Linux</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="server" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Linux</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="cloud" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GCP</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="cloud" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GCP</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="cloud" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Azure</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="cloud" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Azure</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="container" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Kubernetes</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="container" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Kubernetes</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="box" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Docker</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="box" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Docker</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="settings" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Terraform</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="settings" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Terraform</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="zap" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Ansible</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="zap" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Ansible</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="git-branch" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Git</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="git-branch" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Git</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="github" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GitHub</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="github" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GitHub</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="gitlab" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GitLab</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="gitlab" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GitLab</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="git-branch" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Jenkins</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="git-branch" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Jenkins</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="activity" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">GitHub Actions</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="activity" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">GitHub Actions</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="repeat" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">ArgoCD</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="repeat" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">ArgoCD</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="bar-chart" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Prometheus</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="bar-chart" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Prometheus</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="pie-chart" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Grafana</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="pie-chart" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Grafana</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="code" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Python</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="code" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Python</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="code" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Go</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="code" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Go</span>
           </div>
-          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-border bg-surface hover:border-accent/50 hover:scale-105 transition-all min-w-[80px] group">
-            <i data-lucide="shield" class="w-7 h-7 text-muted hover:text-accent transition-colors group-hover:scale-110 transition-transform"></i>
-            <span class="text-xs text-muted font-mono">Vault</span>
+          <div class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] hover:border-[var(--accent)]/50 hover:scale-105 transition-all min-w-[80px] group">
+            <i data-lucide="shield" class="w-7 h-7 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group-hover:scale-110 transition-transform"></i>
+            <span class="text-xs text-[var(--muted)] font-mono">Vault</span>
           </div>
         </div>
       </div>
@@ -491,7 +494,7 @@
       <!-- Right — terminal -->
       <!-- Interactive Terminal Simulator -->
       <div class="animate-fade-up">
-        <p class="font-mono text-xs text-muted mb-3 hover:text-accent transition-colors cursor-text">// interactive — try it</p>
+        <p class="font-mono text-xs text-[var(--muted)] mb-3 hover:text-[var(--accent)] transition-colors cursor-text">// interactive — try it</p>
         <div class="rounded-xl border border-border bg-bg overflow-hidden cursor-text">
           <!-- Title bar -->
           <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface">
@@ -509,7 +512,7 @@
           <div class="flex items-center gap-2 px-4 py-3 border-t border-border">
             <span class="font-mono text-xs text-green-400 shrink-0">$</span>
             <input
-              id="terminal-input"
+              id="terminal-input" 
               class="flex-1 bg-transparent font-mono text-xs text-slate-200 outline-none caret-accent"
               placeholder="type a command..."
               autocomplete="off"
@@ -527,8 +530,8 @@
       <div class="animate-fade-up">
         <!-- Section Header -->
         <div class="flex items-center gap-2 mb-2">
-          <i data-lucide="folder-git-2" class="w-5 h-5 text-accent"></i>
-          <p class="font-mono text-accent text-sm">// projects</p>
+          <i data-lucide="folder-git-2" class="w-5 h-5 text-[var(--accent)]"></i>
+          <p class="font-mono text-[var(--accent)] text-sm">// projects</p>
         </div>
         <h2 class="font-mono text-3xl font-bold mb-2">Featured Work</h2>
         <p class="text-muted text-sm mb-12">
@@ -566,7 +569,7 @@
                     <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
                   </a>
                 </div>
-                <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1">
+                <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                 </button>
               </div>
@@ -574,7 +577,7 @@
 
             <!-- Back of the card (architecture and problem/solution) -->
             <div class="flip-card-back p-6 flex flex-col">
-              <p class="font-mono text-xs font-semibold mb-4 text-accent">// architecture</p>
+              <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)]">// architecture</p>
               <h3 class="font-mono text-base font-bold mb-4">3-Tier App with Docker Compose</h3>
 
               <div class="flex-1 space-y-2 mb-4">
@@ -615,7 +618,7 @@
                 </div>
               </div>
 
-              <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1 self-end">
+              <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1 self-end">
                 <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
               </button>
             </div>
@@ -648,7 +651,7 @@
                     <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
                   </a>
                 </div>
-                <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1">
+                <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                 </button>
               </div>
@@ -693,7 +696,7 @@
                 </div>
               </div>
 
-              <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1 self-end">
+              <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1 self-end">
                 <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
               </button>
             </div>
@@ -727,7 +730,7 @@
                     <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
                   </a>
                 </div>
-                <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1">
+                <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                 </button>
               </div>
@@ -776,7 +779,7 @@
                 </div>
               </div>
 
-              <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1 self-end">
+              <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1 self-end">
                 <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
               </button>
             </div>
@@ -809,7 +812,7 @@
                     <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
                   </a>
                 </div>
-                <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1">
+                <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                 </button>
               </div>
@@ -854,7 +857,7 @@
                 </div>
               </div>
 
-              <button onclick="flipCard(this)" class="text-xs font-mono text-muted hover:text-accent transition-colors flex items-center gap-1 self-end">
+              <button onclick="flipCard(this)" class="text-xs font-mono text-[var(--muted)] hover:text-[var(--accent)] transition-colors flex items-center gap-1 self-end">
                 <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
               </button>
             </div>
@@ -870,8 +873,8 @@
     <div class="max-w-6xl mx-auto px-6">
       <div class="animate-fade-up">
         <div class="flex items-center gap-2 mb-2">
-          <i data-lucide="git-fork" class="w-5 h-5 text-accent"></i>
-          <p class="font-mono text-accent text-sm">// meta-project</p>
+          <i data-lucide="git-fork" class="w-5 h-5 text-[var(--accent)]"></i>
+          <p class="font-mono text-[var(--accent)] text-sm">// meta-project</p>
         </div>
         <h2 class="font-mono text-3xl font-bold mb-3">How This Site is Built</h2>
         <p class="text-muted mb-12 max-w-2xl">
@@ -1001,8 +1004,8 @@ jobs:
         <!-- Timeline -->
         <div class="animate-fade-up">
           <div class="flex items-center gap-2 mb-8">
-            <i data-lucide="briefcase" class="w-5 h-5 text-accent"></i>
-            <p class="font-mono text-sm text-accent">// experience</p>
+            <i data-lucide="briefcase" class="w-5 h-5 text-[var(--accent)]"></i>
+            <p class="font-mono text-sm text-[var(--accent)]">// experience</p>
           </div>
           <h2 class="font-mono text-3xl font-bold mb-2">Work History</h2>
           <p class="text-muted text-sm mb-8">~2 years of hands-on DevOps & Cloud experience</p>
@@ -1016,10 +1019,10 @@ jobs:
                 <div class="flex flex-wrap items-center gap-2 mb-1">
                   <h3 class="font-mono font-semibold text-slate-200">DevOps Engineer</h3> 
                   <!-- <span class="px-2 py-0.5 rounded text-xs font-mono bg-green-400/10 text-green-400">Current</span> -->
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-accent/10 text-accent">Full-time</span> <!-- Current role indicator -->
+                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-[var(--accent)]/10 text-[var(--accent)]">Full-time</span> <!-- Current role indicator -->
                 </div>
-                <p class="text-xs text-muted font-mono mb-1">@ Company Name</p>
-                <p class="text-xs text-accent font-mono mb-3">Jan 2024 – Present</p>
+                <p class="text-xs text-muted text-[var(--accent)] font-mono mb-1">@ Company Name</p>
+                <p class="text-xs font-mono mb-3">Jan 2024 – Present</p>
                 <ul class="space-y-1.5">
                   <li class="text-sm text-muted flex gap-2">
                     <span class="text-green-400 shrink-0">▸</span>
@@ -1043,10 +1046,10 @@ jobs:
                 <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-accent bg-bg"></div>
                 <div class="flex flex-wrap items-center gap-2 mb-1">
                   <h3 class="font-mono font-semibold text-slate-200">Junior DevOps / Cloud Intern</h3> <!-- Previous role -->
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-accent/10 text-accent">Internship</span>
+                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-[var(--accent)]/10 text-[var(--accent)]">Internship</span>
                 </div>
-                <p class="text-xs text-muted font-mono mb-1">@ Previous Company</p>
-                <p class="text-xs text-accent font-mono mb-3">Jun 2023 – Dec 2023</p>
+                <p class="text-xs text-muted text-[var(--accent)] font-mono mb-1">@ Previous Company</p>
+                <p class="text-xs font-mono mb-3">Jun 2023 – Dec 2023</p>
                 <ul class="space-y-1.5">
                   <li class="text-sm text-muted flex gap-2">
                     <span class="text-green-400 shrink-0">▸</span>
@@ -1126,8 +1129,8 @@ jobs:
         <!-- Left -->
         <div>
           <div class="flex items-center gap-2 mb-2">
-            <i data-lucide="mail" class="w-5 h-5 text-accent"></i>
-            <p class="font-mono text-accent text-sm">// contact</p>
+            <i data-lucide="mail" class="w-5 h-5 text-[var(--accent)]"></i>
+            <p class="font-mono text-[var(--accent)] text-sm">// contact</p>
           </div>
           <h2 class="font-mono text-3xl font-bold mb-4">Let&apos;s Build Something</h2>
           <p class="text-muted mb-8 leading-relaxed">
@@ -1136,20 +1139,20 @@ jobs:
 
           <!-- Contact details with copy-to-clipboard and social links -->
           <div class="space-y-4">
-            <button onclick="copyToClipboard('your.email@example.com')" class="copy-btn flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group w-full text-left" title="Click to copy">
-              <div class="p-2 rounded-lg border border-border group-hover:border-accent/50 bg-surface">
+            <button onclick="copyToClipboard('your.email@example.com')" class="copy-btn flex items-center gap-3 text-slate-300 hover:text-[var(--accent)] transition-colors group w-full text-left" title="Click to copy">
+              <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)]/50 bg-[var(--surface)]">
                 <i data-lucide="mail" class="w-4 h-4"></i>
               </div>
               <span class="font-mono text-sm">your@email.com</span>
             </button>
-            <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group" aria-label="GitHub profile">
-              <div class="p-2 rounded-lg border border-border group-hover:border-accent/50 bg-surface">
+            <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-[var(--accent)] transition-colors group" aria-label="GitHub profile">
+              <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)]/50 bg-[var(--surface)]">
                 <i data-lucide="github" class="w-4 h-4"></i>
               </div>
               <span class="font-mono text-sm">github.com/your-github-handle</span>
             </a>
-            <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-accent transition-colors group" aria-label="LinkedIn profile">
-              <div class="p-2 rounded-lg border border-border group-hover:border-accent/50 bg-surface">
+            <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-slate-300 hover:text-[var(--accent)] transition-colors group" aria-label="LinkedIn profile">
+              <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)]/50 bg-[var(--surface)]">
                 <i data-lucide="linkedin" class="w-4 h-4"></i>
               </div>
               <span class="font-mono text-sm">linkedin.com/in/your-linkedin-profile</span>
@@ -1178,7 +1181,7 @@ jobs:
               required
               maxlength="100"
               autocomplete="name"
-              class="w-full px-4 py-3 rounded-lg border border-border bg-surface text-slate-200 text-sm focus:outline-none focus:border-accent transition-colors"
+              class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-slate-200 text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
               placeholder="Your name"
             />
           </div>
@@ -1191,7 +1194,7 @@ jobs:
               required
               maxlength="254"
               autocomplete="email"
-              class="w-full px-4 py-3 rounded-lg border border-border bg-surface text-slate-200 text-sm focus:outline-none focus:border-accent transition-colors"
+              class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-slate-200 text-sm focus:outline-none focus:border-[var(--accent)] transition-colors"
               placeholder="your@email.com"
             />
           </div>
@@ -1207,15 +1210,15 @@ jobs:
               minlength="10"
               maxlength="2000"
               rows="5"
-              class="w-full px-4 py-3 rounded-lg border border-border bg-surface text-slate-200 text-sm focus:outline-none focus:border-accent transition-colors resize-none"
+              class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-slate-200 text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none"
               placeholder="Tell me about the opportunity or project..."
             ></textarea>
           </div>
           <button
             type="submit"
             data-formspree="YOUR_FORMSPREE_ID"
-            id="submit-btn"
-            class="w-full py-3 bg-accent hover:bg-blue-500 disabled:opacity-50 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
+            id="submit-btn" 
+            class="w-full py-3 bg-[var(--accent)] hover:bg-blue-500 disabled:opacity-50 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2"
           >
             <i data-lucide="send" class="w-4 h-4"></i>
             <span id="submit-text">Send Message</span>
@@ -1230,10 +1233,10 @@ jobs:
           Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.
         </p>
         <div class="flex items-center gap-4">
-          <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-accent transition-all hover:scale-110 "> <!-- Added text-muted here -->
+          <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110 "> <!-- Added text-muted here -->
             <i data-lucide="github" class="w-4 h-4"></i>
           </a>  
-          <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-accent transition-all hover:scale-110"> <!-- Added text-muted here -->
+          <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110"> <!-- Added text-muted here -->
             <i data-lucide="linkedin" class="w-4 h-4"></i>
           </a>
           <!-- Add other social links here if desired, following the same pattern -->
