@@ -1,0 +1,4 @@
+
+Can you help me update the `config.json` and `tools/personalize.js` to work with the new placeholder format `your-github-handle` instead of `{{placeholder}}`?
+
+I'd like to add a simple blog section to my portfolio. Can you suggest how to structure the HTML and CSS for it?

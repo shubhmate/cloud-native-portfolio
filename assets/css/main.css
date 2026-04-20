@@ -1,6 +1,7 @@
-/* Custom CSS variables for theming */
+/* ==================== Theme Variables ==================== */
+/* Defines custom CSS properties for colors, fonts, and other theme-related values. */
 :root {
-  --font-sans: 'Inter', sans-serif;
+  --font-sans: 'Inter', sans-serif; /* Primary sans-serif font */
   --font-mono: 'JetBrains Mono', monospace;
   --bg: #0f1117;
   --surface: #1a1d27;
@@ -12,6 +13,7 @@
 }
 
 /* Light theme variables */
+/* Overrides default dark theme variables when the 'light' class is applied to the HTML element. */
 html.light {
   --bg: #f8f9fa;
   --surface: #ffffff;
@@ -19,9 +21,10 @@ html.light {
   --text: #212121;
 }
 
-/* Basic reset and body styles */
+/* ==================== Base Styles & Utilities ==================== */
+/* Basic CSS reset to ensure consistent styling across browsers. */
 * { box-sizing: border-box; }
-
+/* Global body styles, applying theme variables and smooth scrolling. */
 body {
   background-color: var(--bg);
   color: var(--text);
@@ -32,7 +35,8 @@ body {
   line-height: 1.6;
 }
 
-/* Tailwind overrides for custom variables */
+/* Tailwind CSS Overrides for Custom Variables */
+/* These rules ensure that Tailwind's utility classes correctly use the defined CSS variables. */
 .bg-bg { background-color: var(--bg) !important; }
 .bg-surface { background-color: var(--surface) !important; }
 .border-border { border-color: var(--border) !important; }
@@ -41,13 +45,16 @@ body {
 .text-accent { color: var(--accent) !important; }
 .bg-accent { background-color: var(--accent) !important; }
 
-/* Selection styles */
+/* Selection Styles */
+/* Customizes the appearance of selected text. */
 ::selection { background: var(--accent); color: #fff; }
 
-/* Custom scrollbar styles */
+/* Custom Scrollbar Styles */
+/* Styles the scrollbar for a more integrated look. */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+/* Ensures monospace font is applied correctly. */
 
 /* Font utility */
 .font-mono { font-family: var(--font-mono); }
@@ -60,11 +67,11 @@ body {
   background-clip: text;
 }
 
-/* Card hover effects */
+/* ==================== Component-Specific Styles ==================== */
+/* Card Hover Effects (e.g., for certifications) */
 .card-hover {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2); /* Using a fixed color for shadow */
@@ -80,11 +87,13 @@ body {
   100% { transform: translateX(-50%); }
 }
 
-/* Pause marquee on group hover */
+/* Pause Marquee on Group Hover */
+/* Stops the marquee animation when the mouse hovers over its container. */
 .group:hover .animate-marquee {
   animation-play-state: paused;
 }
-/* Fade-up animation for sections */
+
+/* Fade-Up Animation for Sections */
 .animate-fade-up {
   animation: fadeUp 0.6s ease forwards;
 }
@@ -94,27 +103,30 @@ body {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Pulse animation for status indicator */
+/* Pulse Animation for Status Indicator (e.g., hero section status dot) */
 .animate-pulse2 {
   animation: pulse 3s ease-in-out infinite;
 }
 
-/* Flip card styles */
+/* Flip Card Styles (for project cards) */
 .flip-card { perspective: 1000px; }
 .flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
 .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
 .flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 0.75rem; border: 1px solid var(--border); background-color: var(--surface); }
 .flip-card-back { transform: rotateY(180deg); }
 
-/* Theme toggle icon animation */
+/* Theme Toggle Icon Animation */
+/* Adds a subtle rotation effect to the theme toggle button on hover. */
 .theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
 .theme-toggle:hover { transform: rotate(20deg); }
 
 /* Scroll-to-Top Button */
+/* Styles for the button that appears on scroll to return to the top of the page. */
 #scroll-to-top { position: fixed; bottom: 2rem; right: 2rem; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 40; }
 #scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
 
 /* Toast Notifications */
+/* Styles for the temporary feedback messages (e.g., "Copied!"). */
 #toast-container { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; pointer-events: none; }
 .toast { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text); font-size: 0.875rem; animation: slideIn 0.3s ease forwards; pointer-events: all; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
 .toast.success { border-color: var(--green); }
@@ -126,15 +138,18 @@ body {
 .toast.removing { animation: slideOut 0.3s ease forwards; }
 
 /* Copy Feedback */
+/* Visual feedback for copy-to-clipboard actions. */
 .copy-btn { position: relative; overflow: hidden; }
 .copy-btn::after { content: 'Copied!'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; font-size: 0.7rem; font-weight: bold; color: var(--green); transition: opacity 0.3s ease; }
 .copy-btn.copied::after { opacity: 1; }
 
-/* Enhanced Animations (for staggered fade-up if needed) */
+/* Enhanced Animations (for staggered fade-up if applied in JS) */
 @keyframes fadeInStagger { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
 .animate-fade-up-stagger { animation: fadeInStagger 0.6s ease forwards; }
 
-/* Specific styles for light mode overrides */
+/* ==================== Light Mode Specific Overrides ==================== */
+/* These rules apply only when the 'light' class is present on the HTML element,
+   ensuring proper theming for various components. */
 html.light .bg-bg { background-color: var(--bg) !important; }
 html.light .bg-surface { background-color: var(--surface) !important; }
 html.light .border-border { border-color: var(--border) !important; }
@@ -153,8 +168,9 @@ html.light .card-hover:hover {
   box-shadow: 0 8px 30px rgba(59, 130, 246, 0.1); /* Lighter shadow for light mode */
 }
 
-/* --- Preloader Styles --- */
+/* ==================== Preloader Styles ==================== */
 #preloader {
+  /* Fixed position to cover the entire viewport. */
   position: fixed;
   top: 0;
   left: 0;
@@ -165,17 +181,17 @@ html.light .card-hover:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Ensure it's on top of everything */
+  z-index: 9999; /* Ensures the preloader is on top of all other content. */
   opacity: 1;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out; /* Smooth fade-out transition. */
 }
-
 #preloader.hidden {
   opacity: 0;
-  pointer-events: none; /* Allow clicks through once hidden */
+  pointer-events: none; /* Allows interaction with elements beneath once hidden. */
 }
-
+html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+/* Adjusts toast shadow for light mode for better visual integration. */
 html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
 
-/* The animate-pulse2 class is now applied directly to the icon in HTML */
-/* The loading-text styles are replaced by direct Tailwind classes in HTML */
+/* Note: The 'animate-pulse2' class is applied directly to the icon in HTML. */
+/* Note: Loading text styles are handled by direct Tailwind classes in HTML. */
