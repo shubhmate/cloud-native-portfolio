@@ -546,4 +546,11 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         tryRenderAllLucideIcons();
     });
+
+    // --- Dynamic Copyright Year ---
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+        const currentYear = new Date().getFullYear();
+        currentYearSpan.textContent = currentYear;
+    };
 });
