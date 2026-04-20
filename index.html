@@ -68,11 +68,12 @@
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
   <link rel="stylesheet" href="assets/css/main.css">
 </head>
+
 <body>
   <!-- Preloader -->
   <div id="preloader" class="preloader">
-    <i data-lucide="terminal" class="w-12 h-12 text-accent animate-pulse2"></i>
-    <p class="font-mono text-xl text-text mt-4">Initializing devops.sh...</p>
+    <i data-lucide="terminal" class="w-12 h-12 text-[var(--accent)] animate-pulse2"></i>
+    <p class="font-mono text-xl text-[var(--accent)] mt-4">Initializing devops.sh...</p>
   </div>
 
   <a class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:bg-accent focus:text-white focus:p-3 focus:rounded-br-lg" href="#main-content">Skip to main content</a>
@@ -85,7 +86,7 @@
   </button>
 
   <!-- Navbar --> 
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-2 font-mono font-bold text-[var(--accent)]">
         <i data-lucide="terminal" class="w-5 h-5"></i>
@@ -120,7 +121,7 @@
     </div>
 
     <!-- Mobile Navigation Menu (hidden by default, toggled by JS) -->
-    <div id="mobile-menu" class="md:hidden bg-bg/95 backdrop-blur-md border-b border-border px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
+    <div id="mobile-menu" class="md:hidden bg-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
       <a href="#home" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Home</a>
       <a href="#skills" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Stack</a>
       <a href="#projects" class="block font-mono text-sm text-[var(--muted)] hover:text-[var(--accent)] transition-colors py-1">Projects</a>
@@ -196,7 +197,7 @@
   </section>
   
   <!-- ==================== Skills Section ==================== -->
-  <section id="skills" class="py-20 border-t border-border overflow-hidden">
+  <section id="skills" class="py-20 border-[var(--border)] overflow-hidden">
     <div class="max-w-6xl mx-auto px-6 mb-12">
       <div class="animate-fade-up">
         <div class="flex items-center gap-2 mb-2">
@@ -372,7 +373,7 @@
       <div class="space-y-8">
         <div class="animate-fade-up">
           <div class="grid grid-cols-2 gap-4">
-            <div class="p-4 rounded-lg border border-border bg-surface hover:border-accent/30 transition-colors">
+            <div class="p-4 rounded-lg border border-[var(--border)] bg-surface hover:border-[var(--accent)]/30 transition-colors">
               <p class="font-mono text-xs font-semibold mb-3 text-blue-400">Infrastructure</p>
               <div class="flex flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
@@ -410,7 +411,7 @@
               </div>
             </div>
             <!-- New Version Control Category -->
-            <div class="p-4 rounded-lg border border-border bg-surface hover:border-accent/30 transition-colors">
+            <div class="p-4 rounded-lg border border-[var(--border)] bg-surface hover:border-[var(--accent)]/30 transition-colors">
               <p class="font-mono text-xs font-semibold mb-3 text-orange-400">Version Control</p>
               <div class="flex flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
@@ -427,7 +428,7 @@
                 </div>
               </div>
             </div>
-            <div class="p-4 rounded-lg border border-border bg-surface hover:border-accent/30 transition-colors">
+            <div class="p-4 rounded-lg border border-[var(--border)] bg-surface hover:border-[var(--accent)]/30 transition-colors">
               <p class="font-mono text-xs font-semibold mb-3 text-green-400">CI/CD</p>
               <div class="flex flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
@@ -444,7 +445,7 @@
                 </div>
               </div>
             </div>
-            <div class="p-4 rounded-lg border border-border bg-surface hover:border-accent/30 transition-colors">
+            <div class="p-4 rounded-lg border border-[var(--border)] bg-surface hover:border-[var(--accent)]/30 transition-colors">
               <p class="font-mono text-xs font-semibold mb-3 text-yellow-400">Monitoring</p>
               <div class="flex flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
@@ -457,7 +458,7 @@
                 </div>
               </div>
             </div>
-            <div class="p-4 rounded-lg border border-border bg-surface hover:border-accent/30 transition-colors">
+            <div class="p-4 rounded-lg border border-[var(--border)] bg-surface hover:border-[var(--accent)]/30 transition-colors">
               <p class="font-mono text-xs font-semibold mb-3 text-purple-400">Languages</p>
               <div class="flex flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
@@ -470,7 +471,7 @@
                 </div>
               </div>
             </div>
-            <div class="p-4 rounded-lg border border-border bg-surface hover:border-accent/30 transition-colors">
+            <div class="p-4 rounded-lg border border-[var(--border)] bg-surface hover:border-[var(--accent)]/30 transition-colors">
               <p class="font-mono text-xs font-semibold mb-3 text-red-400">Security</p>
               <div class="flex flex-wrap gap-2">
                 <div class="flex items-center gap-1.5">
@@ -491,9 +492,9 @@
       <!-- Interactive Terminal Simulator -->
       <div class="animate-fade-up">
         <p class="font-mono text-xs text-[var(--muted)] mb-3 hover:text-[var(--accent)] transition-colors cursor-text">// interactive — try it</p>
-        <div class="rounded-xl border border-border bg-bg overflow-hidden cursor-text">
+        <div class="rounded-xl border border-[var(--border)] bg-bg overflow-hidden cursor-text">
           <!-- Title bar -->
-          <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-surface">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-surface">
             <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
             <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
             <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
@@ -505,7 +506,7 @@
           </div>
 
           <!-- Terminal Input Field -->
-          <div class="flex items-center gap-2 px-4 py-3 border-t border-border">
+          <div class="flex items-center gap-2 px-4 py-3 border-t border-[var(--border)] bg-surface">
             <span class="font-mono text-xs text-green-400 shrink-0">$</span>
             <input
               id="terminal-input" 
@@ -521,7 +522,7 @@
   </section>
 
   <!-- ==================== Projects Section ==================== -->
-  <section id="projects" class="py-20 border-t border-border">
+  <section id="projects" class="py-20 border-[var(--border)]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="animate-fade-up">
         <!-- Section Header -->
@@ -543,7 +544,7 @@
           <div class="flip-card-inner">
             <!-- Front of the card (overview) -->
             <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-              <div class="w-full h-28 rounded-lg bg-bg border border-border mb-4 flex items-center justify-center overflow-hidden">
+              <div class="w-full h-28 rounded-lg bg-bg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
                 <img src="assets/img/og-image.png" alt="Project Architecture Diagram" class="w-full h-full object-cover">
               </div>
               <h3 class="font-mono text-lg font-bold mb-2">3-Tier App with Docker Compose</h3>
@@ -626,7 +627,7 @@
           <div class="flip-card-inner">
             <!-- Front of the card (overview) -->
             <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-              <div class="w-full h-28 rounded-lg bg-bg border border-border mb-4 flex items-center justify-center overflow-hidden">
+              <div class="w-full h-28 rounded-lg bg-bg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
                 <img src="assets/img/og-image.png" alt="Project Architecture Diagram" class="w-full h-full object-cover">
               </div>
               <h3 class="font-mono text-lg font-bold mb-2">AWS VPC with Terraform</h3>
@@ -704,7 +705,7 @@
           <div class="flip-card-inner">
             <!-- Front of the card (overview) -->
             <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-              <div class="w-full h-28 rounded-lg bg-bg border border-border mb-4 flex items-center justify-center overflow-hidden">
+              <div class="w-full h-28 rounded-lg bg-bg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
                 <img src="assets/img/og-image.png" alt="Project Architecture Diagram" class="w-full h-full object-cover">
               </div>
               <h3 class="font-mono text-lg font-bold mb-2">CI/CD Pipeline — GitHub Actions</h3>
@@ -787,7 +788,7 @@
           <div class="flip-card-inner">
             <!-- Front of the card (overview) -->
             <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-              <div class="w-full h-28 rounded-lg bg-bg border border-border mb-4 flex items-center justify-center overflow-hidden">
+              <div class="w-full h-28 rounded-lg bg-bg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
                 <img src="assets/img/og-image.png" alt="Project Architecture Diagram" class="w-full h-full object-cover">
               </div>
               <h3 class="font-mono text-lg font-bold mb-2">EC2 Monitoring Stack</h3>
@@ -865,7 +866,7 @@
 
   <!-- ==================== Pipeline Section (Meta-Project) ==================== -->
   <!-- Explains how this portfolio website itself is built and deployed using DevOps principles. -->
-  <section id="pipeline" class="py-20 border-t border-border">
+  <section id="pipeline" class="py-20 border-[var(--border)]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="animate-fade-up">
         <div class="flex items-center gap-2 mb-2">
@@ -959,14 +960,15 @@
 
       <!-- GitHub Actions Workflow YAML Code Snippet -->
       <div class="animate-fade-up">
-        <div class="rounded-xl border border-border bg-surface overflow-hidden">
-          <div class="flex items-center gap-2 px-4 py-3 border-b border-border bg-bg">
+        <div class="rounded-xl border border-[var(--border)] bg-surface overflow-hidden">
+          <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-bg">
             <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
             <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
             <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
             <span class="ml-2 font-mono text-xs text-muted">.github/workflows/deploy.yml</span>
           </div>
-          <pre class="p-4 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed"><code>on:
+          <pre class="p-4 text-xs font-mono text-slate-300 overflow-x-auto leading-relaxed"><code>name: Deploy Portfolio Website            
+on:
   push:
     branches: [main]
 
@@ -992,8 +994,9 @@ jobs:
     </div>
   </section>
 
-  <!-- Experience -->
-  <section id="experience" class="py-20 border-t border-border">
+  <!-- ==================== Experience Section ==================== -->
+  <!-- Explains the user's work experience and career progression. -->
+  <section id="experience" class="py-20 border-[var(--border)]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-16">
 
@@ -1118,7 +1121,8 @@ jobs:
   </section>
 
   <!-- ==================== Contact Section ==================== -->
-  <section id="contact" class="py-20 border-t border-border">
+  <!-- Provides contact information and social media links, with copy-to-clipboard functionality for email. --> 
+  <section id="contact" class="py-20 border-[var(--border)]">
     <div class="max-w-6xl mx-auto px-6">
       <div class="grid md:grid-cols-2 gap-16">
         <!-- Left Column: Contact Information & Social Links -->
@@ -1224,7 +1228,8 @@ jobs:
       </div>
 
       <!-- ==================== Footer ==================== -->
-      <div class="mt-16 pt-8 border-t border-border flex flex-col items-center gap-4">
+      <!-- Footer with current year, social links, and a note about the tech stack used to build the site. -->
+      <div class="mt-16 pt-8 border-t border-[var(--border)] flex flex-col items-center gap-4">
         <p class="font-mono text-xs text-muted text-center md:text-left">
           Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.
         </p>
@@ -1248,4 +1253,5 @@ jobs:
   <!-- Defer loading to ensure HTML is parsed before script execution -->
   <script src="assets/js/main.js" defer></script>
 </body>
+
 </html>
