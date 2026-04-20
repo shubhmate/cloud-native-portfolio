@@ -1,9 +1,12 @@
+// Ensure all DOM content is loaded before executing JavaScript
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Preloader ---
+    // ==================== Preloader Logic ====================
+    // Hides the preloader once the entire page (including images, etc.) has loaded.
     const preloader = document.getElementById('preloader');
     if (preloader) {
         window.addEventListener('load', () => {
             preloader.classList.add('hidden');
+            // Remove the preloader element from the DOM after its transition ends for better performance.
             preloader.addEventListener('transitionend', () => {
                 preloader.remove();
             });
@@ -11,13 +14,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Declare Theme Toggle buttons early to avoid TypeError ---
+    // These elements are declared here to be accessible throughout the theme toggle logic.
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
 
-    // --- Theme Toggle ---
+    // ==================== Theme Toggle Functionality ====================
+    // Manages switching between dark and light themes, persisting user preference.
     const htmlElement = document.documentElement;
 
-    // Helper function to update a single theme icon element dynamically
+    // Helper function to dynamically update a single theme icon (sun/moon).
     function updateSingleThemeIconElement(container, iconName) {
         if (!container) return;
 
@@ -32,10 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
         newIcon.setAttribute('data-lucide', iconName);
         newIcon.classList.add('w-5', 'h-5'); // Ensure classes are re-added
         container.appendChild(newIcon); // Add the new <i> element
-
-        // Re-render only the newly added icon using Lucide
-        // Use a retry mechanism to ensure Lucide's internal icon registry is populated
-        // before attempting to render dynamic icons. This is crucial because lucide.js
+        
+        // Re-render only the newly added icon using Lucide.
+        // A retry mechanism is used to ensure Lucide's internal icon registry is populated
+        // before attempting to render dynamic icons. This is crucial because `lucide.js`
         // might be loaded with 'defer' and its internal icon definitions might not be
         // ready immediately, even if the 'lucide' object itself exists.
         const tryRenderLucideIcon = () => {
@@ -55,11 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
         tryRenderLucideIcon();
     }
 
-    const currentTheme = localStorage.getItem('theme'); // Now themeToggleBtn is defined
+    // Initialize theme based on localStorage or system preference.
+    const currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         htmlElement.classList.add(currentTheme);
         updateThemeIcon(currentTheme);
-    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { // Check system preference
         htmlElement.classList.add('dark');
         updateThemeIcon('dark');
     } else {
@@ -67,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         updateThemeIcon('dark');
     }
 
-    // Main function to update both theme icons
+    // Main function to update both desktop and mobile theme icons.
     function updateThemeIcon(theme) {
         const iconName = theme === 'dark' ? 'sun' : 'moon';
         updateSingleThemeIconElement(themeToggleBtn, iconName);
@@ -88,10 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // Add event listeners to theme toggle buttons if they exist.
     if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
     if (themeToggleBtnMobile) themeToggleBtnMobile.addEventListener('click', toggleTheme);
 
-    // --- Mobile Menu Toggle ---
+    // ==================== Mobile Menu Toggle ====================
+    // Handles opening and closing the mobile navigation menu.
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const navLinks = mobileMenu ? mobileMenu.querySelectorAll('a') : [];
@@ -101,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
             mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
             mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex'); // Assuming you want flex for mobile menu
+            mobileMenu.classList.toggle('flex'); // Use flex to display the menu
             mobileMenu.classList.toggle('flex-col');
         });
 
-        // Close mobile menu when a link is clicked
+        // Close mobile menu when a navigation link is clicked.
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -115,10 +123,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Scroll to Top Button ---
+    // ==================== Scroll to Top Button ====================
+    // Shows/hides a button based on scroll position and handles smooth scrolling to the top.
     const scrollToTopBtn = document.getElementById('scroll-to-top');
     if (scrollToTopBtn) {
-        window.addEventListener('scroll', () => {
+        window.addEventListener('scroll', () => { // Listen for scroll events
             if (window.scrollY > 300) { // Show button after scrolling 300px
                 scrollToTopBtn.classList.add('visible');
             } else {
@@ -126,15 +135,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        scrollToTopBtn.addEventListener('click', () => {
+        scrollToTopBtn.addEventListener('click', () => { // Handle click event
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         });
     }
-
-    // --- Typewriter Effect ---
+    
+    // ==================== Typewriter Effect ====================
+    // Animates typing and deleting phrases in the hero section.
     const typewriterElement = document.getElementById('typewriter');
     if (typewriterElement) {
         const phrases = [
@@ -176,13 +186,14 @@ document.addEventListener('DOMContentLoaded', () => {
         type();
     }
 
-    // --- Hero Canvas Particle Animation (Simple) ---
+    // ==================== Hero Canvas Particle Animation ====================
+    // Creates an interactive particle background in the hero section.
     const canvas = document.getElementById('hero-canvas');
     if (canvas) {
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const numParticles = 150; // Increased particle quantity for higher density
-        let mouse = {
+        const numParticles = 150; // Number of particles for the animation
+        let mouse = { // Mouse position and repulsion radius for particle interaction
             x: null,
             y: null,
             radius: 100 // Repulsion radius for particles
@@ -190,11 +201,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxLineDistance = 100; // Maximum distance for particles to connect with a line
 
 
+        // Resizes the canvas to match the window dimensions.
         function resizeCanvas() {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
-
+        // Particle class defines properties and behaviors for each particle.
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -204,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.speedY = Math.random() * 1 - 0.5; // Increased particle speed
                 this.color = `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.1})`; // Accent color with transparency
             }
-            // Method to calculate distance and apply repulsion from mouse
+            // Calculates distance to mouse and applies a repulsion force.
             repel() {
                 if (mouse.x !== null && mouse.y !== null) {
                     let dx = this.x - mouse.x;
@@ -221,6 +233,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             }
+            // Updates particle position and handles boundary collisions.
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
@@ -229,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
             }
 
+            // Draws the particle on the canvas.
             draw() {
                 ctx.fillStyle = this.color;
                 ctx.beginPath();
@@ -237,6 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Initializes the array of particles.
         function initParticles() {
             particles = [];
             for (let i = 0; i < numParticles; i++) {
@@ -244,11 +259,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Animation loop for particles: updates, draws, and connects them with lines.
         function animateParticles() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
-                // Draw lines between nearby particles
+                // Draws lines between nearby particles, fading with distance.
                 for (let j = i; j < particles.length; j++) {
                     let dx = particles[i].x - particles[j].x;
                     let dy = particles[i].y - particles[j].y;
@@ -263,7 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ctx.stroke();
                     }
                 }
-                particles[i].repel(); // Apply repulsion
+                particles[i].repel(); // Apply mouse repulsion effect
                 particles[i].draw();
                 if (particles[i].size <= 0.1) {
                     particles.splice(i, 1);
@@ -273,8 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(animateParticles);
         }
 
+        // Event listeners for canvas resizing and mouse interaction.
         window.addEventListener('resize', resizeCanvas);
-        canvas.addEventListener('mousemove', (event) => {
+        canvas.addEventListener('mousemove', (event) => { // Track mouse position for repulsion
             // Get mouse position relative to the canvas
             const rect = canvas.getBoundingClientRect();
             mouse.x = event.clientX - rect.left;
@@ -289,12 +306,13 @@ document.addEventListener('DOMContentLoaded', () => {
         animateParticles();
     }
 
-    // --- Terminal Simulator ---
+    // ==================== Terminal Simulator ====================
+    // Provides an interactive command-line interface experience.
     const terminalInput = document.getElementById('terminal-input');
     const terminalOutput = document.getElementById('terminal-output');
 
-    let commands = {}; // Declare commands as a mutable object
-
+    let commands = {}; // Object to store available terminal commands and their responses/functions.
+    
     // Fetch commands from JSON file
     fetch('assets/js/commands.json')
         .then(response => {
@@ -303,8 +321,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return response.json();
         })
-        .then(data => {
-            commands = data; // Assign fetched data to commands
+        .then(fetchedCommands => {
+            commands = fetchedCommands; // Assign fetched data to commands
             // Re-assign functions as they cannot be stored directly in JSON
             commands.clear = () => { // Clear function
                 terminalOutput.innerHTML = '';
@@ -318,13 +336,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return { output: "Navigating to projects...", color: 'text-accent' };
             };
 
-            // Update dynamic commands
-            // Initial welcome message after commands are loaded
+            // Display initial welcome message after commands are successfully loaded.
             if (terminalOutput) {
                 addOutput('Welcome to devops.sh — type \'help\' to get started.');
             }
         })
+        // Log any errors during command loading.
         .catch(error => console.error('Error loading terminal commands:', error));
+
     if (terminalInput && terminalOutput) {
         terminalInput.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
@@ -336,6 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Adds a new line of output to the terminal display.
         function addOutput(text, color = 'text-slate-200') {
             const div = document.createElement('div');
             div.className = `font-mono text-xs ${color}`;
@@ -349,6 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
             terminalOutput.appendChild(div);
         }
 
+        // Executes a given command by looking it up in the `commands` object.
         function executeCommand(input) {
             const parts = input.split(' ');
             const command = parts[0].toLowerCase();
@@ -377,14 +398,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Flip Card Functionality ---
+    // ==================== Flip Card Functionality ====================
+    // Toggles the 'flipped' class on project cards to show front/back content.
     window.flipCard = function(button) {
         const card = button.closest('.flip-card');
         if (card) {
             card.classList.toggle('flipped');
         }
     };
-
+    // Adds keyboard accessibility (Enter/Space) to flip card buttons.
     // Add keyboard support for flip cards
     document.querySelectorAll('.flip-card button').forEach(button => {
         button.addEventListener('keydown', (e) => {
@@ -395,9 +417,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- Copy to Clipboard & Toast Notifications ---
+    // ==================== Copy to Clipboard & Toast Notifications ====================
+    // Provides functionality to copy text to clipboard and display temporary feedback messages.
     const toastContainer = document.getElementById('toast-container');
-
+    // Displays a toast notification with a given message and type (success/error).
     function showToast(message, type = 'success') {
         if (!toastContainer) return;
 
@@ -414,6 +437,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000); // Toast disappears after 3 seconds
     }
 
+    // Copies provided text to the clipboard and shows a toast notification.
     window.copyToClipboard = function(text) {
         navigator.clipboard.writeText(text).then(() => {
             showToast('Email copied to clipboard!');
@@ -428,10 +452,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // --- Contact Form Submission (Formspree) ---
+    // ==================== Contact Form Submission (Formspree) ====================
+    // Handles submission of the contact form using Formspree, including validation and feedback.
     const contactForm = document.getElementById('contact-form');
     const submitBtn = document.getElementById('submit-btn');
-    const submitText = document.getElementById('submit-text');
+    const submitText = document.getElementById('submit-text'); // Text inside the submit button
     const statusMessage = document.getElementById('status-message');
 
     if (contactForm && submitBtn && statusMessage) {
@@ -439,7 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
 
             const formspreeId = submitBtn.getAttribute('data-formspree');
-            if (!formspreeId || formspreeId === 'YOUR_FORMSPREE_ID') {
+            if (!formspreeId || formspreeId === 'YOUR_FORMSPREE_ID') { // Basic check for placeholder ID
                 showToast('Please replace YOUR_FORMSPREE_ID in index.html for the contact form.', 'error');
                 return;
             }
@@ -448,6 +473,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitText.textContent = 'Sending...';
             statusMessage.classList.add('hidden');
 
+            // Collect form data and send to Formspree endpoint.
             const formData = new FormData(contactForm);
             try {
                 const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
@@ -459,7 +485,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    showToast('Message sent successfully!');
+                    showToast('Message sent successfully!'); // Success feedback
                     contactForm.reset();
                 } else {
                     const data = await response.json();
@@ -469,7 +495,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         statusMessage.textContent = 'Oops! There was an error sending your message.';
                     }
                     statusMessage.classList.remove('hidden');
-                    showToast('Failed to send message.', 'error');
+                    showToast('Failed to send message.', 'error'); // Error feedback
                 }
             } catch (error) {
                 console.error('Form submission error:', error);
@@ -483,10 +509,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Intersection Observer for fade-up animations ---
+    // ==================== Intersection Observer for Fade-Up Animations ====================
+    // Triggers CSS animations when elements enter the viewport.
     const fadeUpElements = document.querySelectorAll('.animate-fade-up');
     const observerOptions = {
-        root: null, // viewport
+        root: null, // Use the viewport as the root
         rootMargin: '0px',
         threshold: 0.1 // Trigger when 10% of the element is visible
     };
@@ -497,10 +524,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 entry.target.style.opacity = 1;
                 entry.target.style.transform = 'translateY(0)';
                 observer.unobserve(entry.target); // Stop observing once animated
-            } else {
-                // Reset for elements that scroll out of view and might come back
-                // entry.target.style.opacity = 0;
-                // entry.target.style.transform = 'translateY(20px)';
             }
         });
     }, observerOptions);
@@ -512,7 +535,8 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // --- Navbar sticky/scroll behavior (optional, if you want it to change on scroll) ---
+    // ==================== Navbar Scroll Behavior ====================
+    // Adds styling to the navbar when the user scrolls down.
     const navbar = document.getElementById('navbar');
     if (navbar) {
         window.addEventListener('scroll', () => {
@@ -524,10 +548,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- Final Lucide Icons initialization ---
+    // ==================== Final Lucide Icons Initialization ====================
     // Ensure all static Lucide icons are rendered after the entire page (including lucide.js) has loaded.
-    window.addEventListener('load', () => { // Use window.load to ensure all resources are loaded
-        // Use a retry mechanism to ensure Lucide's internal icon registry is fully populated
+    window.addEventListener('load', () => { // Using window.load to ensure all resources (including Lucide.js) are loaded.
+        // A retry mechanism is used to ensure Lucide's internal icon registry is fully populated
         // before attempting to render all static icons. This is crucial because lucide.js
         // might be loaded with 'defer' and its internal icon definitions might not be
         // ready immediately, even if the 'lucide' object itself exists.
@@ -547,7 +571,8 @@ document.addEventListener('DOMContentLoaded', () => {
         tryRenderAllLucideIcons();
     });
 
-    // --- Dynamic Copyright Year ---
+    // ==================== Dynamic Copyright Year ====================
+    // Automatically updates the copyright year in the footer to the current year.
     const currentYearSpan = document.getElementById('current-year');
     if (currentYearSpan) {
         const currentYear = new Date().getFullYear();
