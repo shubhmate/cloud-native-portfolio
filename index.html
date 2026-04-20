@@ -1195,24 +1195,22 @@ jobs:
       </div>
 
       <!-- Footer -->
-      <div class="mt-16 pt-8 border-t border-border flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="font-mono text-xs text-muted">
-          Built with HTML5, Tailwind CSS & Vanilla JS · Hosted statically
+      <div class="mt-16 pt-8 border-t border-border flex flex-col items-center gap-4">
+        <p class="font-mono text-xs text-muted text-center md:text-left">
+          Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.
         </p>
-        <div class="flex items-center gap-4 text-muted">
-          <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">
+        <div class="flex items-center gap-4"> <!-- Removed text-muted from here -->
+          <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-accent transition-all hover:scale-110 "> <!-- Added text-muted here -->
             <i data-lucide="github" class="w-4 h-4"></i>
-          </a>
-          <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">
+          </a>  
+          <a href="https://linkedin.com/in/your-linkedin-profile" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-accent transition-all hover:scale-110"> <!-- Added text-muted here -->
             <i data-lucide="linkedin" class="w-4 h-4"></i>
           </a>
-          <!-- Commented out Medium link -->
-          <!--
-          <a href="https://medium.com/@your-medium-handle" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">
-            <i data-lucide="hash" class="w-4 h-4"></i>
-          </a>
-          -->
+          <!-- Add other social links here if needed -->
         </div>
+        <p class="font-mono text-xs text-muted text-center md:text-left">
+          © 2026 Shubham Mate · Made with ❤️
+        </p>
       </div>
     </div>
   </main>
