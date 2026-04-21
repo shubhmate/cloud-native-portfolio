@@ -383,19 +383,19 @@ document.addEventListener('DOMContentLoaded', () => {
             // Re-assign functions as they cannot be stored directly in JSON
             commands.clear = () => { // Clear function
                 terminalOutput.innerHTML = '';
-                addOutput('Welcome to devops.sh — type \'help\' to get started.');
+                addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400');
             };
             commands.echo = (args) => ({ output: args.join(' '), color: 'text-yellow-400' });
             commands.date = () => ({ output: new Date().toLocaleString(), color: 'text-purple-400' }); // Dynamic date
             commands.uptime = () => ({ output: "Simulated uptime: 120 days, 5 hours, 30 minutes", color: 'text-purple-400' }); // Example of a simulated dynamic command.
             commands['open projects'] = () => {
                 window.location.hash = '#projects'; // Scroll to projects section
-                return { output: "Navigating to projects...", color: 'text-accent' }; // Return a message for the terminal.
+                return { output: "Navigating to projects...", color: 'text-[var(--accent)]' }; // Return a message for the terminal.
             };
 
             // Display initial welcome message after commands are successfully loaded.
             if (terminalOutput) {
-                addOutput('Welcome to devops.sh — type \'help\' to get started.');
+                addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400');
             }
         })
         // Catch and log any errors that occur during the fetch operation.
