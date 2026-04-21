@@ -142,12 +142,16 @@
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
       <!-- Canvas for interactive particle background -->
       <canvas id="hero-canvas" class="absolute inset-0 opacity-50"></canvas>
+
+      <!-- Hero content -->
       <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <!-- Status Indicator -->
         <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 text-[var(--accent)] text-sm font-mono mb-6 animate-fade-up">
-          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+          <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
           Open to new opportunities · ~2 years experience
         </div>
 
+        <!-- Hero Title -->
         <h1 class="font-mono text-4xl md:text-6xl font-bold leading-tight mb-4">
           Building & Automating
           <br />
@@ -156,18 +160,20 @@
 
         <!-- Typewriter -->
         <div class="h-10 flex items-center justify-center mb-4">
-          <span id="typewriter" class="font-mono text-xl md:text-2xl text-[var(--text)]"></span>
+          <span id="typewriter" class="font-mono text-xl md:text-2xl text-[var(--accent)]"></span>
             <!-- DevOps Engineer -->
             <span class="inline-block w-0.5 h-6 bg-[var(--accent)] ml-0.5 animate-pulse align-middle"></span>
           </span>
         </div>
 
-        <p class="text-muted text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+        <!-- Hero Description -->
+        <p class="text-[var(--muted)] text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
           DevOps Engineer focused on
-          <span class="text-blue-400">CI/CD pipelines</span>,
-          <span class="text-green-400">Containerization</span>, and
+          <span class="text-green-400">CI/CD pipelines</span>,
+          <span class="text-blue-400">Containerization</span>, and
           <span class="text-purple-400">Cloud Infrastructure</span>.
         </p>
+
         <!-- Call-to-action buttons -->
         <div class="flex flex-wrap gap-4 justify-center mb-12">
           <a href="#projects" class="px-6 py-3 bg-[var(--accent)] hover:bg-blue-500 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105">
@@ -176,14 +182,14 @@
           <a
             href="./resume.pdf"
             download
-            class="px-6 py-3 border border-[var(--accent)] text-[var(--accent)] font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 hover:scale-105"
-          >
+            class="px-6 py-3 border border-[var(--accent)] text-[var(--accent)] font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 hover:scale-105">
             <i data-lucide="download" class="w-4 h-4"></i>
             Download Resume
           </a>
         </div>
+        
         <!-- Social media links -->
-        <div class="flex justify-center gap-6 text-muted">
+        <div class="flex justify-center gap-6 text-[var(--muted)]">
           <a href="https://github.com/your-github-handle" target="_blank" rel="noopener noreferrer" aria-label="Visit GitHub profile" class="hover:text-[var(--accent)] transition-all hover:scale-110">
             <i data-lucide="github" class="w-6 h-6"></i>
           </a>
@@ -192,8 +198,9 @@
           </a>
         </div>
       </div>
+
       <!-- Scroll down indicator -->
-      <a href="#skills" class="flex items-center justify-center absolute bottom-8 left-0 right-0 mx-auto hover:text-[var(--accent)] transition-colors transition-transform hover:scale-110 animate-bounce w-fit" aria-label="Scroll down to skills section">
+      <a href="#skills" class="flex items-center justify-center absolute bottom-8 left-0 right-0 mx-auto text-[var(--muted)] hover:text-[var(--accent)] transition-colors transition-transform hover:scale-110 animate-bounce w-fit" aria-label="Scroll down to skills section">
         <i data-lucide="arrow-down" class="w-5 h-5 relative -top-[1px]"></i>
       </a>
     </section>
