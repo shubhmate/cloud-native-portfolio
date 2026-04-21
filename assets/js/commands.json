@@ -4,7 +4,7 @@
       "DevOps Engineer · ~2 years experience",
       "Focused on AWS, Docker, Terraform, CI/CD"
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
 
   "skills": {
@@ -15,7 +15,7 @@
       "Monitoring      → Prometheus, Grafana",
       "Languages       → Python, Bash, Go (learning)"
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
 
   "projects": {
@@ -27,7 +27,7 @@
       "",
       "Run 'open projects' to jump to the section."
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
 
   "experience": {
@@ -35,7 +35,7 @@
       "DevOps Engineer        Jan 2024 – Present",
       "Junior DevOps Intern   Jun 2023 – Dec 2023"
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
   
   "contact": {
@@ -44,7 +44,7 @@
       "GitHub   → github.com/your-github-handle",
       "LinkedIn → linkedin.com/in/your-linkedin-profile"
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
   
   "build": {
@@ -57,7 +57,7 @@
       "  5. S3 deployment & CloudFront invalidation",
       "  6. Portfolio live!"
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
 
   "deploy": {
@@ -68,7 +68,7 @@
       "  Deploy to AWS S3: aws s3 sync out/ s3://bucket",
       "  Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ID --paths '/*'"
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
 
   "email": {
@@ -109,18 +109,18 @@
       "  <b>secret</b>    : Find the easter egg",
       "  <b>clear</b>     : Clear terminal"
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
 
   "open projects": {
     "output": [
       "Navigating to projects..."
     ],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   },
   
   "clear": {
     "output": [],
-    "color": "text-accent"
+    "color": "text-[var(--accent)]"
   }
 }
