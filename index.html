@@ -71,12 +71,36 @@
 
 <body>
   <!-- Preloader -->
-  <div id="preloader" class="preloader">
+  <!-- <div id="preloader" class="preloader">
     <i data-lucide="terminal" class="w-12 h-12 text-[var(--accent)] animate-pulse2"></i>
     <p class="font-mono text-xl text-[var(--accent)] mt-4">Initializing devops.sh...</p>
+  </div> -->
+
+  <!-- Preloader -->
+  <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0a0a0a]">
+    <div class="relative flex flex-col items-center">
+      <!-- Icon Container -->
+      <div class="relative w-24 h-24 flex items-center justify-center">
+        <!-- Cloud (The Base) -->
+        <i data-lucide="cloud" 
+          class="w-full h-full text-[var(--accent)]"></i>
+        <!-- Terminal (The Overlay) -->
+        <!-- We nudge it down slightly (top-[55%]) to sit in the cloud's center mass -->
+        <i data-lucide="terminal" 
+          class="absolute w-8 h-8 text-[var(--accent)] animate-pulse2 
+                  top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+      </div>
+      <!-- Text -->
+      <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
+        <span class="animate-pulse">_</span>
+        Initializing devops.sh...
+      </p>
+    </div>
   </div>
 
+  <!-- Skip to Main Content Link -->
   <a class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:bg-accent focus:text-white focus:p-3 focus:rounded-br-lg" href="#main-content">Skip to main content</a>
+  
   <!-- Toast Container -->
   <div id="toast-container"></div>
 
@@ -86,11 +110,26 @@
   </button>
 
   <!-- Navbar --> 
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
+  <!-- <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="#home" class="flex items-center gap-2 font-mono font-bold text-[var(--accent)]">
         <i data-lucide="terminal" class="w-5 h-5"></i>
         <span>devops.sh</span>
+      </a> -->
+  <!-- <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)] bg-black/80 backdrop-blur-md"> -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#home" class="flex items-center gap-3 font-mono font-bold text-[var(--accent)] group">
+        <!-- Integrated Logo Container -->
+        <div class="relative w-8 h-8 flex items-center justify-center">
+          <!-- Cloud: Slightly faded, stays in background -->
+          <i data-lucide="cloud" 
+             class="w-8 h-8 text-[var(--accent)] opacity-50 group-hover:opacity-90 transition-opacity"></i>
+          <!-- Terminal: Centered and sharp -->
+          <i data-lucide="terminal" 
+             class="absolute w-3.5 h-3.5 text-[var(--accent)] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+        </div>
+        <span class="tracking-tight">devops.sh</span>
       </a>
 
       <!-- Desktop Navigation Links -->
