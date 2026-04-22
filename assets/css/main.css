@@ -108,7 +108,7 @@ body {
 
 /* Pulse Animation for Status Indicator (e.g., hero section status dot) */
 .animate-pulse {
-  animation: pulse-dot 1s infinite;
+  animation: pulse-dot 1s ease-in-out infinite;
 }
 
 .animate-pulse2 {
