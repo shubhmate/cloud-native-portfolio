@@ -681,4 +681,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentYear = new Date().getFullYear();
         currentYearSpan.textContent = currentYear;
     };
+
+    // =========================================================================
+    // 15. "Hire Me" Button Scroll
+    // =========================================================================
+    // In main.js, within the DOMContentLoaded listener:
+    const hireMeButton = document.getElementById('hire-me');
+    if (hireMeButton) {
+        hireMeButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default button behavior if it's inside a form or has a default action
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
 });

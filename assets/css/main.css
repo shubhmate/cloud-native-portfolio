@@ -10,6 +10,8 @@
   --accent: #3b82f6;
   --green: #22c55e;
   --muted: #6b7280;
+  --glass-bg: rgba(26, 29, 39, 0.8); /* Derived from --surface with transparency */
+  --status-green: var(--green); /* Alias for green status dot */
 }
 
 /* Light theme variables */
@@ -19,6 +21,8 @@ html.light {
   --surface: #ffffff;
   --border: #e0e0e0;
   --text: #212121;
+  --glass-bg: rgba(255, 255, 255, 0.8); /* Derived from --surface with transparency */
+  --status-green: var(--green); /* Alias for green status dot */
 }
 
 /* ==================== Base Styles & Utilities ==================== */
@@ -130,7 +134,136 @@ body {
 /* Scroll-to-Top Button */
 /* Styles for the button that appears on scroll to return to the top of the page. */
 #scroll-to-top { position: fixed; bottom: 2rem; right: 2rem; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 40; }
+
+/* Adjust scroll-to-top position on mobile to stack above hire-me-btn */
+@media (max-width: 768px) {
+  #scroll-to-top {
+    bottom: 5.5rem; /* Position above the hire-me-btn (2rem bottom + ~2.375rem height + 1rem spacing) */
+    right: 2rem; /* Keep consistent with hire-me-btn */
+  }
+}
 #scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+/* Base Desktop Styles (Vertical Side Tab) */
+.hire-me-btn {
+  /* Positioning */
+  position: fixed;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+
+  /* Layout & Text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  padding: 24px 10px;
+  
+  /* Typography */
+  font-family: 'JetBrains Mono', monospace; /* Modern, professional choice */
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--green);
+  
+  /* Styling (Glassmorphism) */
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--green); /* Using green for a fresh, inviting look */
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  cursor: pointer;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
+  
+  /* Smooth "Professional" Transition */
+  transition: all 0.4s ease-in-out; /* Changed from bouncy to ease-in-out */
+}
+
+/* Hover State */
+.hire-me-btn:hover {
+  right: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--green);
+  color: var(--green);
+  padding-right: 15px;
+  transform: translateY(-50%) scale(1.05);
+  /* Added a subtle shadow on hover for professionalism */
+  box-shadow: 0 8px 30px rgba(var(--green-rgb), 0.2);
+}
+
+/* The Status Indicator (Dot) */
+.hire-me-btn::before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 7px;
+  height: 7px;
+  background-color: var(--status-green);
+  border-radius: 50%;
+  animation: pulse-dot 1s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .hire-me-btn {
+    /* Reset & Alignment */
+    writing-mode: horizontal-tb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between dot and text */
+    
+    /* Position */
+    top: auto; /* Ensure it's not vertically centered by 'top' from desktop styles */
+    bottom: 2rem; /* Position at the bottom, below scroll-to-top button */
+    right: 2rem; /* Align with scroll-to-top button */
+    transform: none;
+    
+    /* Styling */
+    padding: 12px 24px;
+    border-radius: 50px; /* Keep pill shape */
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--green);
+    color: var(--green);
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 14px;
+    box-shadow: 0 10px 25px rgba(var(--green-rgb), 0.4);
+  }
+
+  /* The Pulse Dot - Positioned Before Text */
+  .hire-me-btn::before {
+    content: '';
+    position: static; /* Remove absolute positioning */
+    transform: none;  /* Reset transform */
+    width: 8px;
+    height: 8px;
+    background-color: var(--status-green);
+    border-radius: 50%;
+    /* Combine the pulse dot and shadow animations */
+    animation: pulse-dot 1.5s ease-in-out infinite, pulse-ring 1.5s infinite;
+    flex-shrink: 0; /* Prevents dot from squishing */
+  }
+
+  .hire-me-btn:hover {
+    transform: translateY(-5px);
+    right: 2rem; /* Maintain alignment with non-hover state */
+    padding-right: 24px; /* Fix the padding jitter */
+  }
+}
+
+/* Ensure the ring animation uses your RGB variable */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(var(--green-rgb), 0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0); }
+}
+
 
 /* Toast Notifications */
 /* Styles for the temporary feedback messages (e.g., "Copied!"). */
