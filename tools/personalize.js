@@ -8,15 +8,24 @@ const configPath = path.join(__dirname, 'config.json'); // Configuration file is
 const htmlPath = path.join(projectRoot, 'index.html'); // Main HTML file
 const mainCssPath = path.join(projectRoot, 'assets', 'css', 'main.css'); // External CSS file
 const mainJsPath = path.join(projectRoot, 'assets', 'js', 'main.js'); // External JavaScript file
+// Removed defaultPlaceholders as we are now using {{KEY}} format exclusively
 
 function applyReplacements(content, config) {
   let modifiedContent = content;
   for (const key in config) {
     if (Object.hasOwnProperty.call(config, key)) {
-      const placeholder = `{{${key}}}`;
-      const value = config[key];
-      // Use a global regex to replace all occurrences
-      modifiedContent = modifiedContent.replace(new RegExp(placeholder, 'g'), value);
+      let value = config[key];
+      
+      // If the value is an object or array, stringify it to a JSON literal
+      // so it can be correctly inserted into JavaScript code.
+      if (typeof value === 'object' && value !== null) {
+        value = JSON.stringify(value);
+      }
+      
+      // Replace exact template syntax (e.g. "{{GITHUB_HANDLE}}")
+      // Use a regular expression with 'g' flag for global replacement
+      const templatePlaceholder = `{{${key}}}`;
+      modifiedContent = modifiedContent.replace(new RegExp(templatePlaceholder, 'g'), value);
     }
   }
   return modifiedContent;
@@ -46,9 +55,6 @@ try {
   mainJsContent = applyReplacements(mainJsContent, config);
   fs.writeFileSync(mainJsPath, mainJsContent, 'utf8');
   console.log('✔ assets/js/main.js personalized.');
-
-  // Note: If terminal commands were in a separate JSON file, you would process it here.
-  // For now, they are part of main.js, so no separate commands.json processing is needed.
 
   console.log('\nPersonalization complete! Your portfolio files have been updated.');
 } catch (error) {
