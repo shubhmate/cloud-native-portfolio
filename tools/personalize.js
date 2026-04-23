@@ -1,9 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const projectRoot = __dirname; // Assumes script is in static-portfolio folder
+// The script is in the "tools" directory, so the project root is one level up
+const projectRoot = path.join(__dirname, '..'); 
 
-const configPath = path.join(projectRoot, 'config.json'); // Configuration file for personalization
+const configPath = path.join(__dirname, 'config.json'); // Configuration file is in the tools directory
 const htmlPath = path.join(projectRoot, 'index.html'); // Main HTML file
 const mainCssPath = path.join(projectRoot, 'assets', 'css', 'main.css'); // External CSS file
 const mainJsPath = path.join(projectRoot, 'assets', 'js', 'main.js'); // External JavaScript file
