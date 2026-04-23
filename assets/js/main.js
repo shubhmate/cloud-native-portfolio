@@ -175,12 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animates a sequence of phrases by typing and deleting them character by character.
     const typewriterElement = document.getElementById('typewriter');
     if (typewriterElement) {
-        const phrases = [
-            "DevOps Engineer",
-            "Cloud Architect",
-            "Automation Specialist",
-            "Infrastructure as Code"
-        ];
+        const phrases = ["DevOps Engineer","Cloud Architect","Automation Specialist","Infrastructure as Code"]; // Dynamically loaded from config.json
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -216,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(type, speed);
         }
         type();
-    }
+    };
 
     // =========================================================================
     // 6. Hero Canvas Particle Animation
@@ -551,8 +546,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Retrieve Formspree ID from the button's data attribute.
             const formspreeId = submitBtn.getAttribute('data-formspree');
-            if (!formspreeId || formspreeId === 'YOUR_FORMSPREE_ID') { // Basic validation for placeholder ID.
-                showToast('Please replace YOUR_FORMSPREE_ID in index.html for the contact form.', 'error');
+            if (!formspreeId || formspreeId === 'your-formspree-id') { // Basic validation for placeholder ID.
+                showToast('Please replace your-formspree-id in index.html for the contact form.', 'error');
                 return;
             }
 
@@ -695,6 +690,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 contactSection.scrollIntoView({ behavior: 'smooth' });
             }
         });
-    }
+    };
 
 });
