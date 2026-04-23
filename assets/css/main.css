@@ -329,7 +329,7 @@ html.light .card-hover:hover {
   opacity: 0;
   pointer-events: none; /* Allows interaction with elements beneath once hidden. */
 }
-html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
+
 /* Adjusts toast shadow for light mode for better visual integration. */
 html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
 
