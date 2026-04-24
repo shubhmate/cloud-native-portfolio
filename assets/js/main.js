@@ -373,9 +373,19 @@ document.addEventListener('DOMContentLoaded', () => {
         echo: (args) => ({ output: args.join(' '), color: 'text-yellow-400' }),
         date: () => ({ output: new Date().toLocaleString(), color: 'text-purple-400' }),
         uptime: () => ({ output: "Simulated uptime: 120 days, 5 hours, 30 minutes", color: 'text-purple-400' }),
-        'open projects': () => {
-            window.location.hash = '#projects';
-            return { output: "Navigating to projects...", color: 'text-[var(--accent)]' };
+        open: (args) => {
+            if (!args || args.length === 0) {
+                return { output: "Usage: open [section]. Available: home, skills, projects, experience, contact", color: 'text-yellow-400' };
+            }
+            const section = args[0].toLowerCase();
+            const validSections = ['home', 'skills', 'projects', 'experience', 'contact'];
+            
+            if (validSections.includes(section)) {
+                window.location.hash = `#${section}`;
+                return { output: `Navigating to ${section}...`, color: 'text-[var(--accent)]' };
+            } else {
+                return { output: `Section not found. Available: ${validSections.join(', ')}`, color: 'text-red-400' };
+            }
         }
     };
 
@@ -441,9 +451,16 @@ document.addEventListener('DOMContentLoaded', () => {
          * @param {string} input - The raw command string entered by the user.
          */
         function executeCommand(input) {
-            const parts = input.split(' ');
-            const command = parts[0].toLowerCase();
-            const args = parts.slice(1);
+            const trimmedInput = input.trim().toLowerCase();
+            let command = trimmedInput;
+            let args = [];
+
+            // If the exact full string isn't a command, split it up
+            if (!commands[command]) {
+                const parts = trimmedInput.split(' ');
+                command = parts[0];
+                args = parts.slice(1);
+            }
 
             if (commands[command]) {
                 let commandResponse = commands[command];

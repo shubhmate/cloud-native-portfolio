@@ -100,18 +100,13 @@
       "  <b>email</b>     : Show email",
       "  <b>social</b>    : Show social links",
       "  <b>secret</b>    : Find the easter egg",
+      "  <b>open</b>      : Go to section (e.g. 'open skills')",
       "  <b>clear</b>     : Clear terminal"
     ],
     "color": "text-[var(--accent)]"
   },
 
-  "open projects": {
-    "output": [
-      "Navigating to projects..."
-    ],
-    "color": "text-[var(--accent)]"
-  },
-  
+
   "clear": {
     "output": [],
     "color": "text-[var(--accent)]"

@@ -13,7 +13,9 @@
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "HERO_SUBTITLE": "Open to new opportunities",
   "YEARS_EXPERIENCE": "~2 years experience",
-  "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-green-400\">CI/CD pipelines</span>, <span class=\"text-blue-400\">Containerization</span>, and <span class=\"text-purple-400\">Cloud Infrastructure</span>.",
+  "HERO_TITLE_LINE_1": "Building & Automating",
+  "HERO_TITLE_LINE_2": "Cloud Infrastructure",
+  "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-green-400\">CI/CD Pipelines</span>, <span class=\"text-blue-400\">Containerization</span>, and <span class=\"text-purple-400\">Cloud Infrastructure</span>.",
 
   "PROJECT_1_TITLE": "3-Tier App with Docker Compose",
   "PROJECT_1_DESC": "Containerized a full-stack React/Node.js/MongoDB application using Docker Compose with an Nginx reverse proxy, health checks, and environment-based config.",
