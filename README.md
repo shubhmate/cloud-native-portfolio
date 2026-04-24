@@ -29,6 +29,9 @@ your-github-handle → your-actual-github
 your-linkedin-profile → your-actual-linkedin
 your.email@example.com → your-actual-email
 your-formspree-id → get-from-formspree.io
+# 1. Edit tools/config.json with your personal details.
+# 2. Run the personalization script to apply changes to your website files:
+node tools/personalize.js
 ```
 
 ### 2. Add Your Resume

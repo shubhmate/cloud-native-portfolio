@@ -1,7 +1,7 @@
 {
   "whoami": {
     "output": [
-      "DevOps Engineer · ~2 years experience",
+      "{{JOB_TITLE}} · {{YEARS_EXPERIENCE}}",
       "Focused on AWS, Docker, Terraform, CI/CD"
     ],
     "color": "text-[var(--accent)]"
@@ -20,9 +20,9 @@
 
   "projects": {
     "output": [
-      "1. 3-Tier App with Docker Compose",
-      "2. AWS VPC with Terraform",
-      "3. CI/CD Pipeline — GitHub Actions",
+      "1. {{PROJECT_1_TITLE}}",
+      "2. {{PROJECT_2_TITLE}}",
+      "3. {{PROJECT_3_TITLE}}",
       "",
       "Run 'open projects' to jump to the section."
     ],
@@ -31,17 +31,17 @@
 
   "experience": {
     "output": [
-      "DevOps Engineer        Jan 2024 – Present",
-      "Junior DevOps / Cloud Intern   Jun 2023 – Dec 2023"
+      "{{EXP_1_ROLE}}        {{EXP_1_START}} – {{EXP_1_END}}",
+      "{{EXP_2_ROLE}}   {{EXP_2_START}} – {{EXP_2_END}}"
     ],
     "color": "text-[var(--accent)]"
   },
   
   "contact": {
     "output": [
-      "Email    → shubhammate0604@gmail.com",
-      "GitHub   → https://github.com/shubhmate",
-      "LinkedIn → https://www.linkedin.com/in/shubham-mate"
+      "Email    → {{EMAIL_ADDRESS}}",
+      "GitHub   → {{GITHUB_HANDLE}}",
+      "LinkedIn → {{LINKEDIN_PROFILE}}"
     ],
     "color": "text-[var(--accent)]"
   },
@@ -71,15 +71,15 @@
   },
 
   "email": {
-    "output": "📧 Email: shubhammate0604@gmail.com",
+    "output": "📧 Email: {{EMAIL_ADDRESS}}",
     "color": "text-blue-400"
   },
 
   "social": {
     "output": [
       "🔗 Social Links:",
-      "  GitHub   → https://github.com/shubhmate",
-      "  LinkedIn → https://www.linkedin.com/in/shubham-mate"
+      "  GitHub   → {{GITHUB_HANDLE}}",
+      "  LinkedIn → {{LINKEDIN_PROFILE}}"
     ],
     "color": "text-purple-400"
   },

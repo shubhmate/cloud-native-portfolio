@@ -10,6 +10,7 @@
   --accent: #3b82f6;
   --green: #22c55e;
   --muted: #6b7280;
+  --green-rgb: 34, 197, 94; /* RGB values for #22c55e */
   --glass-bg: rgba(26, 29, 39, 0.8); /* Derived from --surface with transparency */
   --status-green: var(--green); /* Alias for green status dot */
 }
@@ -22,6 +23,7 @@ html.light {
   --border: #e0e0e0;
   --text: #212121;
   --glass-bg: rgba(255, 255, 255, 0.8); /* Derived from --surface with transparency */
+  --green-rgb: 34, 197, 94; /* RGB values for #22c55e */
   --status-green: var(--green); /* Alias for green status dot */
 }
 

@@ -6,9 +6,12 @@ const projectRoot = path.join(__dirname, '..');
 
 const configPath = path.join(__dirname, 'config.json'); // Configuration file is in the tools directory
 const htmlPath = path.join(projectRoot, 'index.html'); // Main HTML file
+const templatePath = path.join(projectRoot, 'index.template.html'); // Template HTML file
 const mainCssPath = path.join(projectRoot, 'assets', 'css', 'main.css'); // External CSS file
 const mainJsPath = path.join(projectRoot, 'assets', 'js', 'main.js'); // External JavaScript file
-// Removed defaultPlaceholders as we are now using {{KEY}} format exclusively
+const commandsJsonPath = path.join(projectRoot, 'assets', 'js', 'commands.json'); // Commands JSON file
+const commandsTemplatePath = path.join(projectRoot, 'assets', 'js', 'commands.template.json'); // Template for commands JSON file
+const clientConfigPath = path.join(projectRoot, 'assets', 'config.json'); // Path to copy config for client-side fetch
 
 function applyReplacements(content, config) {
   let modifiedContent = content;
@@ -18,6 +21,7 @@ function applyReplacements(content, config) {
       
       // If the value is an object or array, stringify it to a JSON literal
       // so it can be correctly inserted into JavaScript code.
+      // so it can be correctly inserted into JavaScript code or HTML attributes.
       if (typeof value === 'object' && value !== null) {
         value = JSON.stringify(value);
       }
@@ -39,8 +43,12 @@ try {
   console.log('Applying personalization from config.json...');
 
   // 2. Process index.html
-  let htmlContent = fs.readFileSync(htmlPath, 'utf8');
+  // 2. Process <head> section of index.html (for SEO, title, etc.)
+  // Now processing the entire index.template.html for placeholders
+  let htmlContent = fs.readFileSync(templatePath, 'utf8');
+  // Apply replacements to the entire HTML content
   htmlContent = applyReplacements(htmlContent, config);
+
   fs.writeFileSync(htmlPath, htmlContent, 'utf8');
   console.log('✔ index.html personalized.');
   
@@ -55,6 +63,16 @@ try {
   mainJsContent = applyReplacements(mainJsContent, config);
   fs.writeFileSync(mainJsPath, mainJsContent, 'utf8');
   console.log('✔ assets/js/main.js personalized.');
+
+  // 5. Process assets/js/commands.json
+  let commandsContent = fs.readFileSync(commandsTemplatePath, 'utf8');
+  commandsContent = applyReplacements(commandsContent, config);
+  fs.writeFileSync(commandsJsonPath, commandsContent, 'utf8');
+  console.log('✔ assets/js/commands.json personalized.');
+  
+  // 6. Copy config.json to assets/ for client-side fetching
+  fs.copyFileSync(configPath, clientConfigPath);
+  console.log('✔ config.json copied to assets/config.json for client-side use.');
 
   console.log('\nPersonalization complete! Your portfolio files have been updated.');
 } catch (error) {

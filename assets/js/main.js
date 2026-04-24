@@ -364,7 +364,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // `commands` will store the available terminal commands, loaded from `commands.json`.
     let commands = {}; // Object to store available terminal commands and their responses/functions.
-    
+    // Define dynamic command handlers
+    const dynamicCommandHandlers = {
+        clear: () => {
+            terminalOutput.innerHTML = '';
+            addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400');
+        },
+        echo: (args) => ({ output: args.join(' '), color: 'text-yellow-400' }),
+        date: () => ({ output: new Date().toLocaleString(), color: 'text-purple-400' }),
+        uptime: () => ({ output: "Simulated uptime: 120 days, 5 hours, 30 minutes", color: 'text-purple-400' }),
+        'open projects': () => {
+            window.location.hash = '#projects';
+            return { output: "Navigating to projects...", color: 'text-[var(--accent)]' };
+        }
+    };
+
     // Fetch commands from JSON file
     fetch('assets/js/commands.json')
         .then(response => {
@@ -375,18 +389,9 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .then(fetchedCommands => {
             commands = fetchedCommands; // Assign fetched data to the `commands` object.
-            // Re-assign functions as they cannot be stored directly in JSON
-            commands.clear = () => { // Clear function
-                terminalOutput.innerHTML = '';
-                addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400');
-            };
-            commands.echo = (args) => ({ output: args.join(' '), color: 'text-yellow-400' });
-            commands.date = () => ({ output: new Date().toLocaleString(), color: 'text-purple-400' }); // Dynamic date
-            commands.uptime = () => ({ output: "Simulated uptime: 120 days, 5 hours, 30 minutes", color: 'text-purple-400' }); // Example of a simulated dynamic command.
-            commands['open projects'] = () => {
-                window.location.hash = '#projects'; // Scroll to projects section
-                return { output: "Navigating to projects...", color: 'text-[var(--accent)]' }; // Return a message for the terminal.
-            };
+            // Merge static commands from JSON with dynamic command handlers
+            // Dynamic handlers will override static ones if keys are the same
+            Object.assign(commands, dynamicCommandHandlers);
 
             // Display initial welcome message after commands are successfully loaded.
             if (terminalOutput) {
@@ -691,5 +696,5 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-
+    
 });
