@@ -88,6 +88,36 @@
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
   <link rel="stylesheet" href="assets/css/main.css">
+  <style>
+    /* Critical Preloader Styles */
+    #preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #0a0a0a;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    .preloader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #3b82f6; /* Fallback accent blue */
+    }
+    @keyframes pulse-custom {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+    .animate-pulse-custom {
+      animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+  </style>
 </head>
 
 <body>
@@ -97,22 +127,18 @@
     <p class="font-mono text-xl text-[var(--accent)] mt-4">Initializing devops.sh...</p>
   </div> -->
   <!-- Preloader -->
-  <div id="preloader" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0a0a0a]">
-    <div class="relative flex flex-col items-center">
+  <div id="preloader">
+    <div class="preloader-content animate-fade-up">
       <!-- Icon Container -->
       <div class="relative w-24 h-24 flex items-center justify-center">
         <!-- Cloud (The Base) -->
-        <i data-lucide="cloud" 
-          class="w-full h-full text-[var(--accent)]"></i>
+        <i data-lucide="cloud" class="w-full h-full text-[var(--accent)]"></i>
         <!-- Terminal (The Overlay) -->
-        <!-- We nudge it down slightly (top-[55%]) to sit in the cloud's center mass -->
-        <i data-lucide="terminal" 
-          class="absolute w-8 h-8 text-[var(--accent)] animate-pulse2 
-                  top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+        <i data-lucide="terminal" class="absolute w-8 h-8 text-[var(--accent)] animate-pulse-custom top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
       </div>
       <!-- Text -->
       <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
-        <span class="animate-pulse2">_</span>
+        <span class="animate-pulse-custom">_</span>
         Initializing devops.sh...
       </p>
     </div>
