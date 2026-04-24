@@ -17,6 +17,9 @@
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
   "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-green-400\">CI/CD Pipelines</span>, <span class=\"text-blue-400\">Containerization</span>, and <span class=\"text-purple-400\">Cloud Infrastructure</span>.",
 
+  "PROJECTS_SUBTITLE": "Hands-on labs & real projects built to learn by doing",
+  "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
+
   "PROJECT_1_TITLE": "3-Tier App with Docker Compose",
   "PROJECT_1_DESC": "Containerized a full-stack React/Node.js/MongoDB application using Docker Compose with an Nginx reverse proxy, health checks, and environment-based config.",
   "PROJECT_1_LINK": "https://github.com/shubhmate/Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
