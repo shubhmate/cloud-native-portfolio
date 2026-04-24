@@ -13,13 +13,7 @@
   },
 
   "projects": {
-    "output": [
-      "1. 3-Tier App with Docker Compose",
-      "2. AWS VPC with Terraform",
-      "3. CI/CD Pipeline — GitHub Actions",
-      "",
-      "Run 'open projects' to jump to the section."
-    ],
+    "output": ["1. Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate","2. Flask Express Cicd Jenkins Github Webhooks Aws Ec2","3. AWS Lambda Http Function Url Tutorial","4. Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances","","Run 'open projects' to jump to the section."],
     "color": "text-[var(--accent)]"
   },
 

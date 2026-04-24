@@ -713,5 +713,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     };
-    
+
+    // ==================== Image Zoom Modal ====================
+    const imageModal = document.getElementById('image-modal');
+    const modalImg = document.getElementById('modal-img');
+
+    window.openImageModal = function(src) {
+        if (!imageModal || !modalImg) return;
+        modalImg.src = src;
+        imageModal.classList.remove('hidden');
+        imageModal.classList.add('flex');
+        
+        // Prevent body scrolling when modal is open
+        document.body.style.overflow = 'hidden';
+
+        // Trigger animation
+        setTimeout(() => {
+            modalImg.classList.remove('scale-95', 'opacity-0');
+            modalImg.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    };
+
+    window.closeImageModal = function() {
+        if (!imageModal || !modalImg) return;
+        
+        modalImg.classList.remove('scale-100', 'opacity-100');
+        modalImg.classList.add('scale-95', 'opacity-0');
+        
+        setTimeout(() => {
+            imageModal.classList.add('hidden');
+            imageModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }, 300);
+    };
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && imageModal && !imageModal.classList.contains('hidden')) {
+            window.closeImageModal();
+        }
+    });
 });

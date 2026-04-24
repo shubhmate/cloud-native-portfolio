@@ -13,6 +13,16 @@ const commandsJsonPath = path.join(projectRoot, 'assets', 'js', 'commands.json')
 const commandsTemplatePath = path.join(projectRoot, 'assets', 'js', 'commands.template.json'); // Template for commands JSON file
 const clientConfigPath = path.join(projectRoot, 'assets', 'config.json'); // Path to copy config for client-side fetch
 
+function escapeHtml(unsafe) {
+  if (typeof unsafe !== 'string') return unsafe;
+  return unsafe
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function generateSkillsHtml(config) {
   if (!config.SKILLS_GROUPED) return;
 
@@ -58,6 +68,115 @@ function generateSkillsHtml(config) {
   config.TERMINAL_SKILLS = terminalSkills;
 }
 
+function generateProjectsHtml(config) {
+  if (!config.PROJECTS) return;
+
+  let gridHtml = '';
+  for (const project of config.PROJECTS) {
+    let tagsHtml = '';
+    if (project.tags) {
+      for (const tag of project.tags) {
+        tagsHtml += `\n                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">${tag}</span>`;
+      }
+    }
+
+    let archHtml = '';
+    if (project.architecture) {
+      for (const step of project.architecture) {
+        if (step && step.trim()) {
+          archHtml += `
+                  <div class="flex items-start gap-2 font-mono text-xs">
+                    <span class="text-[var(--accent)]">▸</span>
+                    <span class="text-[var(--muted)]">${escapeHtml(step)}</span>
+                  </div>`;
+        }
+      }
+    }
+
+    let flipButtonHtml = '';
+    let backCardHtml = '';
+    
+    const hasArch = archHtml.trim().length > 0;
+    const hasProblem = project.problem && project.problem.trim().length > 0;
+    const hasFix = project.fix && project.fix.trim().length > 0;
+
+    // Only generate the back of the card if there is architecture, problem, or fix data
+    if (hasArch || hasProblem || hasFix) {
+      flipButtonHtml = `
+                  <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
+                    <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
+                  </button>`;
+                  
+      backCardHtml = `
+              <!-- Back of the card (architecture and problem/solution) -->
+              <div class="flip-card-back p-6 flex flex-col overflow-hidden">
+                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
+                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">${escapeHtml(project.title)}</h3>
+
+                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">${archHtml}
+                </div>
+
+                <div class="space-y-2 text-xs mb-4">
+                  <div class="flex gap-2">
+                    <span class="text-red-400 font-mono font-semibold shrink-0">Problem:</span>
+                    <span class="text-slate-400">${escapeHtml(project.problem) || 'N/A'}</span>
+                  </div>
+                  <div class="flex gap-2">
+                    <span class="text-green-400 font-mono font-semibold shrink-0">Fix:</span>
+                    <span class="text-slate-400">${escapeHtml(project.fix) || 'N/A'}</span>
+                  </div>
+                </div>
+
+                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end">
+                  <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
+                </button>
+              </div>`;
+    }
+
+    gridHtml += `
+          <!-- Project Card: ${project.title} -->
+          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
+            <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
+              <!-- Front of the card (overview) -->
+              <div class="flip-card-front p-6 flex flex-col overflow-hidden">
+                <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('${project.image}')">
+                  <img src="${project.image}" alt="Project Architecture Diagram" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="zoom-in" class="w-6 h-6 text-white"></i>
+                  </div>
+                </div>
+                
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">${escapeHtml(project.title)}</h3>
+                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${escapeHtml(project.description)}</p>
+                </div>
+                
+                <div class="flex flex-wrap gap-2 mb-4">${tagsHtml}
+                </div>
+                
+                <div class="flex items-center justify-between">
+                  <div class="flex gap-4 text-sm">
+                    <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
+                      <i data-lucide="github" class="w-4 h-4"></i> Code
+                    </a>
+                  </div>${flipButtonHtml}
+                </div>
+              </div>${backCardHtml}
+            </div>
+          </div>`;
+  }
+  
+  config.PROJECTS_GRID = gridHtml;
+
+  let terminalProjects = [];
+  for (let i = 0; i < config.PROJECTS.length; i++) {
+    terminalProjects.push(`${i + 1}. ${config.PROJECTS[i].title}`);
+  }
+  terminalProjects.push("");
+  terminalProjects.push("Run 'open projects' to jump to the section.");
+  config.TERMINAL_PROJECTS = terminalProjects;
+}
+
 function applyReplacements(content, config) {
   let modifiedContent = content;
   for (const key in config) {
@@ -95,6 +214,9 @@ try {
 
   // 1.5 Generate Dynamic Skills HTML
   generateSkillsHtml(config);
+  
+  // 1.6 Generate Dynamic Projects HTML
+  generateProjectsHtml(config);
 
   // 2. Process index.html
   // 2. Process <head> section of index.html (for SEO, title, etc.)

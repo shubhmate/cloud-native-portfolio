@@ -13,13 +13,7 @@
   },
 
   "projects": {
-    "output": [
-      "1. {{PROJECT_1_TITLE}}",
-      "2. {{PROJECT_2_TITLE}}",
-      "3. {{PROJECT_3_TITLE}}",
-      "",
-      "Run 'open projects' to jump to the section."
-    ],
+    "output": "{{TERMINAL_PROJECTS}}",
     "color": "text-[var(--accent)]"
   },
 

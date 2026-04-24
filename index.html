@@ -632,49 +632,46 @@
         </div>
 
         <!-- Projects Grid -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <!-- Project Card 1: 3-Tier App with Docker Compose -->
-          <div class="flip-card h-[420px]">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Project Card: Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate -->
+          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-                <div class="w-full h-28 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
-                  <img src="assets/img/project1-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('assets/img/project1-arch.png')">
+                  <img src="assets/img/project1-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="zoom-in" class="w-6 h-6 text-white"></i>
+                  </div>
                 </div>
                 
-                <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">3-Tier App with Docker Compose</h3>
-                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed flex-1">Containerized a full-stack React/Node.js/MongoDB application using Docker Compose with an Nginx reverse proxy, health checks, and environment-based config.</p>
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate</h3>
+                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">This project deploys a Flask backend and Express frontend using Docker and AWS ECS Fargate. Managed via Terraform, it features a VPC for isolation, an ALB for path-based routing, and ECR for image hosting. It includes secure private subnets, CloudWatch logging, and automated infrastructure as code (IaC) workflows.</p>
+                </div>
                 
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Docker</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Docker Compose</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">React</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Node.js</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">MongoDB</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Nginx</span>
+                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">HCL</span>
                 </div>
-
+                
                 <div class="flex items-center justify-between">
                   <div class="flex gap-4 text-sm">
                     <a href="https://github.com/shubhmate/Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                       <i data-lucide="github" class="w-4 h-4"></i> Code
                     </a>
-                    <!-- <a href="/case-study/containerization" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
-                      <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
-                    </a> -->
                   </div>
                   <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                     <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                   </button>
                 </div>
               </div>
-
               <!-- Back of the card (architecture and problem/solution) -->
-              <div class="flip-card-back p-6 flex flex-col">
-                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)]">// architecture</p>
-                <h3 class="font-mono text-[var(--accent)] font-bold mb-4">3-Tier App with Docker Compose</h3>
+              <div class="flip-card-back p-6 flex flex-col overflow-hidden">
+                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
+                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate</h3>
 
-                <div class="flex-1 space-y-2 mb-4">
+                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">React (port 3000)</span>
@@ -718,48 +715,44 @@
               </div>
             </div>
           </div>
-
-          <!-- Project Card 2: AWS VPC with Terraform -->
-          <div class="flip-card h-[420px]">
+          <!-- Project Card: Flask Express Cicd Jenkins Github Webhooks Aws Ec2 -->
+          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-                <div class="w-full h-28 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
-                  <img src="assets/img/project2-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('assets/img/project2-arch.png')">
+                  <img src="assets/img/project2-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="zoom-in" class="w-6 h-6 text-white"></i>
+                  </div>
                 </div>
-
-                <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">AWS VPC with Terraform</h3>
-                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed flex-1">Provisioned a production-style AWS VPC with public/private subnets across 2 AZs, NAT gateway, internet gateway, and security groups using Terraform.</p>
+                
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">Flask Express Cicd Jenkins Github Webhooks Aws Ec2</h3>
+                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">🚀 Flask backend (port 5000) + Express frontend (port 3000) deployed on AWS EC2 with Jenkins CI/CD pipeline. Auto-deploys on every git push via GitHub webhook.</p>
+                </div>
                 
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Terraform</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">AWS VPC</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">EC2</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">NAT Gateway</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">IaC</span>
+                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">JavaScript</span>
                 </div>
                 
                 <div class="flex items-center justify-between">
                   <div class="flex gap-4 text-sm">
-                    <a href="https://github.com/shubhmate/ec2-monitoring-stack" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
+                    <a href="https://github.com/shubhmate/flask-express-cicd-jenkins-github-webhooks-aws-ec2" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                       <i data-lucide="github" class="w-4 h-4"></i> Code
                     </a>
-                    <!-- <a href="/case-study/containerization" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
-                      <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
-                    </a> -->
                   </div>
                   <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                     <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                   </button>
                 </div>
               </div>
-
               <!-- Back of the card (architecture and problem/solution) -->
-              <div class="flip-card-back p-6 flex flex-col">
-                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)]">// architecture</p>
-                <h3 class="font-mono text-[var(--accent)] font-bold mb-4">AWS VPC with Terraform</h3>
+              <div class="flip-card-back p-6 flex flex-col overflow-hidden">
+                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
+                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">Flask Express Cicd Jenkins Github Webhooks Aws Ec2</h3>
 
-                <div class="flex-1 space-y-2 mb-4">
+                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">VPC: 10.0.0.0/16</span>
@@ -799,49 +792,44 @@
               </div>
             </div>
           </div>
-
-          <!-- Project Card 3: CI/CD Pipeline — GitHub Actions -->
-          <div class="flip-card h-[420px]">
+          <!-- Project Card: AWS Lambda Http Function Url Tutorial -->
+          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-                <div class="w-full h-28 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
-                  <img src="assets/img/project3-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('assets/img/project3-arch.png')">
+                  <img src="assets/img/project3-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="zoom-in" class="w-6 h-6 text-white"></i>
+                  </div>
                 </div>
                 
-                <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">CI/CD Pipeline — GitHub Actions</h3>
-                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed flex-1">Built an end-to-end GitHub Actions pipeline for a Node.js app — lint, test, Docker build, push to ECR, and deploy to EC2 on every push to main.</p>
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">AWS Lambda Http Function Url Tutorial</h3>
+                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">📝 Learn serverless development with this AWS Lambda form handler! Submit forms → Store in DynamoDB → Display results instantly. Step-by-step tutorial included with complete code, IAM setup, and troubleshooting guide. Great for AWS beginners and serverless enthusiasts! 🎯</p>
+                </div>
                 
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">GitHub Actions</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Docker</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">AWS ECR</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">EC2</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">CI/CD</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Node.js</span>
+                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">JavaScript</span>
                 </div>
                 
                 <div class="flex items-center justify-between">
                   <div class="flex gap-4 text-sm">
-                    <a href="https://github.com/shubhmate/aws-vpc-terraform" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
+                    <a href="https://github.com/shubhmate/AWS_Lambda_Http_Function_Url_Tutorial" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                       <i data-lucide="github" class="w-4 h-4"></i> Code
                     </a>
-                    <!-- <a href="/case-study/containerization" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
-                      <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
-                    </a> -->
                   </div>
                   <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                     <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                   </button>
                 </div>
               </div>
-
               <!-- Back of the card (architecture and problem/solution) -->
-              <div class="flip-card-back p-6 flex flex-col">
-                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)]">// architecture</p>
-                <h3 class="font-mono text-base font-bold mb-4 text-[var(--accent)]">CI/CD Pipeline — GitHub Actions</h3>
+              <div class="flip-card-back p-6 flex flex-col overflow-hidden">
+                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
+                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">AWS Lambda Http Function Url Tutorial</h3>
 
-                <div class="flex-1 space-y-2 mb-4">
+                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">Push to main</span>
@@ -852,7 +840,7 @@
                   </div>
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
-                    <span class="text-[var(--muted)]">→ Docker build & push ECR</span>
+                    <span class="text-[var(--muted)]">→ Docker build &amp; push ECR</span>
                   </div>
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
@@ -885,48 +873,44 @@
               </div>
             </div>
           </div>
-
-          <!-- Project Card 4: EC2 Monitoring Stack -->
-          <div class="flip-card h-[420px]">
+          <!-- Project Card: Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances -->
+          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-                <div class="w-full h-28 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden">
-                  <img src="assets/img/project4-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('assets/img/project4-arch.png')">
+                  <img src="assets/img/project4-arch.png" alt="Project Architecture Diagram" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <i data-lucide="zoom-in" class="w-6 h-6 text-white"></i>
+                  </div>
                 </div>
                 
-                <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">EC2 Monitoring Stack</h3>
-                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed flex-1">Set up a monitoring stack on a free-tier EC2 instance using Prometheus Node Exporter and Grafana to visualize CPU, memory, and disk usage in real time.</p>
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances</h3>
+                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">This Terraform script automates deploying a Flask backend and Express frontend on separate EC2 instances. It provisions VPC networking, security groups, and uses Nginx reverse proxy via user data for seamless inter-service communication. The modular design ensures isolation, scalability, and easy access through automated infrastructure outputs.</p>
+                </div>
                 
                 <div class="flex flex-wrap gap-2 mb-4">
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Prometheus</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Grafana</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Docker Compose</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">EC2</span>
-                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Node Exporter</span>
+                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">Shell</span>
                 </div>
                 
                 <div class="flex items-center justify-between">
                   <div class="flex gap-4 text-sm">
-                    <a href="https://github.com/shubhmate/ec2-monitoring-stack" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
+                    <a href="https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                       <i data-lucide="github" class="w-4 h-4"></i> Code
                     </a>
-                    <!-- <a href="/case-study/containerization" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline">
-                      <i data-lucide="book-open" class="w-4 h-4"></i> Case Study
-                    </a> -->
                   </div>
                   <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
                     <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
                   </button>
                 </div>
               </div>
-
               <!-- Back of the card (architecture and problem/solution) -->
-              <div class="flip-card-back p-6 flex flex-col">
-                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)]">// architecture</p>
-                <h3 class="font-mono text-base font-bold mb-4 text-[var(--accent)]">EC2 Monitoring Stack</h3>
+              <div class="flip-card-back p-6 flex flex-col overflow-hidden">
+                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
+                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances</h3>
 
-                <div class="flex-1 space-y-2 mb-4">
+                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">EC2 t2.micro</span>
@@ -952,11 +936,11 @@
                 <div class="space-y-2 text-xs mb-4">
                   <div class="flex gap-2">
                     <span class="text-red-400 font-mono font-semibold shrink-0">Problem:</span>
-                    <span class="text-slate-400">No visibility into server health — issues were only discovered after users reported them.</span>
+                    <span class="text-slate-400">No visibility into server health. Apps would crash silently due to OOM errors.</span>
                   </div>
                   <div class="flex gap-2">
                     <span class="text-green-400 font-mono font-semibold shrink-0">Fix:</span>
-                    <span class="text-slate-400">Prometheus scraping Node Exporter every 15s, Grafana dashboard with alert thresholds. Deployed via Docker Compose on a t2.micro instance.</span>
+                    <span class="text-slate-400">Dockerized Prometheus + Grafana stack. Created custom dashboards and set up Slack alerts for high resource utilization. Detected memory leak within first 24 hours.</span>
                   </div>
                 </div>
 
@@ -989,7 +973,7 @@
           <a href="/blog/post-1" class="block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--surface)] transition-colors card-hover p-6">
             <img src="assets/img/blog-post-1.png" alt="Blog Post Image" class="w-full h-40 object-cover rounded-lg mb-4" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
             <p class="font-mono text-xs text-[var(--accent)] mb-2">AWS & Terraform · Oct 26, 2023</p>
-            <h3 class="font-mono text-lg font-bold mb-2">Automating AWS VPC with Terraform Modules</h3>
+            <h3 class="font-mono text-lg font-bold mb-2">Automating {{PROJECT_2_TITLE}} Modules</h3>
             <p class="text-[var(--muted)] text-sm line-clamp-3">A step-by-step guide to building reusable Terraform modules for AWS VPCs, including public and private subnets, NAT gateways, and internet gateways.</p>
           </a>
 
@@ -1417,7 +1401,20 @@
   </main>
 
   <!-- ==================== Custom JavaScript ==================== -->
-  <!-- Defer loading to ensure HTML is parsed before script execution -->
+  <!-- Image Zoom Modal -->
+  <div id="image-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md items-center justify-center p-4 cursor-zoom-out" onclick="window.closeImageModal()">
+    <div class="relative max-w-5xl w-full h-full flex items-center justify-center">
+      <img id="modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Zoomed Project Image" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95 opacity-0">
+      <button onclick="window.closeImageModal()" class="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-[var(--accent)] transition-colors">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Final Lucide Icons Initialization -->
+  <script>
+    // Note: Lucide initialization logic is already in assets/js/main.js
+  </script>
   <script src="assets/js/main.js" defer></script>
 </body>
 

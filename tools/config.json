@@ -8,7 +8,6 @@
   "HASHNODE_HANDLE": "your-hashnode-handle",
   "MEDIUM_HANDLE": "your-medium-handle",
   "PORTFOLIO_URL": "https://shubhammate.com",
-
   "RESUME_LINK": "./resume.pdf",
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "HERO_SUBTITLE": "Open to new opportunities",
@@ -16,22 +15,92 @@
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
   "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-cyan-400\">CI/CD Pipelines</span>, <span class=\"text-teal-400\">Containerization</span>, and <span class=\"text-emerald-400\">Cloud Infrastructure</span>.",
-
   "PROJECTS_SUBTITLE": "Hands-on labs & real projects built to learn by doing",
   "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
-
-  "PROJECT_1_TITLE": "3-Tier App with Docker Compose",
-  "PROJECT_1_DESC": "Containerized a full-stack React/Node.js/MongoDB application using Docker Compose with an Nginx reverse proxy, health checks, and environment-based config.",
-  "PROJECT_1_LINK": "https://github.com/shubhmate/Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
-
-  "PROJECT_2_TITLE": "AWS VPC with Terraform",
-  "PROJECT_2_DESC": "Provisioned a production-style AWS VPC with public/private subnets across 2 AZs, NAT gateway, internet gateway, and security groups using Terraform.",
-  "PROJECT_2_LINK": "https://github.com/shubhmate/ec2-monitoring-stack",
-
-  "PROJECT_3_TITLE": "CI/CD Pipeline — GitHub Actions",
-  "PROJECT_3_DESC": "Built a complete CI/CD pipeline using GitHub Actions to automate testing, Docker image creation, and deployment to an AWS EC2 instance.",
-  "PROJECT_3_LINK": "https://github.com/shubhmate/aws-vpc-terraform",
-
+  "PROJECTS": [
+    {
+      "id": "project1",
+      "title": "Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate",
+      "github_repo": "Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
+      "description": "This project deploys a Flask backend and Express frontend using Docker and AWS ECS Fargate. Managed via Terraform, it features a VPC for isolation, an ALB for path-based routing, and ECR for image hosting. It includes secure private subnets, CloudWatch logging, and automated infrastructure as code (IaC) workflows.",
+      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
+      "image": "assets/img/project1-arch.png",
+      "tags": [
+        "HCL"
+      ],
+      "architecture": [
+        "React (port 3000)",
+        "→ Nginx reverse proxy",
+        "→ Node.js API (port 5000)",
+        "→ MongoDB (port 27017)",
+        "Volumes: mongo-data",
+        "Network: app-bridge"
+      ],
+      "problem": "App worked locally but broke in every other environment due to dependency mismatches.",
+      "fix": "Multi-stage Dockerfile + Docker Compose with named volumes and a shared bridge network. Image size reduced by ~55% using Alpine base."
+    },
+    {
+      "id": "project2",
+      "title": "Flask Express Cicd Jenkins Github Webhooks Aws Ec2",
+      "github_repo": "flask-express-cicd-jenkins-github-webhooks-aws-ec2",
+      "description": "🚀 Flask backend (port 5000) + Express frontend (port 3000) deployed on AWS EC2 with Jenkins CI/CD pipeline. Auto-deploys on every git push via GitHub webhook.",
+      "link": "https://github.com/shubhmate/flask-express-cicd-jenkins-github-webhooks-aws-ec2",
+      "image": "assets/img/project2-arch.png",
+      "tags": [
+        "JavaScript"
+      ],
+      "architecture": [
+        "VPC: 10.0.0.0/16",
+        "Public Subnet A/B → IGW",
+        "Private Subnet A/B → NAT GW",
+        "Security Groups: web, app, db",
+        "State: S3 + DynamoDB lock"
+      ],
+      "problem": "Manually creating VPCs was error-prone and took 30+ minutes per environment.",
+      "fix": "Reusable Terraform module with variable-driven CIDR blocks and AZ count. Full environment spun up in under 3 minutes with terraform apply."
+    },
+    {
+      "id": "project3",
+      "title": "AWS Lambda Http Function Url Tutorial",
+      "github_repo": "AWS_Lambda_Http_Function_Url_Tutorial",
+      "description": "📝 Learn serverless development with this AWS Lambda form handler! Submit forms → Store in DynamoDB → Display results instantly. Step-by-step tutorial included with complete code, IAM setup, and troubleshooting guide. Great for AWS beginners and serverless enthusiasts! 🎯",
+      "link": "https://github.com/shubhmate/AWS_Lambda_Http_Function_Url_Tutorial",
+      "image": "assets/img/project3-arch.png",
+      "tags": [
+        "JavaScript"
+      ],
+      "architecture": [
+        "Push to main",
+        "→ Lint + Test",
+        "→ Docker build & push ECR",
+        "→ SSH deploy to EC2",
+        "→ Health check",
+        "Rollback on failure"
+      ],
+      "problem": "Deployments were manual SSH sessions — slow, inconsistent, and risky.",
+      "fix": "GitHub Actions workflow with job dependencies, AWS credential secrets, and rollback step on failure. Deploy time cut from 15 min to under 3 min."
+    },
+    {
+      "id": "project4",
+      "title": "Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances",
+      "github_repo": "Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
+      "description": "This Terraform script automates deploying a Flask backend and Express frontend on separate EC2 instances. It provisions VPC networking, security groups, and uses Nginx reverse proxy via user data for seamless inter-service communication. The modular design ensures isolation, scalability, and easy access through automated infrastructure outputs.",
+      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
+      "image": "assets/img/project4-arch.png",
+      "tags": [
+        "Shell"
+      ],
+      "architecture": [
+        "EC2 t2.micro",
+        "Node Exporter :9100",
+        "→ Prometheus :9090 (15s scrape)",
+        "→ Grafana :3000",
+        "Alerts: CPU > 80%, Disk > 90%"
+      ],
+      "problem": "No visibility into server health. Apps would crash silently due to OOM errors.",
+      "fix": "Dockerized Prometheus + Grafana stack. Created custom dashboards and set up Slack alerts for high resource utilization. Detected memory leak within first 24 hours."
+    }
+  ],
   "JOB_TITLE": "DevOps Engineer",
   "COMPANY_NAME": "Company Name",
   "PREVIOUS_COMPANY": "Previous Company",
@@ -39,7 +108,6 @@
   "JOB_END_DATE": "Present",
   "INTERNSHIP_START_DATE": "Jun 2023",
   "INTERNSHIP_END_DATE": "Dec 2023",
-
   "EXP_1_ROLE": "DevOps Engineer",
   "EXP_1_COMPANY": "Company Name",
   "EXP_1_START": "Jan 2024",
@@ -48,7 +116,6 @@
   "EXP_1_BULLET_2": "Containerized legacy Node.js applications using Docker, reducing environment inconsistencies at Company Name",
   "EXP_1_BULLET_3": "Assisted in writing Terraform scripts to provision AWS EC2, S3, and RDS resources at Company Name",
   "EXP_1_BULLET_4": "Set up basic Prometheus + Grafana dashboards to monitor application health on EC2 at Company Name",
-
   "EXP_2_ROLE": "Junior DevOps / Cloud Intern",
   "EXP_2_COMPANY": "Previous Company",
   "EXP_2_START": "Jun 2023",
@@ -56,55 +123,106 @@
   "EXP_2_BULLET_1": "Supported deployment of Dockerized applications to AWS ECS using shell scripts at Previous Company",
   "EXP_2_BULLET_2": "Wrote Ansible playbooks to automate server configuration across dev environments at Previous Company",
   "EXP_2_BULLET_3": "Collaborated with dev team to debug pipeline failures and reduce build times by 20% at Previous Company",
-
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
   "TIMELINE_DATE_3": "Aug 01, 2023",
-
   "TYPEWRITER_PHRASES": [
     "DevOps Engineer",
     "Cloud Engineer",
     "DevSecOps Engineer"
   ],
-
   "SKILLS_GROUPED": {
     "Infrastructure": [
-      {"name": "Linux", "icon": "server"},
-      {"name": "AWS", "icon": "cloud"},
-      {"name": "GCP", "icon": "cloud"},
-      {"name": "Azure (Learning)", "icon": "cloud"},
-      {"name": "Docker", "icon": "box"},
-      {"name": "Kubernetes", "icon": "container"},
-      {"name": "Terraform", "icon": "settings"},
-      {"name": "Ansible", "icon": "zap"}
+      {
+        "name": "Linux",
+        "icon": "server"
+      },
+      {
+        "name": "AWS",
+        "icon": "cloud"
+      },
+      {
+        "name": "GCP",
+        "icon": "cloud"
+      },
+      {
+        "name": "Azure (Learning)",
+        "icon": "cloud"
+      },
+      {
+        "name": "Docker",
+        "icon": "box"
+      },
+      {
+        "name": "Kubernetes",
+        "icon": "container"
+      },
+      {
+        "name": "Terraform",
+        "icon": "settings"
+      },
+      {
+        "name": "Ansible",
+        "icon": "zap"
+      }
     ],
     "Version Control": [
-      {"name": "Git", "icon": "git-branch"},
-      {"name": "GitHub", "icon": "github"},
-      {"name": "GitLab", "icon": "gitlab"}
+      {
+        "name": "Git",
+        "icon": "git-branch"
+      },
+      {
+        "name": "GitHub",
+        "icon": "github"
+      },
+      {
+        "name": "GitLab",
+        "icon": "gitlab"
+      }
     ],
     "CI/CD": [
-      {"name": "Jenkins", "icon": "git-branch"},
-      {"name": "GitHub Actions", "icon": "activity"},
-      {"name": "ArgoCD", "icon": "repeat"}
+      {
+        "name": "Jenkins",
+        "icon": "git-branch"
+      },
+      {
+        "name": "GitHub Actions",
+        "icon": "activity"
+      },
+      {
+        "name": "ArgoCD",
+        "icon": "repeat"
+      }
     ],
     "Monitoring": [
-      {"name": "Prometheus", "icon": "bar-chart"},
-      {"name": "Grafana", "icon": "pie-chart"}
+      {
+        "name": "Prometheus",
+        "icon": "bar-chart"
+      },
+      {
+        "name": "Grafana",
+        "icon": "pie-chart"
+      }
     ],
     "Languages": [
-      {"name": "Python", "icon": "code"},
-      {"name": "Go (Learning)", "icon": "code"}
+      {
+        "name": "Python",
+        "icon": "code"
+      },
+      {
+        "name": "Go (Learning)",
+        "icon": "code"
+      }
     ],
     "Security": [
-      {"name": "OWASP Top 10", "icon": "shield"},
-      {"name": "Vault", "icon": "shield"}
+      {
+        "name": "OWASP Top 10",
+        "icon": "shield"
+      },
+      {
+        "name": "Vault",
+        "icon": "shield"
+      }
     ]
-  },
-
-  "GITHUB_REPOS": [
-    "3-tier-app-docker-compose",
-    "ec2-monitoring-stack",
-    "aws-vpc-terraform"
-  ]
+  }
 }

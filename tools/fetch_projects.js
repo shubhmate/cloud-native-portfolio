@@ -34,50 +34,63 @@ function fetchRepoData(username, repo) {
 
 async function main() {
   console.log('Fetching project data from GitHub...');
-  
+
   try {
     const configRaw = fs.readFileSync(configPath, 'utf8');
     const config = JSON.parse(configRaw);
 
     const githubHandleUrl = config.GITHUB_HANDLE;
     const usernameMatch = githubHandleUrl.match(/github\.com\/([^/]+)/);
-    
+
     if (!usernameMatch) {
       console.log('Could not extract GitHub username from config.GITHUB_HANDLE. Skipping fetch.');
       return;
     }
-    
+
     const username = usernameMatch[1];
-    const repos = config.GITHUB_REPOS || [];
-    
-    if (repos.length === 0) {
-      console.log('No GITHUB_REPOS defined in config. Skipping fetch.');
+    const projects = config.PROJECTS || [];
+
+    if (projects.length === 0) {
+      console.log('No PROJECTS defined in config. Skipping fetch.');
       return;
     }
 
     let updated = false;
 
-    for (let i = 0; i < repos.length; i++) {
-      const repo = repos[i];
+    for (let i = 0; i < projects.length; i++) {
+      const project = projects[i];
+      if (!project.github_repo) continue;
+
+      const repo = project.github_repo;
       const data = await fetchRepoData(username, repo);
-      
+
       if (data) {
-        // We only update TITLE, DESC, and LINK
-        // keeping the custom problem/fix text untouched in the template
-        
-        // We use index + 1 for PROJECT_1, PROJECT_2...
-        const prefix = `PROJECT_${i + 1}`;
-        
-        // Use repo name as title if no better title exists, but usually we just want to update desc and link.
-        // Wait, the user might have custom titles like "3-Tier App with Docker Compose" instead of "3-tier-app-docker-compose".
-        // Let's only update the link and description to keep the custom beautiful titles.
-        // Or we can update the title if it's missing. Let's just update description and link.
-        
+        // Update description and link while keeping other fields intact
         if (data.description) {
-          config[`${prefix}_DESC`] = data.description;
+          project.description = data.description;
         }
-        config[`${prefix}_LINK`] = data.html_url;
-        
+        project.link = data.html_url;
+
+        // Auto-generate a readable title from the repo name if available
+        if (data.name) {
+          // Replace hyphens and underscores with spaces, and capitalize words
+          project.title = data.name
+            .replace(/[-_]/g, ' ')
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+        }
+
+        // Fetch topics to use as tags if available, otherwise use primary language
+        if (data.topics && data.topics.length > 0) {
+          project.tags = data.topics;
+        } else if (data.language) {
+          project.tags = [data.language];
+        } else {
+          // Only clear tags if we successfully fetched data but found no metadata
+          project.tags = [];
+        }
+
         console.log(`✔ Fetched data for ${repo}`);
         updated = true;
       } else {

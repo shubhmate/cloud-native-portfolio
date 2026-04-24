@@ -132,6 +132,8 @@ body {
 /* Adds a subtle rotation effect to the theme toggle button on hover. */
 .theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
 .theme-toggle:hover { transform: rotate(20deg); }
+.cursor-zoom-in { cursor: zoom-in; }
+.cursor-zoom-out { cursor: zoom-out; }
 
 /* Scroll-to-Top Button */
 /* Styles for the button that appears on scroll to return to the top of the page. */
@@ -336,4 +338,17 @@ html.light .card-hover:hover {
 html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
 
 /* Note: The 'animate-pulse2' class is applied directly to the icon in HTML. */
-/* Note: Loading text styles are handled by direct Tailwind classes in HTML. */
+/* Custom scrollbar for project cards */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
