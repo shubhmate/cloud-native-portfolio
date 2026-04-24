@@ -9,6 +9,7 @@ const htmlPath = path.join(projectRoot, 'index.html'); // Main HTML file
 const templatePath = path.join(projectRoot, 'index.template.html'); // Template HTML file
 const mainCssPath = path.join(projectRoot, 'assets', 'css', 'main.css'); // External CSS file
 const mainJsPath = path.join(projectRoot, 'assets', 'js', 'main.js'); // External JavaScript file
+const mainJsTemplatePath = path.join(projectRoot, 'assets', 'js', 'main.template.js'); // Template for JS file
 const commandsJsonPath = path.join(projectRoot, 'assets', 'js', 'commands.json'); // Commands JSON file
 const commandsTemplatePath = path.join(projectRoot, 'assets', 'js', 'commands.template.json'); // Template for commands JSON file
 const clientConfigPath = path.join(projectRoot, 'assets', 'config.json'); // Path to copy config for client-side fetch
@@ -235,7 +236,7 @@ try {
   console.log('✔ assets/css/main.css personalized.');
 
   // 4. Process assets/js/main.js
-  let mainJsContent = fs.readFileSync(mainJsPath, 'utf8');
+  let mainJsContent = fs.readFileSync(mainJsTemplatePath, 'utf8');
   mainJsContent = applyReplacements(mainJsContent, config);
   fs.writeFileSync(mainJsPath, mainJsContent, 'utf8');
   console.log('✔ assets/js/main.js personalized.');

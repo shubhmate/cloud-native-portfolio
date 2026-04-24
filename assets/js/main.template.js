@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animates a sequence of phrases by typing and deleting them character by character.
     const typewriterElement = document.getElementById('typewriter');
     if (typewriterElement) {
-        const phrases = ["DevOps Engineer","Cloud Engineer","DevSecOps Engineer"]; // Dynamically loaded from config.json
+        const phrases = "{{TYPEWRITER_PHRASES}}"; // Dynamically loaded from config.json
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
