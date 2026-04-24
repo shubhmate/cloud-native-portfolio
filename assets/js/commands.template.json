@@ -8,13 +8,7 @@
   },
 
   "skills": {
-    "output": [
-      "Infrastructure  → AWS, Terraform, Ansible, Linux",
-      "Containers      → Docker, Kubernetes, Helm",
-      "CI/CD           → GitHub Actions, Jenkins, ArgoCD",
-      "Monitoring      → Prometheus, Grafana",
-      "Languages       → Python, Bash, Go (learning)"
-    ],
+    "output": "{{TERMINAL_SKILLS}}",
     "color": "text-[var(--accent)]"
   },
 

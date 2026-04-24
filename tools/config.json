@@ -17,7 +17,7 @@
 
   "PROJECT_1_TITLE": "3-Tier App with Docker Compose",
   "PROJECT_1_DESC": "Containerized a full-stack React/Node.js/MongoDB application using Docker Compose with an Nginx reverse proxy, health checks, and environment-based config.",
-  "PROJECT_1_LINK": "https://github.com/shubhmate/3-tier-app-docker-compose",
+  "PROJECT_1_LINK": "https://github.com/shubhmate/Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
 
   "PROJECT_2_TITLE": "AWS VPC with Terraform",
   "PROJECT_2_DESC": "Provisioned a production-style AWS VPC with public/private subnets across 2 AZs, NAT gateway, internet gateway, and security groups using Terraform.",
@@ -58,8 +58,48 @@
 
   "TYPEWRITER_PHRASES": [
     "DevOps Engineer",
-    "Cloud Architect",
-    "Automation Specialist",
-    "Infrastructure as Code"
+    "Cloud Engineer",
+    "DevSecOps Engineer"
+  ],
+
+  "SKILLS_GROUPED": {
+    "Infrastructure": [
+      {"name": "Linux", "icon": "server"},
+      {"name": "AWS", "icon": "cloud"},
+      {"name": "GCP", "icon": "cloud"},
+      {"name": "Azure (Learning)", "icon": "cloud"},
+      {"name": "Docker", "icon": "box"},
+      {"name": "Kubernetes", "icon": "container"},
+      {"name": "Terraform", "icon": "settings"},
+      {"name": "Ansible", "icon": "zap"}
+    ],
+    "Version Control": [
+      {"name": "Git", "icon": "git-branch"},
+      {"name": "GitHub", "icon": "github"},
+      {"name": "GitLab", "icon": "gitlab"}
+    ],
+    "CI/CD": [
+      {"name": "Jenkins", "icon": "git-branch"},
+      {"name": "GitHub Actions", "icon": "activity"},
+      {"name": "ArgoCD", "icon": "repeat"}
+    ],
+    "Monitoring": [
+      {"name": "Prometheus", "icon": "bar-chart"},
+      {"name": "Grafana", "icon": "pie-chart"}
+    ],
+    "Languages": [
+      {"name": "Python", "icon": "code"},
+      {"name": "Go (Learning)", "icon": "code"}
+    ],
+    "Security": [
+      {"name": "OWASP Top 10", "icon": "shield"},
+      {"name": "Vault", "icon": "shield"}
+    ]
+  },
+
+  "GITHUB_REPOS": [
+    "3-tier-app-docker-compose",
+    "ec2-monitoring-stack",
+    "aws-vpc-terraform"
   ]
 }

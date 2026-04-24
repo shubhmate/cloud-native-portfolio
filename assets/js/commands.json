@@ -8,13 +8,7 @@
   },
 
   "skills": {
-    "output": [
-      "Infrastructure  → AWS, Terraform, Ansible, Linux",
-      "Containers      → Docker, Kubernetes, Helm",
-      "CI/CD           → GitHub Actions, Jenkins, ArgoCD",
-      "Monitoring      → Prometheus, Grafana",
-      "Languages       → Python, Bash, Go (learning)"
-    ],
+    "output": ["Infrastructure  → Linux, AWS, GCP, Azure (Learning), Docker, Kubernetes, Terraform, Ansible","Version Control → Git, GitHub, GitLab","CI/CD           → Jenkins, GitHub Actions, ArgoCD","Monitoring      → Prometheus, Grafana","Languages       → Python, Go (Learning)","Security        → OWASP Top 10, Vault"],
     "color": "text-[var(--accent)]"
   },
 

@@ -1,0 +1,21 @@
+{
+  "name": "static-portfolio",
+  "version": "1.0.0",
+  "description": "A professional, high-performance static portfolio website built with HTML5, Tailwind CSS, and Vanilla JavaScript. Features comprehensive enhancements including dark/light theme toggle, toast notifications, and enhanced accessibility.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "htmlhint": "^1.9.2",
+    "husky": "^9.1.7"
+  }
+}
