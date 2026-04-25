@@ -393,6 +393,51 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 return { output: `Section not found. Available: ${validSections.join(', ')}`, color: 'text-red-400' };
             }
+        },
+        ssh: (args) => {
+            if (!args || args.length === 0) {
+                return { output: "Usage: ssh [user]@[host]", color: 'text-yellow-400' };
+            }
+            const target = args[0].toLowerCase();
+            if (target.includes('guest@')) {
+                return { 
+                    output: [
+                        "Connecting to remote host...",
+                        "Authenticating as guest...",
+                        "Access Granted! 🔓",
+                        "",
+                        "Welcome to the hidden vault.",
+                        "Status: Connected to shubham-mate-vps-01",
+                        "System: Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-generic)",
+                        "",
+                        "Type 'ls' to see hidden files or 'cat secret.txt' for a surprise."
+                    ], 
+                    color: 'text-green-400' 
+                };
+            }
+            return { output: `ssh: Could not resolve hostname ${target}: Name or service not known`, color: 'text-red-400' };
+        },
+        cat: (args) => {
+            if (!args || args.length === 0) {
+                return { output: "Usage: cat [filename]", color: 'text-yellow-400' };
+            }
+            if (args[0].toLowerCase() === 'secret.txt') {
+                return { 
+                    output: [
+                        "Reading secret.txt...",
+                        "--------------------------------",
+                        "🚀 MISSION LOG: DEVOPS PORTFOLIO",
+                        "--------------------------------",
+                        "Status: Fully Automated.",
+                        "Goal: Secure a Top-Tier Cloud Role.",
+                        "Message: Thanks for exploring my code!",
+                        "Tip: Try typing 'build' to see the pipeline.",
+                        "--------------------------------"
+                    ], 
+                    color: 'text-green-400' 
+                };
+            }
+            return { output: `cat: ${args[0]}: No such file or directory`, color: 'text-red-400' };
         }
     };
 
