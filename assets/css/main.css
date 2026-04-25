@@ -143,7 +143,7 @@ body {
 @media (max-width: 768px) {
   #scroll-to-top {
     bottom: 5.5rem; /* Position above the hire-me-btn (2rem bottom + ~2.375rem height + 1rem spacing) */
-    right: 2rem; /* Keep consistent with hire-me-btn */
+    right: 1.5rem; /* Keep consistent with hire-me-btn */
   }
 }
 #scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
@@ -225,7 +225,7 @@ body {
     /* Position */
     top: auto; /* Ensure it's not vertically centered by 'top' from desktop styles */
     bottom: 2rem; /* Position at the bottom, below scroll-to-top button */
-    right: 2rem; /* Align with scroll-to-top button */
+    right: 1.5rem; /* Align with scroll-to-top button */
     transform: none;
     
     /* Styling */
@@ -238,7 +238,7 @@ body {
     font-weight: 700;
     letter-spacing: 1px;
     font-size: 14px;
-    box-shadow: 0 10px 25px rgba(var(--green-rgb), 0.4);
+    /* box-shadow: 0 10px 25px rgba(var(--green-rgb), 0.4); */
   }
 
   /* The Pulse Dot - Positioned Before Text */
