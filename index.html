@@ -1348,7 +1348,7 @@
                 required
                 maxlength="100"
                 autocomplete="name"
-                class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-slate-200 text-sm focus:outline-none focus:border-[var(--accent)] transition-colors card-hover"
+                class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors card-hover"
                 placeholder="Your Name"
               />
             </div>
@@ -1361,14 +1361,14 @@
                 required
                 maxlength="254"
                 autocomplete="email"
-                class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-slate-200 text-sm focus:outline-none focus:border-[var(--accent)] transition-colors card-hover"
+                class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors card-hover"
                 placeholder="your@email.com"
               />
             </div>
             <div>
               <label for="message" class="block font-mono text-xs mb-1.5">
                 Message <span class="text-red-400">*</span>
-                <span class="text-muted/50 ml-2">(max 2000 chars)</span>
+                <span class="text-[var(--muted)] ml-2">(max 2000 chars)</span>
               </label>
               <textarea
                 id="message"
@@ -1377,7 +1377,7 @@
                 minlength="10"
                 maxlength="2000"
                 rows="5"
-                class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-slate-200 text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none card-hover"
+                class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none card-hover"
                 placeholder="Tell me about the opportunity or project..."
               ></textarea>
             </div>
@@ -1397,10 +1397,10 @@
         <!-- ==================== Footer ==================== -->
         <!-- Footer with current year, social links, and a note about the tech stack used to build the site. -->
         <div class="mt-16 pt-8 border-t border-[var(--border)] flex flex-col items-center gap-4">
-          <p class="font-mono text-xs text-muted text-center md:text-left">
+          <p class="font-mono text-xs text-[var(--muted)] text-center md:text-left">
             Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.
           </p>
-          <div class="flex items-center gap-4">
+          <div class="flex items-center gap-4 text-[var(--muted)]">
             
             <a href="https://github.com/shubhmate" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110">
               <i data-lucide="github" class="w-4 h-4"></i>
@@ -1409,7 +1409,7 @@
               <i data-lucide="linkedin" class="w-4 h-4"></i>
             </a>
           </div>
-          <p class="font-mono text-xs text-muted text-center md:text-left">
+          <p class="font-mono text-xs text-[var(--muted)] text-center md:text-left">
             © <span id="current-year">2026</span> Shubham Mate · Made with ❤️
           </p> 
         </div>
