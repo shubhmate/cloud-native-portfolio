@@ -4,15 +4,26 @@ const path = require('path');
 // The script is in the "tools" directory, so the project root is one level up
 const projectRoot = path.join(__dirname, '..'); 
 
-const configPath = path.join(__dirname, 'config.json'); // Configuration file is in the tools directory
-const htmlPath = path.join(projectRoot, 'index.html'); // Main HTML file
-const templatePath = path.join(projectRoot, 'index.template.html'); // Template HTML file
-const mainCssPath = path.join(projectRoot, 'assets', 'css', 'main.css'); // External CSS file
-const mainJsPath = path.join(projectRoot, 'assets', 'js', 'main.js'); // External JavaScript file
-const mainJsTemplatePath = path.join(projectRoot, 'assets', 'js', 'main.template.js'); // Template for JS file
-const commandsJsonPath = path.join(projectRoot, 'assets', 'js', 'commands.json'); // Commands JSON file
-const commandsTemplatePath = path.join(projectRoot, 'assets', 'js', 'commands.template.json'); // Template for commands JSON file
-const clientConfigPath = path.join(projectRoot, 'assets', 'config.json'); // Path to copy config for client-side fetch
+const configPath = path.join(projectRoot, 'config', 'site-config.json'); 
+const templatePath = path.join(projectRoot, 'src', 'templates', 'index.html');
+const resumeTemplatePath = path.join(projectRoot, 'src', 'templates', 'resume.html');
+
+const distPath = path.join(projectRoot, 'dist');
+const htmlPath = path.join(distPath, 'index.html'); 
+const resumeHtmlPath = path.join(distPath, 'resume.html');
+
+const mainCssSourcePath = path.join(projectRoot, 'src', 'styles', 'main.css'); 
+const mainCssDistPath = path.join(distPath, 'assets', 'css', 'main.css');
+
+const mainJsTemplatePath = path.join(projectRoot, 'src', 'scripts', 'main.template.js'); 
+const mainJsDistPath = path.join(distPath, 'assets', 'js', 'main.js');
+
+const commandsTemplatePath = path.join(projectRoot, 'src', 'scripts', 'commands.template.json'); 
+const commandsDistPath = path.join(distPath, 'assets', 'js', 'commands.json');
+
+const clientConfigPath = path.join(distPath, 'assets', 'config.json'); 
+const assetsSrcPath = path.join(projectRoot, 'src', 'assets');
+const assetsDistPath = path.join(distPath, 'assets');
 
 function escapeHtml(unsafe) {
   if (typeof unsafe !== 'string') return unsafe;
@@ -347,7 +358,7 @@ try {
   const configRaw = fs.readFileSync(configPath, 'utf8');
   const config = JSON.parse(configRaw);
 
-  console.log('Applying personalization from config.json...');
+  console.log('🚀 Starting Professional Build Process...');
 
   // 1.5 Generate Dynamic HTML Components
   config.SKILLS_GRID = generateSkillsHtml(config);
@@ -360,39 +371,78 @@ try {
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
 
-  // 2. Process index.html
-  // 2. Process <head> section of index.html (for SEO, title, etc.)
-  // Now processing the entire index.template.html for placeholders
+  // 2. Ensure Dist Directories Exist
+  const dirsToCreate = [
+    distPath,
+    path.join(distPath, 'assets'),
+    path.join(distPath, 'assets', 'css'),
+    path.join(distPath, 'assets', 'js'),
+    path.join(distPath, 'assets', 'img')
+  ];
+  dirsToCreate.forEach(dir => {
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+  });
+
+  // 3. Process index.html
   let htmlContent = fs.readFileSync(templatePath, 'utf8');
-  // Apply replacements to the entire HTML content
   htmlContent = applyReplacements(htmlContent, config);
-
   fs.writeFileSync(htmlPath, htmlContent, 'utf8');
-  console.log('✔ index.html personalized.');
-  
-  // 3. Process assets/css/main.css
-  let mainCssContent = fs.readFileSync(mainCssPath, 'utf8');
-  mainCssContent = applyReplacements(mainCssContent, config);
-  fs.writeFileSync(mainCssPath, mainCssContent, 'utf8');
-  console.log('✔ assets/css/main.css personalized.');
+  console.log('✔ dist/index.html generated.');
 
-  // 4. Process assets/js/main.js
+  // 4. Process resume.html (New professional workflow)
+  if (fs.existsSync(resumeTemplatePath)) {
+    let resumeContent = fs.readFileSync(resumeTemplatePath, 'utf8');
+    resumeContent = applyReplacements(resumeContent, config);
+    fs.writeFileSync(resumeHtmlPath, resumeContent, 'utf8');
+    console.log('✔ dist/resume.html generated.');
+  }
+  
+  // 5. Process assets/css/main.css
+  let mainCssContent = fs.readFileSync(mainCssSourcePath, 'utf8');
+  mainCssContent = applyReplacements(mainCssContent, config);
+  fs.writeFileSync(mainCssDistPath, mainCssContent, 'utf8');
+  console.log('✔ dist/assets/css/main.css generated.');
+
+  // 6. Process assets/js/main.js
   let mainJsContent = fs.readFileSync(mainJsTemplatePath, 'utf8');
   mainJsContent = applyReplacements(mainJsContent, config);
-  fs.writeFileSync(mainJsPath, mainJsContent, 'utf8');
-  console.log('✔ assets/js/main.js personalized.');
+  fs.writeFileSync(mainJsDistPath, mainJsContent, 'utf8');
+  console.log('✔ dist/assets/js/main.js generated.');
 
-  // 5. Process assets/js/commands.json
+  // 7. Process assets/js/commands.json
   let commandsContent = fs.readFileSync(commandsTemplatePath, 'utf8');
   commandsContent = applyReplacements(commandsContent, config);
-  fs.writeFileSync(commandsJsonPath, commandsContent, 'utf8');
-  console.log('✔ assets/js/commands.json personalized.');
+  fs.writeFileSync(commandsDistPath, commandsContent, 'utf8');
+  console.log('✔ dist/assets/js/commands.json generated.');
   
-  // 6. Copy config.json to assets/ for client-side fetching
-  fs.copyFileSync(configPath, clientConfigPath);
-  console.log('✔ config.json copied to assets/config.json for client-side use.');
+  // 8. Copy static assets from src/assets to dist/assets
+  if (fs.existsSync(assetsSrcPath)) {
+    // Helper to copy directory recursively
+    const copyRecursiveSync = (src, dest) => {
+      const exists = fs.existsSync(src);
+      const stats = exists && fs.statSync(src);
+      const isDirectory = exists && stats.isDirectory();
+      if (isDirectory) {
+        if (!fs.existsSync(dest)) fs.mkdirSync(dest);
+        fs.readdirSync(src).forEach(childItemName => {
+          copyRecursiveSync(path.join(src, childItemName), path.join(dest, childItemName));
+        });
+      } else {
+        fs.copyFileSync(src, dest);
+      }
+    };
+    copyRecursiveSync(assetsSrcPath, assetsDistPath);
+    console.log('✔ Static assets synced to dist.');
+  }
 
-  console.log('\nPersonalization complete! Your portfolio files have been updated.');
+  // 9. Copy config.json to dist/assets/ for client-side fetching
+  fs.copyFileSync(configPath, clientConfigPath);
+  console.log('✔ config.json copied to dist/assets/config.json.');
+
+  console.log('\n✨ Build complete! Your production-ready site is in the /dist folder.');
 } catch (error) {
-  console.error('Error during personalization:', error.message);
+  console.error('❌ Build failed:', error.message);
+  process.exit(1);
 }

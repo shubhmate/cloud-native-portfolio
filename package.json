@@ -7,7 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node automation/build.js",
+    "fetch": "node automation/fetch-github.js",
+    "dev": "npm run build && npx -y http-server dist",
     "prepare": "husky"
   },
   "keywords": [],

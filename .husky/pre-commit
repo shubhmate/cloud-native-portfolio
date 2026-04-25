@@ -1,4 +1,3 @@
-node tools/fetch_projects.js
-node tools/personalize.js
-npx htmlhint index.html
-git add index.html assets/js/commands.json assets/css/main.css assets/js/main.js assets/config.json tools/config.json
+node automation/fetch-github.js
+node automation/build.js
+git add config/site-config.json
