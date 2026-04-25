@@ -24,6 +24,40 @@ function escapeHtml(unsafe) {
     .replace(/'/g, "&#039;");
 }
 
+function generateExperienceHtml(config) {
+  if (!config.EXPERIENCE) return '';
+
+  let expHtml = '';
+  config.EXPERIENCE.forEach((exp, index) => {
+    const bulletsHtml = exp.bullets.map(bullet => `
+                    <li class="text-sm text-[var(--muted)] flex gap-2">
+                      <span class="text-[var(--accent)] shrink-0">▸</span>
+                      ${escapeHtml(bullet)}
+                    </li>`).join('');
+
+    expHtml += `
+                <!-- Experience Item ${index + 1} -->
+                <div class="relative">
+                  <!-- Timeline dot -->
+                  <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)]"></div>
+                  <!-- Role Details -->
+                  <div class="flex flex-wrap items-center gap-2 mb-1">
+                    <h3 class="font-mono font-semibold text-[var(--accent)]">${escapeHtml(exp.role)}</h3> 
+                    ${exp.end.toLowerCase() === 'present' ? '<span class="px-2 py-0.5 rounded text-xs font-mono bg-green-400/10 text-green-400">Full-time</span>' : `<span class="px-2 py-0.5 rounded text-xs font-mono bg-[var(--accent)]/10 text-[var(--accent)]">${escapeHtml(exp.type)}</span>`}
+                  </div>
+                  <p class="text-xs text-[var(--accent)] font-mono mb-1">@ ${escapeHtml(exp.company)}</p>
+                  <!-- Duration -->
+                  <p class="text-xs text-[var(--muted)] font-mono mb-3">${escapeHtml(exp.start)} – ${escapeHtml(exp.end)}</p>
+                  <!-- Responsibilities -->
+                  <ul class="space-y-1.5">
+                    ${bulletsHtml}
+                  </ul>
+                </div>`;
+  });
+
+  return expHtml;
+}
+
 function generateSkillsHtml(config) {
   if (!config.SKILLS_GROUPED) return;
 
@@ -213,10 +247,9 @@ try {
 
   console.log('Applying personalization from config.json...');
 
-  // 1.5 Generate Dynamic Skills HTML
-  generateSkillsHtml(config);
-  
-  // 1.6 Generate Dynamic Projects HTML
+  // 1.5 Generate Dynamic HTML Components
+  config.SKILLS_GRID = generateSkillsHtml(config);
+  config.EXPERIENCE_TIMELINE = generateExperienceHtml(config);
   generateProjectsHtml(config);
 
   // 2. Process index.html

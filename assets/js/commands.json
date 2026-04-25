@@ -19,8 +19,8 @@
 
   "experience": {
     "output": [
-      "DevOps Engineer        Jan 2024 – Present",
-      "Junior DevOps / Cloud Intern   Jun 2023 – Dec 2023"
+      "{{EXP_1_ROLE}}        {{EXP_1_START}} – {{EXP_1_END}}",
+      "{{EXP_2_ROLE}}   {{EXP_2_START}} – {{EXP_2_END}}"
     ],
     "color": "text-[var(--accent)]"
   },

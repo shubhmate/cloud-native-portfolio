@@ -103,27 +103,35 @@
     }
   ],
   "JOB_TITLE": "DevOps Engineer",
-  "COMPANY_NAME": "Company Name",
-  "PREVIOUS_COMPANY": "Previous Company",
-  "JOB_START_DATE": "Jan 2024",
-  "JOB_END_DATE": "Present",
-  "INTERNSHIP_START_DATE": "Jun 2023",
-  "INTERNSHIP_END_DATE": "Dec 2023",
-  "EXP_1_ROLE": "DevOps Engineer",
-  "EXP_1_COMPANY": "Company Name",
-  "EXP_1_START": "Jan 2024",
-  "EXP_1_END": "Present",
-  "EXP_1_BULLET_1": "Maintain and improve CI/CD pipelines using GitHub Actions for 5+ microservices at Company Name",
-  "EXP_1_BULLET_2": "Containerized legacy Node.js applications using Docker, reducing environment inconsistencies at Company Name",
-  "EXP_1_BULLET_3": "Assisted in writing Terraform scripts to provision AWS EC2, S3, and RDS resources at Company Name",
-  "EXP_1_BULLET_4": "Set up basic Prometheus + Grafana dashboards to monitor application health on EC2 at Company Name",
-  "EXP_2_ROLE": "Junior DevOps / Cloud Intern",
-  "EXP_2_COMPANY": "Previous Company",
-  "EXP_2_START": "Jun 2023",
-  "EXP_2_END": "Dec 2023",
-  "EXP_2_BULLET_1": "Supported deployment of Dockerized applications to AWS ECS using shell scripts at Previous Company",
-  "EXP_2_BULLET_2": "Wrote Ansible playbooks to automate server configuration across dev environments at Previous Company",
-  "EXP_2_BULLET_3": "Collaborated with dev team to debug pipeline failures and reduce build times by 20% at Previous Company",
+  "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
+  "EXPERIENCE": [
+    {
+      "role": "DevOps Engineer",
+      "company": "Company Name",
+      "type": "Full-time",
+      "start": "Jan 2024",
+      "end": "Jan 2024",
+      "bullets": [
+        "Maintain and improve CI/CD pipelines using GitHub Actions for 5+ microservices at Company Name",
+        "Containerized legacy Node.js applications using Docker, reducing environment inconsistencies at Company Name",
+        "Assisted in writing Terraform scripts to provision AWS EC2, S3, and RDS resources at Company Name",
+        "Set up basic Prometheus + Grafana dashboards to monitor application health on EC2 at Company Name"
+      ]
+    },
+    {
+      "role": "Junior DevOps / Cloud Intern",
+      "company": "Previous Company",
+      "type": "Internship",
+      "start": "Jun 2023",
+      "end": "Dec 2023",
+      "bullets": [
+        "Supported deployment of Dockerized applications to AWS ECS using shell scripts at Previous Company",
+        "Wrote Ansible playbooks to automate server configuration across dev environments at Previous Company",
+        "Learned and applied basic Kubernetes concepts — deployments, services, ConfigMaps",
+        "Collaborated with dev team to debug pipeline failures and reduce build times by 20% at Previous Company"
+      ]
+    }
+  ],
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
   "TIMELINE_DATE_3": "Aug 01, 2023",

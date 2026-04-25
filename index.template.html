@@ -582,79 +582,14 @@
             </div>
             <!-- Work History -->
             <h2 class="font-mono text-3xl font-bold mb-2">Work History</h2>
-            <p class="text-[var(--muted)] text-sm mb-8">~2 years of hands-on DevOps & Cloud experience</p>
+            <p class="text-[var(--muted)] text-sm mb-8">{{EXP_SUMMARY}}</p>
             <!-- Timeline -->
             <div class="relative">
               <!-- Vertical timeline line -->
               <div class="absolute left-0 top-0 bottom-0 w-px bg-[var(--border)]"></div>
               <!-- Timeline items -->
               <div class="space-y-8 pl-6">
-                <!-- Current Role -->
-                <div class="relative">
-                  <!-- Timeline dot -->
-                  <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)]"></div>
-                  <!-- Role Details -->
-                  <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <h3 class="font-mono font-semibold text-[var(--accent)]">{{JOB_TITLE}}</h3> 
-                    <span class="px-2 py-0.5 rounded text-xs font-mono bg-green-400/10 text-green-400">Full-time</span> <!-- Current role indicator -->
-                  </div>
-                  <!-- {{COMPANY_NAME}} -->
-                  <p class="text-xs text-green-400 font-mono mb-1">@ {{COMPANY_NAME}}</p>
-                  <!-- Duration -->
-                  <p class="text-xs text-green-400 font-mono mb-3">{{JOB_START_DATE}} – {{JOB_END_DATE}}</p>
-                  <!-- Responsibilities -->
-                  <ul class="space-y-1.5">
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      {{EXP_1_BULLET_1}}
-                    </li>
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      {{EXP_1_BULLET_2}}
-                    </li>
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      {{EXP_1_BULLET_3}}
-                    </li>
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      {{EXP_1_BULLET_4}}
-                    </li>
-                  </ul>
-                </div>
-                <!-- Previous Role -->
-                <div class="relative">
-                  <!-- Timeline dot -->
-                  <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)]"></div>
-                  <!-- Role Details -->
-                  <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <h3 class="font-mono font-semibold text-[var(--accent)]">{{EXP_2_ROLE}}</h3> <!-- Previous role -->
-                    <span class="px-2 py-0.5 rounded text-xs font-mono bg-green-400/10 text-green-400">Internship</span>
-                  </div>
-                  <!-- {{COMPANY_NAME}} -->
-                  <p class="text-xs text-green-400 font-mono mb-1">@ {{PREVIOUS_COMPANY}}</p>
-                  <!-- Duration -->
-                  <p class="text-xs text-green-400 font-mono mb-3">{{INTERNSHIP_START_DATE}} – {{INTERNSHIP_END_DATE}}</p>
-                  <!-- Responsibilities -->
-                  <ul class="space-y-1.5">
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      {{EXP_2_BULLET_1}}
-                    </li>
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      {{EXP_2_BULLET_2}}
-                    </li>
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      Learned and applied basic Kubernetes concepts — deployments, services, ConfigMaps
-                    </li>
-                    <li class="text-sm text-[var(--muted)] flex gap-2">
-                      <span class="text-green-400 shrink-0">▸</span>
-                      {{EXP_2_BULLET_3}}
-                    </li>
-                  </ul>
-                </div>
+                {{EXPERIENCE_TIMELINE}}
               </div>
             </div>
           </div>
