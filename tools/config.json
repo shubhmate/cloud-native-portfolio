@@ -235,6 +235,14 @@
     "Cloud Engineer",
     "DevSecOps Engineer"
   ],
+  "SKILLS_COLORS": {
+    "Infrastructure": "blue",
+    "Version Control": "blue",
+    "CI/CD": "blue",
+    "Monitoring": "blue",
+    "Languages": "blue",
+    "Security": "blue"
+  },
   "SKILLS_GROUPED": {
     "Infrastructure": [
       {

@@ -173,15 +173,16 @@ function generateSkillsHtml(config) {
   // 2. Generate Grid HTML
   let gridHtml = '';
   for (const [category, skills] of Object.entries(config.SKILLS_GROUPED)) {
+    const color = (config.SKILLS_COLORS && config.SKILLS_COLORS[category]) || 'blue';
     gridHtml += `
-              <div class="p-4 rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--surface)] transition-colors card-hover">
-                <p class="font-mono text-xs font-semibold mb-3 text-[var(--accent)] leading-tight">${category}</p>
+              <div class="p-4 rounded-xl border border-${color}-400/30 bg-${color}-400/5 card-hover">
+                <p class="font-mono text-xs font-semibold mb-3 text-${color}-400 leading-tight">${category}</p>
                 <div class="flex flex-wrap gap-2">`;
     for (const skill of skills) {
       gridHtml += `
                   <div class="flex items-center gap-1.5">
-                    <i data-lucide="${skill.icon}" class="w-3 h-3 text-[var(--accent)]"></i>
-                    <span class="text-xs text-slate-400">${skill.name}</span>
+                    <i data-lucide="${skill.icon}" class="w-3 h-3 text-${color}-400"></i>
+                    <span class="text-xs text-[var(--muted)]">${skill.name}</span>
                   </div>`;
     }
     gridHtml += `
