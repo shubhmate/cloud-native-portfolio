@@ -1,8 +1,17 @@
 {
   "whoami": {
     "output": [
+      "{{PERSON_NAME}}",
       "{{JOB_TITLE}} · {{YEARS_EXPERIENCE}}",
-      "Focused on AWS, Docker, Terraform, CI/CD"
+      "Status: {{CURRENT_STATUS}}",
+      "Location: {{CURRENT_LOCATION}}"
+    ],
+    "color": "text-[var(--accent)]"
+  },
+  "about": {
+    "output": [
+      "Behind the Terminals:",
+      "{{ABOUT_ME_DESCRIPTION}}"
     ],
     "color": "text-[var(--accent)]"
   },
@@ -85,6 +94,7 @@
     "output": [
       "Available commands:",
       "  <b>whoami</b>    : About me",
+      "  <b>about</b>     : Behind the Terminals",
       "  <b>skills</b>    : Tech stack",
       "  <b>projects</b>  : Featured work",
       "  <b>experience</b>: Work history",
@@ -95,7 +105,7 @@
       "  <b>social</b>    : Show social links",
       "  <b>secret</b>    : Find the easter egg",
       "  <b>ssh</b>       : Connect to server (try 'ssh guest@shubham-mate')",
-      "  <b>open</b>      : Go to section (e.g. 'open skills')",
+      "  <b>open</b>      : Go to section (e.g. 'open about')",
       "  <b>clear</b>     : Clear terminal"
     ],
     "color": "text-[var(--accent)]"

@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return { output: "Usage: open [section]. Available: home, skills, projects, experience, contact", color: 'text-yellow-400' };
             }
             const section = args[0].toLowerCase();
-            const validSections = ['home', 'skills', 'projects', 'experience', 'contact'];
+            const validSections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
             
             if (validSections.includes(section)) {
                 const element = document.getElementById(section);

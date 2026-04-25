@@ -187,13 +187,14 @@
       <!-- Desktop Navigation Links -->
       <div class="hidden md:flex items-center gap-6">
         <a href="#home" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Home</a>
+        <a href="#about" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">About</a>
+        <a href="#experience" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Experience</a>
         <a href="#skills" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Stack</a>
         <a href="#projects" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Projects</a>
         <a href="#pipeline" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Pipeline</a> 
         <!-- Blog Link (Commented Out) -->
         <!-- <a href="#blog" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Blog</a> -->
 
-        <a href="#experience" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Experience</a>
         <a href="#contact" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Contact</a>
         <a href="{{RESUME_LINK}}" download class="px-4 py-2 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="Download Resume">
           Resume
@@ -217,13 +218,14 @@
     <!-- Mobile Navigation Menu (hidden by default, toggled by JS) -->
     <div id="mobile-menu" class="md:hidden bg-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
       <a href="#home" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Home</a>
+      <a href="#about" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">About</a>
+      <a href="#experience" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Experience</a>
       <a href="#skills" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Stack</a>
       <a href="#projects" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Projects</a>
       <a href="#pipeline" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Pipeline</a> 
       <!-- Blog Link (Commented Out) -->
       <!-- <a href="#blog" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Blog</a> -->
 
-      <a href="#experience" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Experience</a>
       <a href="#contact" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Contact</a>
       <a href="{{RESUME_LINK}}" download class="block px-2 py-1 w-fit font-mono text-sm text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="Download Resume">
         Resume
@@ -287,9 +289,98 @@
       </div>
 
       <!-- Scroll down indicator -->
-      <a href="#skills" class="flex items-center justify-center absolute bottom-8 left-0 right-0 mx-auto text-[var(--muted)] hover:text-[var(--accent)] transition-colors transition-transform hover:scale-110 animate-bounce w-fit" aria-label="Scroll down to skills section">
+      <a href="#about" class="flex items-center justify-center absolute bottom-8 left-0 right-0 mx-auto text-[var(--muted)] hover:text-[var(--accent)] transition-colors transition-transform hover:scale-110 animate-bounce w-fit" aria-label="Scroll down to about section">
         <i data-lucide="arrow-down" class="w-5 h-5 relative -top-[1px]"></i>
       </a>
+    </section>
+  
+    <!-- ==================== About Section ==================== -->
+    <!-- Detailed background about the user with a profile photo. -->
+    <section id="about" class="py-20 border-[var(--border)]">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+          <!-- Profile Photo Container -->
+          <div class="relative shrink-0 animate-fade-up">
+            <div class="w-48 h-48 md:w-64 md:h-64 rounded-full border-2 border-[var(--accent)] p-2 relative z-10">
+              <div class="w-full h-full rounded-full overflow-hidden">
+                <img 
+                  src="{{PROFILE_IMAGE}}" 
+                  alt="{{PERSON_NAME}}" 
+                  class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                  onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{PERSON_NAME}}&background=0D8ABC&color=fff&size=512';"
+                />
+              </div>
+            </div>
+            <!-- Decorative circle behind photo -->
+            <div class="absolute -inset-1 bg-gradient-to-tr from-[var(--accent)] to-cyan-400 rounded-full blur opacity-20 animate-pulse"></div>
+          </div>
+
+          <!-- About Content -->
+          <div class="flex-1 animate-fade-up">
+            <div class="flex items-center gap-2 mb-4">
+              <i data-lucide="user" class="w-5 h-5 text-[var(--accent)]"></i>
+              <p class="font-mono text-[var(--accent)] text-sm">// about me</p>
+            </div>
+            <h2 class="font-mono text-3xl font-bold mb-6">Behind the Terminals</h2>
+            <div class="space-y-4 text-[var(--muted)] leading-relaxed text-lg">
+              <p>
+                {{ABOUT_ME_DESCRIPTION}}
+              </p>
+              <div class="pt-4 flex flex-wrap gap-4">
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] font-mono text-xs">
+                  <span class="text-[var(--accent)]">●</span> Status: {{CURRENT_STATUS}}
+                </div>
+                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] font-mono text-xs">
+                  <span class="text-[var(--accent)]">●</span> Location: {{CURRENT_LOCATION}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== Experience Section ==================== -->
+    <!-- Explains the user's work experience and career progression. -->
+    <section id="experience" class="py-20 border-b border-[var(--border)]">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16">
+
+          <!-- Experience Timeline -->
+          <div class="animate-fade-up">
+            <div class="flex items-center gap-2 mb-8">
+              <i data-lucide="briefcase" class="w-5 h-5 text-[var(--accent)]"></i>
+              <p class="font-mono text-sm text-[var(--accent)]">// experience</p>
+            </div>
+            <!-- Work History -->
+            <h2 class="font-mono text-3xl font-bold mb-2">Work History</h2>
+            <p class="text-[var(--muted)] text-sm mb-8">{{EXP_SUMMARY}}</p>
+            <!-- Timeline -->
+            <div class="relative">
+              <!-- Vertical timeline line -->
+              <div class="absolute left-0 top-0 bottom-0 w-px bg-[var(--border)]"></div>
+              <!-- Timeline items -->
+              <div class="space-y-8 pl-6">
+                {{EXPERIENCE_TIMELINE}}
+              </div>
+            </div>
+          </div>
+
+          <!-- Certifications Grid -->
+          <div class="animate-fade-up">
+            <div class="flex items-center gap-2 mb-8">
+              <i data-lucide="award" class="w-5 h-5 text-green-400"></i>
+              <p class="font-mono text-sm text-green-400">// certifications</p>
+            </div>
+            <!-- Certification Cards -->
+            <h2 class="font-mono text-3xl font-bold mb-2">Credentials</h2>
+            <p class="text-[var(--muted)] text-sm mb-8">{{CERTIFICATIONS_SUBTITLE}}</p>
+            <div class="grid grid-cols-2 gap-3">
+              {{CERTIFICATIONS_GRID}}
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   
     <!-- ==================== Skills Section ==================== -->
@@ -473,48 +564,7 @@
       </div>
     </section>
 
-    <!-- ==================== Experience Section ==================== -->
-    <!-- Explains the user's work experience and career progression. -->
-    <section id="experience" class="py-20 border-[var(--border)]">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="grid md:grid-cols-2 gap-16">
 
-          <!-- Experience Timeline -->
-          <div class="animate-fade-up">
-            <div class="flex items-center gap-2 mb-8">
-              <i data-lucide="briefcase" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-sm text-[var(--accent)]">// experience</p>
-            </div>
-            <!-- Work History -->
-            <h2 class="font-mono text-3xl font-bold mb-2">Work History</h2>
-            <p class="text-[var(--muted)] text-sm mb-8">{{EXP_SUMMARY}}</p>
-            <!-- Timeline -->
-            <div class="relative">
-              <!-- Vertical timeline line -->
-              <div class="absolute left-0 top-0 bottom-0 w-px bg-[var(--border)]"></div>
-              <!-- Timeline items -->
-              <div class="space-y-8 pl-6">
-                {{EXPERIENCE_TIMELINE}}
-              </div>
-            </div>
-          </div>
-
-          <!-- Certifications Grid -->
-          <div class="animate-fade-up">
-            <div class="flex items-center gap-2 mb-8">
-              <i data-lucide="award" class="w-5 h-5 text-green-400"></i>
-              <p class="font-mono text-sm text-green-400">// certifications</p>
-            </div>
-            <!-- Certification Cards -->
-            <h2 class="font-mono text-3xl font-bold mb-2">Credentials</h2>
-            <p class="text-[var(--muted)] text-sm mb-8">{{CERTIFICATIONS_SUBTITLE}}</p>
-            <div class="grid grid-cols-2 gap-3">
-              {{CERTIFICATIONS_GRID}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- ==================== Contact Section ==================== -->
     <!-- Provides contact information and social media links, with copy-to-clipboard functionality for email. --> 

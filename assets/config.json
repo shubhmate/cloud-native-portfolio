@@ -72,6 +72,10 @@
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
   "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-cyan-400\">CI/CD Pipelines</span>, <span class=\"text-teal-400\">Containerization</span>, and <span class=\"text-emerald-400\">Cloud Infrastructure</span>.",
+  "PROFILE_IMAGE": "assets/img/profile.png",
+  "ABOUT_ME_DESCRIPTION": "I am a passionate DevOps Engineer with a strong foundation in cloud-native technologies. I specialize in automating complex workflows, managing scalable infrastructure, and ensuring the reliability of high-traffic applications. My journey in tech is driven by a curiosity for how systems work and a desire to build tools that empower developers.",
+  "CURRENT_STATUS": "Open to full-time roles",
+  "CURRENT_LOCATION": "Pune, India",
   "PROJECTS_SUBTITLE": "Hands-on labs & real projects built to learn by doing",
   "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
   "PROJECTS": [
