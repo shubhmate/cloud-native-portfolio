@@ -421,8 +421,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!args || args.length === 0) {
                 return { output: "Usage: cat [filename]", color: 'text-yellow-400' };
             }
-            if (args[0].toLowerCase() === 'secret.txt') {
-                return { 
+            const file = args[0].toLowerCase();
+            const fileHandlers = {
+                'secret.txt': {
                     output: [
                         "Reading secret.txt...",
                         "--------------------------------",
@@ -433,9 +434,53 @@ document.addEventListener('DOMContentLoaded', () => {
                         "Message: Thanks for exploring my code!",
                         "Tip: Try typing 'build' to see the pipeline.",
                         "--------------------------------"
-                    ], 
-                    color: 'text-green-400' 
-                };
+                    ],
+                    color: 'text-green-400'
+                },
+                'infrastructure.tf': {
+                    output: [
+                        "provider \"aws\" {",
+                        "  region = \"us-east-1\"",
+                        "}",
+                        "",
+                        "resource \"aws_vpc\" \"main\" {",
+                        "  cidr_block = \"10.0.0.0/16\"",
+                        "  tags = { Name = \"Production\" }",
+                        "}"
+                    ],
+                    color: 'text-blue-300'
+                },
+                'deployment.yaml': {
+                    output: [
+                        "apiVersion: apps/v1",
+                        "kind: Deployment",
+                        "metadata: { name: \"web-app\" }",
+                        "spec:",
+                        "  replicas: 3",
+                        "  template:",
+                        "    spec:",
+                        "      containers:",
+                        "      - name: flask-api",
+                        "        image: shubhmate/api:v1.2"
+                    ],
+                    color: 'text-yellow-200'
+                },
+                'monitoring.prom': {
+                    output: [
+                        "up{job=\"kubernetes-nodes\"} == 0",
+                        "node_cpu_seconds_total{mode=\"idle\"}",
+                        "rate(http_requests_total[5m]) > 100"
+                    ],
+                    color: 'text-red-300'
+                },
+                'production.env': {
+                    output: "cat: production.env: Permission denied (Requires root access)",
+                    color: 'text-red-500'
+                }
+            };
+
+            if (fileHandlers[file]) {
+                return fileHandlers[file];
             }
             return { output: `cat: ${args[0]}: No such file or directory`, color: 'text-red-400' };
         }
