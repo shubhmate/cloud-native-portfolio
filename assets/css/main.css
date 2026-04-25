@@ -159,14 +159,15 @@ body {
 
   /* Layout & Text */
   display: flex;
+  flex-direction: column; /* Stacks parts vertically on desktop */
   align-items: center;
   justify-content: center;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
+  gap: 8px;
   padding: 24px 10px;
-  
+  border-radius: 30px;
+
   /* Typography */
-  font-family: 'JetBrains Mono', monospace; /* Modern, professional choice */
+  font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 3px;
@@ -175,15 +176,25 @@ body {
   /* Styling (Glassmorphism) */
   background: var(--glass-bg);
   backdrop-filter: blur(8px);
-  border: 1px solid var(--green); /* Using green for a fresh, inviting look */
+  border: 1px solid var(--green);
   border-right: none;
   border-radius: 12px 0 0 12px;
   cursor: pointer;
   box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
   
   /* Smooth "Professional" Transition */
-  transition: all 0.4s ease-in-out; /* Changed from bouncy to ease-in-out */
+  transition: all 0.4s ease-in-out;
 }
+
+.hire-me-btn span:not(.pulse-dot) {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  display: inline-block;
+}
+
+.hire-part-1 { order: 1; }
+.pulse-dot { order: 2; }
+.hire-part-2 { order: 3; }
 
 /* Hover State */
 .hire-me-btn:hover {
@@ -199,18 +210,13 @@ body {
 }
 
 /* The Status Indicator (Dot) */
-.hire-me-btn::before {
-  content: '';
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 7px;
-  height: 7px;
+.pulse-dot {
+  width: 8px;
+  height: 8px;
   background-color: var(--status-green);
   border-radius: 50%;
   animation: pulse-dot 1.5s ease-in-out infinite, pulse-ring 1.5s infinite;
-  flex-shrink: 0; /* Prevents dot from squishing */
+  flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
@@ -239,21 +245,23 @@ body {
     letter-spacing: 1px;
     font-size: 14px;
     /* box-shadow: 0 10px 25px rgba(var(--green-rgb), 0.4); */
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
   }
 
-  /* The Pulse Dot - Positioned Before Text */
-  .hire-me-btn::before {
-    content: '';
-    position: static; /* Remove absolute positioning */
-    transform: none;  /* Reset transform */
-    width: 8px;
-    height: 8px;
-    background-color: var(--status-green);
-    border-radius: 50%;
-    /* Combine the pulse dot and shadow animations */
-    animation: pulse-dot 1.5s ease-in-out infinite, pulse-ring 1.5s infinite;
-    flex-shrink: 0; /* Prevents dot from squishing */
+  .hire-me-btn span:not(.pulse-dot) {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
   }
+
+  .pulse-dot {
+    order: 1 !important; /* Move dot back to start on mobile */
+    transform: none;
+  }
+  
+  .hire-part-1 { order: 2 !important; }
+  .hire-part-2 { order: 3 !important; }
 
   .hire-me-btn:hover {
     transform: translateY(-5px);

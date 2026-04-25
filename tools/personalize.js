@@ -82,6 +82,17 @@ function generateContactLinksHtml(config) {
   }).join('');
 }
 
+function generateHireMeHtml(config) {
+  const text = config.HIRE_ME_TEXT || 'HIRE ME';
+  const parts = text.split(' ');
+  
+  if (parts.length === 2) {
+    return `<span class="hire-part-1">${escapeHtml(parts[0])}</span><span class="pulse-dot"></span><span class="hire-part-2">${escapeHtml(parts[1])}</span>`;
+  }
+  
+  return `<span class="pulse-dot"></span><span>${escapeHtml(text)}</span>`;
+}
+
 function generateCertificationsHtml(config) {
   if (!config.CERTIFICATIONS) return '';
 
@@ -288,6 +299,7 @@ try {
   config.EXPERIENCE_TIMELINE = generateExperienceHtml(config);
   config.CERTIFICATIONS_GRID = generateCertificationsHtml(config);
   config.CONTACT_LINKS_GRID = generateContactLinksHtml(config);
+  config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
 
   // 2. Process index.html
