@@ -58,6 +58,17 @@ function generateExperienceHtml(config) {
   return expHtml;
 }
 
+function generateFooterLinksHtml(config) {
+  if (!config.CONTACT_LINKS) return '';
+
+  return config.CONTACT_LINKS
+    .filter(link => link.type === 'link')
+    .map(link => `
+            <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110">
+              <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+            </a>`).join('');
+}
+
 function generateContactLinksHtml(config) {
   if (!config.CONTACT_LINKS) return '';
 
@@ -299,6 +310,7 @@ try {
   config.EXPERIENCE_TIMELINE = generateExperienceHtml(config);
   config.CERTIFICATIONS_GRID = generateCertificationsHtml(config);
   config.CONTACT_LINKS_GRID = generateContactLinksHtml(config);
+  config.FOOTER_SOCIAL_LINKS = generateFooterLinksHtml(config);
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
 

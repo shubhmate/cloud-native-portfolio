@@ -10,6 +10,7 @@
   "MEDIUM_HANDLE": "your-medium-handle",
   "PORTFOLIO_URL": "https://shubhammate.com",
   "RESUME_LINK": "./resume.pdf",
+  "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
   "CONTACT_DESCRIPTION": "Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.",
   "CONTACT_LINKS": [
     {

@@ -696,17 +696,10 @@
         <!-- Footer with current year, social links, and a note about the tech stack used to build the site. -->
         <div class="mt-16 pt-8 border-t border-[var(--border)] flex flex-col items-center gap-4">
           <p class="font-mono text-xs text-muted text-center md:text-left">
-            Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.
+            {{FOOTER_TECH_STACK}}
           </p>
           <div class="flex items-center gap-4">
-            <a href="{{GITHUB_HANDLE}}" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110 "> <!-- Added text-muted here -->
-              <i data-lucide="github" class="w-4 h-4"></i>
-            </a>  
-            <a href="{{LINKEDIN_PROFILE}}" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110"> <!-- Added text-muted here -->
-              <i data-lucide="linkedin" class="w-4 h-4"></i>
-            </a>
-            <!-- Add other social links here if desired, following the same pattern -->
-            <!-- Example: <a href="{{HASHNODE_HANDLE}}" target="_blank" rel="noopener noreferrer" class="text-muted hover:text-[var(--accent)] transition-all hover:scale-110"><i data-lucide="hash" class="w-4 h-4"></i></a> -->
+            {{FOOTER_SOCIAL_LINKS}}
           </div>
           <p class="font-mono text-xs text-muted text-center md:text-left">
             © <span id="current-year">2026</span> {{PERSON_NAME}} · Made with ❤️
