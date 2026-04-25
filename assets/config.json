@@ -10,6 +10,27 @@
   "MEDIUM_HANDLE": "your-medium-handle",
   "PORTFOLIO_URL": "https://shubhammate.com",
   "RESUME_LINK": "./resume.pdf",
+  "CONTACT_DESCRIPTION": "Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.",
+  "CONTACT_LINKS": [
+    {
+      "label": "Email",
+      "value": "shubhammate0604@gmail.com",
+      "icon": "mail",
+      "type": "copy"
+    },
+    {
+      "label": "GitHub",
+      "value": "https://github.com/shubhmate",
+      "icon": "github",
+      "type": "link"
+    },
+    {
+      "label": "LinkedIn",
+      "value": "https://www.linkedin.com/in/shubham-mate",
+      "icon": "linkedin",
+      "type": "link"
+    }
+  ],
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "HERO_SUBTITLE": "Open to new opportunities",
   "YEARS_EXPERIENCE": "~2 years experience",

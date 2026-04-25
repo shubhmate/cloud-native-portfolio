@@ -625,38 +625,12 @@
 
             <h2 class="font-mono text-3xl font-bold mb-4">Let&apos;s Build Something</h2>
             <p class="text-[var(--muted)] mb-8 leading-relaxed">
-              Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.
+              {{CONTACT_DESCRIPTION}}
             </p>
 
             <!-- Contact details with copy-to-clipboard and social links -->
             <div class="space-y-4">
-              <button onclick="copyToClipboard('{{EMAIL_ADDRESS}}')" class="copy-btn flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group w-full text-left" title="Click to copy">
-                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
-                  <i data-lucide="mail" class="w-4 h-4"></i>
-                </div>
-                <span class="font-mono text-sm">{{EMAIL_ADDRESS}}</span>
-              </button>
-              <a href="{{GITHUB_HANDLE}}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group" aria-label="GitHub profile">
-                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
-                  <i data-lucide="github" class="w-4 h-4"></i>
-                </div>
-                <span class="font-mono text-sm">{{GITHUB_HANDLE}}</span>
-              </a>
-              <a href="{{LINKEDIN_PROFILE}}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group" aria-label="LinkedIn profile">
-                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
-                  <i data-lucide="linkedin" class="w-4 h-4"></i>
-                </div>
-                <span class="font-mono text-sm">{{LINKEDIN_PROFILE}}</span>
-              </a>
-              <!-- Commented out Hashnode link -->
-              <!--
-              <a href="{{HASHNODE_HANDLE}}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group" aria-label="Hashnode blog">
-                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
-                  <i data-lucide="hash" class="w-4 h-4"></i>
-                </div>
-                <span class="font-mono text-sm">{{HASHNODE_HANDLE}}</span>
-              </a>
-              -->
+              {{CONTACT_LINKS_GRID}}
             </div>
           </div>
 

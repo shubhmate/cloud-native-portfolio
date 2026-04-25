@@ -58,6 +58,30 @@ function generateExperienceHtml(config) {
   return expHtml;
 }
 
+function generateContactLinksHtml(config) {
+  if (!config.CONTACT_LINKS) return '';
+
+  return config.CONTACT_LINKS.map(link => {
+    if (link.type === 'copy') {
+      return `
+              <button onclick="copyToClipboard('${escapeHtml(link.value)}')" class="copy-btn flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group w-full text-left" title="Click to copy">
+                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
+                  <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+                </div>
+                <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
+              </button>`;
+    } else {
+      return `
+              <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group" aria-label="${escapeHtml(link.label)} profile">
+                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
+                  <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+                </div>
+                <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
+              </a>`;
+    }
+  }).join('');
+}
+
 function generateCertificationsHtml(config) {
   if (!config.CERTIFICATIONS) return '';
 
@@ -263,6 +287,7 @@ try {
   config.SKILLS_GRID = generateSkillsHtml(config);
   config.EXPERIENCE_TIMELINE = generateExperienceHtml(config);
   config.CERTIFICATIONS_GRID = generateCertificationsHtml(config);
+  config.CONTACT_LINKS_GRID = generateContactLinksHtml(config);
   generateProjectsHtml(config);
 
   // 2. Process index.html
