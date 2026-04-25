@@ -846,7 +846,7 @@
         <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
           
           <!-- Project Card: Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate -->
-          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
+          <div class="flip-card h-[520px] sm:h-[480px] md:h-[450px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
@@ -858,7 +858,7 @@
                 </div>
                 
                 <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate</h3>
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3" title="Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate">Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate</h3>
                   <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">This project deploys a Flask backend and Express frontend using Docker and AWS ECS Fargate. Managed via Terraform, it features a VPC for isolation, an ALB for path-based routing, and ECR for image hosting. It includes secure private subnets, CloudWatch logging, and automated infrastructure as code (IaC) workflows.</p>
                 </div>
                 
@@ -880,9 +880,11 @@
               <!-- Back of the card (architecture and problem/solution) -->
               <div class="flip-card-back p-6 flex flex-col overflow-hidden">
                 <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
-                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate</h3>
 
-                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-[var(--accent)] font-bold mb-4">Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate</h3>
+                  <div class="space-y-2 mb-4">
+                    
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">React (port 3000)</span>
@@ -907,27 +909,28 @@
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">Network: app-bridge</span>
                   </div>
+                  </div>
+
+                  <div class="space-y-4 text-xs mb-4">
+                    <div class="flex flex-col gap-1">
+                      <span class="text-red-400 font-mono font-semibold uppercase tracking-wider">Problem:</span>
+                      <span class="text-slate-400 leading-relaxed">App worked locally but broke in every other environment due to dependency mismatches.</span>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-green-400 font-mono font-semibold uppercase tracking-wider">Fix:</span>
+                      <span class="text-slate-400 leading-relaxed">Multi-stage Dockerfile + Docker Compose with named volumes and a shared bridge network. Image size reduced by ~55% using Alpine base.</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="space-y-2 text-xs mb-4">
-                  <div class="flex gap-2">
-                    <span class="text-red-400 font-mono font-semibold shrink-0">Problem:</span>
-                    <span class="text-slate-400">App worked locally but broke in every other environment due to dependency mismatches.</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-green-400 font-mono font-semibold shrink-0">Fix:</span>
-                    <span class="text-slate-400">Multi-stage Dockerfile + Docker Compose with named volumes and a shared bridge network. Image size reduced by ~55% using Alpine base.</span>
-                  </div>
-                </div>
-
-                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end">
+                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
                 </button>
               </div>
             </div>
           </div>
           <!-- Project Card: Flask Express Cicd Jenkins Github Webhooks Aws Ec2 -->
-          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
+          <div class="flip-card h-[520px] sm:h-[480px] md:h-[450px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
@@ -939,7 +942,7 @@
                 </div>
                 
                 <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">Flask Express Cicd Jenkins Github Webhooks Aws Ec2</h3>
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3" title="Flask Express Cicd Jenkins Github Webhooks Aws Ec2">Flask Express Cicd Jenkins Github Webhooks Aws Ec2</h3>
                   <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">🚀 Flask backend (port 5000) + Express frontend (port 3000) deployed on AWS EC2 with Jenkins CI/CD pipeline. Auto-deploys on every git push via GitHub webhook.</p>
                 </div>
                 
@@ -961,9 +964,11 @@
               <!-- Back of the card (architecture and problem/solution) -->
               <div class="flip-card-back p-6 flex flex-col overflow-hidden">
                 <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
-                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">Flask Express Cicd Jenkins Github Webhooks Aws Ec2</h3>
 
-                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-[var(--accent)] font-bold mb-4">Flask Express Cicd Jenkins Github Webhooks Aws Ec2</h3>
+                  <div class="space-y-2 mb-4">
+                    
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">VPC: 10.0.0.0/16</span>
@@ -984,27 +989,28 @@
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">State: S3 + DynamoDB lock</span>
                   </div>
+                  </div>
+
+                  <div class="space-y-4 text-xs mb-4">
+                    <div class="flex flex-col gap-1">
+                      <span class="text-red-400 font-mono font-semibold uppercase tracking-wider">Problem:</span>
+                      <span class="text-slate-400 leading-relaxed">Manually creating VPCs was error-prone and took 30+ minutes per environment.</span>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-green-400 font-mono font-semibold uppercase tracking-wider">Fix:</span>
+                      <span class="text-slate-400 leading-relaxed">Reusable Terraform module with variable-driven CIDR blocks and AZ count. Full environment spun up in under 3 minutes with terraform apply.</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="space-y-2 text-xs mb-4">
-                  <div class="flex gap-2">
-                    <span class="text-red-400 font-mono font-semibold shrink-0">Problem:</span>
-                    <span class="text-slate-400">Manually creating VPCs was error-prone and took 30+ minutes per environment.</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-green-400 font-mono font-semibold shrink-0">Fix:</span>
-                    <span class="text-slate-400">Reusable Terraform module with variable-driven CIDR blocks and AZ count. Full environment spun up in under 3 minutes with terraform apply.</span>
-                  </div>
-                </div>
-
-                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end">
+                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
                 </button>
               </div>
             </div>
           </div>
           <!-- Project Card: AWS Lambda Http Function Url Tutorial -->
-          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
+          <div class="flip-card h-[520px] sm:h-[480px] md:h-[450px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
@@ -1016,7 +1022,7 @@
                 </div>
                 
                 <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">AWS Lambda Http Function Url Tutorial</h3>
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3" title="AWS Lambda Http Function Url Tutorial">AWS Lambda Http Function Url Tutorial</h3>
                   <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">📝 Learn serverless development with this AWS Lambda form handler! Submit forms → Store in DynamoDB → Display results instantly. Step-by-step tutorial included with complete code, IAM setup, and troubleshooting guide. Great for AWS beginners and serverless enthusiasts! 🎯</p>
                 </div>
                 
@@ -1038,9 +1044,11 @@
               <!-- Back of the card (architecture and problem/solution) -->
               <div class="flip-card-back p-6 flex flex-col overflow-hidden">
                 <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
-                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">AWS Lambda Http Function Url Tutorial</h3>
 
-                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-[var(--accent)] font-bold mb-4">AWS Lambda Http Function Url Tutorial</h3>
+                  <div class="space-y-2 mb-4">
+                    
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">Push to main</span>
@@ -1065,27 +1073,28 @@
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">Rollback on failure</span>
                   </div>
+                  </div>
+
+                  <div class="space-y-4 text-xs mb-4">
+                    <div class="flex flex-col gap-1">
+                      <span class="text-red-400 font-mono font-semibold uppercase tracking-wider">Problem:</span>
+                      <span class="text-slate-400 leading-relaxed">Deployments were manual SSH sessions — slow, inconsistent, and risky.</span>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-green-400 font-mono font-semibold uppercase tracking-wider">Fix:</span>
+                      <span class="text-slate-400 leading-relaxed">GitHub Actions workflow with job dependencies, AWS credential secrets, and rollback step on failure. Deploy time cut from 15 min to under 3 min.</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="space-y-2 text-xs mb-4">
-                  <div class="flex gap-2">
-                    <span class="text-red-400 font-mono font-semibold shrink-0">Problem:</span>
-                    <span class="text-slate-400">Deployments were manual SSH sessions — slow, inconsistent, and risky.</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-green-400 font-mono font-semibold shrink-0">Fix:</span>
-                    <span class="text-slate-400">GitHub Actions workflow with job dependencies, AWS credential secrets, and rollback step on failure. Deploy time cut from 15 min to under 3 min.</span>
-                  </div>
-                </div>
-
-                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end">
+                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
                 </button>
               </div>
             </div>
           </div>
           <!-- Project Card: Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances -->
-          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
+          <div class="flip-card h-[520px] sm:h-[480px] md:h-[450px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
@@ -1097,7 +1106,7 @@
                 </div>
                 
                 <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances</h3>
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3" title="Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances">Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances</h3>
                   <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">This Terraform script automates deploying a Flask backend and Express frontend on separate EC2 instances. It provisions VPC networking, security groups, and uses Nginx reverse proxy via user data for seamless inter-service communication. The modular design ensures isolation, scalability, and easy access through automated infrastructure outputs.</p>
                 </div>
                 
@@ -1119,9 +1128,11 @@
               <!-- Back of the card (architecture and problem/solution) -->
               <div class="flip-card-back p-6 flex flex-col overflow-hidden">
                 <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
-                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances</h3>
 
-                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-[var(--accent)] font-bold mb-4">Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances</h3>
+                  <div class="space-y-2 mb-4">
+                    
                   <div class="flex items-start gap-2 font-mono text-xs">
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">EC2 t2.micro</span>
@@ -1142,20 +1153,21 @@
                     <span class="text-[var(--accent)]">▸</span>
                     <span class="text-[var(--muted)]">Alerts: CPU &gt; 80%, Disk &gt; 90%</span>
                   </div>
+                  </div>
+
+                  <div class="space-y-4 text-xs mb-4">
+                    <div class="flex flex-col gap-1">
+                      <span class="text-red-400 font-mono font-semibold uppercase tracking-wider">Problem:</span>
+                      <span class="text-slate-400 leading-relaxed">No visibility into server health. Apps would crash silently due to OOM errors.</span>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-green-400 font-mono font-semibold uppercase tracking-wider">Fix:</span>
+                      <span class="text-slate-400 leading-relaxed">Dockerized Prometheus + Grafana stack. Created custom dashboards and set up Slack alerts for high resource utilization. Detected memory leak within first 24 hours.</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="space-y-2 text-xs mb-4">
-                  <div class="flex gap-2">
-                    <span class="text-red-400 font-mono font-semibold shrink-0">Problem:</span>
-                    <span class="text-slate-400">No visibility into server health. Apps would crash silently due to OOM errors.</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-green-400 font-mono font-semibold shrink-0">Fix:</span>
-                    <span class="text-slate-400">Dockerized Prometheus + Grafana stack. Created custom dashboards and set up Slack alerts for high resource utilization. Detected memory leak within first 24 hours.</span>
-                  </div>
-                </div>
-
-                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end">
+                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
                 </button>
               </div>

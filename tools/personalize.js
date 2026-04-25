@@ -245,23 +245,26 @@ function generateProjectsHtml(config) {
               <!-- Back of the card (architecture and problem/solution) -->
               <div class="flip-card-back p-6 flex flex-col overflow-hidden">
                 <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
-                <h3 class="font-mono text-[var(--accent)] font-bold mb-4 shrink-0">${escapeHtml(project.title)}</h3>
 
-                <div class="flex-1 space-y-2 mb-4 overflow-y-auto pr-2 custom-scrollbar">${archHtml}
+                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                  <h3 class="font-mono text-[var(--accent)] font-bold mb-4">${escapeHtml(project.title)}</h3>
+                  <div class="space-y-2 mb-4">
+                    ${archHtml}
+                  </div>
+
+                  <div class="space-y-4 text-xs mb-4">
+                    <div class="flex flex-col gap-1">
+                      <span class="text-red-400 font-mono font-semibold uppercase tracking-wider">Problem:</span>
+                      <span class="text-slate-400 leading-relaxed">${escapeHtml(project.problem) || 'N/A'}</span>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-green-400 font-mono font-semibold uppercase tracking-wider">Fix:</span>
+                      <span class="text-slate-400 leading-relaxed">${escapeHtml(project.fix) || 'N/A'}</span>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="space-y-2 text-xs mb-4">
-                  <div class="flex gap-2">
-                    <span class="text-red-400 font-mono font-semibold shrink-0">Problem:</span>
-                    <span class="text-slate-400">${escapeHtml(project.problem) || 'N/A'}</span>
-                  </div>
-                  <div class="flex gap-2">
-                    <span class="text-green-400 font-mono font-semibold shrink-0">Fix:</span>
-                    <span class="text-slate-400">${escapeHtml(project.fix) || 'N/A'}</span>
-                  </div>
-                </div>
-
-                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end">
+                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
                   <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
                 </button>
               </div>`;
@@ -269,7 +272,7 @@ function generateProjectsHtml(config) {
 
     gridHtml += `
           <!-- Project Card: ${project.title} -->
-          <div class="flip-card h-[480px] sm:h-[450px] md:h-[420px]">
+          <div class="flip-card h-[520px] sm:h-[480px] md:h-[450px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors cursor-text bg-[var(--surface)]">
               <!-- Front of the card (overview) -->
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
@@ -281,7 +284,7 @@ function generateProjectsHtml(config) {
                 </div>
                 
                 <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)]">${escapeHtml(project.title)}</h3>
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3" title="${escapeHtml(project.title)}">${escapeHtml(project.title)}</h3>
                   <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${escapeHtml(project.description)}</p>
                 </div>
                 
