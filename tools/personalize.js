@@ -70,7 +70,7 @@ function generateCertificationsHtml(config) {
 }
 
 function generateSkillsHtml(config) {
-  if (!config.SKILLS_GROUPED) return;
+  if (!config.SKILLS_GROUPED) return '';
 
   // 1. Generate Marquee HTML
   let marqueeHtml = '';
@@ -112,6 +112,7 @@ function generateSkillsHtml(config) {
     terminalSkills.push(`${paddedCategory}→ ${skillNames}`);
   }
   config.TERMINAL_SKILLS = terminalSkills;
+  return gridHtml;
 }
 
 function generateProjectsHtml(config) {
