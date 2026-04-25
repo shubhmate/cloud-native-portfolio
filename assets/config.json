@@ -32,6 +32,40 @@
       "type": "link"
     }
   ],
+  "PIPELINE_DESCRIPTION": "This portfolio is itself a DevOps project — deployed via a fully automated CI/CD pipeline on AWS infrastructure provisioned with Terraform.",
+  "PIPELINE_STEPS": [
+    {
+      "title": "Git Push",
+      "description": "Push to main branch triggers the pipeline",
+      "icon": "git-branch",
+      "color": "blue"
+    },
+    {
+      "title": "Test & Lint",
+      "description": "GitHub Actions runs ESLint + TypeScript checks",
+      "icon": "check-circle",
+      "color": "yellow"
+    },
+    {
+      "title": "Terraform Apply",
+      "description": "Provisions S3 bucket & CloudFront distribution",
+      "icon": "server",
+      "color": "purple"
+    },
+    {
+      "title": "S3 Sync",
+      "description": "next build output synced to S3 bucket",
+      "icon": "upload",
+      "color": "green"
+    },
+    {
+      "title": "CF Invalidation",
+      "description": "CloudFront cache invalidated for instant updates",
+      "icon": "zap",
+      "color": "orange"
+    }
+  ],
+  "PIPELINE_YAML": "name: Deploy Portfolio Website            \n  on:\n    push:\n      branches: [main]\n\n  jobs:\n    deploy:\n      runs-on: ubuntu-latest\n      steps:\n        - uses: actions/checkout@v4\n        - uses: actions/setup-node@v4\n          with: { node-version: '20' }\n        - run: npm ci && npm run build\n        - uses: aws-actions/configure-aws-credentials@v4\n          with:\n            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n            aws-region: us-east-1\n        - run: aws s3 sync out/ s3://${{ secrets.S3_BUCKET }} --delete\n        - run: aws cloudfront create-invalidation \\\\\n                --distribution-id ${{ secrets.CF_DIST_ID }} \\\\\n                --paths \"/*\"",
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "HERO_SUBTITLE": "Open to new opportunities",
   "YEARS_EXPERIENCE": "~2 years experience",

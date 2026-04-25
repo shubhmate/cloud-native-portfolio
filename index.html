@@ -1044,7 +1044,8 @@
           <div class="overflow-x-auto pb-4"> <!-- Allows horizontal scrolling on smaller screens -->
             <!-- Inner container for pipeline steps: vertical on mobile, horizontal on md+ -->
             <div class="flex flex-col items-center gap-4 mb-12 md:flex-row md:justify-center md:flex-wrap">
-              <!-- Git Push Step -->
+              
+              <!-- Step 1: Git Push -->
               <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
                 <div class="p-3 rounded-xl border bg-blue-400/10 border-blue-400/30 shrink-0 hover:scale-110 transition-transform">
                   <i data-lucide="git-branch" class="w-6 h-6 text-blue-400"></i>
@@ -1059,13 +1060,13 @@
                 <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
                 <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
               </div>
-              <!-- Test & Lint Step -->
+              <!-- Step 2: Test &amp; Lint -->
               <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
                 <div class="p-3 rounded-xl border bg-yellow-400/10 border-yellow-400/30 shrink-0 hover:scale-110 transition-transform">
                   <i data-lucide="check-circle" class="w-6 h-6 text-yellow-400"></i>
                 </div>
                 <div class="text-center">
-                  <p class="font-mono text-sm font-semibold text-yellow-400">Test & Lint</p>
+                  <p class="font-mono text-sm font-semibold text-yellow-400">Test &amp; Lint</p>
                   <p class="text-xs text-[var(--muted)] max-w-[140px]">GitHub Actions runs ESLint + TypeScript checks</p>
                 </div>
               </div>
@@ -1074,14 +1075,14 @@
                 <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
                 <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
               </div>
-              <!-- Terraform Apply Step -->
+              <!-- Step 3: Terraform Apply -->
               <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
                 <div class="p-3 rounded-xl border bg-purple-400/10 border-purple-400/30 shrink-0 hover:scale-110 transition-transform">
                   <i data-lucide="server" class="w-6 h-6 text-purple-400"></i>
                 </div>
                 <div class="text-center">
                   <p class="font-mono text-sm font-semibold text-purple-400">Terraform Apply</p>
-                  <p class="text-xs text-[var(--muted)] max-w-[140px]">Provisions S3 bucket & CloudFront distribution</p>
+                  <p class="text-xs text-[var(--muted)] max-w-[140px]">Provisions S3 bucket &amp; CloudFront distribution</p>
                 </div>
               </div>
               <!-- Responsive Arrow -->
@@ -1089,7 +1090,7 @@
                 <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
                 <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
               </div>
-              <!-- S3 Sync Step -->
+              <!-- Step 4: S3 Sync -->
               <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
                 <div class="p-3 rounded-xl border bg-green-400/10 border-green-400/30 shrink-0 hover:scale-110 transition-transform">
                   <i data-lucide="upload" class="w-6 h-6 text-green-400"></i>
@@ -1104,7 +1105,7 @@
                 <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
                 <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
               </div>
-              <!-- CF Invalidation Step -->
+              <!-- Step 5: CF Invalidation -->
               <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
                 <div class="p-3 rounded-xl border bg-orange-400/10 border-orange-400/30 shrink-0 hover:scale-110 transition-transform">
                   <i data-lucide="zap" class="w-6 h-6 text-orange-400"></i>

@@ -69,6 +69,35 @@ function generateFooterLinksHtml(config) {
             </a>`).join('');
 }
 
+function generatePipelineStepsHtml(config) {
+  if (!config.PIPELINE_STEPS) return '';
+
+  return config.PIPELINE_STEPS.map((step, index) => {
+    const isLast = index === config.PIPELINE_STEPS.length - 1;
+    let stepHtml = `
+              <!-- Step ${index + 1}: ${escapeHtml(step.title)} -->
+              <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
+                <div class="p-3 rounded-xl border bg-${step.color}-400/10 border-${step.color}-400/30 shrink-0 hover:scale-110 transition-transform">
+                  <i data-lucide="${step.icon}" class="w-6 h-6 text-${step.color}-400"></i>
+                </div>
+                <div class="text-center">
+                  <p class="font-mono text-sm font-semibold text-${step.color}-400">${escapeHtml(step.title)}</p>
+                  <p class="text-xs text-[var(--muted)] max-w-[140px]">${escapeHtml(step.description)}</p>
+                </div>
+              </div>`;
+
+    if (!isLast) {
+      stepHtml += `
+              <!-- Responsive Arrow -->
+              <div class="flex items-center justify-center my-2 md:mx-2 shrink-0">
+                <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
+                <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
+              </div>`;
+    }
+    return stepHtml;
+  }).join('');
+}
+
 function generateContactLinksHtml(config) {
   if (!config.CONTACT_LINKS) return '';
 
@@ -311,6 +340,7 @@ try {
   config.CERTIFICATIONS_GRID = generateCertificationsHtml(config);
   config.CONTACT_LINKS_GRID = generateContactLinksHtml(config);
   config.FOOTER_SOCIAL_LINKS = generateFooterLinksHtml(config);
+  config.PIPELINE_STEPS_GRID = generatePipelineStepsHtml(config);
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
 
