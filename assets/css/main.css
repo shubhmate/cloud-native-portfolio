@@ -272,7 +272,17 @@ body {
 
 /* Toast Notifications */
 /* Styles for the temporary feedback messages (e.g., "Copied!"). */
-#toast-container { position: fixed; bottom: 1rem; right: 1rem; z-index: 50; pointer-events: none; }
+#toast-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100; pointer-events: none; }
+
+@media (max-width: 768px) {
+  #toast-container {
+    bottom: 6rem; /* Position above the Hire Me button on mobile */
+    right: 1.5rem;
+    left: 1.5rem;
+    display: flex;
+    justify-content: center;
+  }
+}
 .toast { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text); font-size: 0.875rem; animation: slideIn 0.3s ease forwards; pointer-events: all; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
 .toast.success { border-color: var(--green); }
 .toast.success::before { content: '✓'; color: var(--green); font-weight: bold; }
@@ -284,9 +294,8 @@ body {
 
 /* Copy Feedback */
 /* Visual feedback for copy-to-clipboard actions. */
-.copy-btn { position: relative; overflow: hidden; }
-.copy-btn::after { content: 'Copied!'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0; font-size: 0.7rem; font-weight: bold; color: var(--green); transition: opacity 0.3s ease; }
-.copy-btn.copied::after { opacity: 1; }
+.copy-btn { position: relative; }
+.copy-btn.copied { color: var(--green) !important; } /* Briefly highlight the text instead of overlapping */
 
 /* Enhanced Animations (for staggered fade-up if applied in JS) */
 @keyframes fadeInStagger { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
