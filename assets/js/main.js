@@ -381,7 +381,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const validSections = ['home', 'skills', 'projects', 'experience', 'contact'];
             
             if (validSections.includes(section)) {
-                window.location.hash = `#${section}`;
+                const element = document.getElementById(section);
+                if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                    // Still update hash for URL consistency, but scrolling is handled explicitly
+                    if (window.location.hash !== `#${section}`) {
+                        window.location.hash = `#${section}`;
+                    }
+                }
                 return { output: `Navigating to ${section}...`, color: 'text-[var(--accent)]' };
             } else {
                 return { output: `Section not found. Available: ${validSections.join(', ')}`, color: 'text-red-400' };

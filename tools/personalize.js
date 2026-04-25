@@ -69,6 +69,17 @@ function generateFooterLinksHtml(config) {
             </a>`).join('');
 }
 
+function generateHeroSocialLinksHtml(config) {
+  if (!config.CONTACT_LINKS) return '';
+
+  return config.CONTACT_LINKS
+    .filter(link => link.type === 'link')
+    .map(link => `
+          <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHtml(link.label)} profile" class="hover:text-[var(--accent)] transition-all hover:scale-110">
+            <i data-lucide="${link.icon}" class="w-6 h-6"></i>
+          </a>`).join('');
+}
+
 function generatePipelineStepsHtml(config) {
   if (!config.PIPELINE_STEPS) return '';
 
@@ -340,6 +351,7 @@ try {
   config.CERTIFICATIONS_GRID = generateCertificationsHtml(config);
   config.CONTACT_LINKS_GRID = generateContactLinksHtml(config);
   config.FOOTER_SOCIAL_LINKS = generateFooterLinksHtml(config);
+  config.HERO_SOCIAL_LINKS = generateHeroSocialLinksHtml(config);
   config.PIPELINE_STEPS_GRID = generatePipelineStepsHtml(config);
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
