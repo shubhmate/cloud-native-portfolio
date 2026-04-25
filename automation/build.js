@@ -371,6 +371,18 @@ try {
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
 
+  // 1.6 Generate Flattened Experience Keys for Terminal
+  if (config.EXPERIENCE) {
+    config.EXPERIENCE.forEach((exp, index) => {
+      const i = index + 1;
+      config[`EXP_${i}_ROLE`] = exp.role;
+      config[`EXP_${i}_COMPANY`] = exp.company;
+      config[`EXP_${i}_START`] = exp.start;
+      config[`EXP_${i}_END`] = exp.end;
+      config[`EXP_${i}_TYPE`] = exp.type;
+    });
+  }
+
   // 2. Ensure Dist Directories Exist
   const dirsToCreate = [
     distPath,
