@@ -602,39 +602,9 @@
             </div>
             <!-- Certification Cards -->
             <h2 class="font-mono text-3xl font-bold mb-2">Credentials</h2>
-            <p class="text-[var(--muted)] text-sm mb-8">Completed & actively pursuing</p>
+            <p class="text-[var(--muted)] text-sm mb-8">{{CERTIFICATIONS_SUBTITLE}}</p>
             <div class="grid grid-cols-2 gap-3">
-              <!-- Each div represents a certification card -->
-              <div class="p-4 rounded-xl border border-yellow-400/30 bg-yellow-400/5 card-hover">
-                <i data-lucide="award" class="w-5 h-5 mb-2"></i>
-                <p class="font-mono text-xs font-semibold leading-tight">AWS Cloud Practitioner</p>
-                <p class="text-xs text-[var(--muted)] mt-1">Foundational · Completed</p>
-              </div>
-              <div class="p-4 rounded-xl border border-purple-400/30 bg-purple-400/5 card-hover">
-                <i data-lucide="award" class="w-5 h-5 mb-2"></i>
-                <p class="font-mono text-xs font-semibold leading-tight">HashiCorp Terraform</p>
-                <p class="text-xs text-[var(--muted)] mt-1">Associate · In Progress</p>
-              </div>
-              <div class="p-4 rounded-xl border border-blue-400/30 bg-blue-400/5 card-hover">
-                <i data-lucide="award" class="w-5 h-5 mb-2"></i>
-                <p class="font-mono text-xs font-semibold leading-tight">AWS Solutions Architect</p>
-                <p class="text-xs text-[var(--muted)] mt-1">Associate · In Progress</p>
-              </div>
-              <div class="p-4 rounded-xl border border-orange-400/30 bg-orange-400/5 card-hover">
-                <i data-lucide="award" class="w-5 h-5 mb-2"></i>
-                <p class="font-mono text-xs font-semibold leading-tight">Kubernetes Basics</p>
-                <p class="text-xs text-[var(--muted)] mt-1">CNCF · Completed</p>
-              </div>
-              <div class="p-4 rounded-xl border border-red-400/30 bg-red-400/5 card-hover">
-                <i data-lucide="award" class="w-5 h-5 mb-2"></i>
-                <p class="font-mono text-xs font-semibold leading-tight">Linux Fundamentals</p>
-                <p class="text-xs text-[var(--muted)] mt-1">LFS101 · Completed</p>
-              </div>             
-              <div class="p-4 rounded-xl border border-green-400/30 bg-green-400/5 card-hover">
-                <i data-lucide="award" class="w-5 h-5 mb-2"></i>
-                <p class="font-mono text-xs font-semibold leading-tight">Docker Essentials</p>
-                <p class="text-xs text-[var(--muted)] mt-1">IBM · Completed</p>
-              </div>
+              {{CERTIFICATIONS_GRID}}
             </div>
           </div>
         </div>

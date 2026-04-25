@@ -132,6 +132,45 @@
       ]
     }
   ],
+  "CERTIFICATIONS_SUBTITLE": "Completed & actively pursuing",
+  "CERTIFICATIONS": [
+    {
+      "name": "AWS Cloud Practitioner",
+      "issuer": "Foundational",
+      "status": "Completed",
+      "color": "yellow"
+    },
+    {
+      "name": "HashiCorp Terraform",
+      "issuer": "Associate",
+      "status": "In Progress",
+      "color": "purple"
+    },
+    {
+      "name": "AWS Solutions Architect",
+      "issuer": "Associate",
+      "status": "In Progress",
+      "color": "blue"
+    },
+    {
+      "name": "Kubernetes Basics",
+      "issuer": "CNCF",
+      "status": "Completed",
+      "color": "orange"
+    },
+    {
+      "name": "Linux Fundamentals",
+      "issuer": "LFS101",
+      "status": "Completed",
+      "color": "red"
+    },
+    {
+      "name": "Docker Essentials",
+      "issuer": "IBM",
+      "status": "Completed",
+      "color": "green"
+    }
+  ],
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
   "TIMELINE_DATE_3": "Aug 01, 2023",

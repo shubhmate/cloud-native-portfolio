@@ -58,6 +58,17 @@ function generateExperienceHtml(config) {
   return expHtml;
 }
 
+function generateCertificationsHtml(config) {
+  if (!config.CERTIFICATIONS) return '';
+
+  return config.CERTIFICATIONS.map(cert => `
+              <div class="p-4 rounded-xl border border-${cert.color}-400/30 bg-${cert.color}-400/5 card-hover">
+                <i data-lucide="award" class="w-5 h-5 mb-2 text-${cert.color}-400"></i>
+                <p class="font-mono text-xs font-semibold leading-tight">${escapeHtml(cert.name)}</p>
+                <p class="text-xs text-[var(--muted)] mt-1">${escapeHtml(cert.issuer)} · ${escapeHtml(cert.status)}</p>
+              </div>`).join('');
+}
+
 function generateSkillsHtml(config) {
   if (!config.SKILLS_GROUPED) return;
 
@@ -250,6 +261,7 @@ try {
   // 1.5 Generate Dynamic HTML Components
   config.SKILLS_GRID = generateSkillsHtml(config);
   config.EXPERIENCE_TIMELINE = generateExperienceHtml(config);
+  config.CERTIFICATIONS_GRID = generateCertificationsHtml(config);
   generateProjectsHtml(config);
 
   // 2. Process index.html
