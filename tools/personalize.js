@@ -285,7 +285,7 @@ function generateProjectsHtml(config) {
                   <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${escapeHtml(project.description)}</p>
                 </div>
                 
-                <div class="flex flex-wrap gap-2 mb-4">${tagsHtml}
+                <div class="flex flex-wrap gap-2 mt-2 mb-2">${tagsHtml}
                 </div>
                 
                 <div class="flex items-center justify-between">
