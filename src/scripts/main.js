@@ -46,9 +46,24 @@ document.addEventListener('DOMContentLoaded', () => {
         tryRenderLucideIcon();
     }
     
-    const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'dark');
+    // Check for saved theme OR use system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    
+    htmlElement.classList.remove('light', 'dark');
     htmlElement.classList.add(currentTheme);
     updateThemeIcon(currentTheme);
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) {
+            const newTheme = e.matches ? 'dark' : 'light';
+            htmlElement.classList.remove('light', 'dark');
+            htmlElement.classList.add(newTheme);
+            updateThemeIcon(newTheme);
+        }
+    });
     
     function updateThemeIcon(theme) {
         const iconName = theme === 'dark' ? 'sun' : 'moon';
