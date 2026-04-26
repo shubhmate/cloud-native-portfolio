@@ -1,8 +1,19 @@
-/* ==================== Theme Variables ==================== */
-/* Defines custom CSS properties for colors, fonts, and other theme-related values. */
+/**
+ * @file main.css
+ * @description Professional Design System & Component Styles
+ * Reorganized by visual section order for better maintainability.
+ */
+
+/* =========================================================================
+   1. DESIGN TOKENS & BASE STYLES
+   ========================================================================= */
+
 :root {
-  --font-sans: 'Inter', sans-serif; /* Primary sans-serif font */
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+
+  /* Colors (Dark Theme - Default) */
   --bg: #0f1117;
   --surface: #1a1d27;
   --border: #2a2d3a;
@@ -10,206 +21,158 @@
   --accent: #3b82f6;
   --green: #22c55e;
   --muted: #6b7280;
-  --green-rgb: 34, 197, 94; /* RGB values for #22c55e */
-  --glass-bg: rgba(26, 29, 39, 0.8); /* Derived from --surface with transparency */
-  --status-green: var(--green); /* Alias for green status dot */
+  --green-rgb: 34, 197, 94;
+  --glass-bg: rgba(26, 29, 39, 0.8);
+  --status-green: var(--green);
 }
 
-/* Light theme variables */
-/* Overrides default dark theme variables when the 'light' class is applied to the HTML element. */
+/* Light Theme Overrides */
 html.light {
   --bg: #f8f9fa;
   --surface: #ffffff;
   --border: #e0e0e0;
   --text: #212121;
-  --glass-bg: rgba(255, 255, 255, 0.8); /* Derived from --surface with transparency */
-  --green-rgb: 34, 197, 94; /* RGB values for #22c55e */
-  --status-green: var(--green); /* Alias for green status dot */
+  --glass-bg: rgba(255, 255, 255, 0.8);
 }
 
-/* ==================== Base Styles & Utilities ==================== */
-/* Basic CSS reset to ensure consistent styling across browsers. */
-* { box-sizing: border-box; }
-/* Global body styles, applying theme variables and smooth scrolling. */
+* { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
 body {
+  margin: 0;
+  padding: 0;
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
-  scroll-behavior: smooth;
-  margin: 0;
-  padding: 0;
   line-height: 1.6;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
-/* Tailwind CSS Overrides for Custom Variables */
-/* These rules ensure that Tailwind's utility classes correctly use the defined CSS variables. */
-/* These custom utility classes are now largely redundant if using Tailwind's arbitrary value syntax. */
-/* They can be removed to simplify the CSS, as the arbitrary values in HTML will directly reference the CSS variables. */
-/* Keeping them for now as a fallback or if some elements still use them without arbitrary values. */
-/* .bg-bg { background-color: var(--bg); } */
-/* .bg-surface { background-color: var(--surface); } */
-/* .border-border { border-color: var(--border); } */
-/* .text-text { color: var(--text); } */
-/* .text-muted { color: var(--muted); } */
-/* .text-accent { color: var(--accent); } */
-/* .bg-accent { background-color: var(--accent); } */
+::selection { background: var(--accent); color: #ffffff; }
 
-/* Selection Styles */
-/* Customizes the appearance of selected text. */
-::selection { background: var(--accent); color: #fff; }
-
-/* Custom Scrollbar Styles */
-/* Styles the scrollbar for a more integrated look. */
+/* Custom Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
-/* Ensures monospace font is applied correctly. */
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* Font utility */
+/* Utilities */
 .font-mono { font-family: var(--font-mono); }
+.cursor-zoom-in { cursor: zoom-in; }
+.cursor-zoom-out { cursor: zoom-out; }
 
-/* Text gradient for hero title */
+
+/* =========================================================================
+   2. GLOBAL COMPONENTS
+   ========================================================================= */
+
+/* --- 2.1 Preloader --- */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg);
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+#preloader.hidden { opacity: 0; pointer-events: none; }
+
+/* --- 2.2 Navigation & Theme Toggle --- */
+.theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
+.theme-toggle:hover { transform: rotate(20deg); }
+
+/* --- 2.3 Toast Notifications --- */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  pointer-events: none;
+}
+.toast {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  color: var(--text);
+  font-size: 0.875rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  pointer-events: all;
+  animation: slideIn 0.3s ease forwards;
+}
+.toast.success { border-color: var(--green); }
+.toast.success::before { content: '✓'; color: var(--green); font-weight: bold; }
+.toast.error { border-color: #ef4444; }
+.toast.error::before { content: '✕'; color: #ef4444; font-weight: bold; }
+.toast.removing { animation: slideOut 0.3s ease forwards; }
+
+/* --- 2.4 "Hire Me" Side Tab --- */
+.hire-me-btn {
+  position: fixed;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 24px 10px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--green);
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: var(--green);
+  cursor: pointer;
+  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease-in-out;
+}
+.hire-me-btn:hover {
+  right: 0;
+  padding-right: 15px;
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 8px 30px rgba(var(--green-rgb), 0.2);
+}
+.hire-me-btn span:not(.pulse-dot) { writing-mode: vertical-rl; text-orientation: upright; }
+
+/* --- 2.5 Scroll-to-Top --- */
+#scroll-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+#scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+
+
+/* =========================================================================
+   3. SECTION SPECIFIC STYLES
+   ========================================================================= */
+
+/* --- 3.1 Hero Section --- */
 .text-gradient {
   background: linear-gradient(135deg, var(--accent), var(--green));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
-/* ==================== Component-Specific Styles ==================== */
-/* Card Hover Effects (e.g., for certifications) */
-.card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2); /* Using a fixed color for shadow */
-}
-
-/* Marquee animation */
-.animate-marquee {
-  animation: marquee 30s linear infinite;
-}
-
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Pause Marquee on Group Hover */
-/* Stops the marquee animation when the mouse hovers over its container. */
-.group:hover .animate-marquee {
-  animation-play-state: paused;
-}
-
-/* Fade-Up Animation for Sections */
-.animate-fade-up {
-  animation: fadeUp 0.6s ease forwards;
-}
-
-@keyframes fadeUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Pulse Animation for Status Indicator (e.g., hero section status dot) */
-.animate-pulse {
-  animation: pulse-dot 1s ease-in-out infinite;
-}
-
-.animate-pulse2 {
-  animation: pulse 3s ease-in-out infinite;
-}
-
-/* Flip Card Styles (for project cards) */
-.flip-card { perspective: 1000px; }
-.flip-card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-.flip-card-front, .flip-card-back { position: absolute; width: 100%; height: 100%; -webkit-backface-visibility: hidden; backface-visibility: hidden; border-radius: 0.75rem; border: 1px solid var(--border); background-color: var(--surface); }
-.flip-card-back { transform: rotateY(180deg); }
-
-/* Theme Toggle Icon Animation */
-/* Adds a subtle rotation effect to the theme toggle button on hover. */
-.theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
-.theme-toggle:hover { transform: rotate(20deg); }
-.cursor-zoom-in { cursor: zoom-in; }
-.cursor-zoom-out { cursor: zoom-out; }
-
-/* Scroll-to-Top Button */
-/* Styles for the button that appears on scroll to return to the top of the page. */
-#scroll-to-top { position: fixed; bottom: 2rem; right: 2rem; opacity: 0; pointer-events: none; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; z-index: 40; }
-
-/* Adjust scroll-to-top position on mobile to stack above hire-me-btn */
-@media (max-width: 768px) {
-  #scroll-to-top {
-    bottom: 5.5rem; /* Position above the hire-me-btn (2rem bottom + ~2.375rem height + 1rem spacing) */
-    right: 1.5rem; /* Keep consistent with hire-me-btn */
-  }
-}
-#scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
-
-/* Base Desktop Styles (Vertical Side Tab) */
-.hire-me-btn {
-  /* Positioning */
-  position: fixed;
-  right: -2px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 50;
-
-  /* Layout & Text */
-  display: flex;
-  flex-direction: column; /* Stacks parts vertically on desktop */
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 24px 10px;
-  border-radius: 30px;
-
-  /* Typography */
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  color: var(--green);
-  
-  /* Styling (Glassmorphism) */
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--green);
-  border-right: none;
-  border-radius: 12px 0 0 12px;
-  cursor: pointer;
-  box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
-  
-  /* Smooth "Professional" Transition */
-  transition: all 0.4s ease-in-out;
-}
-
-.hire-me-btn span:not(.pulse-dot) {
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  display: inline-block;
-}
-
-.hire-part-1 { order: 1; }
-.pulse-dot { order: 2; }
-.hire-part-2 { order: 3; }
-
-/* Hover State */
-.hire-me-btn:hover {
-  right: 0;
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--green);
-  color: var(--green);
-  padding-right: 15px;
-  transform: translateY(-50%) scale(1.05);
-  /* Added a subtle shadow on hover for professionalism */
-  box-shadow: 0 8px 30px rgba(var(--green-rgb), 0.2);
-}
-
-/* The Status Indicator (Dot) */
 .pulse-dot {
   width: 8px;
   height: 8px;
@@ -219,154 +182,83 @@ body {
   flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
-  .hire-me-btn {
-    /* Reset & Alignment */
-    writing-mode: horizontal-tb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Space between dot and text */
-    
-    /* Position */
-    top: auto; /* Ensure it's not vertically centered by 'top' from desktop styles */
-    bottom: 2rem; /* Position at the bottom, below scroll-to-top button */
-    right: 1.5rem; /* Align with scroll-to-top button */
-    transform: none;
-    
-    /* Styling */
-    padding: 12px 24px;
-    border-radius: 50px; /* Keep pill shape */
-    background: var(--glass-bg);
-    backdrop-filter: blur(8px);
-    border: 1px solid var(--green);
-    color: var(--green);
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: 14px;
-    /* box-shadow: 0 10px 25px rgba(var(--green-rgb), 0.4); */
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-  }
+/* --- 3.2 Skills Section --- */
+.animate-marquee { animation: marquee 30s linear infinite; }
+.group:hover .animate-marquee { animation-play-state: paused; }
 
-  .hire-me-btn span:not(.pulse-dot) {
-    writing-mode: horizontal-tb;
-    text-orientation: mixed;
-  }
-
-  .pulse-dot {
-    order: 1 !important; /* Move dot back to start on mobile */
-    transform: none;
-  }
-  
-  .hire-part-1 { order: 2 !important; }
-  .hire-part-2 { order: 3 !important; }
-
-  .hire-me-btn:hover {
-    transform: translateY(-5px);
-    right: 2rem; /* Maintain alignment with non-hover state */
-    padding-right: 24px; /* Fix the padding jitter */
-  }
+/* --- 3.3 Projects Section --- */
+.card-hover { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.2);
 }
+.flip-card { perspective: 1000px; }
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border);
+  background-color: var(--surface);
+}
+.flip-card-back { transform: rotateY(180deg); }
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+.custom-scrollbar::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
-/* Ensure the ring animation uses your RGB variable */
+
+/* =========================================================================
+   4. ANIMATION LIBRARY
+   ========================================================================= */
+
+@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+@keyframes pulse-dot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } }
 @keyframes pulse-ring {
   0% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0.7); }
   70% { box-shadow: 0 0 0 8px rgba(var(--green-rgb), 0); }
   100% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0); }
 }
+@keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+@keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+
+.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
 
 
-/* Toast Notifications */
-/* Styles for the temporary feedback messages (e.g., "Copied!"). */
-#toast-container { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100; pointer-events: none; }
+/* =========================================================================
+   5. RESPONSIVE OVERRIDES
+   ========================================================================= */
 
 @media (max-width: 768px) {
-  #toast-container {
-    bottom: 6rem; /* Position above the Hire Me button on mobile */
+  #scroll-to-top { bottom: 5.5rem; right: 1.5rem; }
+  .hire-me-btn {
+    top: auto;
+    bottom: 2rem;
     right: 1.5rem;
-    left: 1.5rem;
+    flex-direction: row;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border-right: 1px solid var(--green);
+    transform: none;
+  }
+  .hire-me-btn:hover { right: 1.5rem; transform: translateY(-5px); }
+  .hire-me-btn span:not(.pulse-dot) { writing-mode: horizontal-tb; text-orientation: mixed; }
+  
+  #toast-container {
+    bottom: 6rem;
+    inset-inline: 1.5rem;
     display: flex;
     justify-content: center;
   }
-}
-.toast { display: flex; align-items: center; gap: 0.75rem; padding: 0.875rem 1.25rem; background: var(--surface); border: 1px solid var(--border); border-radius: 0.5rem; color: var(--text); font-size: 0.875rem; animation: slideIn 0.3s ease forwards; pointer-events: all; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2); }
-.toast.success { border-color: var(--green); }
-.toast.success::before { content: '✓'; color: var(--green); font-weight: bold; }
-.toast.error { border-color: #ef4444; } /* Using fixed red for error */
-.toast.error::before { content: '✕'; color: #ef4444; font-weight: bold; }
-@keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
-@keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
-.toast.removing { animation: slideOut 0.3s ease forwards; }
-
-/* Copy Feedback */
-/* Visual feedback for copy-to-clipboard actions. */
-.copy-btn { position: relative; }
-.copy-btn.copied { color: var(--green) !important; } /* Briefly highlight the text instead of overlapping */
-
-/* Enhanced Animations (for staggered fade-up if applied in JS) */
-@keyframes fadeInStagger { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-.animate-fade-up-stagger { animation: fadeInStagger 0.6s ease forwards; }
-
-/* ==================== Light Mode Specific Overrides ==================== */
-/* These rules apply only when the 'light' class is present on the HTML element,
-   ensuring proper theming for various components. */
-html.light .bg-bg { background-color: var(--bg) !important; }
-html.light .bg-surface { background-color: var(--surface) !important; }
-html.light .border-border { border-color: var(--border) !important; }
-html.light .text-text { color: var(--text) !important; }
-html.light .text-muted { color: #666666 !important; } /* Using fixed gray for muted in light mode */
-html.light ::selection { background: var(--accent); color: #fff; }
-html.light ::-webkit-scrollbar-track { background: var(--bg); }
-html.light ::-webkit-scrollbar-thumb { background: var(--border); }
-html.light .text-gradient {
-  background: linear-gradient(135deg, var(--accent), var(--green));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-html.light .card-hover:hover {
-  box-shadow: 0 8px 30px rgba(59, 130, 246, 0.1); /* Lighter shadow for light mode */
-}
-
-/* ==================== Preloader Styles ==================== */
-#preloader {
-  /* Fixed position to cover the entire viewport. */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--bg); /* Use background color from theme */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Ensures the preloader is on top of all other content. */
-  opacity: 1;
-  transition: opacity 0.5s ease-out; /* Smooth fade-out transition. */
-}
-#preloader.hidden {
-  opacity: 0;
-  pointer-events: none; /* Allows interaction with elements beneath once hidden. */
-}
-
-/* Adjusts toast shadow for light mode for better visual integration. */
-html.light .toast { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); }
-
-/* Note: The 'animate-pulse2' class is applied directly to the icon in HTML. */
-/* Custom scrollbar for project cards */
-.custom-scrollbar::-webkit-scrollbar {
-  width: 4px;
-}
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 10px;
-}
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
 }
