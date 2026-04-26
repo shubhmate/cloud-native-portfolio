@@ -1,18 +1,18 @@
 const fs = require('fs');
 const path = require('path');
 
-// The script is in the "tools" directory, so the project root is one level up
+// The script is in the "automation" directory, so the project root is one level up
 const projectRoot = path.join(__dirname, '..'); 
 
 const configPath = path.join(projectRoot, 'config', 'site-config.json'); 
-const templatePath = path.join(projectRoot, 'src', 'templates', 'index.html');
+const indexTemplatePath = path.join(projectRoot, 'src', 'templates', 'index.html');
 const resumeTemplatePath = path.join(projectRoot, 'src', 'templates', 'resume.html');
 
 const distPath = path.join(projectRoot, 'dist');
-const htmlPath = path.join(distPath, 'index.html'); 
-const resumeHtmlPath = path.join(distPath, 'resume.html');
+const indexDistPath = path.join(distPath, 'index.html'); 
+const resumeDistPath = path.join(distPath, 'resume.html');
 
-const mainCssSourcePath = path.join(projectRoot, 'src', 'styles', 'main.css'); 
+const mainCssTemplatePath = path.join(projectRoot, 'src', 'styles', 'main.css'); 
 const mainCssDistPath = path.join(distPath, 'assets', 'css', 'main.css');
 
 const mainJsTemplatePath = path.join(projectRoot, 'src', 'scripts', 'main.js'); 
@@ -445,21 +445,21 @@ try {
   });
 
   // 3. Process index.html
-  let htmlContent = fs.readFileSync(templatePath, 'utf8');
-  htmlContent = applyReplacements(htmlContent, config);
-  fs.writeFileSync(htmlPath, htmlContent, 'utf8');
+  let indexHtmlContent = fs.readFileSync(indexTemplatePath, 'utf8');
+  indexHtmlContent = applyReplacements(indexHtmlContent, config);
+  fs.writeFileSync(indexDistPath, indexHtmlContent, 'utf8');
   console.log('✔ dist/index.html generated.');
 
   // 4. Process resume.html (New professional workflow)
   if (fs.existsSync(resumeTemplatePath)) {
     let resumeContent = fs.readFileSync(resumeTemplatePath, 'utf8');
     resumeContent = applyReplacements(resumeContent, config);
-    fs.writeFileSync(resumeHtmlPath, resumeContent, 'utf8');
+    fs.writeFileSync(resumeDistPath, resumeContent, 'utf8');
     console.log('✔ dist/resume.html generated.');
   }
   
   // 5. Process assets/css/main.css
-  let mainCssContent = fs.readFileSync(mainCssSourcePath, 'utf8');
+  let mainCssContent = fs.readFileSync(mainCssTemplatePath, 'utf8');
   mainCssContent = applyReplacements(mainCssContent, config);
   fs.writeFileSync(mainCssDistPath, mainCssContent, 'utf8');
   console.log('✔ dist/assets/css/main.css generated.');
