@@ -375,8 +375,25 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!imageModal || !modalImg) return;
         modalImg.src = src;
         imageModal.classList.remove('hidden');
+        imageModal.classList.add('flex');
+        
+        // Trigger animation after a tiny delay to ensure browser handles the display change
+        setTimeout(() => {
+            modalImg.classList.remove('opacity-0', 'scale-95');
+            modalImg.classList.add('opacity-100', 'scale-100');
+        }, 10);
     };
-    window.closeImageModal = function() { imageModal?.classList.add('hidden'); };
+    window.closeImageModal = function() {
+        if (!imageModal || !modalImg) return;
+        modalImg.classList.remove('opacity-100', 'scale-100');
+        modalImg.classList.add('opacity-0', 'scale-95');
+        
+        // Wait for transition to finish before hiding the container
+        setTimeout(() => {
+            imageModal.classList.add('hidden');
+            imageModal.classList.remove('flex');
+        }, 300);
+    };
 
 
     /* =========================================================================
