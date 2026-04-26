@@ -107,10 +107,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const toastContainer = document.getElementById('toast-container');
     function showToast(message, type = 'success') {
         if (!toastContainer) return;
+        
+        // Clear existing toasts to prevent stacking
+        while (toastContainer.firstChild) {
+            toastContainer.removeChild(toastContainer.firstChild);
+        }
+
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
         toast.textContent = message;
         toastContainer.appendChild(toast);
+        
         setTimeout(() => {
             toast.classList.add('removing');
             toast.addEventListener('animationend', () => toast.remove());
