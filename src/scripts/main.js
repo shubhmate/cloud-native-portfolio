@@ -414,30 +414,60 @@ document.addEventListener('DOMContentLoaded', () => {
     if (contactForm && submitBtn) {
         contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+
+            // --- Validation Logic ---
+            const formData = new FormData(contactForm);
+            const name = formData.get('name')?.trim();
+            const email = formData.get('email')?.trim();
+            const message = formData.get('message')?.trim();
+
+            // 1. Check for empty fields
+            if (!name || !email || !message) {
+                showToast('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // 2. Validate email format
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showToast('Please enter a valid email address.', 'error');
+                return;
+            }
+
+            // 3. Check message length
+            if (message.length < 10) {
+                showToast('Message must be at least 10 characters long.', 'error');
+                return;
+            }
+
             const id = submitBtn.getAttribute('data-formspree');
-            if (!id || id.includes('YOUR_')) { showToast('Formspree ID missing!', 'error'); return; }
+            if (!id || id.includes('YOUR_')) { 
+                showToast('Formspree ID missing! Check site-config.json', 'error'); 
+                return; 
+            }
 
             submitBtn.disabled = true;
-            const originalText = submitBtn.querySelector('#submit-text').textContent;
-            submitBtn.querySelector('#submit-text').textContent = 'Sending...';
+            const submitText = submitBtn.querySelector('#submit-text');
+            const originalText = submitText.textContent;
+            submitText.textContent = 'Sending...';
 
             try {
                 const res = await fetch(`https://formspree.io/f/${id}`, {
                     method: 'POST',
-                    body: new FormData(contactForm),
+                    body: formData,
                     headers: { 'Accept': 'application/json' }
                 });
                 if (res.ok) {
-                    showToast('Message sent!');
+                    showToast('Message sent successfully!');
                     contactForm.reset();
                 } else {
-                    showToast('Error sending message.', 'error');
+                    showToast('Failed to send message. Please try again.', 'error');
                 }
             } catch (err) {
-                showToast('Network error.', 'error');
+                showToast('Network error. Please check your connection.', 'error');
             } finally {
                 submitBtn.disabled = false;
-                submitBtn.querySelector('#submit-text').textContent = originalText;
+                submitText.textContent = originalText;
             }
         });
     }
