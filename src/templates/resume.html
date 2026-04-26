@@ -42,21 +42,23 @@
 <body class="font-sans">
 
   <!-- Minimal Header -->
-  <header class="glass-header h-16 fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6">
-    <div class="flex items-center gap-4">
-      <a href="index.html" class="flex items-center gap-2 text-[var(--accent)] hover:scale-105 transition-transform font-mono font-bold">
+  <header class="glass-header h-16 fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6">
+    <div class="flex items-center gap-2 md:gap-4">
+      <a href="index.html" class="flex items-center gap-2 text-[var(--accent)] hover:scale-105 transition-transform font-mono font-bold text-sm md:text-base">
         <i data-lucide="arrow-left" class="w-5 h-5"></i>
-        <span>Back to Home</span>
+        <span class="hidden sm:inline">Back to Home</span>
+        <span class="sm:hidden">Back</span>
       </a>
       <div class="hidden md:block h-6 w-px bg-[var(--border)]"></div>
-      <h1 class="hidden md:block font-mono text-sm text-[var(--muted)]">resume_v1.pdf</h1>
+      <h1 class="hidden lg:block font-mono text-sm text-[var(--muted)]">resume_v1.pdf</h1>
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 md:gap-3">
       <!-- Direct Download Fallback -->
-      <a href="{{RESUME_LINK}}" download class="flex items-center gap-2 px-4 py-2 bg-[var(--accent)] hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-blue-500/20">
+      <a href="{{RESUME_LINK}}" download class="flex items-center gap-2 px-3 py-2 md:px-4 bg-[var(--accent)] hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-blue-500/20">
         <i data-lucide="download" class="w-4 h-4"></i>
         <span>Download</span>
+        <!-- <span class="hidden sm:inline">Download</span> -->
       </a>
       
       <!-- Theme Toggle (Perfect Sync with Home Page) -->
