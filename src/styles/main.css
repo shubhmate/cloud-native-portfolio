@@ -161,6 +161,15 @@ body {
 }
 #scroll-to-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
 
+/* --- 2.6 Copy Feedback --- */
+.copy-btn.copied { 
+  color: var(--green) !important; 
+}
+.copy-btn.copied div { 
+  border-color: var(--green) !important; 
+  color: var(--green) !important;
+}
+
 
 /* =========================================================================
    3. SECTION SPECIFIC STYLES
