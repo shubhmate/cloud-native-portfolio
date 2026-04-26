@@ -175,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Animates a sequence of phrases by typing and deleting them character by character.
     const typewriterElement = document.getElementById('typewriter');
     if (typewriterElement) {
-        const phrases = ["DevOps Engineer","Cloud Engineer","DevSecOps Engineer"]; // Dynamically loaded from config.json
+        const phrases = "{{TYPEWRITER_PHRASES}}"; // Dynamically loaded from config.json
         let phraseIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -375,16 +375,15 @@ document.addEventListener('DOMContentLoaded', () => {
         uptime: () => ({ output: "Simulated uptime: 120 days, 5 hours, 30 minutes", color: 'text-purple-400' }),
         open: (args) => {
             if (!args || args.length === 0) {
-                return { output: "Usage: open [section]. Available: home, skills, projects, experience, contact", color: 'text-yellow-400' };
+                return { output: "Usage: open [section]. Available: home, about, experience, skills, projects, pipeline, contact", color: 'text-yellow-400' };
             }
             const section = args[0].toLowerCase();
-            const validSections = ['home', 'about', 'skills', 'projects', 'experience', 'contact'];
+            const validSections = ['home', 'about', 'experience', 'skills', 'projects', 'pipeline', 'contact'];
             
             if (validSections.includes(section)) {
                 const element = document.getElementById(section);
                 if (element) {
                     element.scrollIntoView({ behavior: 'smooth' });
-                    // Still update hash for URL consistency, but scrolling is handled explicitly
                     if (window.location.hash !== `#${section}`) {
                         window.location.hash = `#${section}`;
                     }

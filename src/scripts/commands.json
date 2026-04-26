@@ -1,28 +1,28 @@
 {
   "whoami": {
     "output": [
-      "Shubham Mate",
-      "DevOps Engineer · ~2 years experience",
-      "Status: Open to full-time roles",
-      "Location: Pune, India"
+      "{{PERSON_NAME}}",
+      "{{JOB_TITLE}} · {{YEARS_EXPERIENCE}}",
+      "Status: {{CURRENT_STATUS}}",
+      "Location: {{CURRENT_LOCATION}}"
     ],
     "color": "text-[var(--accent)]"
   },
   "about": {
     "output": [
       "Behind the Terminals:",
-      "I am a passionate DevOps Engineer with a strong foundation in cloud-native technologies. I specialize in automating complex workflows, managing scalable infrastructure, and ensuring the reliability of high-traffic applications. My journey in tech is driven by a curiosity for how systems work and a desire to build tools that empower developers."
+      "{{ABOUT_ME_DESCRIPTION}}"
     ],
     "color": "text-[var(--accent)]"
   },
 
   "skills": {
-    "output": ["Infrastructure  → Linux, AWS, GCP, Azure (Learning), Docker, Kubernetes, Terraform, Ansible","Version Control → Git, GitHub, GitLab","CI/CD           → Jenkins, GitHub Actions, ArgoCD","Monitoring      → Prometheus, Grafana","Languages       → Python, Go (Learning)","Security        → OWASP Top 10, Vault"],
+    "output": "{{TERMINAL_SKILLS}}",
     "color": "text-[var(--accent)]"
   },
 
   "projects": {
-    "output": ["1. Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate","2. Flask Express Cicd Jenkins Github Webhooks Aws Ec2","3. AWS Lambda Http Function Url Tutorial","4. Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances","","Run 'open projects' to jump to the section."],
+    "output": "{{TERMINAL_PROJECTS}}",
     "color": "text-[var(--accent)]"
   },
 
@@ -36,9 +36,9 @@
   
   "contact": {
     "output": [
-      "Email    → shubhammate0604@gmail.com",
-      "GitHub   → https://github.com/shubhmate",
-      "LinkedIn → https://www.linkedin.com/in/shubham-mate"
+      "Email    → {{EMAIL_ADDRESS}}",
+      "GitHub   → {{GITHUB_HANDLE}}",
+      "LinkedIn → {{LINKEDIN_PROFILE}}"
     ],
     "color": "text-[var(--accent)]"
   },
@@ -68,15 +68,15 @@
   },
 
   "email": {
-    "output": "📧 Email: shubhammate0604@gmail.com",
+    "output": "📧 Email: {{EMAIL_ADDRESS}}",
     "color": "text-blue-400"
   },
 
   "social": {
     "output": [
       "🔗 Social Links:",
-      "  GitHub   → https://github.com/shubhmate",
-      "  LinkedIn → https://www.linkedin.com/in/shubham-mate"
+      "  GitHub   → {{GITHUB_HANDLE}}",
+      "  LinkedIn → {{LINKEDIN_PROFILE}}"
     ],
     "color": "text-purple-400"
   },

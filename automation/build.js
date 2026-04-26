@@ -15,10 +15,10 @@ const resumeHtmlPath = path.join(distPath, 'resume.html');
 const mainCssSourcePath = path.join(projectRoot, 'src', 'styles', 'main.css'); 
 const mainCssDistPath = path.join(distPath, 'assets', 'css', 'main.css');
 
-const mainJsTemplatePath = path.join(projectRoot, 'src', 'scripts', 'main.template.js'); 
+const mainJsTemplatePath = path.join(projectRoot, 'src', 'scripts', 'main.js'); 
 const mainJsDistPath = path.join(distPath, 'assets', 'js', 'main.js');
 
-const commandsTemplatePath = path.join(projectRoot, 'src', 'scripts', 'commands.template.json'); 
+const commandsTemplatePath = path.join(projectRoot, 'src', 'scripts', 'commands.json'); 
 const commandsDistPath = path.join(distPath, 'assets', 'js', 'commands.json');
 
 const clientConfigPath = path.join(distPath, 'assets', 'config.json'); 
