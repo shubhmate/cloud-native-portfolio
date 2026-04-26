@@ -348,6 +348,22 @@
   ],
   "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
   "// MISC & LEGACY": "--------------------------------------------------",
+  "TERMINAL_BUILD_PROCESS": [
+    "Build Process:",
+    "  1. Git push to main branch",
+    "  2. GitHub Actions triggers workflow",
+    "  3. ESLint + TypeScript validation",
+    "  4. Terraform plans infrastructure",
+    "  5. S3 deployment & CloudFront invalidation",
+    "  6. Portfolio live!"
+  ],
+  "TERMINAL_DEPLOY_STEPS": [
+    "Deployment Steps:",
+    "  Deploy to GitHub Pages: git push origin main",
+    "  Deploy to Netlify: npm run build && netlify deploy",
+    "  Deploy to AWS S3: aws s3 sync out/ s3://bucket",
+    "  Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ID --paths '/*'"
+  ],
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
   "TIMELINE_DATE_3": "Aug 01, 2023"

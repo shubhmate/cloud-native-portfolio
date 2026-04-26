@@ -399,16 +399,35 @@ try {
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
 
-  // 1.6 Generate Flattened Experience Keys for Terminal
+  // 1.6 Generate Terminal Components
+  const currentMonth = new Date().toLocaleString('en-US', { month: 'short' });
+  const currentDay = new Date().getDate().toString().padStart(2, ' ');
+  
+  config.TERMINAL_LS_OUTPUT = [
+    `drwxr-xr-x  2 guest guest  4096 ${currentMonth} ${currentDay} 14:00 .`,
+    `drwxr-xr-x 22 root  root   4096 ${currentMonth} ${currentDay} 10:30 ..`,
+    `-rw-r--r--  1 guest guest   450 ${currentMonth} ${currentDay} 14:12 infrastructure.tf`,
+    `-rw-r--r--  1 guest guest   320 ${currentMonth} ${currentDay} 14:15 deployment.yaml`,
+    `-rw-r--r--  1 guest guest   210 ${currentMonth} ${currentDay} 14:20 monitoring.prom`,
+    `-rw-r--r--  1 guest guest   128 ${currentMonth} ${currentDay} 14:22 secret.txt`,
+    `-r--------  1 root  root     64 ${currentMonth} ${currentDay} 09:00 production.env`
+  ];
+
   if (config.EXPERIENCE) {
+    const terminalExp = [];
     config.EXPERIENCE.forEach((exp, index) => {
       const i = index + 1;
+      // Flattened keys for specific use cases
       config[`EXP_${i}_ROLE`] = exp.role;
       config[`EXP_${i}_COMPANY`] = exp.company;
       config[`EXP_${i}_START`] = exp.start;
       config[`EXP_${i}_END`] = exp.end;
       config[`EXP_${i}_TYPE`] = exp.type;
+
+      // Full list for the 'experience' command
+      terminalExp.push(`${exp.role.padEnd(25, ' ')} ${exp.start} – ${exp.end}`);
     });
+    config.TERMINAL_EXPERIENCE = terminalExp;
   }
 
   // 2. Ensure Dist Directories Exist

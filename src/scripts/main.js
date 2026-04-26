@@ -399,6 +399,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             const target = args[0].toLowerCase();
             if (target.includes('guest@')) {
+                const hostName = "{{PERSON_NAME}}".toLowerCase().replace(/\s+/g, '-') + "-vps-01";
                 return { 
                     output: [
                         "Connecting to remote host...",
@@ -406,7 +407,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         "Access Granted! 🔓",
                         "",
                         "Welcome to the hidden vault.",
-                        "Status: Connected to shubham-mate-vps-01",
+                        `Status: Connected to ${hostName}`,
                         "System: Ubuntu 22.04.3 LTS (GNU/Linux 5.15.0-generic)",
                         "",
                         "Type 'ls' to see hidden files or 'cat secret.txt' for a surprise."
