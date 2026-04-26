@@ -35,6 +35,36 @@ function escapeHtml(unsafe) {
     .replace(/'/g, "&#039;");
 }
 
+/* =========================================================================
+   1. HERO SECTION GENERATORS
+   ========================================================================= */
+
+function generateHeroSocialLinksHtml(config) {
+  if (!config.CONTACT_LINKS) return '';
+
+  return config.CONTACT_LINKS
+    .filter(link => link.type === 'link')
+    .map(link => `
+          <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHtml(link.label)} profile" class="hover:text-[var(--accent)] transition-all hover:scale-110">
+            <i data-lucide="${link.icon}" class="w-6 h-6"></i>
+          </a>`).join('');
+}
+
+function generateHireMeHtml(config) {
+  const text = config.HIRE_ME_TEXT || 'HIRE ME';
+  const parts = text.split(' ');
+  
+  if (parts.length === 2) {
+    return `<span class="hire-part-1">${escapeHtml(parts[0])}</span><span class="pulse-dot"></span><span class="hire-part-2">${escapeHtml(parts[1])}</span>`;
+  }
+  
+  return `<span class="pulse-dot"></span><span>${escapeHtml(text)}</span>`;
+}
+
+/* =========================================================================
+   2. EXPERIENCE & CREDENTIALS GENERATORS
+   ========================================================================= */
+
 function generateExperienceHtml(config) {
   if (!config.EXPERIENCE) return '';
 
@@ -69,92 +99,6 @@ function generateExperienceHtml(config) {
   return expHtml;
 }
 
-function generateFooterLinksHtml(config) {
-  if (!config.CONTACT_LINKS) return '';
-
-  return config.CONTACT_LINKS
-    .filter(link => link.type === 'link')
-    .map(link => `
-            <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110">
-              <i data-lucide="${link.icon}" class="w-4 h-4"></i>
-            </a>`).join('');
-}
-
-function generateHeroSocialLinksHtml(config) {
-  if (!config.CONTACT_LINKS) return '';
-
-  return config.CONTACT_LINKS
-    .filter(link => link.type === 'link')
-    .map(link => `
-          <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHtml(link.label)} profile" class="hover:text-[var(--accent)] transition-all hover:scale-110">
-            <i data-lucide="${link.icon}" class="w-6 h-6"></i>
-          </a>`).join('');
-}
-
-function generatePipelineStepsHtml(config) {
-  if (!config.PIPELINE_STEPS) return '';
-
-  return config.PIPELINE_STEPS.map((step, index) => {
-    const isLast = index === config.PIPELINE_STEPS.length - 1;
-    let stepHtml = `
-              <!-- Step ${index + 1}: ${escapeHtml(step.title)} -->
-              <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
-                <div class="p-3 rounded-xl border bg-${step.color}-400/10 border-${step.color}-400/30 shrink-0 hover:scale-110 transition-transform">
-                  <i data-lucide="${step.icon}" class="w-6 h-6 text-${step.color}-400"></i>
-                </div>
-                <div class="text-center">
-                  <p class="font-mono text-sm font-semibold text-${step.color}-400">${escapeHtml(step.title)}</p>
-                  <p class="text-xs text-[var(--muted)] max-w-[140px]">${escapeHtml(step.description)}</p>
-                </div>
-              </div>`;
-
-    if (!isLast) {
-      stepHtml += `
-              <!-- Responsive Arrow -->
-              <div class="flex items-center justify-center my-2 md:mx-2 shrink-0">
-                <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
-                <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
-              </div>`;
-    }
-    return stepHtml;
-  }).join('');
-}
-
-function generateContactLinksHtml(config) {
-  if (!config.CONTACT_LINKS) return '';
-
-  return config.CONTACT_LINKS.map(link => {
-    if (link.type === 'copy') {
-      return `
-              <button onclick="copyToClipboard('${escapeHtml(link.value)}')" class="copy-btn flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group w-full text-left" title="Click to copy">
-                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
-                  <i data-lucide="${link.icon}" class="w-4 h-4"></i>
-                </div>
-                <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
-              </button>`;
-    } else {
-      return `
-              <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group" aria-label="${escapeHtml(link.label)} profile">
-                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
-                  <i data-lucide="${link.icon}" class="w-4 h-4"></i>
-                </div>
-                <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
-              </a>`;
-    }
-  }).join('');
-}
-
-function generateHireMeHtml(config) {
-  const text = config.HIRE_ME_TEXT || 'HIRE ME';
-  const parts = text.split(' ');
-  
-  if (parts.length === 2) {
-    return `<span class="hire-part-1">${escapeHtml(parts[0])}</span><span class="pulse-dot"></span><span class="hire-part-2">${escapeHtml(parts[1])}</span>`;
-  }
-  
-  return `<span class="pulse-dot"></span><span>${escapeHtml(text)}</span>`;
-}
-
 function generateCertificationsHtml(config) {
   if (!config.CERTIFICATIONS) return '';
 
@@ -165,6 +109,10 @@ function generateCertificationsHtml(config) {
                 <p class="text-xs text-[var(--muted)] mt-1">${escapeHtml(cert.issuer)} · ${escapeHtml(cert.status)}</p>
               </div>`).join('');
 }
+
+/* =========================================================================
+   3. SKILLS SECTION GENERATORS
+   ========================================================================= */
 
 function generateSkillsHtml(config) {
   if (!config.SKILLS_GROUPED) return '';
@@ -212,6 +160,10 @@ function generateSkillsHtml(config) {
   config.TERMINAL_SKILLS = terminalSkills;
   return gridHtml;
 }
+
+/* =========================================================================
+   4. PROJECTS SECTION GENERATORS
+   ========================================================================= */
 
 function generateProjectsHtml(config) {
   if (!config.PROJECTS) return;
@@ -324,6 +276,82 @@ function generateProjectsHtml(config) {
   terminalProjects.push("Run 'open projects' to jump to the section.");
   config.TERMINAL_PROJECTS = terminalProjects;
 }
+
+/* =========================================================================
+   5. PIPELINE SECTION GENERATORS
+   ========================================================================= */
+
+function generatePipelineStepsHtml(config) {
+  if (!config.PIPELINE_STEPS) return '';
+
+  return config.PIPELINE_STEPS.map((step, index) => {
+    const isLast = index === config.PIPELINE_STEPS.length - 1;
+    let stepHtml = `
+              <!-- Step ${index + 1}: ${escapeHtml(step.title)} -->
+              <div class="flex flex-col items-center gap-3 md:gap-2 shrink-0">
+                <div class="p-3 rounded-xl border bg-${step.color}-400/10 border-${step.color}-400/30 shrink-0 hover:scale-110 transition-transform">
+                  <i data-lucide="${step.icon}" class="w-6 h-6 text-${step.color}-400"></i>
+                </div>
+                <div class="text-center">
+                  <p class="font-mono text-sm font-semibold text-${step.color}-400">${escapeHtml(step.title)}</p>
+                  <p class="text-xs text-[var(--muted)] max-w-[140px]">${escapeHtml(step.description)}</p>
+                </div>
+              </div>`;
+
+    if (!isLast) {
+      stepHtml += `
+              <!-- Responsive Arrow -->
+              <div class="flex items-center justify-center my-2 md:mx-2 shrink-0">
+                <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
+                <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
+              </div>`;
+    }
+    return stepHtml;
+  }).join('');
+}
+
+/* =========================================================================
+   6. CONTACT & FOOTER GENERATORS
+   ========================================================================= */
+
+function generateContactLinksHtml(config) {
+  if (!config.CONTACT_LINKS) return '';
+
+  return config.CONTACT_LINKS.map(link => {
+    if (link.type === 'copy') {
+      return `
+              <button onclick="copyToClipboard('${escapeHtml(link.value)}')" class="copy-btn flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group w-full text-left" title="Click to copy">
+                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
+                  <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+                </div>
+                <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
+              </button>`;
+    } else {
+      return `
+              <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group" aria-label="${escapeHtml(link.label)} profile">
+                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
+                  <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+                </div>
+                <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
+              </a>`;
+    }
+  }).join('');
+}
+
+function generateFooterLinksHtml(config) {
+  if (!config.CONTACT_LINKS) return '';
+
+  return config.CONTACT_LINKS
+    .filter(link => link.type === 'link')
+    .map(link => `
+            <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110">
+              <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+            </a>`).join('');
+}
+
+/* =========================================================================
+   7. CORE BUILD ENGINE
+   ========================================================================= */
 
 function applyReplacements(content, config) {
   let modifiedContent = content;
