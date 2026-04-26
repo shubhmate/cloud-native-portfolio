@@ -54,11 +54,13 @@ function generateHireMeHtml(config) {
   const text = config.HIRE_ME_TEXT || 'HIRE ME';
   const parts = text.split(' ');
   
-  if (parts.length === 2) {
-    return `<span class="hire-part-1">${escapeHtml(parts[0])}</span><span class="pulse-dot"></span><span class="hire-part-2">${escapeHtml(parts[1])}</span>`;
-  }
+  // Pulse dot at the start, followed by the text parts
+  let html = `<span class="pulse-dot"></span>`;
+  parts.forEach((part, index) => {
+    html += `<span class="hire-part-${index + 1}">${escapeHtml(part)}</span>`;
+  });
   
-  return `<span class="pulse-dot"></span><span>${escapeHtml(text)}</span>`;
+  return html;
 }
 
 /* =========================================================================
