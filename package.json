@@ -1,6 +1,6 @@
 {
   "name": "static-portfolio",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A professional, high-performance static portfolio website built with HTML5, Tailwind CSS, and Vanilla JavaScript. Features comprehensive enhancements including dark/light theme toggle, toast notifications, and enhanced accessibility.",
   "main": "index.js",
   "directories": {
