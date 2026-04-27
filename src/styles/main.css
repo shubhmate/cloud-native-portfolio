@@ -61,7 +61,6 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 }
-::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* Utilities */
 .font-mono { font-family: var(--font-mono); }
