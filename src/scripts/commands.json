@@ -40,14 +40,6 @@
     "output": "{{TERMINAL_DEPLOY_STEPS}}",
     "color": "text-[var(--accent)]"
   },
-  "ls": {
-    "output": "{{TERMINAL_LS_OUTPUT}}",
-    "color": "text-blue-400"
-  },
-  "cat": {
-    "output": "Usage: cat [filename]",
-    "color": "text-yellow-400"
-  },
 
   "// CONTACT & SOCIAL": "--------------------------------------------------",
   "contact": {
@@ -90,10 +82,6 @@
       "  <b>clear</b>     : Clear terminal",
       "  <b>secret</b>    : Find the easter egg"
     ],
-    "color": "text-[var(--accent)]"
-  },
-  "clear": {
-    "output": [],
     "color": "text-[var(--accent)]"
   },
   "secret": {

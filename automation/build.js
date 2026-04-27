@@ -445,16 +445,6 @@ async function build() {
     config.VIRTUAL_FILES_DATA = config.VIRTUAL_FILES || {};
     config.VIRTUAL_FILES_DATA_JSON = JSON.stringify(config.VIRTUAL_FILES_DATA).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     
-    config.TERMINAL_LS_OUTPUT = [
-      `drwxr-xr-x  2 guest guest  4096 ${currentMonth} ${currentDay} 14:00 .`,
-      `drwxr-xr-x 22 root  root   4096 ${currentMonth} ${currentDay} 10:30 ..`,
-      `-rw-r--r--  1 guest guest   450 ${currentMonth} ${currentDay} 14:12 infrastructure.tf`,
-      `-rw-r--r--  1 guest guest   320 ${currentMonth} ${currentDay} 14:15 deployment.yaml`,
-      `-rw-r--r--  1 guest guest   210 ${currentMonth} ${currentDay} 14:20 monitoring.prom`,
-      `-rw-r--r--  1 guest guest   128 ${currentMonth} ${currentDay} 14:22 secret.txt`,
-      `-r--------  1 root  root     64 ${currentMonth} ${currentDay} 09:00 production.env`
-    ];
-
     if (config.EXPERIENCE) {
       config.TERMINAL_EXPERIENCE = config.EXPERIENCE.map(exp => `${exp.role.padEnd(25, ' ')} ${exp.start} – ${exp.end}`);
     }
