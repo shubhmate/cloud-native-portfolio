@@ -366,17 +366,16 @@ function applyReplacements(content, config) {
       if (typeof value === 'object' && value !== null) {
         const stringifiedValue = JSON.stringify(value);
         
-        // If the placeholder is wrapped in quotes (e.g. in a JSON template to prevent syntax errors),
-        // we replace the quotes along with the placeholder.
+        // Handle quoted placeholders: "{{KEY}}" -> JSON_LITERAL
         const quotedPlaceholder = `"${templatePlaceholder}"`;
         if (modifiedContent.includes(quotedPlaceholder)) {
-          modifiedContent = modifiedContent.replace(new RegExp(quotedPlaceholder, 'g'), stringifiedValue);
+          modifiedContent = modifiedContent.split(quotedPlaceholder).join(stringifiedValue);
         } else {
-          modifiedContent = modifiedContent.replace(new RegExp(templatePlaceholder, 'g'), stringifiedValue);
+          modifiedContent = modifiedContent.split(templatePlaceholder).join(stringifiedValue);
         }
       } else {
-        // Regular string replacement
-        modifiedContent = modifiedContent.replace(new RegExp(templatePlaceholder, 'g'), value);
+        // Regular string replacement (using split/join to avoid Regex special characters)
+        modifiedContent = modifiedContent.split(templatePlaceholder).join(value);
       }
     }
   }
@@ -400,6 +399,13 @@ try {
   config.PIPELINE_STEPS_GRID = generatePipelineStepsHtml(config);
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
   generateProjectsHtml(config);
+  
+  // Inject Terminal Data
+  config.VIRTUAL_FILES_DATA = config.VIRTUAL_FILES || {};
+  // Create a version specifically escaped for inclusion in a JS single-quoted string literal
+  config.VIRTUAL_FILES_DATA_JSON = JSON.stringify(config.VIRTUAL_FILES_DATA)
+    .replace(/\\/g, '\\\\') // Escape backslashes
+    .replace(/'/g, "\\'");  // Escape single quotes
 
   // 1.6 Generate Terminal Components
   const currentMonth = new Date().toLocaleString('en-US', { month: 'short' });

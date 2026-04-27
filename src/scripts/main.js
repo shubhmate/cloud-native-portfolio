@@ -318,21 +318,46 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return { output: "Usage: open [section]. Available: " + valid.join(', '), color: 'text-yellow-400' };
         },
-        ssh: (args) => {
-            const target = args[0]?.toLowerCase();
-            if (target?.includes('guest@')) {
-                const hostName = "{{PERSON_NAME}}".toLowerCase().replace(/\s+/g, '-') + "-vps-01";
-                return { output: ["Connecting...", "Authenticating...", "Access Granted!", "", `Status: Connected to ${hostName}`, "System: Ubuntu 22.04 LTS", "", "Type 'ls' or 'cat secret.txt'"], color: 'text-green-400' };
-            }
-            return { output: "Usage: ssh guest@{{PERSON_NAME}}", color: 'text-red-400' };
+        ls: () => {
+            const files = JSON.parse('{{VIRTUAL_FILES_DATA_JSON}}');
+            const lines = [
+                "drwxr-xr-x 2 guest guest  4096 Apr 27 14:00 .",
+                "drwxr-xr-x 22 root root   4096 Apr 27 10:30 .."
+            ];
+            Object.entries(files).forEach(([name, meta]) => {
+                lines.push(`${meta.perm} 1 ${meta.owner} ${meta.size.padStart(4)} ${meta.date} <span class="${meta.color}">${name}</span>`);
+            });
+            return { output: lines, color: 'text-blue-400' };
         },
         cat: (args) => {
+            const files = JSON.parse('{{VIRTUAL_FILES_DATA_JSON}}');
             const file = args[0]?.toLowerCase();
-            const files = {
-                'secret.txt': { output: ["🚀 MISSION LOG: DEVOPS PORTFOLIO", "Status: Fully Automated.", "Tip: Try typing 'build'."], color: 'text-green-400' },
-                'infrastructure.tf': { output: ["provider \"aws\" { region = \"us-east-1\" }", "resource \"aws_vpc\" \"main\" { cidr_block = \"10.0.0.0/16\" }"], color: 'text-blue-300' }
-            };
-            return files[file] || { output: `cat: ${file}: No such file`, color: 'text-red-400' };
+            if (files[file]) {
+                return { output: files[file].content, color: files[file].color };
+            }
+            return { output: `cat: ${file}: No such file`, color: 'text-red-400' };
+        },
+        ssh: (args) => {
+            const user = "{{TERMINAL_SSH_USER}}";
+            const host = "{{TERMINAL_SSH_HOST}}";
+            const target = args[0]?.toLowerCase();
+            
+            if (target === `${user}@${host}`) {
+                return { 
+                    output: [
+                        "Connecting...",
+                        "Authenticating...",
+                        "Access Granted!",
+                        "",
+                        `<span class="text-green-400">Status: Connected to ${host}</span>`,
+                        `<span class="text-green-400">System: {{TERMINAL_SSH_SYSTEM}}</span>`,
+                        "",
+                        "Type 'ls' or 'cat secret.txt'"
+                    ], 
+                    color: 'text-green-400' 
+                };
+            }
+            return { output: `Usage: ssh ${user}@${host}`, color: 'text-red-400' };
         }
     };
 

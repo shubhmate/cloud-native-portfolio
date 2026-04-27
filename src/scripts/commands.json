@@ -85,7 +85,7 @@
       "  <b>social</b>    : Show social links",
       "  <b>build</b>     : Build process simulation",
       "  <b>deploy</b>    : Deployment options",
-      "  <b>ssh</b>       : Connect to server (try 'ssh guest@shubham-mate')",
+      "  <b>ssh</b>       : Connect to server (try 'ssh guest@shubham-mate-vps-01')",
       "  <b>open</b>      : Go to section (e.g. 'open projects')",
       "  <b>clear</b>     : Clear terminal",
       "  <b>secret</b>    : Find the easter egg"

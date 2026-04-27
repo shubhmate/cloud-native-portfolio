@@ -2,6 +2,9 @@
   "// IDENTITY & GLOBAL META": "--------------------------------------------------",
   "PERSON_NAME": "Shubham Mate",
   "JOB_TITLE": "DevOps Engineer",
+  "COMPANY_NAME": "Company Name",
+  "PREVIOUS_COMPANY": "Previous Company",
+  "PROJECT_2_TITLE": "CI/CD Pipeline for Microservices",
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "PORTFOLIO_URL": "https://shubhammate.com",
   "GITHUB_HANDLE": "https://github.com/shubhmate",
@@ -367,5 +370,67 @@
   ],
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
-  "TIMELINE_DATE_3": "Aug 01, 2023"
+  "TIMELINE_DATE_3": "Aug 01, 2023",
+  "// TERMINAL CONFIGURATION": "--------------------------------------------------",
+  "TERMINAL_SSH_USER": "guest",
+  "TERMINAL_SSH_HOST": "shubham-mate-vps-01",
+  "TERMINAL_SSH_SYSTEM": "Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-1021-aws x86_64)",
+  "VIRTUAL_FILES": {
+    "infrastructure.tf": {
+      "perm": "-rw-r--r--",
+      "owner": "guest guest",
+      "size": "450",
+      "date": "Apr 27 14:12",
+      "content": [
+        "provider \"aws\" { region = \"us-east-1\" }",
+        "resource \"aws_vpc\" \"main\" { cidr_block = \"10.0.0.0/16\" }",
+        "resource \"aws_subnet\" \"public\" { vpc_id = aws_vpc.main.id }"
+      ],
+      "color": "text-blue-300"
+    },
+    "deployment.yaml": {
+      "perm": "-rw-r--r--",
+      "owner": "guest guest",
+      "size": "320",
+      "date": "Apr 27 14:15",
+      "content": [
+        "apiVersion: apps/v1",
+        "kind: Deployment",
+        "metadata: { name: portfolio-app }",
+        "spec: { replicas: 3, selector: { matchLabels: { app: web } } }"
+      ],
+      "color": "text-yellow-200"
+    },
+    "monitoring.prom": {
+      "perm": "-rw-r--r--",
+      "owner": "guest guest",
+      "size": "210",
+      "date": "Apr 27 14:20",
+      "content": [
+        "rate(http_requests_total{job=\"portfolio\"}[5m])",
+        "up{job=\"kubernetes-nodes\"} == 1"
+      ],
+      "color": "text-purple-300"
+    },
+    "secret.txt": {
+      "perm": "-rw-r--r--",
+      "owner": "guest guest",
+      "size": "128",
+      "date": "Apr 27 14:22",
+      "content": [
+        "🚀 MISSION LOG: DEVOPS PORTFOLIO",
+        "Status: Fully Automated.",
+        "Tip: Try typing 'build' or 'deploy'."
+      ],
+      "color": "text-green-400"
+    },
+    "production.env": {
+      "perm": "-r--------",
+      "owner": "root  root ",
+      "size": "64",
+      "date": "Apr 27 09:00",
+      "content": "Permission denied: Access to production secrets is restricted.",
+      "color": "text-red-400"
+    }
+  }
 }
