@@ -32,14 +32,41 @@
   "// GLOBAL UI TEXT": "--------------------------------------------------",
   "SITE_LOGO_TEXT": "devops.sh",
   "PRELOADER_TEXT": "Initializing devops.sh...",
-  "NAV_HOME": "Home",
-  "NAV_ABOUT": "About",
-  "NAV_EXPERIENCE": "Experience",
-  "NAV_STACK": "Stack",
-  "NAV_PROJECTS": "Projects",
-  "NAV_PIPELINE": "Pipeline",
-  "NAV_CONTACT": "Contact",
-  "NAV_RESUME": "Resume",
+  "NAV_ITEMS": [
+    {
+      "label": "Home",
+      "href": "#home"
+    },
+    {
+      "label": "About",
+      "href": "#about"
+    },
+    {
+      "label": "Experience",
+      "href": "#experience"
+    },
+    {
+      "label": "Stack",
+      "href": "#skills"
+    },
+    {
+      "label": "Projects",
+      "href": "#projects"
+    },
+    {
+      "label": "Pipeline",
+      "href": "#pipeline"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    },
+    {
+      "label": "Resume",
+      "href": "resume.html",
+      "type": "button"
+    }
+  ],
   "// SECTION HEADINGS": "--------------------------------------------------",
   "SECTION_ABOUT_HINT": "// about me",
   "SECTION_ABOUT_TITLE": "Behind the Terminals",

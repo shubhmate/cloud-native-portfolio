@@ -185,17 +185,7 @@
 
       <!-- Desktop Navigation Links -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="#home" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_HOME}}</a>
-        <a href="#about" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_ABOUT}}</a>
-        <a href="#experience" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_EXPERIENCE}}</a>
-        <a href="#skills" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_STACK}}</a>
-        <a href="#projects" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_PROJECTS}}</a>
-        <a href="#pipeline" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_PIPELINE}}</a> 
-
-        <a href="#contact" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_CONTACT}}</a>
-        <a href="resume.html" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="View Resume">
-          {{NAV_RESUME}}
-        </a> 
+        {{NAV_DESKTOP}}
         <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
           <i data-lucide="sun" class="w-5 h-5"></i>
         </button>
@@ -214,17 +204,7 @@
 
     <!-- Mobile Navigation Menu (hidden by default, toggled by JS) -->
     <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
-      <a href="#home" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_HOME}}</a>
-      <a href="#about" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_ABOUT}}</a>
-      <a href="#experience" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_EXPERIENCE}}</a>
-      <a href="#skills" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_STACK}}</a>
-      <a href="#projects" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_PROJECTS}}</a>
-      <a href="#pipeline" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_PIPELINE}}</a> 
-
-      <a href="#contact" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_CONTACT}}</a>
-      <a href="resume.html" class="block px-2 py-1 w-fit font-mono text-sm text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="View Resume">
-        {{NAV_RESUME}}
-      </a>
+      {{NAV_MOBILE}}
     </div>
   </nav>
 

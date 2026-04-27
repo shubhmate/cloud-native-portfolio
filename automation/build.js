@@ -11,6 +11,27 @@ const resumeTemplatePath = path.join(projectRoot, 'src', 'templates', 'resume.ht
 const distPath = path.join(projectRoot, 'dist');
 const indexDistPath = path.join(distPath, 'index.html'); 
 const resumeDistPath = path.join(distPath, 'resume.html');
+ 
+// DEFAULTS: Fallback values if keys are missing from site-config.json
+const DEFAULT_CONFIG = {
+  "PERSON_NAME": "Shubham Mate",
+  "JOB_TITLE": "DevOps Engineer",
+  "SITE_LOGO_TEXT": "devops.sh",
+  "PRELOADER_TEXT": "Initializing...",
+  "NAV_HOME": "Home",
+  "NAV_ABOUT": "About",
+  "NAV_EXPERIENCE": "Experience",
+  "NAV_STACK": "Stack",
+  "NAV_PROJECTS": "Projects",
+  "NAV_PIPELINE": "Pipeline",
+  "NAV_CONTACT": "Contact",
+  "NAV_RESUME": "Resume",
+  "HIRE_ME_TEXT": "HIRE ME",
+  "HERO_SUBTITLE": "DevOps Engineer",
+  "YEARS_EXPERIENCE": "2+ years",
+  "SECTION_PROJECTS_TITLE": "Featured Projects",
+  "PROJECTS_FLIP_HINT": "click to flip"
+};
 
 const mainCssTemplatePath = path.join(projectRoot, 'src', 'styles', 'main.css'); 
 const mainCssDistPath = path.join(distPath, 'assets', 'css', 'main.css');
@@ -61,6 +82,35 @@ function generateHireMeHtml(config) {
   });
   
   return html;
+}
+
+/* =========================================================================
+   1.5 NAVIGATION GENERATOR
+   ========================================================================= */
+
+function generateNavHtml(config, type = 'desktop') {
+  const items = config.NAV_ITEMS || [];
+  
+  if (type === 'desktop') {
+    return items.map(item => {
+      if (item.type === 'button') {
+        return `<a href="${item.href}" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="${item.label}">
+          ${item.label}
+        </a>`;
+      }
+      return `<a href="${item.href}" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">${item.label}</a>`;
+    }).join('\n        ');
+  } else {
+    // Mobile menu
+    return items.map(item => {
+      if (item.type === 'button') {
+        return `<a href="${item.href}" class="block px-2 py-1 w-fit font-mono text-sm text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="${item.label}">
+        ${item.label}
+      </a>`;
+      }
+      return `<a href="${item.href}" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">${item.label}</a>`;
+    }).join('\n      ');
+  }
 }
 
 /* =========================================================================
@@ -352,7 +402,22 @@ function generateFooterLinksHtml(config) {
 }
 
 /* =========================================================================
-   7. CORE BUILD ENGINE
+   7. BUILD VALIDATION & UTILS
+   ========================================================================= */
+
+function validateContent(content, fileName) {
+  const placeholderRegex = /\{\{([A-Z0-9_]+)\}\}/g;
+  const matches = [...content.matchAll(placeholderRegex)];
+  if (matches.length > 0) {
+    const missingKeys = [...new Set(matches.map(m => m[1]))];
+    console.warn(`\n⚠️  WARNING: Unreplaced placeholders found in ${fileName}:`);
+    missingKeys.forEach(key => console.warn(`   - {{${key}}}`));
+    console.warn(`   Tip: Check if '${missingKeys[0]}' is defined in site-config.json\n`);
+  }
+}
+
+/* =========================================================================
+   8. CORE BUILD ENGINE
    ========================================================================= */
 
 function applyReplacements(content, config) {
@@ -383,9 +448,14 @@ function applyReplacements(content, config) {
 }
 
 try {
-  // 1. Read configuration
-  const configRaw = fs.readFileSync(configPath, 'utf8');
-  const config = JSON.parse(configRaw);
+  // 1. Load and merge configuration
+  let userConfig = {};
+  if (fs.existsSync(configPath)) {
+    userConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+  }
+  
+  // Merge Defaults -> User Config (User wins)
+  const config = { ...DEFAULT_CONFIG, ...userConfig };
 
   console.log('🚀 Starting Professional Build Process...');
 
@@ -398,6 +468,8 @@ try {
   config.HERO_SOCIAL_LINKS = generateHeroSocialLinksHtml(config);
   config.PIPELINE_STEPS_GRID = generatePipelineStepsHtml(config);
   config.HIRE_ME_BUTTON = generateHireMeHtml(config);
+  config.NAV_DESKTOP = generateNavHtml(config, 'desktop');
+  config.NAV_MOBILE = generateNavHtml(config, 'mobile');
   generateProjectsHtml(config);
   
   // Inject Terminal Data
@@ -455,28 +527,32 @@ try {
   // 3. Process index.html
   let indexHtmlContent = fs.readFileSync(indexTemplatePath, 'utf8');
   indexHtmlContent = applyReplacements(indexHtmlContent, config);
+  validateContent(indexHtmlContent, 'dist/index.html');
   fs.writeFileSync(indexDistPath, indexHtmlContent, 'utf8');
   console.log('✔ dist/index.html generated.');
-
+ 
   // 4. Process resume.html (New professional workflow)
   if (fs.existsSync(resumeTemplatePath)) {
     let resumeContent = fs.readFileSync(resumeTemplatePath, 'utf8');
     resumeContent = applyReplacements(resumeContent, config);
+    validateContent(resumeContent, 'dist/resume.html');
     fs.writeFileSync(resumeDistPath, resumeContent, 'utf8');
     console.log('✔ dist/resume.html generated.');
   }
   
   // 5. CSS is handled by Tailwind CLI (see package.json)
-
+ 
   // 6. Process assets/js/main.js
   let mainJsContent = fs.readFileSync(mainJsTemplatePath, 'utf8');
   mainJsContent = applyReplacements(mainJsContent, config);
+  validateContent(mainJsContent, 'dist/assets/js/main.js');
   fs.writeFileSync(mainJsDistPath, mainJsContent, 'utf8');
   console.log('✔ dist/assets/js/main.js generated.');
-
+ 
   // 7. Process assets/js/commands.json
   let commandsContent = fs.readFileSync(commandsTemplatePath, 'utf8');
   commandsContent = applyReplacements(commandsContent, config);
+  validateContent(commandsContent, 'dist/assets/js/commands.json');
   fs.writeFileSync(commandsDistPath, commandsContent, 'utf8');
   console.log('✔ dist/assets/js/commands.json generated.');
   
