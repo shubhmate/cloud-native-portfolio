@@ -139,15 +139,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 3000);
     }
 
-    window.copyToClipboard = function(text) {
+    window.copyToClipboard = function(text, event) {
+        // Capture the button immediately before any async operations
+        const copyBtn = event ? (event.currentTarget || event.target.closest('.copy-btn')) : document.querySelector('.copy-btn');
+        
         navigator.clipboard.writeText(text).then(() => {
             showToast('Email copied to clipboard!');
-            const copyBtn = document.querySelector('.copy-btn');
+            
             if (copyBtn) {
                 copyBtn.classList.add('copied');
-                setTimeout(() => copyBtn.classList.remove('copied'), 1500);
+                setTimeout(() => copyBtn.classList.remove('copied'), 2000);
             }
-        }).catch(() => showToast('Failed to copy email.', 'error'));
+        }).catch((err) => {
+            console.error('Copy failed:', err);
+            showToast('Failed to copy email.', 'error');
+        });
     };
 
     const scrollToTopBtn = document.getElementById('scroll-to-top');

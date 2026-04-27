@@ -353,9 +353,9 @@ function generateContactUI(config, type = 'grid') {
   return config.CONTACT_LINKS.map(link => {
     const isCopy = link.type === 'copy';
     const tag = isCopy ? 'button' : 'a';
-    const attrs = isCopy ? `onclick="copyToClipboard('${escapeHtml(link.value)}')" title="Click to copy"` : `href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(link.label)}"`;
+    const attrs = isCopy ? `onclick="copyToClipboard('${escapeHtml(link.value)}', event)" title="Click to copy"` : `href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(link.label)}"`;
     return `
-              <${tag} ${attrs} class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group ${isCopy ? 'w-full text-left' : ''}">
+              <${tag} ${attrs} class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group ${isCopy ? 'copy-btn w-full text-left' : ''}">
                 <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
                   <i data-lucide="${link.icon}" class="w-4 h-4"></i>
                 </div>
