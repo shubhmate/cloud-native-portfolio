@@ -1,35 +1,16 @@
 {
-  "// IDENTITY & GLOBAL META": "--------------------------------------------------",
+  "// 1. IDENTITY & SEO": "--------------------------------------------------",
   "PERSON_NAME": "Shubham Mate",
   "JOB_TITLE": "DevOps Engineer",
   "COMPANY_NAME": "Company Name",
   "PREVIOUS_COMPANY": "Previous Company",
-  "PROJECT_2_TITLE": "CI/CD Pipeline for Microservices",
-  "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "PORTFOLIO_URL": "https://shubhammate.com",
   "GITHUB_HANDLE": "https://github.com/shubhmate",
   "LINKEDIN_PROFILE": "https://www.linkedin.com/in/shubham-mate",
-  "TWITTER_HANDLE": "",
   "HASHNODE_HANDLE": "",
-  "MEDIUM_HANDLE": "",
-  "SOCIAL_LINKS": [
-    {
-      "platform": "GitHub",
-      "url": "https://github.com/shubhmate",
-      "icon": "github"
-    },
-    {
-      "platform": "LinkedIn",
-      "url": "https://www.linkedin.com/in/shubham-mate",
-      "icon": "linkedin"
-    },
-    {
-      "platform": "Twitter",
-      "url": "",
-      "icon": "twitter"
-    }
-  ],
-  "// GLOBAL UI TEXT": "--------------------------------------------------",
+  "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
+  "PROFILE_IMAGE": "assets/img/profile.png",
+  "// 2. GLOBAL UI & NAVIGATION": "--------------------------------------------------",
   "SITE_LOGO_TEXT": "devops.sh",
   "PRELOADER_TEXT": "Initializing devops.sh...",
   "NAV_ITEMS": [
@@ -67,7 +48,7 @@
       "type": "button"
     }
   ],
-  "// SECTION HEADINGS": "--------------------------------------------------",
+  "// 3. SECTION HEADERS": "--------------------------------------------------",
   "SECTION_ABOUT_HINT": "// about me",
   "SECTION_ABOUT_TITLE": "Behind the Terminals",
   "SECTION_EXPERIENCE_HINT": "// experience",
@@ -83,14 +64,7 @@
   "SECTION_PIPELINE_TITLE": "How This Site is Built",
   "SECTION_CONTACT_HINT": "// contact",
   "SECTION_CONTACT_TITLE": "Let's Build Something",
-  "// RESUME PAGE UI": "--------------------------------------------------",
-  "RESUME_PAGE_TITLE": "Professional Resume",
-  "RESUME_BACK_HOME": "Back to Home",
-  "RESUME_FULLSCREEN": "Fullscreen",
-  "RESUME_DOWNLOAD": "Download",
-  "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
-  "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
-  "// HERO SECTION": "--------------------------------------------------",
+  "// 4. HERO SECTION": "--------------------------------------------------",
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
   "HERO_SUBTITLE": "Open to new opportunities",
@@ -100,17 +74,14 @@
     "Cloud Engineer",
     "DevSecOps Engineer"
   ],
-  "HIRE_ME_TEXT": "HIRE ME",
-  "RESUME_LINK": "assets/resume.pdf",
-  "RESUME_FILENAME": "Shubham_Mate_DevOps_Resume.pdf",
-  "// ABOUT SECTION": "--------------------------------------------------",
-  "PROFILE_IMAGE": "assets/img/profile.png",
+  "HIRE_ME_BUTTON": "HIRE ME",
+  "// 5. ABOUT SECTION": "--------------------------------------------------",
   "ABOUT_ME_DESCRIPTION": "I am a passionate DevOps Engineer with a strong foundation in cloud-native technologies. I specialize in automating complex workflows, managing scalable infrastructure, and ensuring the reliability of high-traffic applications. My journey in tech is driven by a curiosity for how systems work and a desire to build tools that empower developers.",
   "CURRENT_STATUS": "Open to full-time roles",
   "CURRENT_LOCATION": "Pune, India",
   "YEARS_EXPERIENCE": "~2 years experience",
   "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
-  "// EXPERIENCE SECTION": "--------------------------------------------------",
+  "// 6. EXPERIENCE SECTION": "--------------------------------------------------",
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
   "TIMELINE_DATE_3": "Aug 01, 2023",
@@ -122,10 +93,10 @@
       "start": "Jan 2024",
       "end": "Present",
       "bullets": [
-        "Maintain and improve CI/CD pipelines using GitHub Actions for 5+ microservices at Company Name",
-        "Containerized legacy Node.js applications using Docker, reducing environment inconsistencies at Company Name",
-        "Assisted in writing Terraform scripts to provision AWS EC2, S3, and RDS resources at Company Name",
-        "Set up basic Prometheus + Grafana dashboards to monitor application health on EC2 at Company Name"
+        "Maintain and improve CI/CD pipelines using GitHub Actions for 5+ microservices",
+        "Containerized legacy Node.js applications using Docker, reducing environment inconsistencies",
+        "Assisted in writing Terraform scripts to provision AWS EC2, S3, and RDS resources",
+        "Set up basic Prometheus + Grafana dashboards to monitor application health on EC2"
       ]
     },
     {
@@ -135,14 +106,14 @@
       "start": "Jun 2023",
       "end": "Dec 2023",
       "bullets": [
-        "Supported deployment of Dockerized applications to AWS ECS using shell scripts at Previous Company",
-        "Wrote Ansible playbooks to automate server configuration across dev environments at Previous Company",
+        "Supported deployment of Dockerized applications to AWS ECS using shell scripts",
+        "Wrote Ansible playbooks to automate server configuration across dev environments",
         "Learned and applied basic Kubernetes concepts — deployments, services, ConfigMaps",
-        "Collaborated with dev team to debug pipeline failures and reduce build times by 20% at Previous Company"
+        "Collaborated with dev team to debug pipeline failures and reduce build times by 20%"
       ]
     }
   ],
-  "// CERTIFICATIONS SECTION": "--------------------------------------------------",
+  "// 7. CERTIFICATIONS SECTION": "--------------------------------------------------",
   "CERTIFICATIONS_SUBTITLE": "Completed & actively pursuing",
   "CERTIFICATIONS": [
     {
@@ -182,7 +153,7 @@
       "color": "green"
     }
   ],
-  "// SKILLS SECTION": "--------------------------------------------------",
+  "// 8. SKILLS SECTION": "--------------------------------------------------",
   "SKILLS_COLORS": {
     "Infrastructure": "blue",
     "Version Control": "blue",
@@ -203,10 +174,6 @@
       },
       {
         "name": "GCP",
-        "icon": "cloud"
-      },
-      {
-        "name": "Azure (Learning)",
         "icon": "cloud"
       },
       {
@@ -285,7 +252,8 @@
       }
     ]
   },
-  "// PROJECTS SECTION": "--------------------------------------------------",
+  "// 9. PROJECTS SECTION": "--------------------------------------------------",
+  "PROJECT_2_TITLE": "CI/CD Pipeline for Microservices",
   "PROJECTS_SUBTITLE": "Hands-on labs & real projects built to learn by doing",
   "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
   "PROJECTS": [
@@ -372,7 +340,7 @@
       "fix": "Dockerized Prometheus + Grafana stack. Created custom dashboards and set up Slack alerts for high resource utilization. Detected memory leak within first 24 hours."
     }
   ],
-  "// PIPELINE SECTION": "--------------------------------------------------",
+  "// 10. PIPELINE SECTION": "--------------------------------------------------",
   "PIPELINE_DESCRIPTION": "This portfolio is itself a DevOps project — deployed via a fully automated CI/CD pipeline on AWS infrastructure provisioned with Terraform.",
   "PIPELINE_STEPS": [
     {
@@ -395,7 +363,7 @@
     },
     {
       "title": "S3 Sync",
-      "description": "next build output synced to S3 bucket",
+      "description": "Build output synced to S3 bucket",
       "icon": "upload",
       "color": "green"
     },
@@ -407,7 +375,7 @@
     }
   ],
   "PIPELINE_YAML": "name: Deploy Portfolio Website            \n  on:\n    push:\n      branches: [main]\n\n  jobs:\n    deploy:\n      runs-on: ubuntu-latest\n      steps:\n        - uses: actions/checkout@v4\n        - uses: actions/setup-node@v4\n          with: { node-version: '20' }\n        - run: npm ci && npm run build\n        - uses: aws-actions/configure-aws-credentials@v4\n          with:\n            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n            aws-region: us-east-1\n        - run: aws s3 sync out/ s3://${{ secrets.S3_BUCKET }} --delete\n        - run: aws cloudfront create-invalidation \\\\\n                --distribution-id ${{ secrets.CF_DIST_ID }} \\\\\n                --paths \"/*\"",
-  "// CONTACT & FOOTER SECTION": "--------------------------------------------------",
+  "// 11. CONTACT & FOOTER SECTION": "--------------------------------------------------",
   "EMAIL_ADDRESS": "shubhammate0604@gmail.com",
   "FORMSPREE_ID": "REPLACE_WITH_YOUR_FORMSPREE_ID",
   "CONTACT_DESCRIPTION": "Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.",
@@ -432,7 +400,16 @@
     }
   ],
   "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
-  "// TERMINAL CONFIGURATION": "--------------------------------------------------",
+  "// 12. RESUME PAGE CONFIG": "--------------------------------------------------",
+  "RESUME_PAGE_TITLE": "Professional Resume",
+  "RESUME_BACK_HOME": "Back to Home",
+  "RESUME_FULLSCREEN": "Fullscreen",
+  "RESUME_DOWNLOAD": "Download",
+  "RESUME_LINK": "assets/resume.pdf",
+  "RESUME_FILENAME": "Shubham_Mate_DevOps_Resume.pdf",
+  "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
+  "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
+  "// 13. TERMINAL (VIRTUAL OS) CONFIG": "--------------------------------------------------",
   "TERMINAL_SSH_USER": "guest",
   "TERMINAL_SSH_HOST": "shubham-mate-vps-01",
   "TERMINAL_SSH_SYSTEM": "Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-1021-aws x86_64)",
@@ -458,56 +435,56 @@
       "owner": "guest guest",
       "size": "450",
       "date": "Apr 27 14:12",
+      "color": "text-blue-300",
       "content": [
         "provider \"aws\" { region = \"us-east-1\" }",
         "resource \"aws_vpc\" \"main\" { cidr_block = \"10.0.0.0/16\" }",
         "resource \"aws_subnet\" \"public\" { vpc_id = aws_vpc.main.id }"
-      ],
-      "color": "text-blue-300"
+      ]
     },
     "deployment.yaml": {
       "perm": "-rw-r--r--",
       "owner": "guest guest",
       "size": "320",
       "date": "Apr 27 14:15",
+      "color": "text-yellow-200",
       "content": [
         "apiVersion: apps/v1",
         "kind: Deployment",
         "metadata: { name: portfolio-app }",
         "spec: { replicas: 3, selector: { matchLabels: { app: web } } }"
-      ],
-      "color": "text-yellow-200"
+      ]
     },
     "monitoring.prom": {
       "perm": "-rw-r--r--",
       "owner": "guest guest",
       "size": "210",
       "date": "Apr 27 14:20",
+      "color": "text-purple-300",
       "content": [
         "rate(http_requests_total{job=\"portfolio\"}[5m])",
         "up{job=\"kubernetes-nodes\"} == 1"
-      ],
-      "color": "text-purple-300"
+      ]
     },
     "secret.txt": {
       "perm": "-rw-r--r--",
       "owner": "guest guest",
       "size": "128",
       "date": "Apr 27 14:22",
+      "color": "text-green-400",
       "content": [
         "🚀 MISSION LOG: DEVOPS PORTFOLIO",
         "Status: Fully Automated.",
         "Tip: Try typing 'build' or 'deploy'."
-      ],
-      "color": "text-green-400"
+      ]
     },
     "production.env": {
       "perm": "-r--------",
       "owner": "root  root ",
       "size": "64",
       "date": "Apr 27 09:00",
-      "content": "Permission denied: Access to production secrets is restricted.",
-      "color": "text-red-400"
+      "color": "text-red-400",
+      "content": "Permission denied: Access to production secrets is restricted."
     }
   }
 }
