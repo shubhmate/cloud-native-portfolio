@@ -12,6 +12,57 @@
   "TWITTER_HANDLE": "",
   "HASHNODE_HANDLE": "",
   "MEDIUM_HANDLE": "",
+  "SOCIAL_LINKS": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/shubhmate",
+      "icon": "github"
+    },
+    {
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/shubham-mate",
+      "icon": "linkedin"
+    },
+    {
+      "platform": "Twitter",
+      "url": "",
+      "icon": "twitter"
+    }
+  ],
+  "// GLOBAL UI TEXT": "--------------------------------------------------",
+  "SITE_LOGO_TEXT": "devops.sh",
+  "PRELOADER_TEXT": "Initializing devops.sh...",
+  "NAV_HOME": "Home",
+  "NAV_ABOUT": "About",
+  "NAV_EXPERIENCE": "Experience",
+  "NAV_STACK": "Stack",
+  "NAV_PROJECTS": "Projects",
+  "NAV_PIPELINE": "Pipeline",
+  "NAV_CONTACT": "Contact",
+  "NAV_RESUME": "Resume",
+  "// SECTION HEADINGS": "--------------------------------------------------",
+  "SECTION_ABOUT_HINT": "// about me",
+  "SECTION_ABOUT_TITLE": "Behind the Terminals",
+  "SECTION_EXPERIENCE_HINT": "// experience",
+  "SECTION_EXPERIENCE_TITLE": "Work History",
+  "SECTION_CERTIFICATIONS_HINT": "// certifications",
+  "SECTION_CERTIFICATIONS_TITLE": "Credentials",
+  "SECTION_SKILLS_HINT": "// the stack",
+  "SECTION_SKILLS_TITLE": "Tools & Technologies",
+  "SECTION_SKILLS_INTERACTIVE_HINT": "// interactive — try it",
+  "SECTION_PROJECTS_HINT": "// projects",
+  "SECTION_PROJECTS_TITLE": "Featured Work",
+  "SECTION_PIPELINE_HINT": "// meta-project",
+  "SECTION_PIPELINE_TITLE": "How This Site is Built",
+  "SECTION_CONTACT_HINT": "// contact",
+  "SECTION_CONTACT_TITLE": "Let's Build Something",
+  "// RESUME PAGE UI": "--------------------------------------------------",
+  "RESUME_PAGE_TITLE": "Professional Resume",
+  "RESUME_BACK_HOME": "Back to Home",
+  "RESUME_FULLSCREEN": "Fullscreen",
+  "RESUME_DOWNLOAD": "Download",
+  "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
+  "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
   "// HERO SECTION": "--------------------------------------------------",
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
@@ -33,6 +84,9 @@
   "YEARS_EXPERIENCE": "~2 years experience",
   "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
   "// EXPERIENCE SECTION": "--------------------------------------------------",
+  "TIMELINE_DATE_1": "Oct 26, 2023",
+  "TIMELINE_DATE_2": "Sep 15, 2023",
+  "TIMELINE_DATE_3": "Aug 01, 2023",
   "EXPERIENCE": [
     {
       "role": "DevOps Engineer",
@@ -351,7 +405,10 @@
     }
   ],
   "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
-  "// MISC & LEGACY": "--------------------------------------------------",
+  "// TERMINAL CONFIGURATION": "--------------------------------------------------",
+  "TERMINAL_SSH_USER": "guest",
+  "TERMINAL_SSH_HOST": "shubham-mate-vps-01",
+  "TERMINAL_SSH_SYSTEM": "Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-1021-aws x86_64)",
   "TERMINAL_BUILD_PROCESS": [
     "Build Process:",
     "  1. Git push to main branch",
@@ -368,13 +425,6 @@
     "  Deploy to AWS S3: aws s3 sync out/ s3://bucket",
     "  Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ID --paths '/*'"
   ],
-  "TIMELINE_DATE_1": "Oct 26, 2023",
-  "TIMELINE_DATE_2": "Sep 15, 2023",
-  "TIMELINE_DATE_3": "Aug 01, 2023",
-  "// TERMINAL CONFIGURATION": "--------------------------------------------------",
-  "TERMINAL_SSH_USER": "guest",
-  "TERMINAL_SSH_HOST": "shubham-mate-vps-01",
-  "TERMINAL_SSH_SYSTEM": "Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-1021-aws x86_64)",
   "VIRTUAL_FILES": {
     "infrastructure.tf": {
       "perm": "-rw-r--r--",

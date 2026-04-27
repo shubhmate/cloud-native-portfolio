@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{PERSON_NAME}} - Professional Resume</title>
+  <title>{{PERSON_NAME}} - {{RESUME_PAGE_TITLE}}</title>
   
   <!-- SEO & Social -->
-  <meta name="description" content="View the professional resume of {{PERSON_NAME}}, DevOps & Cloud Engineer.">
+  <meta name="description" content="View the professional resume of {{PERSON_NAME}}, {{JOB_TITLE}}.">
   <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico">
 
   <!-- Icons -->
@@ -46,24 +46,24 @@
     <div class="flex items-center gap-2 md:gap-4">
       <a href="index.html" class="flex items-center gap-2 text-[var(--accent)] hover:scale-105 transition-transform font-mono font-bold text-sm md:text-base">
         <i data-lucide="arrow-left" class="w-5 h-5"></i>
-        <span class="hidden sm:inline">Back to Home</span>
+        <span class="hidden sm:inline">{{RESUME_BACK_HOME}}</span>
         <span class="sm:hidden">Back</span>
       </a>
       <div class="hidden md:block h-6 w-px bg-[var(--border)]"></div>
-      <h1 class="hidden lg:block font-mono text-sm text-[var(--muted)]">resume_v1.pdf</h1>
+      <h1 class="hidden lg:block font-mono text-sm text-[var(--muted)]">{{RESUME_FILENAME}}</h1>
     </div>
 
     <div class="flex items-center gap-2 md:gap-3">
       <!-- Fullscreen Button (Best for Mobile Zoom/Scroll) -->
       <a href="{{RESUME_LINK}}" target="_blank" class="flex items-center gap-2 px-3 py-2 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-xs font-bold rounded-lg transition-all">
         <i data-lucide="maximize" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Fullscreen</span>
+        <span class="hidden sm:inline">{{RESUME_FULLSCREEN}}</span>
       </a>
 
       <!-- Direct Download Fallback -->
       <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="flex items-center gap-2 px-3 py-2 md:px-4 bg-[var(--accent)] hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-blue-500/20">
         <i data-lucide="download" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">Download</span>
+        <span class="hidden sm:inline">{{RESUME_DOWNLOAD}}</span>
       </a>
       
       <!-- Theme Toggle (Perfect Sync with Home Page) -->
@@ -83,9 +83,9 @@
       >
         <div class="flex flex-col items-center justify-center h-full p-10 text-center">
             <i data-lucide="alert-circle" class="w-12 h-12 text-red-400 mb-4"></i>
-            <h2 class="text-xl font-bold mb-2">Browser Preview Not Supported</h2>
-            <p class="text-[var(--muted)] mb-6">Your browser doesn't support PDF previews. Please download the file to view it.</p>
-            <a href="{{RESUME_LINK}}" download class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">Download Resume</a>
+            <h2 class="text-xl font-bold mb-2">{{RESUME_ERROR_TITLE}}</h2>
+            <p class="text-[var(--muted)] mb-6">{{RESUME_ERROR_SUB}}</p>
+            <a href="{{RESUME_LINK}}" download class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">{{RESUME_DOWNLOAD}} {{NAV_RESUME}}</a>
         </div>
       </iframe>
     </div>

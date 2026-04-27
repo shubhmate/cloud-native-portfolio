@@ -138,7 +138,7 @@
       <!-- Text -->
       <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
         <span class="animate-pulse-custom">_</span>
-        Initializing devops.sh...
+        {{PRELOADER_TEXT}}
       </p>
     </div>
   </div>
@@ -180,23 +180,21 @@
           <i data-lucide="terminal" 
              class="absolute w-3.5 h-3.5 text-[var(--accent)] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"></i>
         </div>
-        <span class="tracking-tight">devops.sh</span>
+        <span class="tracking-tight">{{SITE_LOGO_TEXT}}</span>
       </a>
 
       <!-- Desktop Navigation Links -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="#home" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Home</a>
-        <a href="#about" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">About</a>
-        <a href="#experience" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Experience</a>
-        <a href="#skills" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Stack</a>
-        <a href="#projects" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Projects</a>
-        <a href="#pipeline" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Pipeline</a> 
-        <!-- Blog Link (Commented Out) -->
-        <!-- <a href="#blog" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Blog</a> -->
+        <a href="#home" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_HOME}}</a>
+        <a href="#about" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_ABOUT}}</a>
+        <a href="#experience" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_EXPERIENCE}}</a>
+        <a href="#skills" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_STACK}}</a>
+        <a href="#projects" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_PROJECTS}}</a>
+        <a href="#pipeline" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_PIPELINE}}</a> 
 
-        <a href="#contact" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Contact</a>
+        <a href="#contact" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">{{NAV_CONTACT}}</a>
         <a href="resume.html" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="View Resume">
-          Resume
+          {{NAV_RESUME}}
         </a> 
         <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
           <i data-lucide="sun" class="w-5 h-5"></i>
@@ -216,18 +214,16 @@
 
     <!-- Mobile Navigation Menu (hidden by default, toggled by JS) -->
     <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
-      <a href="#home" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Home</a>
-      <a href="#about" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">About</a>
-      <a href="#experience" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Experience</a>
-      <a href="#skills" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Stack</a>
-      <a href="#projects" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Projects</a>
-      <a href="#pipeline" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Pipeline</a> 
-      <!-- Blog Link (Commented Out) -->
-      <!-- <a href="#blog" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Blog</a> -->
+      <a href="#home" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_HOME}}</a>
+      <a href="#about" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_ABOUT}}</a>
+      <a href="#experience" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_EXPERIENCE}}</a>
+      <a href="#skills" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_STACK}}</a>
+      <a href="#projects" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_PROJECTS}}</a>
+      <a href="#pipeline" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_PIPELINE}}</a> 
 
-      <a href="#contact" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Contact</a>
+      <a href="#contact" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">{{NAV_CONTACT}}</a>
       <a href="resume.html" class="block px-2 py-1 w-fit font-mono text-sm text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="View Resume">
-        Resume
+        {{NAV_RESUME}}
       </a>
     </div>
   </nav>
@@ -318,9 +314,9 @@
           <div class="flex-1 animate-fade-up">
             <div class="flex items-center gap-2 mb-4">
               <i data-lucide="user" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-[var(--accent)] text-sm">// about me</p>
+              <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_ABOUT_HINT}}</p>
             </div>
-            <h2 class="font-mono text-3xl font-bold mb-6">Behind the Terminals</h2>
+            <h2 class="font-mono text-3xl font-bold mb-6">{{SECTION_ABOUT_TITLE}}</h2>
             <div class="space-y-4 text-[var(--muted)] leading-relaxed text-lg">
               <p>
                 {{ABOUT_ME_DESCRIPTION}}
@@ -349,10 +345,10 @@
           <div class="animate-fade-up">
             <div class="flex items-center gap-2 mb-8">
               <i data-lucide="briefcase" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-sm text-[var(--accent)]">// experience</p>
+              <p class="font-mono text-sm text-[var(--accent)]">{{SECTION_EXPERIENCE_HINT}}</p>
             </div>
             <!-- Work History -->
-            <h2 class="font-mono text-3xl font-bold mb-2">Work History</h2>
+            <h2 class="font-mono text-3xl font-bold mb-2">{{SECTION_EXPERIENCE_TITLE}}</h2>
             <p class="text-[var(--muted)] text-sm mb-8">{{EXP_SUMMARY}}</p>
             <!-- Timeline -->
             <div class="relative">
@@ -369,10 +365,10 @@
           <div class="animate-fade-up">
             <div class="flex items-center gap-2 mb-8">
               <i data-lucide="award" class="w-5 h-5 text-green-400"></i>
-              <p class="font-mono text-sm text-green-400">// certifications</p>
+              <p class="font-mono text-sm text-green-400">{{SECTION_CERTIFICATIONS_HINT}}</p>
             </div>
             <!-- Certification Cards -->
-            <h2 class="font-mono text-3xl font-bold mb-2">Credentials</h2>
+            <h2 class="font-mono text-3xl font-bold mb-2">{{SECTION_CERTIFICATIONS_TITLE}}</h2>
             <p class="text-[var(--muted)] text-sm mb-8">{{CERTIFICATIONS_SUBTITLE}}</p>
             <div class="grid grid-cols-2 gap-3">
               {{CERTIFICATIONS_GRID}}
@@ -389,9 +385,9 @@
         <div class="animate-fade-up">
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="layers" class="w-5 h-5 text-[var(--accent)]"></i>
-            <p class="font-mono text-[var(--accent)] text-sm">// the stack</p>
+            <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_SKILLS_HINT}}</p>
           </div>
-          <h2 class="font-mono text-3xl font-bold">Tools & Technologies</h2>
+          <h2 class="font-mono text-3xl font-bold">{{SECTION_SKILLS_TITLE}}</h2>
         </div>
       </div>
 
@@ -422,7 +418,7 @@
         <!-- Right — terminal -->
         <!-- Interactive Terminal Simulator -->
         <div class="animate-fade-up">
-          <p class="font-mono text-xs mb-3 text-[var(--accent)] transition-colors cursor-text">// interactive — try it</p>
+          <p class="font-mono text-xs mb-3 text-[var(--accent)] transition-colors cursor-text">{{SECTION_SKILLS_INTERACTIVE_HINT}}</p>
           <div class="rounded-xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden hover:border-[var(--accent)] cursor-text card-hover" id="terminal">
             <!-- Title bar -->
             <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg)]">
@@ -460,9 +456,9 @@
           <!-- Section Header -->
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="folder-git-2" class="w-5 h-5 text-[var(--accent)]"></i>
-            <p class="font-mono text-[var(--accent)] text-sm">// projects</p>
+            <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_PROJECTS_HINT}}</p>
           </div>
-          <h2 class="font-mono text-3xl font-bold mb-2">Featured Work</h2>
+          <h2 class="font-mono text-3xl font-bold mb-2">{{SECTION_PROJECTS_TITLE}}</h2>
           <p class="text-[var(--muted)] text-sm mb-12">
             {{PROJECTS_SUBTITLE}}
             <span class="text-[var(--accent)] font-mono">{{PROJECTS_FLIP_HINT}}</span>
@@ -530,9 +526,9 @@
         <div class="animate-fade-up">
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="git-fork" class="w-5 h-5 text-[var(--accent)]"></i>
-            <p class="font-mono text-[var(--accent)] text-sm">// meta-project</p>
+            <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_PIPELINE_HINT}}</p>
           </div>
-          <h2 class="font-mono text-3xl font-bold mb-3">How This Site is Built</h2>
+          <h2 class="font-mono text-3xl font-bold mb-3">{{SECTION_PIPELINE_TITLE}}</h2>
           <p class="text-[var(--muted)] mb-12 max-w-2xl">
             {{PIPELINE_DESCRIPTION}}
           </p>
@@ -574,10 +570,9 @@
           <div>
             <div class="flex items-center gap-2 mb-2">
               <i data-lucide="mail" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-[var(--accent)] text-sm">// contact</p>
+              <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_CONTACT_HINT}}</p>
             </div>
-
-            <h2 class="font-mono text-3xl font-bold mb-4">Let&apos;s Build Something</h2>
+            <h2 class="font-mono text-3xl font-bold mb-4">{{SECTION_CONTACT_TITLE}}</h2>
             <p class="text-[var(--muted)] mb-8 leading-relaxed">
               {{CONTACT_DESCRIPTION}}
             </p>
