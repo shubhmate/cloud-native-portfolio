@@ -4,56 +4,63 @@
  * Reorganized by visual section order for better maintainability.
  */
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* =========================================================================
    1. DESIGN TOKENS & BASE STYLES
    ========================================================================= */
 
-:root {
-  /* Typography */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+@layer base {
+  :root {
+    /* Typography */
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
 
-  /* Colors (Dark Theme - Default) */
-  --bg: #0f1117;
-  --surface: #1a1d27;
-  --border: #2a2d3a;
-  --text: #e2e8f0;
-  --accent: #3b82f6;
-  --green: #22c55e;
-  --muted: #6b7280;
-  --green-rgb: 34, 197, 94;
-  --glass-bg: rgba(26, 29, 39, 0.8);
-  --status-green: var(--green);
+    /* Colors (Dark Theme - Default) */
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3a;
+    --text: #e2e8f0;
+    --accent: #3b82f6;
+    --green: #22c55e;
+    --muted: #6b7280;
+    --green-rgb: 34, 197, 94;
+    --glass-bg: rgba(26, 29, 39, 0.8);
+    --status-green: var(--green);
+  }
+
+  /* Light Theme Overrides */
+  html.light {
+    --bg: #f8f9fa;
+    --surface: #ffffff;
+    --border: #e0e0e0;
+    --text: #212121;
+    --glass-bg: rgba(255, 255, 255, 0.8);
+  }
+
+  * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: var(--accent); color: #ffffff; }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 }
-
-/* Light Theme Overrides */
-html.light {
-  --bg: #f8f9fa;
-  --surface: #ffffff;
-  --border: #e0e0e0;
-  --text: #212121;
-  --glass-bg: rgba(255, 255, 255, 0.8);
-}
-
-* { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg);
-  color: var(--text);
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  scroll-behavior: smooth;
-  overflow-x: hidden;
-}
-
-::selection { background: var(--accent); color: #ffffff; }
-
-/* Custom Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
 
 /* Utilities */

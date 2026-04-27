@@ -92,9 +92,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (navbar) {
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                navbar.classList.add('bg-bg/95', 'backdrop-blur-md', 'border-b', 'border-border');
+                navbar.classList.add('bg-brand-bg/95', 'backdrop-blur-md', 'border-b', 'border-brand-border');
             } else {
-                navbar.classList.remove('bg-bg/95', 'backdrop-blur-md', 'border-b', 'border-border');
+                navbar.classList.remove('bg-brand-bg/95', 'backdrop-blur-md', 'border-b', 'border-brand-border');
             }
         });
     }

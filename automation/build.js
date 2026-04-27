@@ -460,11 +460,7 @@ try {
     console.log('✔ dist/resume.html generated.');
   }
   
-  // 5. Process assets/css/main.css
-  let mainCssContent = fs.readFileSync(mainCssTemplatePath, 'utf8');
-  mainCssContent = applyReplacements(mainCssContent, config);
-  fs.writeFileSync(mainCssDistPath, mainCssContent, 'utf8');
-  console.log('✔ dist/assets/css/main.css generated.');
+  // 5. CSS is handled by Tailwind CLI (see package.json)
 
   // 6. Process assets/js/main.js
   let mainJsContent = fs.readFileSync(mainJsTemplatePath, 'utf8');

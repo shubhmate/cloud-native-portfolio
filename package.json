@@ -7,7 +7,9 @@
     "doc": "docs"
   },
   "scripts": {
-    "build": "node automation/build.js",
+    "build:css": "npx tailwindcss -c tailwind.config.js -i ./src/styles/main.css -o ./dist/assets/css/main.css --minify",
+    "build:js": "node automation/build.js",
+    "build": "npm run build:js && npm run build:css",
     "fetch": "node automation/fetch-github.js",
     "dev": "npm run build && npx -y http-server dist",
     "prepare": "husky"
@@ -17,7 +19,10 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "autoprefixer": "^10.5.0",
     "htmlhint": "^1.9.2",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "postcss": "^8.5.12",
+    "tailwindcss": "^3.4.17"
   }
 }
