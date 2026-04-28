@@ -481,6 +481,19 @@ async function build() {
     fs.copyFileSync(PATHS.config, PATHS.output.clientConfig);
     console.log('✔ Client configuration synced.');
 
+    // 7. Process & Copy public/ root files (robots.txt, sitemap.xml, etc.)
+    const publicDir = path.join(PROJECT_ROOT, 'public');
+    if (fs.existsSync(publicDir)) {
+      fs.readdirSync(publicDir).forEach(file => {
+        const srcFile  = path.join(publicDir, file);
+        const destFile = path.join(PATHS.dist, file);
+        let content = fs.readFileSync(srcFile, 'utf8');
+        content = applyReplacements(content, config);
+        fs.writeFileSync(destFile, content, 'utf8');
+      });
+      console.log('✔ Public root files synced. (robots.txt, sitemap.xml)');
+    }
+
     console.log('\n✨ Build complete! Your site is ready in /dist');
 
   } catch (error) {
