@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PERSON_NAME}} - {{RESUME_PAGE_TITLE}}</title>
+  
+  <!-- SEO & Social -->
+  <meta name="description" content="View the professional resume of {{PERSON_NAME}}, {{JOB_TITLE}}.">
+  <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico">
+
+  <!-- Icons -->
+  <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js"></script>
+  <link rel="stylesheet" href="assets/css/main.css">
+  
+  <style>
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      overflow: hidden; /* Prevent double scrollbars */
+    }
+    .viewer-container {
+      height: calc(100vh - 64px); /* Full height minus header */
+      width: 100%;
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+    }
+    .resume-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .glass-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+  <!-- Minimal Header -->
+  <header class="glass-header h-16 fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6">
+    <div class="flex items-center gap-2 md:gap-4">
+      <a href="index.html" class="flex items-center gap-2 text-[var(--accent)] hover:scale-105 transition-transform font-mono font-bold text-sm md:text-base">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+        <span class="hidden sm:inline">{{RESUME_BACK_HOME}}</span>
+        <span class="sm:hidden">Back</span>
+      </a>
+      <div class="hidden md:block h-6 w-px bg-[var(--border)]"></div>
+      <h1 class="hidden lg:block font-mono text-sm text-[var(--muted)]">{{RESUME_FILENAME}}</h1>
+    </div>
+
+    <div class="flex items-center gap-2 md:gap-3">
+      <!-- Fullscreen Button (Best for Mobile Zoom/Scroll) -->
+      <a href="{{RESUME_LINK}}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-xs font-bold rounded-lg transition-all">
+        <i data-lucide="maximize" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">{{RESUME_FULLSCREEN}}</span>
+      </a>
+
+      <!-- Direct Download Fallback -->
+      <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="flex items-center gap-2 px-3 py-2 md:px-4 bg-[var(--accent)] hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-blue-500/20">
+        <i data-lucide="download" class="w-4 h-4"></i>
+        <span class="hidden sm:inline">{{RESUME_DOWNLOAD}}</span>
+      </a>
+      
+      <!-- Theme Toggle (Perfect Sync with Home Page) -->
+      <button id="theme-toggle" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+        <i data-lucide="sun" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Native PDF Viewer Container -->
+  <main class="pt-16">
+    <div class="viewer-container">
+      <iframe 
+        src="{{RESUME_LINK}}#toolbar=1&navpanes=0&scrollbar=1" 
+        class="resume-iframe"
+        title="{{PERSON_NAME}} Resume"
+      >
+        <div class="flex flex-col items-center justify-center h-full p-10 text-center">
+            <i data-lucide="alert-circle" class="w-12 h-12 text-red-400 mb-4"></i>
+            <h2 class="text-xl font-bold mb-2">{{RESUME_ERROR_TITLE}}</h2>
+            <p class="text-[var(--muted)] mb-6">{{RESUME_ERROR_SUB}}</p>
+            <a href="{{RESUME_LINK}}" download class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">{{RESUME_DOWNLOAD}}</a>
+        </div>
+      </iframe>
+    </div>
+  </main>
+
+  <script>
+    // Theme Logic (Sync with Main Site)
+    const html = document.documentElement;
+    const themeBtn = document.getElementById('theme-toggle');
+    
+    function updateTheme(theme) {
+        // 1. Update Classes
+        if (theme === 'dark') {
+            html.classList.add('dark');
+            html.classList.remove('light');
+        } else {
+            html.classList.add('light');
+            html.classList.remove('dark');
+        }
+
+        // 2. Update Icon (Symmetric with Main Site)
+        const iconName = theme === 'dark' ? 'sun' : 'moon';
+        themeBtn.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
+        
+        // 3. Re-render Icons
+        if (window.lucide) lucide.createIcons();
+    }
+
+    // Init Theme
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    updateTheme(savedTheme);
+
+    // Toggle Theme
+    themeBtn.addEventListener('click', () => {
+        const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem('theme', newTheme);
+        updateTheme(newTheme);
+    });
+
+    // Init Lucide
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+</body>
+</html>

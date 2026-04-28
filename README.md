@@ -1,188 +1,64 @@
-# DevOps Portfolio Website
+# 🚀 DevOps Engineer Portfolio
 
-A professional, high-performance static portfolio website built with HTML5, Tailwind CSS, and Vanilla JavaScript. Features comprehensive enhancements including dark/light theme toggle, toast notifications, and enhanced accessibility.
-
-## ✨ Features
-
-### Core Features
-- **Static Site**: No server-side languages, runs directly in the browser
-- **Responsive Design**: Mobile-friendly with dark/light theme support
-- **Interactive Elements**: Typewriter effect, particle animation, terminal simulator, flip cards
-- **Contact Form**: Integrated with Formspree for easy contact handling
-- **Resume Download**: Prominent download button for your resume
-
-### Enhanced Features
-- **Theme Toggle**: Dark/Light mode with persistent user preference
-- **Toast Notifications**: Visual feedback for user actions
-- **Copy-to-Clipboard**: Click email to copy with confirmation
-- **Scroll-to-Top**: Smooth scroll button that appears on scroll
-- **Enhanced Terminal**: Interactive terminal with 6+ commands
-- **Keyboard Navigation**: Full keyboard accessibility support
-- **SEO Optimized**: Meta tags, Open Graph, JSON-LD structured data
-
-## 🚀 Quick Start
-
-### 1. Customize Your Information
-```bash
-# Replace placeholders in index.html
-your-github-handle → your-actual-github
-your-linkedin-profile → your-actual-linkedin
-your.email@example.com → your-actual-email
-your-formspree-id → get-from-formspree.io
-# 1. Edit tools/config.json with your personal details.
-# 2. Run the personalization script to apply changes to your website files:
-node tools/personalize.js
-```
-
-### 2. Add Your Resume
-```bash
-# Place your resume in the root directory
-resume.pdf
-```
-
-### 3. Integrate Enhancements (Optional but Recommended)
-```bash
-# Copy code from assets/ folders into index.html
-# See docs/IMPLEMENTATION_GUIDE.md for details
-```
-
-### 4. Test Locally
-```bash
-# Open index.html in your browser
-# Test all features: theme toggle, terminal, forms, etc.
-```
-
-### 5. Deploy
-Choose your preferred platform:
-- **GitHub Pages** (Free, shows Git knowledge)
-- **Netlify** (Best for forms, drag & drop)
-- **Vercel** (Optimized performance)
-- **AWS S3 + CloudFront** (Demonstrates DevOps skills)
-
-## 📁 Professional File Structure
-
-```
-static-portfolio/
-├── index.html                    # Main website file
-├── README.md                     # This documentation
-├── resume.pdf                    # Your resume (add this)
-│
-├── assets/                       # Static assets
-│   ├── css/
-│   │   └── NEW_CSS_STYLES.css    # Enhancement styles
-│   └── js/
-│       ├── NEW_JAVASCRIPT_FEATURES.js     # Enhancement scripts
-│       └── UPDATED_TERMINAL_COMMANDS.js   # Terminal commands
-│
-└── docs/                         # Documentation
-    ├── 00_READ_ME_FIRST.txt      # Visual summary
-    ├── START_HERE.md             # Quick reference
-    ├── MASTER_CHECKLIST.md       # Complete checklist
-    ├── IMPLEMENTATION_GUIDE.md   # Integration steps
-    ├── SUGGESTIONS_AND_IMPROVEMENTS.md  # Feature details
-    └── ENHANCEMENTS_APPLIED.txt  # Changes summary
-```
-
-## 🛠️ Setup Instructions
-
-### Basic Setup (Required)
-1. **Replace Placeholders** in `index.html`:
-   - Update all social media links
-   - Replace email address
-   - Update company names and dates
-   - Get Formspree ID from [formspree.io](https://formspree.io)
-
-2. **Add Resume**:
-   - Place your resume as `resume.pdf` in the root directory
-
-### Enhancement Integration (Recommended)
-1. **Copy CSS Styles**:
-   - Copy content from `assets/css/NEW_CSS_STYLES.css`
-   - Paste into `<style>` section in `index.html`
-
-2. **Copy JavaScript Functions**:
-   - Copy content from `assets/js/NEW_JAVASCRIPT_FEATURES.js`
-   - Paste into `<script>` section in `index.html`
-
-3. **Update Terminal Commands**:
-   - Replace the `commands` object in `index.html`
-   - Use content from `assets/js/UPDATED_TERMINAL_COMMANDS.js`
-
-## 🎨 New Features After Integration
-
-| Feature | Description | Status |
-|---------|-------------|--------|
-| **Theme Toggle** | Dark/Light mode with localStorage | ⏳ Code provided |
-| **Toast Notifications** | Visual feedback for actions | ⏳ Code provided |
-| **Copy-to-Clipboard** | Click email to copy | ⏳ Code provided |
-| **Scroll-to-Top** | Smooth scroll button | ⏳ Code provided |
-| **Enhanced Terminal** | 6 new commands (build, deploy, etc.) | ⏳ Code provided |
-| **Keyboard Navigation** | Full accessibility support | ⏳ Code provided |
-
-## 📚 Documentation
-
-Start with these files in order:
-1. **`docs/00_READ_ME_FIRST.txt`** - Visual summary
-2. **`docs/START_HERE.md`** - Quick reference
-3. **`docs/MASTER_CHECKLIST.md`** - Complete checklist
-4. **`docs/IMPLEMENTATION_GUIDE.md`** - Step-by-step integration
-
-## 🌐 Hosting Options
-
-### GitHub Pages (Recommended for Beginners)
-```bash
-git init
-git add .
-git commit -m "DevOps Portfolio"
-git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/portfolio.git
-git push -u origin main
-# Enable Pages in repo settings
-```
-
-### Netlify (Best for Forms)
-- Visit [netlify.com](https://netlify.com)
-- Drag & drop `index.html`
-- Automatic HTTPS and form handling
-
-### AWS S3 + CloudFront (Show DevOps Skills)
-- Demonstrates infrastructure knowledge
-- Cost: ~$1-5/month
-- Perfect for DevOps portfolio
-
-## 🔧 Customization
-
-### Styling
-- **Framework**: Tailwind CSS (CDN)
-- **Icons**: Lucide icons (CDN)
-- **Fonts**: Inter and JetBrains Mono (Google Fonts)
-- **Theme**: Dark mode default, light mode optional
-
-### Content
-- Update project descriptions with real metrics
-- Add actual GitHub repository links
-- Include quantifiable achievements
-- Add real company names and dates
-
-## 📱 Browser Support
-
-Works in all modern browsers supporting:
-- ES6+ JavaScript
-- CSS Grid and Flexbox
-- CSS Custom Properties
-- Local Storage API
-
-## 🤝 Contributing
-
-This is a portfolio template. Feel free to:
-- Use as a starting point for your portfolio
-- Modify and customize to your needs
-- Share improvements with the community
-
-## 📄 License
-
-MIT License - Free to use for personal and commercial projects.
+A professional, high-performance static portfolio website built with a **Product-First** mindset. This project isn't just a webpage—it's a showcase of **CI/CD automation**, **Infrastructure as Code (IaC)**, and **Source-to-Build** architecture.
 
 ---
 
-**Built with ❤️ for DevOps professionals**
+## 🏗 System Architecture
+
+This project follows an industry-standard **Source/Dist** separation, ensuring that source code and build artifacts never mix.
+
+```text
+/static-portfolio
+├── automation/       # Build & Data-fetching scripts (Node.js)
+├── config/           # Site content & configuration (JSON)
+├── src/              # Source code (Templates, CSS, JS)
+├── dist/             # Generated production-ready site (S3/CloudFront Target)
+├── docs/             # Technical documentation & architecture
+└── notes/            # Internal development notes
+```
+
+## 🛠 Features & Automation
+
+- **Automated Data Sync**: Fetches real-time project data and descriptions from the GitHub API.
+- **Atomic Builds**: A custom Node.js engine fills templates and generates a minified, production-ready `dist/` folder.
+- **Quality Gates**: Husky pre-commit hooks ensure that data is synced and the site builds successfully before any code is saved.
+- **Dev Server**: Integrated local development environment with instant previews.
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18+)
+- npm
+
+### Installation
+```bash
+git clone https://github.com/shubhmate/static-portfolio.git
+cd static-portfolio
+npm install
+```
+
+### Development Workflow
+To start the local development server and preview changes:
+```bash
+npm run dev
+```
+
+### Sync GitHub Projects
+To update your portfolio with your latest GitHub repositories:
+```bash
+npm run fetch
+```
+
+### Production Build
+To generate the final website for deployment:
+```bash
+npm run build
+```
+
+## ☁️ Deployment
+This project is designed to be deployed to **AWS (S3 + CloudFront)** via a GitHub Actions pipeline. Only the contents of the `dist/` folder are synced to the edge, ensuring a clean and secure production environment.
+
+---
+
+**Crafted by [Shubham Mate](https://shubhammate.com)**

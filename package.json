@@ -1,13 +1,17 @@
 {
   "name": "static-portfolio",
-  "version": "1.0.0",
+  "version": "1.5.0",
   "description": "A professional, high-performance static portfolio website built with HTML5, Tailwind CSS, and Vanilla JavaScript. Features comprehensive enhancements including dark/light theme toggle, toast notifications, and enhanced accessibility.",
   "main": "index.js",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -c tailwind.config.js -i ./src/styles/main.css -o ./dist/assets/css/main.css --minify",
+    "build:js": "node automation/build.js",
+    "build": "npm run build:js && npm run build:css",
+    "fetch": "node automation/fetch-github.js",
+    "dev": "npm run build && npx -y http-server dist",
     "prepare": "husky"
   },
   "keywords": [],
@@ -15,7 +19,10 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "autoprefixer": "^10.5.0",
     "htmlhint": "^1.9.2",
-    "husky": "^9.1.7"
+    "husky": "^9.1.7",
+    "postcss": "^8.5.12",
+    "tailwindcss": "^3.4.17"
   }
 }

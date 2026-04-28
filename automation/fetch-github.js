@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
-const configPath = path.join(__dirname, 'config.json');
+const configPath = path.join(__dirname, '..', 'config', 'site-config.json');
 
 function fetchRepoData(username, repo) {
   return new Promise((resolve, reject) => {

@@ -8,21 +8,21 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="{{META_DESCRIPTION}}">
   <meta name="keywords" content="DevOps, AWS, Docker, Kubernetes, Terraform, CI/CD, GitHub Actions, {{JOB_TITLE}}">
-  <meta name="author" content="{{JOB_TITLE}}">
+  <meta name="author" content="{{PERSON_NAME}}">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0f1117">
 
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{{JOB_TITLE}} Portfolio - Cloud Infrastructure & Automation">
-  <meta property="og:description" content="Building & automating cloud infrastructure. AWS, Docker, Terraform, CI/CD pipelines.">
+  <meta property="og:title" content="{{PERSON_NAME}} — {{JOB_TITLE}} Portfolio">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
   <meta property="og:url" content="{{PORTFOLIO_URL}}">
   <meta property="og:image" content="{{PORTFOLIO_URL}}/og-image.png">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{JOB_TITLE}} Portfolio">
-  <meta name="twitter:description" content="Building & automating cloud infrastructure. AWS, Docker, Terraform, CI/CD.">
+  <meta name="twitter:title" content="{{PERSON_NAME}} — {{JOB_TITLE}} Portfolio">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
   <meta name="twitter:image" content="{{PORTFOLIO_URL}}/og-image.png">
 
   <!-- Canonical URL for SEO -->
@@ -62,29 +62,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Schema.org Structured Data for SEO -->
+  <!-- Helps Google show a knowledge panel with your name, title & social links -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person", 
+    "@type": "Person",
     "name": "{{PERSON_NAME}}",
     "url": "{{PORTFOLIO_URL}}",
     "jobTitle": "{{JOB_TITLE}}",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "{{COMPANY_NAME}}" // Replace with your current company name
-    },
-    "alumniOf": "{{PREVIOUS_COMPANY}}", // Replace with your previous company name
     "sameAs": [
       "{{GITHUB_HANDLE}}",
-      "{{LINKEDIN_PROFILE}}",
-      "{{HASHNODE_HANDLE}}"
+      "{{LINKEDIN_PROFILE}}"
     ],
     "knowsAbout": ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "GitHub Actions", "Prometheus", "Grafana"]
   }
   </script>
   
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com/3.4.0" defer></script>
+  <!-- Icons -->
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
   <link rel="stylesheet" href="assets/css/main.css">
@@ -139,7 +133,7 @@
       <!-- Text -->
       <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
         <span class="animate-pulse-custom">_</span>
-        Initializing devops.sh...
+        {{PRELOADER_TEXT}}
       </p>
     </div>
   </div>
@@ -181,24 +175,12 @@
           <i data-lucide="terminal" 
              class="absolute w-3.5 h-3.5 text-[var(--accent)] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"></i>
         </div>
-        <span class="tracking-tight">devops.sh</span>
+        <span class="tracking-tight">{{SITE_LOGO_TEXT}}</span>
       </a>
 
       <!-- Desktop Navigation Links -->
       <div class="hidden lg:flex items-center gap-6">
-        <a href="#home" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Home</a>
-        <a href="#about" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">About</a>
-        <a href="#experience" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Experience</a>
-        <a href="#skills" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Stack</a>
-        <a href="#projects" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Projects</a>
-        <a href="#pipeline" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Pipeline</a> 
-        <!-- Blog Link (Commented Out) -->
-        <!-- <a href="#blog" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Blog</a> -->
-
-        <a href="#contact" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Contact</a>
-        <a href="{{RESUME_LINK}}" download class="px-4 py-2 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="Download Resume">
-          Resume
-        </a> 
+        {{NAV_DESKTOP}}
         <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
           <i data-lucide="sun" class="w-5 h-5"></i>
         </button>
@@ -216,20 +198,8 @@
     </div>
 
     <!-- Mobile Navigation Menu (hidden by default, toggled by JS) -->
-    <div id="mobile-menu" class="lg:hidden bg-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
-      <a href="#home" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Home</a>
-      <a href="#about" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">About</a>
-      <a href="#experience" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Experience</a>
-      <a href="#skills" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Stack</a>
-      <a href="#projects" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Projects</a>
-      <a href="#pipeline" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Pipeline</a> 
-      <!-- Blog Link (Commented Out) -->
-      <!-- <a href="#blog" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Blog</a> -->
-
-      <a href="#contact" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">Contact</a>
-      <a href="{{RESUME_LINK}}" download class="block px-2 py-1 w-fit font-mono text-sm text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="Download Resume">
-        Resume
-      </a>
+    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
+      {{NAV_MOBILE}}
     </div>
   </nav>
 
@@ -270,15 +240,15 @@
 
         <!-- Call-to-action buttons -->
         <div class="flex flex-wrap gap-4 justify-center mb-12">
-          <a href="#projects" class="px-6 py-3 bg-[var(--accent)] hover:bg-blue-500 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105">
+          <a href="#projects" class="px-6 py-3 bg-[var(--accent)] hover:bg-blue-500 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 flex items-center gap-2">
+            <i data-lucide="folder-git-2" class="w-4 h-4"></i>
             View Projects
           </a>
           <a
-            href="{{RESUME_LINK}}"
-            download
-            class="px-6 py-3 border border-[var(--accent)] text-[var(--accent)] font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 hover:scale-105">
-            <i data-lucide="download" class="w-4 h-4"></i>
-            Download Resume
+            href="resume.html"
+            class="px-6 py-3 border border-[var(--green)] text-[var(--green)] font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 hover:scale-105 hover:bg-[var(--green)] hover:text-white">
+            <i data-lucide="file-text" class="w-4 h-4"></i>
+            View Resume
           </a>
         </div>
         
@@ -319,9 +289,9 @@
           <div class="flex-1 animate-fade-up">
             <div class="flex items-center gap-2 mb-4">
               <i data-lucide="user" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-[var(--accent)] text-sm">// about me</p>
+              <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_ABOUT_HINT}}</p>
             </div>
-            <h2 class="font-mono text-3xl font-bold mb-6">Behind the Terminals</h2>
+            <h2 class="font-mono text-3xl font-bold mb-6">{{SECTION_ABOUT_TITLE}}</h2>
             <div class="space-y-4 text-[var(--muted)] leading-relaxed text-lg">
               <p>
                 {{ABOUT_ME_DESCRIPTION}}
@@ -350,10 +320,10 @@
           <div class="animate-fade-up">
             <div class="flex items-center gap-2 mb-8">
               <i data-lucide="briefcase" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-sm text-[var(--accent)]">// experience</p>
+              <p class="font-mono text-sm text-[var(--accent)]">{{SECTION_EXPERIENCE_HINT}}</p>
             </div>
             <!-- Work History -->
-            <h2 class="font-mono text-3xl font-bold mb-2">Work History</h2>
+            <h2 class="font-mono text-3xl font-bold mb-2">{{SECTION_EXPERIENCE_TITLE}}</h2>
             <p class="text-[var(--muted)] text-sm mb-8">{{EXP_SUMMARY}}</p>
             <!-- Timeline -->
             <div class="relative">
@@ -370,10 +340,10 @@
           <div class="animate-fade-up">
             <div class="flex items-center gap-2 mb-8">
               <i data-lucide="award" class="w-5 h-5 text-green-400"></i>
-              <p class="font-mono text-sm text-green-400">// certifications</p>
+              <p class="font-mono text-sm text-green-400">{{SECTION_CERTIFICATIONS_HINT}}</p>
             </div>
             <!-- Certification Cards -->
-            <h2 class="font-mono text-3xl font-bold mb-2">Credentials</h2>
+            <h2 class="font-mono text-3xl font-bold mb-2">{{SECTION_CERTIFICATIONS_TITLE}}</h2>
             <p class="text-[var(--muted)] text-sm mb-8">{{CERTIFICATIONS_SUBTITLE}}</p>
             <div class="grid grid-cols-2 gap-3">
               {{CERTIFICATIONS_GRID}}
@@ -390,9 +360,9 @@
         <div class="animate-fade-up">
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="layers" class="w-5 h-5 text-[var(--accent)]"></i>
-            <p class="font-mono text-[var(--accent)] text-sm">// the stack</p>
+            <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_SKILLS_HINT}}</p>
           </div>
-          <h2 class="font-mono text-3xl font-bold">Tools & Technologies</h2>
+          <h2 class="font-mono text-3xl font-bold">{{SECTION_SKILLS_TITLE}}</h2>
         </div>
       </div>
 
@@ -423,7 +393,7 @@
         <!-- Right — terminal -->
         <!-- Interactive Terminal Simulator -->
         <div class="animate-fade-up">
-          <p class="font-mono text-xs mb-3 text-[var(--accent)] transition-colors cursor-text">// interactive — try it</p>
+          <p class="font-mono text-xs mb-3 text-[var(--accent)] transition-colors cursor-text">{{SECTION_SKILLS_INTERACTIVE_HINT}}</p>
           <div class="rounded-xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden hover:border-[var(--accent)] cursor-text card-hover" id="terminal">
             <!-- Title bar -->
             <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg)]">
@@ -461,9 +431,9 @@
           <!-- Section Header -->
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="folder-git-2" class="w-5 h-5 text-[var(--accent)]"></i>
-            <p class="font-mono text-[var(--accent)] text-sm">// projects</p>
+            <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_PROJECTS_HINT}}</p>
           </div>
-          <h2 class="font-mono text-3xl font-bold mb-2">Featured Work</h2>
+          <h2 class="font-mono text-3xl font-bold mb-2">{{SECTION_PROJECTS_TITLE}}</h2>
           <p class="text-[var(--muted)] text-sm mb-12">
             {{PROJECTS_SUBTITLE}}
             <span class="text-[var(--accent)] font-mono">{{PROJECTS_FLIP_HINT}}</span>
@@ -531,9 +501,9 @@
         <div class="animate-fade-up">
           <div class="flex items-center gap-2 mb-2">
             <i data-lucide="git-fork" class="w-5 h-5 text-[var(--accent)]"></i>
-            <p class="font-mono text-[var(--accent)] text-sm">// meta-project</p>
+            <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_PIPELINE_HINT}}</p>
           </div>
-          <h2 class="font-mono text-3xl font-bold mb-3">How This Site is Built</h2>
+          <h2 class="font-mono text-3xl font-bold mb-3">{{SECTION_PIPELINE_TITLE}}</h2>
           <p class="text-[var(--muted)] mb-12 max-w-2xl">
             {{PIPELINE_DESCRIPTION}}
           </p>
@@ -575,10 +545,9 @@
           <div>
             <div class="flex items-center gap-2 mb-2">
               <i data-lucide="mail" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-[var(--accent)] text-sm">// contact</p>
+              <p class="font-mono text-[var(--accent)] text-sm">{{SECTION_CONTACT_HINT}}</p>
             </div>
-
-            <h2 class="font-mono text-3xl font-bold mb-4">Let&apos;s Build Something</h2>
+            <h2 class="font-mono text-3xl font-bold mb-4">{{SECTION_CONTACT_TITLE}}</h2>
             <p class="text-[var(--muted)] mb-8 leading-relaxed">
               {{CONTACT_DESCRIPTION}}
             </p>
@@ -659,6 +628,11 @@
           <p class="font-mono text-xs text-[var(--muted)] text-center md:text-left">
             © <span id="current-year">2026</span> {{PERSON_NAME}} · Made with ❤️
           </p> 
+          <div class="flex items-center gap-2 mt-2">
+            <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-widest opacity-60">
+              release: <span class="text-green-400 font-bold">{{SITE_VERSION}}</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>

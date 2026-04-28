@@ -1,0 +1,95 @@
+{
+  "// IDENTITY COMMANDS": "--------------------------------------------------",
+  "whoami": {
+    "output": [
+      "{{PERSON_NAME}}",
+      "{{JOB_TITLE}} · {{YEARS_EXPERIENCE}}",
+      "Status: {{CURRENT_STATUS}}",
+      "Location: {{CURRENT_LOCATION}}"
+    ],
+    "color": "text-[var(--accent)]"
+  },
+  "about": {
+    "output": [
+      "Behind the Terminals:",
+      "{{ABOUT_ME_DESCRIPTION}}"
+    ],
+    "color": "text-[var(--accent)]"
+  },
+
+  "// PROFESSIONAL DATA": "--------------------------------------------------",
+  "experience": {
+    "output": "{{TERMINAL_EXPERIENCE}}",
+    "color": "text-[var(--accent)]"
+  },
+  "skills": {
+    "output": "{{TERMINAL_SKILLS}}",
+    "color": "text-[var(--accent)]"
+  },
+  "projects": {
+    "output": "{{TERMINAL_PROJECTS}}",
+    "color": "text-[var(--accent)]"
+  },
+
+  "// INFRASTRUCTURE & DEVOPS SIMULATION": "--------------------------------------------------",
+  "build": {
+    "output": "{{TERMINAL_BUILD_PROCESS}}",
+    "color": "text-[var(--accent)]"
+  },
+  "deploy": {
+    "output": "{{TERMINAL_DEPLOY_STEPS}}",
+    "color": "text-[var(--accent)]"
+  },
+
+  "// CONTACT & SOCIAL": "--------------------------------------------------",
+  "contact": {
+    "output": [
+      "Email    → {{EMAIL_ADDRESS}}",
+      "GitHub   → {{GITHUB_HANDLE}}",
+      "LinkedIn → {{LINKEDIN_PROFILE}}"
+    ],
+    "color": "text-[var(--accent)]"
+  },
+  "email": {
+    "output": "📧 Email: {{EMAIL_ADDRESS}}",
+    "color": "text-blue-400"
+  },
+  "social": {
+    "output": [
+      "🔗 Social Links:",
+      "  GitHub   → {{GITHUB_HANDLE}}",
+      "  LinkedIn → {{LINKEDIN_PROFILE}}"
+    ],
+    "color": "text-purple-400"
+  },
+
+  "// SYSTEM & UTILITY": "--------------------------------------------------",
+  "help": {
+    "output": [
+      "Available commands:",
+      "  <b>whoami</b>    : About me",
+      "  <b>about</b>     : Behind the Terminals",
+      "  <b>experience</b>: Work history",
+      "  <b>skills</b>    : Tech stack",
+      "  <b>projects</b>  : Featured work",
+      "  <b>contact</b>   : Get in touch",
+      "  <b>email</b>     : Show email address",
+      "  <b>social</b>    : Show social links",
+      "  <b>build</b>     : Build process simulation",
+      "  <b>deploy</b>    : Deployment options",
+      "  <b>ssh</b>       : Connect to server (try 'ssh guest@shubham-mate-vps-01')",
+      "  <b>open</b>      : Go to section (e.g. 'open projects')",
+      "  <b>clear</b>     : Clear terminal",
+      "  <b>secret</b>    : Find the easter egg"
+    ],
+    "color": "text-[var(--accent)]"
+  },
+  "secret": {
+    "output": [
+      "🎉 You found the easter egg!",
+      "Thanks for trying the terminal!",
+      "Type 'help' for more commands."
+    ],
+    "color": "text-green-400"
+  }
+}
