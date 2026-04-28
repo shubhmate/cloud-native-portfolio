@@ -378,9 +378,10 @@
   "PIPELINE_YAML": "name: Deploy Portfolio Website            \n  on:\n    push:\n      branches: [main]\n\n  jobs:\n    deploy:\n      runs-on: ubuntu-latest\n      steps:\n        - uses: actions/checkout@v4\n        - uses: actions/setup-node@v4\n          with: { node-version: '20' }\n        - run: npm ci && npm run build\n        - uses: aws-actions/configure-aws-credentials@v4\n          with:\n            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n            aws-region: us-east-1\n        - run: aws s3 sync out/ s3://${{ secrets.S3_BUCKET }} --delete\n        - run: aws cloudfront create-invalidation \\\\\n                --distribution-id ${{ secrets.CF_DIST_ID }} \\\\\n                --paths \"/*\"",
   "// 11. CONTACT & FOOTER": "Email, social links, and footer text.",
   "EMAIL_ADDRESS": "shubhammate0604@gmail.com",
-  "EMAILJS_SERVICE_ID": "YOUR_SERVICE_ID",
-  "EMAILJS_TEMPLATE_ID": "YOUR_TEMPLATE_ID",
-  "EMAILJS_PUBLIC_KEY": "YOUR_PUBLIC_KEY",
+  "EMAILJS_SERVICE_ID": "service_ejk43c6",
+  "EMAILJS_TEMPLATE_ID": "template_wav6wos",
+  "EMAILJS_AUTOREPLY_ID": "template_r75bira",
+  "EMAILJS_PUBLIC_KEY": "FvLsoXUl1h2UTUa5s",
   "CONTACT_DESCRIPTION": "Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.",
   "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
   "CONTACT_LINKS": [

@@ -487,16 +487,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // 4. Read EmailJS config from data attributes
-            const serviceId  = submitBtn.getAttribute('data-ejs-service');
-            const templateId = submitBtn.getAttribute('data-ejs-template');
-            const publicKey  = submitBtn.getAttribute('data-ejs-key');
+            const serviceId    = submitBtn.getAttribute('data-ejs-service');
+            const templateId   = submitBtn.getAttribute('data-ejs-template');
+            const publicKey    = submitBtn.getAttribute('data-ejs-key');
 
             if (!serviceId || serviceId.includes('YOUR_') || serviceId.includes('REPLACE')) {
                 showToast('EmailJS not configured — check site-config.json', 'error');
                 return;
             }
 
-            // 5. Send via EmailJS
+            // 5. Send via EmailJS (auto-reply is handled by EmailJS built-in feature)
             submitBtn.disabled = true;
             const submitText = submitBtn.querySelector('#submit-text');
             const originalText = submitText.textContent;
@@ -509,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     reply_to  : email,
                     message   : message
                 });
-                showToast('Message sent! I\'ll get back to you soon.');
+                showToast('Message sent! I\'ll get back to you soon. ✓');
                 contactForm.reset();
             } catch (err) {
                 console.error('EmailJS error:', err);
