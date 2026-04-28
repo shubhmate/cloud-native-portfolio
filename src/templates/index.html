@@ -8,21 +8,21 @@
   <!-- SEO Meta Tags -->
   <meta name="description" content="{{META_DESCRIPTION}}">
   <meta name="keywords" content="DevOps, AWS, Docker, Kubernetes, Terraform, CI/CD, GitHub Actions, {{JOB_TITLE}}">
-  <meta name="author" content="{{JOB_TITLE}}">
+  <meta name="author" content="{{PERSON_NAME}}">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0f1117">
 
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{{JOB_TITLE}} Portfolio - Cloud Infrastructure & Automation">
-  <meta property="og:description" content="Building & automating cloud infrastructure. AWS, Docker, Terraform, CI/CD pipelines.">
+  <meta property="og:title" content="{{PERSON_NAME}} — {{JOB_TITLE}} Portfolio">
+  <meta property="og:description" content="{{META_DESCRIPTION}}">
   <meta property="og:url" content="{{PORTFOLIO_URL}}">
   <meta property="og:image" content="{{PORTFOLIO_URL}}/og-image.png">
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{JOB_TITLE}} Portfolio">
-  <meta name="twitter:description" content="Building & automating cloud infrastructure. AWS, Docker, Terraform, CI/CD.">
+  <meta name="twitter:title" content="{{PERSON_NAME}} — {{JOB_TITLE}} Portfolio">
+  <meta name="twitter:description" content="{{META_DESCRIPTION}}">
   <meta name="twitter:image" content="{{PORTFOLIO_URL}}/og-image.png">
 
   <!-- Canonical URL for SEO -->
@@ -62,22 +62,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Schema.org Structured Data for SEO -->
+  <!-- Helps Google show a knowledge panel with your name, title & social links -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person", 
+    "@type": "Person",
     "name": "{{PERSON_NAME}}",
     "url": "{{PORTFOLIO_URL}}",
     "jobTitle": "{{JOB_TITLE}}",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "{{COMPANY_NAME}}" // Replace with your current company name
-    },
-    "alumniOf": "{{PREVIOUS_COMPANY}}", // Replace with your previous company name
     "sameAs": [
       "{{GITHUB_HANDLE}}",
-      "{{LINKEDIN_PROFILE}}",
-      "{{HASHNODE_HANDLE}}"
+      "{{LINKEDIN_PROFILE}}"
     ],
     "knowsAbout": ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "GitHub Actions", "Prometheus", "Grafana"]
   }
