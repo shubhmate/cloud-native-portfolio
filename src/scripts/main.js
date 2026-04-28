@@ -463,8 +463,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // --- Validation Logic ---
             const formData = new FormData(contactForm);
-            const name = formData.get('name')?.trim();
-            const email = formData.get('email')?.trim();
+            const name    = formData.get('name')?.trim();
+            const email   = formData.get('email')?.trim();
             const message = formData.get('message')?.trim();
 
             // 1. Check for empty fields
@@ -486,37 +486,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            const id = submitBtn.getAttribute('data-formspree');
-            if (!id || id.includes('YOUR_')) { 
-                showToast('Formspree ID missing! Check site-config.json', 'error'); 
-                return; 
+            // 4. Read EmailJS config from data attributes
+            const serviceId  = submitBtn.getAttribute('data-ejs-service');
+            const templateId = submitBtn.getAttribute('data-ejs-template');
+            const publicKey  = submitBtn.getAttribute('data-ejs-key');
+
+            if (!serviceId || serviceId.includes('YOUR_') || serviceId.includes('REPLACE')) {
+                showToast('EmailJS not configured — check site-config.json', 'error');
+                return;
             }
 
+            // 5. Send via EmailJS
             submitBtn.disabled = true;
             const submitText = submitBtn.querySelector('#submit-text');
             const originalText = submitText.textContent;
             submitText.textContent = 'Sending...';
 
             try {
-                const res = await fetch(`https://formspree.io/f/${id}`, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
+                emailjs.init(publicKey);
+                await emailjs.send(serviceId, templateId, {
+                    from_name : name,
+                    reply_to  : email,
+                    message   : message
                 });
-                if (res.ok) {
-                    showToast('Message sent successfully!');
-                    contactForm.reset();
-                } else {
-                    showToast('Failed to send message. Please try again.', 'error');
-                }
+                showToast('Message sent! I\'ll get back to you soon.');
+                contactForm.reset();
             } catch (err) {
-                showToast('Network error. Please check your connection.', 'error');
+                console.error('EmailJS error:', err);
+                showToast('Failed to send. Please email me directly.', 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitText.textContent = originalText;
             }
         });
     }
+
 
 
     /* =========================================================================

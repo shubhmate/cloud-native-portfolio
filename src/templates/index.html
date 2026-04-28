@@ -81,6 +81,9 @@
   <!-- Icons -->
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
+
+  <!-- EmailJS SDK — Contact Form -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <link rel="stylesheet" href="assets/css/main.css">
   <style>
     /* Critical Preloader Styles */
@@ -604,9 +607,11 @@
               ></textarea>
             </div>
             <button
-              type="submit" 
-              data-formspree="{{FORMSPREE_ID}}"
-              id="submit-btn" 
+              type="submit"
+              id="submit-btn"
+              data-ejs-service="{{EMAILJS_SERVICE_ID}}"
+              data-ejs-template="{{EMAILJS_TEMPLATE_ID}}"
+              data-ejs-key="{{EMAILJS_PUBLIC_KEY}}"
               class="w-full py-3 bg-[var(--accent)] hover:bg-blue-500 disabled:opacity-50 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 card-hover"
             >
               <i data-lucide="send" class="w-4 h-4"></i>
