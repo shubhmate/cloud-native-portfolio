@@ -102,15 +102,17 @@ function copyRecursiveSync(src, dest) {
 
 /**
  * Validates that all {{tags}} were replaced in the final file.
+ * THROWS if any placeholder is unreplaced — stops build before writing to dist/.
  */
 function validateContentIntegrity(content, fileName) {
   const placeholderRegex = /\{\{([A-Z0-9_]+)\}\}/g;
   const matches = [...content.matchAll(placeholderRegex)];
   if (matches.length > 0) {
     const missingKeys = [...new Set(matches.map(m => m[1]))];
-    console.warn(`\n⚠️  WARNING: Unreplaced placeholders found in ${fileName}:`);
-    missingKeys.forEach(key => console.warn(`   - {{${key}}}`));
-    console.warn(`   Tip: Check if '${missingKeys[0]}' is defined in site-config.json\n`);
+    console.error(`\n❌ BUILD BLOCKED: Unreplaced placeholders found in ${fileName}:`);
+    missingKeys.forEach(key => console.error(`   - {{${key}}}`));
+    console.error(`\n   Fix: Add the missing key(s) to config/site-config.json\n`);
+    throw new Error(`Missing ${missingKeys.length} placeholder(s) in ${fileName}. Build stopped to protect dist/.`);
   }
 }
 
