@@ -1,4 +1,14 @@
 {
   "css.customData": [],
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+
+  // Preserve hand-crafted compact formatting in JSON config files
+  "[json]": {
+    "editor.formatOnSave": false
+  },
+
+  // File-specific overrides for site-config.json
+  "files.associations": {
+    "site-config.json": "json"
+  }
 }
