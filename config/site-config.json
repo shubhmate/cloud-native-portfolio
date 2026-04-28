@@ -1,5 +1,6 @@
 {
-  "// 1. IDENTITY & SEO": "--------------------------------------------------",
+  "// ─────────────────────────────────────────────────────": "──────────────",
+  "// 1. IDENTITY & SEO": "Edit your name, title, links and SEO meta here.",
   "PERSON_NAME": "Shubham Mate",
   "JOB_TITLE": "DevOps Engineer",
   "COMPANY_NAME": "Company Name",
@@ -10,7 +11,7 @@
   "HASHNODE_HANDLE": "",
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "PROFILE_IMAGE": "assets/img/profile.png",
-  "// 2. GLOBAL UI & NAVIGATION": "--------------------------------------------------",
+  "// 2. GLOBAL UI & NAVIGATION": "Logo, preloader text, and nav links.",
   "SITE_LOGO_TEXT": "devops.sh",
   "PRELOADER_TEXT": "Initializing devops.sh...",
   "NAV_ITEMS": [
@@ -48,7 +49,7 @@
       "type": "button"
     }
   ],
-  "// 3. SECTION HEADERS": "--------------------------------------------------",
+  "// 3. SECTION HEADERS": "The hint (small tag) and title for each section.",
   "SECTION_ABOUT_HINT": "// about me",
   "SECTION_ABOUT_TITLE": "Behind the Terminals",
   "SECTION_EXPERIENCE_HINT": "// experience",
@@ -64,24 +65,24 @@
   "SECTION_PIPELINE_TITLE": "How This Site is Built",
   "SECTION_CONTACT_HINT": "// contact",
   "SECTION_CONTACT_TITLE": "Let's Build Something",
-  "// 4. HERO SECTION": "--------------------------------------------------",
+  "// 4. HERO SECTION": "The first thing visitors see.",
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
   "HERO_SUBTITLE": "Open to new opportunities",
   "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-cyan-400\">CI/CD Pipelines</span>, <span class=\"text-teal-400\">Containerization</span>, and <span class=\"text-emerald-400\">Cloud Infrastructure</span>.",
+  "HIRE_ME_BUTTON": "HIRE ME",
   "TYPEWRITER_PHRASES": [
     "DevOps Engineer",
     "Cloud Engineer",
     "DevSecOps Engineer"
   ],
-  "HIRE_ME_BUTTON": "HIRE ME",
-  "// 5. ABOUT SECTION": "--------------------------------------------------",
+  "// 5. ABOUT SECTION": "Your bio, status, and location.",
   "ABOUT_ME_DESCRIPTION": "I am a passionate DevOps Engineer with a strong foundation in cloud-native technologies. I specialize in automating complex workflows, managing scalable infrastructure, and ensuring the reliability of high-traffic applications. My journey in tech is driven by a curiosity for how systems work and a desire to build tools that empower developers.",
   "CURRENT_STATUS": "Open to full-time roles",
   "CURRENT_LOCATION": "Pune, India",
   "YEARS_EXPERIENCE": "~2 years experience",
   "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
-  "// 6. EXPERIENCE SECTION": "--------------------------------------------------",
+  "// 6. EXPERIENCE SECTION": "Work history timeline. Add/remove items in EXPERIENCE array.",
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
   "TIMELINE_DATE_3": "Aug 01, 2023",
@@ -113,7 +114,7 @@
       ]
     }
   ],
-  "// 7. CERTIFICATIONS SECTION": "--------------------------------------------------",
+  "// 7. CERTIFICATIONS SECTION": "Add/remove certs. Colors: yellow, purple, blue, orange, red, green.",
   "CERTIFICATIONS_SUBTITLE": "Completed & actively pursuing",
   "CERTIFICATIONS": [
     {
@@ -153,7 +154,7 @@
       "color": "green"
     }
   ],
-  "// 8. SKILLS SECTION": "--------------------------------------------------",
+  "// 8. SKILLS SECTION": "Group colors and skills. Add/remove skills in SKILLS_GROUPED.",
   "SKILLS_COLORS": {
     "Infrastructure": "blue",
     "Version Control": "blue",
@@ -252,7 +253,7 @@
       }
     ]
   },
-  "// 9. PROJECTS SECTION": "--------------------------------------------------",
+  "// 9. PROJECTS SECTION": "Add/remove projects in PROJECTS array. Each has a flip card.",
   "PROJECT_2_TITLE": "CI/CD Pipeline for Microservices",
   "PROJECTS_SUBTITLE": "Hands-on labs & real projects built to learn by doing",
   "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
@@ -340,7 +341,7 @@
       "fix": "Dockerized Prometheus + Grafana stack. Created custom dashboards and set up Slack alerts for high resource utilization. Detected memory leak within first 24 hours."
     }
   ],
-  "// 10. PIPELINE SECTION": "--------------------------------------------------",
+  "// 10. PIPELINE SECTION": "The CI/CD pipeline visualization steps.",
   "PIPELINE_DESCRIPTION": "This portfolio is itself a DevOps project — deployed via a fully automated CI/CD pipeline on AWS infrastructure provisioned with Terraform.",
   "PIPELINE_STEPS": [
     {
@@ -375,10 +376,11 @@
     }
   ],
   "PIPELINE_YAML": "name: Deploy Portfolio Website            \n  on:\n    push:\n      branches: [main]\n\n  jobs:\n    deploy:\n      runs-on: ubuntu-latest\n      steps:\n        - uses: actions/checkout@v4\n        - uses: actions/setup-node@v4\n          with: { node-version: '20' }\n        - run: npm ci && npm run build\n        - uses: aws-actions/configure-aws-credentials@v4\n          with:\n            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n            aws-region: us-east-1\n        - run: aws s3 sync out/ s3://${{ secrets.S3_BUCKET }} --delete\n        - run: aws cloudfront create-invalidation \\\\\n                --distribution-id ${{ secrets.CF_DIST_ID }} \\\\\n                --paths \"/*\"",
-  "// 11. CONTACT & FOOTER SECTION": "--------------------------------------------------",
+  "// 11. CONTACT & FOOTER": "Email, social links, and footer text.",
   "EMAIL_ADDRESS": "shubhammate0604@gmail.com",
   "FORMSPREE_ID": "REPLACE_WITH_YOUR_FORMSPREE_ID",
   "CONTACT_DESCRIPTION": "Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.",
+  "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
   "CONTACT_LINKS": [
     {
       "label": "Email",
@@ -399,8 +401,7 @@
       "type": "link"
     }
   ],
-  "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
-  "// 12. RESUME PAGE CONFIG": "--------------------------------------------------",
+  "// 12. RESUME PAGE": "Controls the /resume.html viewer page.",
   "RESUME_PAGE_TITLE": "Professional Resume",
   "RESUME_BACK_HOME": "Back to Home",
   "RESUME_FULLSCREEN": "Fullscreen",
@@ -409,7 +410,7 @@
   "RESUME_FILENAME": "Shubham_Mate_DevOps_Resume.pdf",
   "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
   "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
-  "// 13. TERMINAL (VIRTUAL OS) CONFIG": "--------------------------------------------------",
+  "// 13. TERMINAL (VIRTUAL OS)": "The interactive terminal simulator config.",
   "TERMINAL_SSH_USER": "guest",
   "TERMINAL_SSH_HOST": "shubham-mate-vps-01",
   "TERMINAL_SSH_SYSTEM": "Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-1021-aws x86_64)",
