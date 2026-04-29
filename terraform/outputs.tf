@@ -9,17 +9,17 @@ output "route53_nameservers" {
 
 output "cloudfront_domain_name" {
   description = "The CloudFront distribution domain name"
-  value       = aws_cloudfront_distribution.s3_distribution.domain_name
+  value       = module.website.cloudfront_domain_name
 }
 
 output "s3_bucket_name" {
   description = "The S3 bucket name"
-  value       = aws_s3_bucket.portfolio.bucket
+  value       = module.website.s3_bucket_name
 }
 
 output "cloudfront_distribution_id" {
   description = "The CloudFront Distribution ID (used for invalidations)"
-  value       = aws_cloudfront_distribution.s3_distribution.id
+  value       = module.website.cloudfront_distribution_id
 }
 
 output "website_url" {

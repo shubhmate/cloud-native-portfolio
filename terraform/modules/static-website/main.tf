@@ -1,8 +1,8 @@
 # =============================================================================
-# CloudFront Distribution — terraform/cloudfront.tf
+# Module: Static Website — modules/static-website/main.tf
 # =============================================================================
 
-# Origin Access Control (OAC) - Modern replacement for OAI
+# Origin Access Control (OAC)
 resource "aws_cloudfront_origin_access_control" "oac" {
   name                              = "${var.project_name}-oac"
   description                       = "OAC for S3 bucket access"
@@ -11,6 +11,45 @@ resource "aws_cloudfront_origin_access_control" "oac" {
   signing_protocol                  = "sigv4"
 }
 
+# S3 Bucket
+resource "aws_s3_bucket" "portfolio" {
+  bucket = var.bucket_name
+  tags   = var.tags
+}
+
+resource "aws_s3_bucket_public_access_block" "portfolio" {
+  bucket = aws_s3_bucket.portfolio.id
+
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}
+
+resource "aws_s3_bucket_policy" "allow_cloudfront" {
+  bucket = aws_s3_bucket.portfolio.id
+  policy = data.aws_iam_policy_document.allow_cloudfront.json
+}
+
+data "aws_iam_policy_document" "allow_cloudfront" {
+  statement {
+    actions   = ["s3:GetObject"]
+    resources = ["${aws_s3_bucket.portfolio.arn}/*"]
+
+    principals {
+      type        = "Service"
+      identifiers = ["cloudfront.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "AWS:SourceArn"
+      values   = [aws_cloudfront_distribution.s3_distribution.arn]
+    }
+  }
+}
+
+# CloudFront Distribution
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
     domain_name              = aws_s3_bucket.portfolio.bucket_regional_domain_name
@@ -22,7 +61,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   is_ipv6_enabled     = true
   default_root_object = "index.html"
 
-  aliases = [var.domain_name, "www.${var.domain_name}"]
+  aliases = var.domain_aliases
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -42,7 +81,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     max_ttl                = 86400
   }
 
-  # Pricing Class (Use All Edge Locations for best global performance)
   price_class = "PriceClass_All"
 
   restrictions {
@@ -52,12 +90,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   viewer_certificate {
-    acm_certificate_arn      = aws_acm_certificate_validation.cert.certificate_arn
+    acm_certificate_arn      = var.acm_certificate_arn
     ssl_support_method       = "sni-only"
     minimum_protocol_version = "TLSv1.2_2021"
   }
 
-  # Custom error response to handle SPA-like routing or missing files
   custom_error_response {
     error_code            = 404
     response_code         = 200
