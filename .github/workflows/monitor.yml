@@ -1,0 +1,40 @@
+name: 🩺 Site Uptime Monitor
+
+# =============================================================================
+# Health Check & Uptime Monitoring — .github/workflows/monitor.yml
+# =============================================================================
+# Runs automatically every 6 hours to verify the site is online.
+# Checks both the root domain and the resume page.
+# =============================================================================
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Every 6 hours
+  workflow_dispatch: # Allow manual triggers
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔍 Check Main Site
+        run: |
+          status=$(curl -o /dev/null -s -w "%{http_code}" https://shubhammate.com)
+          if [ $status -eq 200 ]; then
+            echo "✅ Main site is reachable (Status: $status)"
+          else
+            echo "❌ Main site is DOWN or error (Status: $status)"
+            exit 1
+          fi
+
+      - name: 🔍 Check Resume Page
+        run: |
+          status=$(curl -o /dev/null -s -w "%{http_code}" https://shubhammate.com/resume.html)
+          if [ $status -eq 200 ]; then
+            echo "✅ Resume page is reachable (Status: $status)"
+          else
+            echo "❌ Resume page is DOWN or error (Status: $status)"
+            exit 1
+          fi
+
+      - name: 🔍 Check API Connectivity (Optional)
+        run: echo "Prepared for future DynamoDB/Lambda health checks."
