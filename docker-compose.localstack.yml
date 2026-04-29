@@ -1,39 +1,41 @@
-version: '3.8'
-
 # =============================================================================
-# LocalStack — Local AWS Simulator
+# MinIO — Local S3-Compatible Object Storage
 # =============================================================================
-# Simulates: S3, CloudFront (basic)
+# MinIO is 100% free, open-source, and fully S3-compatible.
+# Use this to test your S3 deploy workflow locally before touching real AWS.
 #
 # Commands:
-#   npm run localstack:start   → start this container
-#   npm run localstack:stop    → stop and remove container
-#   npm run localstack:init    → create S3 bucket inside LocalStack
-#   npm run deploy:localstack  → deploy dist/ to LocalStack S3
+#   npm run localstack:start   → start MinIO container
+#   npm run localstack:stop    → stop and remove MinIO container
+#   npm run localstack:init    → create bucket in MinIO
+#   npm run deploy:localstack  → deploy dist/ to MinIO (like S3)
 #
-# LocalStack dashboard: http://localhost:4566/_localstack/health
+# MinIO Console (browser UI): http://localhost:9001
+#   Username: test
+#   Password: testpassword
+#
+# S3-compatible API: http://localhost:9000
 # =============================================================================
 
 services:
-  localstack:
-    image: localstack/localstack:latest
-    container_name: portfolio-localstack
+  minio:
+    image: minio/minio:latest
+    container_name: portfolio-minio
     ports:
-      - "4566:4566"         # Main LocalStack API gateway
+      - "9000:9000"   # S3-compatible API (same as your deploy scripts use)
+      - "9001:9001"   # MinIO Web Console (browse your bucket visually)
     environment:
-      - SERVICES=s3         # Only enable S3 (keeps it lightweight)
-      - DEBUG=0
-      - AWS_DEFAULT_REGION=us-east-1
-      - PERSISTENCE=1       # Keep data between restarts
+      MINIO_ROOT_USER     : test
+      MINIO_ROOT_PASSWORD : testpassword
+    command: server /data --console-address ":9001"
     volumes:
-      - localstack-data:/var/lib/localstack
-      - /var/run/docker.sock:/var/run/docker.sock
+      - minio-data:/data
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      test     : ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval : 10s
+      timeout  : 5s
+      retries  : 5
 
 volumes:
-  localstack-data:
+  minio-data:
     driver: local

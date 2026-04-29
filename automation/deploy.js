@@ -30,7 +30,7 @@ const IS_LOCAL   = TARGET === 'localstack';
 const REGION     = process.env.AWS_REGION    || 'us-east-1';
 const BUCKET     = process.env.S3_BUCKET     || 'shubhammate-portfolio';
 const CF_DIST_ID = process.env.CF_DIST_ID    || '';
-const LS_ENDPOINT = 'http://localhost:4566';
+const MINIO_ENDPOINT = 'http://localhost:9000';
 const DIST_DIR   = path.join(__dirname, '../dist');
 
 // ─── AWS Client Config ────────────────────────────────────────────────────────
@@ -38,9 +38,9 @@ const DIST_DIR   = path.join(__dirname, '../dist');
 const clientConfig = {
     region: REGION,
     ...(IS_LOCAL && {
-        endpoint       : LS_ENDPOINT,
-        credentials    : { accessKeyId: 'test', secretAccessKey: 'test' },
-        forcePathStyle : true,   // required for LocalStack S3
+        endpoint       : MINIO_ENDPOINT,
+        credentials    : { accessKeyId: 'test', secretAccessKey: 'testpassword' },
+        forcePathStyle : true,   // required for MinIO S3 API
     })
 };
 
@@ -166,10 +166,10 @@ function summary() {
     console.log('═'.repeat(50));
 
     if (IS_LOCAL) {
-        console.log(`  Target  : LocalStack (local)`);
+        console.log(`  Target  : MinIO (local S3)`);
         console.log(`  Bucket  : ${BUCKET}`);
-        console.log(`  URL     : ${LS_ENDPOINT}/${BUCKET}/index.html`);
-        console.log(`  Browse  : http://localhost:4566/${BUCKET}/index.html`);
+        console.log(`  URL     : ${MINIO_ENDPOINT}/${BUCKET}/index.html`);
+        console.log(`  Console : http://localhost:9001  (user: test / pass: testpassword)`);
     } else {
         console.log(`  Target  : AWS S3 + CloudFront`);
         console.log(`  Bucket  : s3://${BUCKET}`);
@@ -184,7 +184,7 @@ function summary() {
 
 async function main() {
     console.log('\n🚀 Starting Deploy Pipeline...');
-    console.log(`   Target: ${IS_LOCAL ? 'LocalStack (local AWS)' : 'AWS'}`);
+    console.log(`   Target: ${IS_LOCAL ? 'MinIO (local AWS simulator)' : 'AWS'}`);
     console.log(`   Bucket: ${BUCKET}`);
     console.log(`   Region: ${REGION}\n`);
 

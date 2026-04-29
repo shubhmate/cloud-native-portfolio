@@ -1,9 +1,11 @@
 // =============================================================================
-// LocalStack Initialization — automation/localstack-init.js
+// MinIO Initialization — automation/localstack-init.js
 // =============================================================================
-// Run this ONCE after starting LocalStack to create and configure the S3 bucket.
+// Run this ONCE after starting MinIO to create and configure the S3 bucket.
+// MinIO is a free, open-source, S3-compatible local object storage.
 //
 // Usage: npm run localstack:init
+// MinIO console: http://localhost:9001 (user: test / pass: testpassword)
 // =============================================================================
 
 'use strict';
@@ -18,13 +20,13 @@ const {
     HeadBucketCommand,
 } = require('@aws-sdk/client-s3');
 
-const BUCKET     = process.env.S3_BUCKET || 'shubhammate-portfolio';
-const LS_ENDPOINT = 'http://localhost:4566';
+const BUCKET      = process.env.S3_BUCKET    || 'shubhammate-portfolio';
+const MINIO_ENDPOINT = 'http://localhost:9000';
 
 const s3 = new S3Client({
     region         : 'us-east-1',
-    endpoint       : LS_ENDPOINT,
-    credentials    : { accessKeyId: 'test', secretAccessKey: 'test' },
+    endpoint       : MINIO_ENDPOINT,
+    credentials    : { accessKeyId: 'test', secretAccessKey: 'testpassword' },
     forcePathStyle : true,
 });
 
@@ -42,7 +44,7 @@ async function bucketExists() {
 
 async function init() {
     console.log('\n🔧 Initializing LocalStack S3 bucket...');
-    console.log(`   Endpoint : ${LS_ENDPOINT}`);
+    console.log(`   Endpoint : ${MINIO_ENDPOINT}`);
     console.log(`   Bucket   : ${BUCKET}\n`);
 
     // Check if LocalStack is running
@@ -87,14 +89,15 @@ async function init() {
         console.log('  ✅ LocalStack Ready!');
         console.log('═'.repeat(50));
         console.log(`  Bucket  : ${BUCKET}`);
-        console.log(`  Endpoint: ${LS_ENDPOINT}`);
+        console.log(`  S3 API  : ${MINIO_ENDPOINT}`);
+        console.log(`  Console : http://localhost:9001  (user: test / pass: testpassword)`);
         console.log(`\n  Next: npm run deploy:localstack`);
         console.log('═'.repeat(50) + '\n');
 
     } catch (e) {
         if (e.code === 'ECONNREFUSED' || e.message?.includes('ECONNREFUSED')) {
-            err('Cannot connect to LocalStack!');
-            err('Make sure LocalStack is running: npm run localstack:start');
+            err('Cannot connect to MinIO!');
+            err('Make sure MinIO is running: npm run localstack:start');
         } else {
             err(`Init failed: ${e.message}`);
             console.error(e);
