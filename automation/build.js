@@ -101,6 +101,23 @@ function copyRecursiveSync(src, dest) {
 }
 
 /**
+ * Recursively deletes a directory and its contents.
+ */
+function deleteRecursiveSync(dirPath) {
+  if (fs.existsSync(dirPath)) {
+    fs.readdirSync(dirPath).forEach((file) => {
+      const curPath = path.join(dirPath, file);
+      if (fs.lstatSync(curPath).isDirectory()) {
+        deleteRecursiveSync(curPath);
+      } else {
+        fs.unlinkSync(curPath);
+      }
+    });
+    fs.rmdirSync(dirPath);
+  }
+}
+
+/**
  * Validates that all {{tags}} were replaced in the final file.
  * THROWS if any placeholder is unreplaced — stops build before writing to dist/.
  */
@@ -401,7 +418,11 @@ async function build() {
   try {
     console.log('🚀 Starting Professional Build Process...');
 
-    // 1. Setup Configuration
+    // 0. Clean dist folder to ensure no orphan files remain
+    if (fs.existsSync(PATHS.dist)) {
+      deleteRecursiveSync(PATHS.dist);
+      console.log('✔ Cleaned dist/ directory.');
+    }
     let userConfig = {};
     if (fs.existsSync(PATHS.config)) {
       userConfig = JSON.parse(fs.readFileSync(PATHS.config, 'utf8'));
