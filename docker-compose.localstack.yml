@@ -1,0 +1,39 @@
+version: '3.8'
+
+# =============================================================================
+# LocalStack — Local AWS Simulator
+# =============================================================================
+# Simulates: S3, CloudFront (basic)
+#
+# Commands:
+#   npm run localstack:start   → start this container
+#   npm run localstack:stop    → stop and remove container
+#   npm run localstack:init    → create S3 bucket inside LocalStack
+#   npm run deploy:localstack  → deploy dist/ to LocalStack S3
+#
+# LocalStack dashboard: http://localhost:4566/_localstack/health
+# =============================================================================
+
+services:
+  localstack:
+    image: localstack/localstack:latest
+    container_name: portfolio-localstack
+    ports:
+      - "4566:4566"         # Main LocalStack API gateway
+    environment:
+      - SERVICES=s3         # Only enable S3 (keeps it lightweight)
+      - DEBUG=0
+      - AWS_DEFAULT_REGION=us-east-1
+      - PERSISTENCE=1       # Keep data between restarts
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:4566/_localstack/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  localstack-data:
+    driver: local

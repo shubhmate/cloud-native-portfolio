@@ -4,3 +4,7 @@ scratch/
 notes/
 .DS_Store
 *.tmp
+
+# Deployment secrets
+.env.deploy
+localstack-data/
