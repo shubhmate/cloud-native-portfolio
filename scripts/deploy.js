@@ -1,11 +1,11 @@
 // =============================================================================
-// Universal Deploy Script — automation/deploy.js
+// Universal Deploy Script — scripts/deploy.js
 // =============================================================================
 // Supports both real AWS and LocalStack (local AWS simulator).
 //
 // Usage:
-//   DEPLOY_TARGET=aws         node automation/deploy.js  → real AWS
-//   DEPLOY_TARGET=localstack  node automation/deploy.js  → LocalStack
+//   DEPLOY_TARGET=aws         node scripts/deploy.js  → real AWS
+//   DEPLOY_TARGET=localstack  node scripts/deploy.js  → LocalStack
 //
 // Or via npm scripts:
 //   npm run deploy:aws

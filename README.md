@@ -10,7 +10,7 @@ This project follows an industry-standard **Source/Dist** separation, ensuring t
 
 ```text
 /static-portfolio
-├── automation/       # Build & Data-fetching scripts (Node.js)
+├── scripts/          # Build & Data-fetching scripts (Node.js)
 ├── config/           # Site content & configuration (JSON)
 ├── src/              # Source code (Templates, CSS, JS)
 ├── dist/             # Generated production-ready site (S3/CloudFront Target)

@@ -45,7 +45,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           CF_DIST_ID: ${{ secrets.CF_DIST_ID }}
-        run: node automation/deploy.js
+        run: node scripts/deploy.js
 
       - name: 🏥 Health Check
         run: |

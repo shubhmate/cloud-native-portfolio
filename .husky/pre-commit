@@ -1,3 +1,3 @@
-node automation/fetch-github.js
-node automation/build.js
+node scripts/fetch-github.js
+node scripts/build.js
 git add config/site-config.json

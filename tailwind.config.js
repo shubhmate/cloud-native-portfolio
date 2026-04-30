@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "src/templates/**/*.html",
     "src/scripts/**/*.js",
-    "automation/**/*.js",
+    "scripts/**/*.js",
     "config/site-config.json",
     "src/scripts/commands.json"
   ],

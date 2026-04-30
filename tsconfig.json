@@ -12,6 +12,6 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "automation/**/*", ".github/workflows/**/*"],
+  "include": ["src/**/*", "scripts/**/*", ".github/workflows/**/*"],
   "exclude": ["node_modules", "dist"]
 }

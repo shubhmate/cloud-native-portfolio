@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8">
+<style>
+  body{font-family:'Segoe UI',Arial,sans-serif;background:#f1f5f9;margin:0;padding:20px}
+  .wrap{max-width:560px;margin:0 auto}
+  .card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.08)}
+  .hdr{background:linear-gradient(135deg,#0f1117,#1e3a5f);padding:32px 36px;text-align:center}
+  .hdr h1{color:#3b82f6;font-family:'Courier New',monospace;font-size:22px;margin:0 0 6px}
+  .hdr p{color:#64748b;font-size:11px;margin:0;font-family:monospace}
+  .check{font-size:38px;margin:12px 0 0}
+  .body{padding:32px 36px;text-align:center}
+  .body h2{color:#1e293b;font-size:18px;margin:0 0 10px}
+  .body p{color:#64748b;font-size:13px;line-height:1.7;margin:0 0 6px}
+  .highlight{display:inline-block;margin:20px 0;background:#f0f9ff;border:1px solid #bae6fd;border-radius:8px;padding:14px 24px;color:#0369a1;font-size:13px;font-family:monospace}
+  .divider{border:none;border-top:1px solid #e2e8f0;margin:24px 0}
+  .stack{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:16px 0}
+  .tag{background:#f1f5f9;color:#475569;border-radius:20px;padding:4px 12px;font-size:11px;font-family:monospace;border:1px solid #e2e8f0}
+  .footer{background:#f8fafc;border-top:1px solid #e2e8f0;padding:18px 36px;text-align:center;font-size:10px;color:#94a3b8;font-family:monospace}
+  .footer a{color:#3b82f6;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <div class="hdr">
+      <h1>devops.sh</h1>
+      <p>// message_received.log</p>
+      <div class="check">✅</div>
+    </div>
+    <div class="body">
+      <h2>Hey {{from_name}}, got your message!</h2>
+      <p>Thanks for reaching out through my portfolio.</p>
+      <p>I've received your message and will personally get back to you within <strong>24–48 hours</strong>.</p>
+      <div class="highlight">
+        $ echo "message received" → status: queued for reply
+      </div>
+      <hr class="divider">
+      <p style="font-size:12px;color:#94a3b8">My current stack:</p>
+      <div class="stack">
+        <span class="tag">AWS</span>
+        <span class="tag">Docker</span>
+        <span class="tag">Kubernetes</span>
+        <span class="tag">Terraform</span>
+        <span class="tag">CI/CD</span>
+        <span class="tag">GitHub Actions</span>
+      </div>
+    </div>
+    <div class="footer">
+      Shubham Mate · DevOps Engineer · <a href="https://shubhammate.com">shubhammate.com</a><br>
+      You're receiving this because you contacted me via my portfolio.
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,5 +1,5 @@
 // =============================================================================
-// MinIO Initialization — automation/localstack-init.js
+// MinIO Initialization — scripts/localstack-init.js
 // =============================================================================
 // Run this ONCE after starting MinIO to create and configure the S3 bucket.
 // MinIO is a free, open-source, S3-compatible local object storage.
