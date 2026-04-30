@@ -18,6 +18,7 @@
     "localstack:stop": "docker compose -f docker-compose.localstack.yml down",
     "localstack:init": "node automation/localstack-init.js",
     "localstack:test": "npm run localstack:start && timeout 10 && npm run localstack:init && npm run deploy:localstack",
+    "lint:tf": "terraform -chdir=terraform fmt -check && cd terraform && tflint",
     "prepare": "husky"
   },
   "keywords": [],

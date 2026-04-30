@@ -1,0 +1,59 @@
+name: 🛡️ Terraform Security & Lint
+
+# =============================================================================
+# Terraform Static Analysis — .github/workflows/terraform-scan.yml
+# =============================================================================
+# This workflow runs on every push to ensure infrastructure code is:
+#   1. Syntactically correct (TFLint)
+#   2. Formatted properly (fmt)
+#   3. Secure and following best practices (Checkov)
+# =============================================================================
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  terraform-lint:
+    name: 🔍 TFLint & Format
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+        with:
+          tflint_version: latest
+
+      - name: 🛠️ Init TFLint
+        run: tflint --init
+        working-directory: ./terraform
+
+      - name: 🔍 Run TFLint
+        run: tflint -f compact
+        working-directory: ./terraform
+
+      - name: 📏 Check Terraform Format
+        run: terraform fmt -check -recursive
+        working-directory: ./terraform
+
+  terraform-security:
+    name: 🔒 Checkov Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛡️ Run Checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: terraform/
+          framework: terraform
+          # Set soft_fail to true if you want to see warnings without blocking the build
+          # Set to false (default) for strict production environments
+          soft_fail: true 
+          output_format: cli
+          quiet: true
