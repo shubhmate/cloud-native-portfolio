@@ -442,6 +442,7 @@ async function build() {
     const versionMatch = rawVersion.match(/(\d+\.\d+\.?\d*)/);
     const gitVersion = versionMatch ? versionMatch[0] : rawVersion;
     
+    /** @type {any} */
     const config = { 
       ...DEFAULT_CONFIG, 
       ...userConfig,
