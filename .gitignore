@@ -1,10 +1,60 @@
+# =============================================================================
+# 🚀 Professional & Future-Proof Git Ignore
+# =============================================================================
+
+# ─── System & OS ─────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
+*.swp
+desktop.ini
+
+# ─── Dependencies & Build ───────────────────────────────────────────────────
 node_modules/
 dist/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.husky/_
+
+# ─── Infrastructure (Terraform) ──────────────────────────────────────────────
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+*.tfvars
+*.tfvars.json
+override.tf
+override.tf.json
+_override.tf
+_override.tf.json
+.terraform.lock.hcl
+
+# ─── Security & Secrets (CRITICAL) ───────────────────────────────────────────
+.env
+.env.local
+.env.deploy
+.env.production
+.env.*.local
+*.pem
+*.key
+*.pub
+secrets.json
+credentials.json
+.aws/
+localstack-data/
+
+# ─── Local Development & IDE ────────────────────────────────────────────────
 scratch/
 notes/
-.DS_Store
-*.tmp
-
-# Deployment secrets
-.env.deploy
-localstack-data/
+docs/dev-notes/*.tmp
+test-results/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+.project
+.settings/
