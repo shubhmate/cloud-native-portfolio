@@ -13,5 +13,5 @@ module "website" {
   bucket_name         = var.project_name # Using project name as bucket name
   domain_aliases      = [var.domain_name, "www.${var.domain_name}"]
   acm_certificate_arn = aws_acm_certificate_validation.cert.certificate_arn
-  tags                = var.tags
+  tags                = merge(var.tags, { Name = "${var.project_name}-static-website" })
 }

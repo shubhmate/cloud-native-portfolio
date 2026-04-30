@@ -5,7 +5,7 @@
 # Create the Hosted Zone
 resource "aws_route53_zone" "main" {
   name = var.domain_name
-  tags = var.tags
+  tags = merge(var.tags, { Name = "${var.domain_name}-zone" })
 }
 
 # A record for the root domain (shubhammate.com)

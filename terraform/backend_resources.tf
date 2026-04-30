@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "terraform_state" {
     prevent_destroy = true
   }
 
-  tags = var.tags
+  tags = merge(var.tags, { Name = "${var.project_name}-terraform-state" })
 }
 
 # Enable versioning so we can see the full revision history of our state files
@@ -47,8 +47,6 @@ resource "aws_s3_bucket_public_access_block" "terraform_state" {
 }
 
 # DynamoDB Table for State Locking
-resource "aws_route53_zone" "lock" {} # Empty reference to ensure order if needed
-
 resource "aws_dynamodb_table" "terraform_locks" {
   name         = "${var.project_name}-terraform-locks"
   billing_mode = "PAY_PER_REQUEST"
@@ -59,5 +57,5 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 
-  tags = var.tags
+  tags = merge(var.tags, { Name = "${var.project_name}-terraform-locks" })
 }

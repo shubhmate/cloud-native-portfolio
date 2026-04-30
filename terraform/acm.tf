@@ -16,7 +16,7 @@ resource "aws_acm_certificate" "cert" {
     create_before_destroy = true
   }
 
-  tags = var.tags
+  tags = merge(var.tags, { Name = "${var.domain_name}-certificate" })
 }
 
 # Create the DNS records for validation

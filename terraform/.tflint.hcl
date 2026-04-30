@@ -3,7 +3,7 @@
 # =============================================================================
 
 config {
-  module = true
+  call_module_type = "all"
   force  = false
 }
 
@@ -16,4 +16,5 @@ plugin "aws" {
 # Add custom rules if needed
 rule "aws_resource_missing_tags" {
   enabled = true
+  tags    = ["Name", "Environment", "Project"]
 }
