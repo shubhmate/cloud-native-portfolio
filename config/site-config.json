@@ -350,9 +350,15 @@
     },
     {
       "title": "Test & Lint",
-      "description": "GitHub Actions runs ESLint + TypeScript checks",
+      "description": "ESLint + TypeScript quality gates",
       "icon": "check-circle",
       "color": "yellow"
+    },
+    {
+      "title": "Security Scan",
+      "description": "Checkov scans Infrastructure (IaC)",
+      "icon": "shield",
+      "color": "red"
     },
     {
       "title": "Terraform Apply",
@@ -373,7 +379,7 @@
       "color": "orange"
     }
   ],
-  "PIPELINE_YAML": "name: Deploy Portfolio Website            \n  on:\n    push:\n      branches: [main]\n\n  jobs:\n    deploy:\n      runs-on: ubuntu-latest\n      steps:\n        - uses: actions/checkout@v4\n        - uses: actions/setup-node@v4\n          with: { node-version: '20' }\n        - run: npm ci && npm run build\n        - uses: aws-actions/configure-aws-credentials@v4\n          with:\n            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n            aws-region: us-east-1\n        - run: aws s3 sync out/ s3://${{ secrets.S3_BUCKET }} --delete\n        - run: aws cloudfront create-invalidation \\\\\n                --distribution-id ${{ secrets.CF_DIST_ID }} \\\\\n                --paths \"/*\"",
+  "PIPELINE_YAML": "name: 🚀 Deploy Portfolio\non:\n  push:\n    branches: [main]\n\njobs:\n  quality-gate:\n    name: 🔍 Lint & Security Scan\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: 🧪 Run ESLint & TypeCheck\n        run: npm ci && npm run lint:js && npm run type-check\n      - name: 🛡️ Infrastructure Scan (Checkov)\n        uses: bridgecrewio/checkov-action@master\n        with:\n          directory: terraform/\n\n  deploy:\n    name: 🌐 Production Deploy\n    needs: quality-gate\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      \n      - name: 📦 Build Site\n        run: npm ci && npm run build\n\n      - name: 🔐 Configure AWS\n        uses: aws-actions/configure-aws-credentials@v4\n        with:\n          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n          aws-region: us-east-1\n\n      - name: 🚀 Deploy to S3 + CloudFront\n        run: npm run deploy:aws",
   "// 11. CONTACT & FOOTER": "Email, social links, and footer text.",
   "EMAIL_ADDRESS": "shubhammate0604@gmail.com",
   "EMAILJS_SERVICE_ID": "service_ejk43c6",
@@ -418,17 +424,17 @@
     "Build Process:",
     "  1. Git push to main branch",
     "  2. GitHub Actions triggers workflow",
-    "  3. ESLint + TypeScript validation",
+    "  3. ESLint + TypeScript + Checkov validation",
     "  4. Terraform plans infrastructure",
-    "  5. S3 deployment & CloudFront invalidation",
+    "  5. scripts/deploy.js handles S3 + CloudFront",
     "  6. Portfolio live!"
   ],
   "TERMINAL_DEPLOY_STEPS": [
     "Deployment Steps:",
     "  Deploy to GitHub Pages: git push origin main",
     "  Deploy to Netlify: npm run build && netlify deploy",
-    "  Deploy to AWS S3: aws s3 sync out/ s3://bucket",
-    "  Invalidate CloudFront: aws cloudfront create-invalidation --distribution-id ID --paths '/*'"
+    "  Deploy to AWS (S3/CF): npm run deploy:aws",
+    "  Localstack Simulation: npm run deploy:localstack"
   ],
   "VIRTUAL_FILES": {
     "infrastructure.tf": {
