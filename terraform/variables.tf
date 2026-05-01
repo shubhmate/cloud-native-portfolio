@@ -23,10 +23,10 @@ variable "project_name" {
 variable "tags" {
   description = "Common tags for all resources"
   type        = map(string)
-  default     = {
-    Project   = "Portfolio"
-    Owner     = "Shubham Mate"
-    ManagedBy = "Terraform"
+  default = {
+    Project     = "Portfolio"
+    Owner       = "Shubham Mate"
+    ManagedBy   = "Terraform"
     Environment = "Production"
   }
 }
