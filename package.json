@@ -19,6 +19,7 @@
     "localstack:init": "node scripts/localstack-init.js",
     "localstack:test": "npm run localstack:start && timeout 10 && npm run localstack:init && npm run deploy:localstack",
     "lint:tf": "terraform -chdir=terraform fmt -check && cd terraform && tflint",
+    "lint": "npm run lint:js",
     "lint:js": "eslint . --ext .js,.html",
     "type-check": "tsc",
     "prepare": "husky"
@@ -36,7 +37,7 @@
     "autoprefixer": "^10.5.0",
     "cross-env": "^10.1.0",
     "dotenv": "^17.4.2",
-    "eslint": "^10.2.1",
+    "eslint": "^8.57.0",
     "eslint-plugin-html": "^8.1.4",
     "htmlhint": "^1.9.2",
     "husky": "^9.1.7",
