@@ -33,3 +33,13 @@ resource "aws_route53_record" "root_aaaa" {
     evaluate_target_health = false
   }
 }
+
+# CNAME record for the blog subdomain (blog.shubhammate.com) pointing to Render
+resource "aws_route53_record" "blog" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "blog.${var.domain_name}"
+  type    = "CNAME"
+  ttl     = 300
+  records = [var.blog_render_url]
+}
+

@@ -30,3 +30,9 @@ variable "tags" {
     Environment = "Production"
   }
 }
+
+variable "blog_render_url" {
+  description = "The target URL for the blog on Render (e.g., your-app.onrender.com)"
+  type        = string
+  default     = "flask-blog-14oo.onrender.com" # Placeholder — update this!
+}
