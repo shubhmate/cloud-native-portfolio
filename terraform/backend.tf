@@ -7,7 +7,7 @@
 # 3. Run 'terraform init' again to migrate your local state to the cloud.
 # =============================================================================
 
-/*
+
 terraform {
   backend "s3" {
     bucket         = "shubhammate-portfolio-terraform-state"
@@ -17,4 +17,4 @@ terraform {
     encrypt        = true
   }
 }
-*/
+
