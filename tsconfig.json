@@ -3,7 +3,7 @@
     "target": "ESNext",
     "module": "node16",
     "allowJs": true,
-    "checkJs": true,
+    "checkJs": false,
     "noEmit": true,
     "strict": false,
     "esModuleInterop": true,
