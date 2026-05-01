@@ -1,11 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "src/templates/**/*.html",
-    "src/scripts/**/*.js",
-    "scripts/**/*.js",
-    "config/site-config.json",
-    "src/scripts/commands.json"
+    'src/templates/**/*.html',
+    'src/scripts/**/*.js',
+    'scripts/**/*.js',
+    'config/site-config.json',
+    'src/scripts/commands.json'
   ],
   darkMode: 'class',
   theme: {
@@ -42,4 +42,4 @@ module.exports = {
     'animate-pulse'
   ],
   plugins: [],
-}
+};
