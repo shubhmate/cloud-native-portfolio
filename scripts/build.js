@@ -47,23 +47,23 @@ const PATHS = {
 };
 
 const DEFAULT_CONFIG = {
-  "PERSON_NAME": "Shubham Mate",
-  "JOB_TITLE": "DevOps Engineer",
-  "SITE_LOGO_TEXT": "devops.sh",
-  "PRELOADER_TEXT": "Initializing...",
-  "NAV_HOME": "Home",
-  "NAV_ABOUT": "About",
-  "NAV_EXPERIENCE": "Experience",
-  "NAV_STACK": "Stack",
-  "NAV_PROJECTS": "Projects",
-  "NAV_PIPELINE": "Pipeline",
-  "NAV_CONTACT": "Contact",
-  "NAV_RESUME": "Resume",
-  "HIRE_ME_TEXT": "HIRE ME",
-  "HERO_SUBTITLE": "DevOps Engineer",
-  "YEARS_EXPERIENCE": "2+ years",
-  "SECTION_PROJECTS_TITLE": "Featured Projects",
-  "PROJECTS_FLIP_HINT": "click to flip"
+  'PERSON_NAME': 'Shubham Mate',
+  'JOB_TITLE': 'DevOps Engineer',
+  'SITE_LOGO_TEXT': 'devops.sh',
+  'PRELOADER_TEXT': 'Initializing...',
+  'NAV_HOME': 'Home',
+  'NAV_ABOUT': 'About',
+  'NAV_EXPERIENCE': 'Experience',
+  'NAV_STACK': 'Stack',
+  'NAV_PROJECTS': 'Projects',
+  'NAV_PIPELINE': 'Pipeline',
+  'NAV_CONTACT': 'Contact',
+  'NAV_RESUME': 'Resume',
+  'HIRE_ME_TEXT': 'HIRE ME',
+  'HERO_SUBTITLE': 'DevOps Engineer',
+  'YEARS_EXPERIENCE': '2+ years',
+  'SECTION_PROJECTS_TITLE': 'Featured Projects',
+  'PROJECTS_FLIP_HINT': 'click to flip'
 };
 
 /* =========================================================================
@@ -76,11 +76,11 @@ const DEFAULT_CONFIG = {
 function escapeHtml(unsafe) {
   if (typeof unsafe !== 'string') return unsafe;
   return unsafe
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 /**
@@ -128,7 +128,7 @@ function validateContentIntegrity(content, fileName) {
     const missingKeys = [...new Set(matches.map(m => m[1]))];
     console.error(`\n❌ BUILD BLOCKED: Unreplaced placeholders found in ${fileName}:`);
     missingKeys.forEach(key => console.error(`   - {{${key}}}`));
-    console.error(`\n   Fix: Add the missing key(s) to config/site-config.json\n`);
+    console.error('\n   Fix: Add the missing key(s) to config/site-config.json\n');
     throw new Error(`Missing ${missingKeys.length} placeholder(s) in ${fileName}. Build stopped to protect dist/.`);
   }
 }
@@ -156,7 +156,7 @@ function generateHeroSocialLinks(config) {
 function generateHireMeButton(config) {
   const text = config.HIRE_ME_TEXT || 'HIRE ME';
   const parts = text.split(' ');
-  let html = `<span class="pulse-dot"></span>`;
+  let html = '<span class="pulse-dot"></span>';
   parts.forEach((part, index) => {
     html += `<span class="hire-part-${index + 1}">${escapeHtml(part)}</span>`;
   });
@@ -327,7 +327,7 @@ function generateProjects(config) {
   }).join('');
 
   config.TERMINAL_PROJECTS = config.PROJECTS.map((p, i) => `${i + 1}. ${p.title}`);
-  config.TERMINAL_PROJECTS.push("", "Run 'open projects' to jump to the section.");
+  config.TERMINAL_PROJECTS.push('', 'Run \'open projects\' to jump to the section.');
 }
 
 /**
@@ -467,7 +467,7 @@ async function build() {
     const currentDay = new Date().getDate().toString().padStart(2, ' ');
     
     config.VIRTUAL_FILES_DATA = config.VIRTUAL_FILES || {};
-    config.VIRTUAL_FILES_DATA_JSON = JSON.stringify(config.VIRTUAL_FILES_DATA).replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    config.VIRTUAL_FILES_DATA_JSON = JSON.stringify(config.VIRTUAL_FILES_DATA).replace(/\\/g, '\\\\').replace(/'/g, '\\\'');
     
     if (config.EXPERIENCE) {
       config.TERMINAL_EXPERIENCE = config.EXPERIENCE.map(exp => `${exp.role.padEnd(25, ' ')} ${exp.start} – ${exp.end}`);

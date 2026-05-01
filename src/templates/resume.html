@@ -97,21 +97,21 @@
     const themeBtn = document.getElementById('theme-toggle');
     
     function updateTheme(theme) {
-        // 1. Update Classes
-        if (theme === 'dark') {
-            html.classList.add('dark');
-            html.classList.remove('light');
-        } else {
-            html.classList.add('light');
-            html.classList.remove('dark');
-        }
+      // 1. Update Classes
+      if (theme === 'dark') {
+        html.classList.add('dark');
+        html.classList.remove('light');
+      } else {
+        html.classList.add('light');
+        html.classList.remove('dark');
+      }
 
-        // 2. Update Icon (Symmetric with Main Site)
-        const iconName = theme === 'dark' ? 'sun' : 'moon';
-        themeBtn.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
+      // 2. Update Icon (Symmetric with Main Site)
+      const iconName = theme === 'dark' ? 'sun' : 'moon';
+      themeBtn.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
         
-        // 3. Re-render Icons
-        if (window.lucide) lucide.createIcons();
+      // 3. Re-render Icons
+      if (window.lucide) lucide.createIcons();
     }
 
     // Init Theme
@@ -120,9 +120,9 @@
 
     // Toggle Theme
     themeBtn.addEventListener('click', () => {
-        const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
-        localStorage.setItem('theme', newTheme);
-        updateTheme(newTheme);
+      const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('theme', newTheme);
+      updateTheme(newTheme);
     });
 
     // Init Lucide
