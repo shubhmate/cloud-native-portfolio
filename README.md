@@ -73,6 +73,7 @@ This project enforces high engineering standards through automated gates:
 - **Code Integrity**: Custom build engine validates that no `{{PLACEHOLDERS}}` are left unreplaced in production.
 - **Pre-commit Hooks**: Husky ensures data is synced and linting passes before any commit is allowed.
 - **IaC Linting**: TFLint ensures Terraform follows AWS best practices and tagging policies.
+- **Automated Cache Busting**: Implements cryptographic content hashing for JS/CSS assets to enable long-term immutable caching without staleness.
 
 ---
 
@@ -122,6 +123,7 @@ npm run deploy:localstack
    terraform apply
    ```
 2. **Configure CI/CD**: Add `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` to GitHub Actions Secrets.
+3. **Automated Updates**: Push any change to the `main` branch to trigger the automated build engine (Tailwind compilation + Asset Hashing) and global CloudFront invalidation.
 
 ---
 
