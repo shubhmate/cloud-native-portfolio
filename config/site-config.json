@@ -257,6 +257,44 @@
   "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
   "PROJECTS": [
     {
+      "id": "portfolio",
+      "title": "Cloud Native Portfolio",
+      "github_repo": "cloud-native-portfolio",
+      "description": "High-Performance Cloud-Native Portfolio | Terraform | AWS (S3, DynamoDB, CloudFront, Route 53) | Automated CI/CD Pipelines. A professional cloud-native DevOps portfolio featuring automated CI/CD, Infrastructure as Code (Terraform), and security-first engineering standards.",
+      "link": "https://github.com/shubhmate/cloud-native-portfolio",
+      "image": "assets/img/github-social-preview-pro-final.png",
+      "tags": [
+        "ai",
+        "automation",
+        "aws",
+        "ci-cd",
+        "cloud-native",
+        "cloudfront",
+        "devops",
+        "docker-compose",
+        "dynamodb",
+        "emailjs",
+        "github-actions",
+        "html5",
+        "husky",
+        "infrastructure-as-code",
+        "portfolio",
+        "route53",
+        "s3",
+        "tailwind-css",
+        "terraform",
+        "vanila-js"
+      ],
+      "architecture": [
+        "S3 (Origin) ➔ CloudFront (CDN)",
+        "Terraform (IaC)",
+        "GitHub Actions (CI/CD)",
+        "Checkov (Security Scan)"
+      ],
+      "problem": "Manual deployments are slow, insecure, and lack global performance metrics.",
+      "fix": "Implemented a full GitOps pipeline with automated security gates and global edge caching, achieving 99.9% availability."
+    },
+    {
       "id": "project1",
       "title": "Terraform For Deploying Simple Frontend Backend App Using Docker AWS VPC ECR And ECS Fargate",
       "github_repo": "Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
