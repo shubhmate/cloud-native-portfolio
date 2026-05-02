@@ -7,9 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "build:css": "npx tailwindcss -c tailwind.config.js -i ./src/styles/main.css -o ./dist/assets/css/main.css --minify",
-    "build:js": "node scripts/build.js",
-    "build": "npm run build:js && npm run build:css",
+    "build": "node scripts/build.js",
     "fetch": "node scripts/fetch-github.js",
     "dev": "npm run build && npx -y http-server dist",
     "deploy:aws": "cross-env DEPLOY_TARGET=aws node scripts/deploy.js",

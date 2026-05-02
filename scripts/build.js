@@ -423,9 +423,23 @@ async function build() {
       deleteRecursiveSync(PATHS.dist);
       console.log('✔ Cleaned dist/ directory.');
     }
+    // 1. Load User Config
     let userConfig = {};
     if (fs.existsSync(PATHS.config)) {
       userConfig = JSON.parse(fs.readFileSync(PATHS.config, 'utf8'));
+    }
+
+    // 1.1 Compile Tailwind CSS first so we can hash it
+    console.log('🎨 Compiling Tailwind CSS...');
+    const { execSync } = require('child_process');
+    const tempCss = path.join(PATHS.dist, 'temp.css');
+    if (!fs.existsSync(PATHS.dist)) fs.mkdirSync(PATHS.dist, { recursive: true });
+    
+    try {
+      execSync(`npx tailwindcss -c tailwind.config.js -i ./src/styles/main.css -o "${tempCss}" --minify`, { stdio: 'inherit' });
+    } catch (e) {
+      console.error('❌ Tailwind Build Failed:', e.message);
+      // Fallback if tailwind fails
     }
     
     // 1.1 Extract Version from package.json or Git
@@ -477,11 +491,31 @@ async function build() {
     [PATHS.dist, PATHS.output.assets, path.join(PATHS.output.assets, 'css'), path.join(PATHS.output.assets, 'js'), path.join(PATHS.output.assets, 'img')]
       .forEach(dir => !fs.existsSync(dir) && fs.mkdirSync(dir, { recursive: true }));
 
-    // 5. Process Files
+    // 5. Generate Hashes for Cache Busting
+    const crypto = require('crypto');
+    const getHash = (file) => {
+      if (!fs.existsSync(file)) return 'default';
+      return crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex').substring(0, 8);
+    };
+    
+    const jsHash = getHash(PATHS.templates.mainJs);
+    const cssHash = getHash(tempCss); 
+
+    config.JS_FILENAME = `main.${jsHash}.js`;
+    config.CSS_FILENAME = `main.${cssHash}.css`;
+
+    // Move temp.css to its hashed destination
+    const finalCssPath = path.join(PATHS.output.assets, 'css', config.CSS_FILENAME);
+    if (fs.existsSync(tempCss)) {
+      fs.renameSync(tempCss, finalCssPath);
+      console.log(`✔ Generated: ${config.CSS_FILENAME}`);
+    }
+
+    // 6. Process Files
     const filesToProcess = [
       { src: PATHS.templates.index, dest: PATHS.output.index, name: 'index.html' },
       { src: PATHS.templates.resume, dest: PATHS.output.resume, name: 'resume.html' },
-      { src: PATHS.templates.mainJs, dest: PATHS.output.mainJs, name: 'main.js' },
+      { src: PATHS.templates.mainJs, dest: path.join(PATHS.output.assets, 'js', config.JS_FILENAME), name: config.JS_FILENAME },
       { src: PATHS.templates.commands, dest: PATHS.output.commands, name: 'commands.json' }
     ];
 
@@ -495,7 +529,7 @@ async function build() {
       }
     });
 
-    // 6. Final Sync
+    // 7. Final Sync
     if (fs.existsSync(PATHS.templates.assets)) {
       copyRecursiveSync(PATHS.templates.assets, PATHS.output.assets);
       console.log('✔ Static assets synced.');
