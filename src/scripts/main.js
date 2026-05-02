@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 2.2 Typewriter Effect ---
   const typewriterElement = document.getElementById('typewriter');
   if (typewriterElement) {
-    const phrases = '{{TYPEWRITER_PHRASES}}';
+    const phrases = JSON.parse('{{TYPEWRITER_PHRASES}}');
     let phraseIdx = 0, charIdx = 0, isDeleting = false;
     function type() {
       const current = phrases[phraseIdx];
