@@ -109,9 +109,9 @@ async function upload() {
     const contentType = mime.lookup(file) || 'application/octet-stream';
     const body        = fs.readFileSync(file);
 
-    // Cache control: HTML = no-cache, assets = 1 year
-    const isHtml    = contentType === 'text/html';
-    const cacheCtrl = isHtml
+    // Cache control: HTML/PDF = no-cache, assets = 1 year
+    const isNoCache = contentType === 'text/html' || contentType === 'application/pdf';
+    const cacheCtrl = isNoCache
       ? 'no-cache, no-store, must-revalidate'
       : 'public, max-age=31536000, immutable';
 
