@@ -48,8 +48,7 @@ localstack-data/
 
 # ─── Local Development & IDE ────────────────────────────────────────────────
 scratch/
-notes/
-docs/dev-notes/*.tmp
+docs/
 test-results/
 .vscode/*
 !.vscode/extensions.json
