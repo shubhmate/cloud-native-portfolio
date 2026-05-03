@@ -309,7 +309,7 @@ function generateProjects(config) {
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors bg-[var(--surface)]">
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
                 <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('${project.image}')">
-                  <img src="${project.image}" alt="Project Architecture" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                  <img src="${project.image}" alt="Project Architecture" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
                   <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i data-lucide="zoom-in" class="w-6 h-6 text-white"></i></div>
                 </div>
                 <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
@@ -387,7 +387,46 @@ function generateContactUI(config, type = 'grid') {
    4. CORE REPLACEMENT ENGINE
    ========================================================================= */
 
-function applyReplacements(content, config) {
+function minifyContent(content, type) {
+  if (type === 'html') {
+    // Protect <pre> and <code> tags by replacing them with placeholders
+    const blocks = [];
+    const protectedContent = content.replace(/<(pre|code)[\s\S]*?<\/\1>/gi, (match) => {
+      const placeholder = `__PRE_BLOCK_${blocks.length}__`;
+      blocks.push(match);
+      return placeholder;
+    });
+
+    let minified = protectedContent
+      .replace(/<!--[\s\S]*?-->/g, '') // Remove comments
+      .replace(/>\s+</g, '><')          // Remove space between tags
+      .replace(/\s{2,}/g, ' ')          // Collapse multiple spaces
+      .trim();
+
+    // Restore protected blocks
+    blocks.forEach((block, i) => {
+      minified = minified.replace(`__PRE_BLOCK_${i}__`, block);
+    });
+    return minified;
+  }
+  if (type === 'json') {
+    try {
+      return JSON.stringify(JSON.parse(content));
+    } catch (e) {
+      return content.replace(/\s{2,}/g, ' ').trim();
+    }
+  }
+  if (type === 'js') {
+    return content
+      .replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '$1')
+      .replace(/\s{2,}/g, ' ')
+      .replace(/\n\s*/g, '')
+      .trim();
+  }
+  return content;
+}
+
+function applyReplacements(content, config, fileType = 'html') {
   let modifiedContent = content;
   for (const key in config) {
     if (Object.hasOwnProperty.call(config, key)) {
@@ -407,7 +446,7 @@ function applyReplacements(content, config) {
       }
     }
   }
-  return modifiedContent;
+  return minifyContent(modifiedContent, fileType);
 }
 
 /* =========================================================================
@@ -522,7 +561,8 @@ async function build() {
     filesToProcess.forEach(file => {
       if (fs.existsSync(file.src)) {
         let content = fs.readFileSync(file.src, 'utf8');
-        content = applyReplacements(content, config);
+        const ext = path.extname(file.src).substring(1); // 'html', 'js', 'json'
+        content = applyReplacements(content, config, ext);
         validateContentIntegrity(content, `dist/${file.name}`);
         fs.writeFileSync(file.dest, content, 'utf8');
         console.log(`✔ Generated: ${file.name}`);
@@ -544,7 +584,8 @@ async function build() {
         const srcFile  = path.join(publicDir, file);
         const destFile = path.join(PATHS.dist, file);
         let content = fs.readFileSync(srcFile, 'utf8');
-        content = applyReplacements(content, config);
+        const ext = path.extname(srcFile).substring(1);
+        content = applyReplacements(content, config, ext);
         fs.writeFileSync(destFile, content, 'utf8');
       });
       console.log('✔ Public root files synced. (robots.txt, sitemap.xml)');

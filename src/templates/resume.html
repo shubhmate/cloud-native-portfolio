@@ -9,8 +9,9 @@
   <meta name="description" content="View the professional resume of {{PERSON_NAME}}, {{JOB_TITLE}}.">
   <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico">
 
-  <!-- Icons -->
-  <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js"></script>
+  <!-- Icons & Logic -->
+  <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
+  <script src="assets/js/{{JS_FILENAME}}" defer></script>
   <link rel="stylesheet" href="assets/css/{{CSS_FILENAME}}">
   
   <style>
@@ -55,13 +56,13 @@
 
     <div class="flex items-center gap-2 md:gap-3">
       <!-- Fullscreen Button (Best for Mobile Zoom/Scroll) -->
-      <a href="{{RESUME_LINK}}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-xs font-bold rounded-lg transition-all">
+      <a href="{{RESUME_LINK}}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:brightness-110 text-xs font-bold rounded-lg transition-all">
         <i data-lucide="maximize" class="w-4 h-4"></i>
         <span class="hidden sm:inline">{{RESUME_FULLSCREEN}}</span>
       </a>
 
       <!-- Direct Download Fallback -->
-      <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="flex items-center gap-2 px-3 py-2 md:px-4 bg-[var(--accent)] hover:bg-blue-500 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-blue-500/20">
+      <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="flex items-center gap-2 px-3 py-2 md:px-4 bg-[var(--accent)] hover:brightness-110 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-blue-500/20">
         <i data-lucide="download" class="w-4 h-4"></i>
         <span class="hidden sm:inline">{{RESUME_DOWNLOAD}}</span>
       </a>
@@ -91,44 +92,6 @@
     </div>
   </main>
 
-  <script>
-    // Theme Logic (Sync with Main Site)
-    const html = document.documentElement;
-    const themeBtn = document.getElementById('theme-toggle');
-    
-    function updateTheme(theme) {
-      // 1. Update Classes
-      if (theme === 'dark') {
-        html.classList.add('dark');
-        html.classList.remove('light');
-      } else {
-        html.classList.add('light');
-        html.classList.remove('dark');
-      }
-
-      // 2. Update Icon (Symmetric with Main Site)
-      const iconName = theme === 'dark' ? 'sun' : 'moon';
-      themeBtn.innerHTML = `<i data-lucide="${iconName}" class="w-5 h-5"></i>`;
-        
-      // 3. Re-render Icons
-      if (window.lucide) lucide.createIcons();
-    }
-
-    // Init Theme
-    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-    updateTheme(savedTheme);
-
-    // Toggle Theme
-    themeBtn.addEventListener('click', () => {
-      const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
-      localStorage.setItem('theme', newTheme);
-      updateTheme(newTheme);
-    });
-
-    // Init Lucide
-    document.addEventListener('DOMContentLoaded', () => {
-      if (window.lucide) lucide.createIcons();
-    });
-  </script>
+  <!-- Note: Theme and Icon logic is handled by main.js -->
 </body>
 </html>
