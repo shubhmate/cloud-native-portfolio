@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PERSON_NAME}} - Resume</title>
+  
+  <style>
+    /* --- HIGH-FIDELITY LATEX REPLICATION --- */
+    :root {
+      --brand-color: rgb(0, 51, 102);
+      --font-size-base: 11pt;
+    }
+
+    @page {
+      size: letter;
+      margin: 0.5in;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: "Times New Roman", Times, serif;
+      font-size: var(--font-size-base);
+      line-height: 1.2;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      background: white;
+    }
+
+    .resume-wrapper {
+      width: 100%;
+    }
+
+    /* 1. HEADING */
+    .header {
+      text-align: center;
+      margin-bottom: 12pt;
+    }
+
+    .header h1 {
+      font-variant: small-caps;
+      color: var(--brand-color);
+      font-size: 26pt;
+      margin: 0 0 2pt 0;
+      font-weight: normal;
+    }
+
+    .header p {
+      margin: 2pt 0;
+      font-size: 10.5pt;
+    }
+
+    .header a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 2. SECTIONS */
+    section {
+      margin-top: 10pt;
+      margin-bottom: 5pt;
+    }
+
+    h2 {
+      font-variant: small-caps;
+      color: var(--brand-color);
+      font-size: 12.5pt;
+      font-weight: bold;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      border-bottom: 1px solid var(--brand-color);
+      padding-bottom: 1pt;
+      margin-bottom: 4pt;
+    }
+
+    /* 3. SUBHEADINGS (LaTeX resumeSubheading) */
+    .subheading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1pt;
+      font-weight: bold;
+      font-size: 10.5pt;
+    }
+
+    .subheading-detail {
+      display: flex;
+      justify-content: space-between;
+      font-style: italic;
+      font-size: 10pt;
+      margin-bottom: 3pt;
+    }
+
+    /* 4. ITEMS (LaTeX resumeItem) */
+    ul {
+      margin: 0 0 6pt 15pt;
+      padding: 0;
+      list-style-type: disc;
+    }
+
+    li {
+      margin-bottom: 2pt;
+      font-size: 10pt;
+      text-align: justify;
+    }
+
+    /* 5. SKILLS */
+    .skills-container {
+      margin-left: 0;
+      font-size: 10pt;
+    }
+    
+    .skills-item {
+      margin-bottom: 2pt;
+    }
+
+    .skills-item b {
+      font-weight: bold;
+    }
+    
+    /* Project Link Override */
+    .subheading a {
+      font-weight: normal;
+      font-size: 9pt;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="resume-wrapper">
+    <!-- 1. HEADING -->
+    <header class="header">
+      <h1>{{PERSON_NAME}}</h1>
+      <p>
+        {{RESUME_CONTACT_LOCATION}} | 
+        <a href="mailto:{{EMAIL_ADDRESS}}">{{EMAIL_ADDRESS}}</a> | 
+        {{RESUME_CONTACT_PHONE}}
+      </p>
+      <p>
+        <a href="{{PORTFOLIO_URL}}">Website</a> | 
+        <a href="{{LINKEDIN_PROFILE}}">LinkedIn</a> | 
+        <a href="{{GITHUB_HANDLE}}">GitHub</a>
+      </p>
+    </header>
+
+    <!-- 2. SUMMARY -->
+    <section>
+      <h2>Summary</h2>
+      <p style="font-size: 10pt; text-align: justify; margin: 0 0 0 0;">
+        {{RESUME_SUMMARY}}
+      </p>
+    </section>
+
+    <!-- 3. WORK EXPERIENCE -->
+    <section>
+      <h2>Work Experience</h2>
+      {{RESUME_EXPERIENCE_HTML}}
+    </section>
+
+    <!-- 4. SKILLS -->
+    <section>
+      <h2>Skills</h2>
+      <div class="skills-container">
+        {{RESUME_SKILLS_HTML}}
+      </div>
+    </section>
+
+    <!-- 5. PROJECTS -->
+    <section>
+      <h2>Projects</h2>
+      {{RESUME_PROJECTS_HTML}}
+    </section>
+
+    <!-- 6. TRAINING AND COURSES -->
+    <section>
+      <h2>Training and Courses</h2>
+      {{RESUME_CERTIFICATIONS_HTML}}
+    </section>
+
+    <!-- 7. EDUCATION -->
+    <section>
+      <h2>Education</h2>
+      {{RESUME_EDUCATION_HTML}}
+    </section>
+  </div>
+</body>
+</html>

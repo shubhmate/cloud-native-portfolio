@@ -17,6 +17,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const puppeteer = require('puppeteer');
 
 /* =========================================================================
    1. CONFIGURATION & PATHS
@@ -30,6 +31,7 @@ const PATHS = {
   templates: {
     index: path.join(PROJECT_ROOT, 'src', 'templates', 'index.html'),
     resume: path.join(PROJECT_ROOT, 'src', 'templates', 'resume.html'),
+    resumePdf: path.join(PROJECT_ROOT, 'src', 'templates', 'resume-pdf-template.html'),
     mainCss: path.join(PROJECT_ROOT, 'src', 'styles', 'main.css'),
     mainJs: path.join(PROJECT_ROOT, 'src', 'scripts', 'main.js'),
     commands: path.join(PROJECT_ROOT, 'src', 'scripts', 'commands.json'),
@@ -38,6 +40,7 @@ const PATHS = {
   output: {
     index: path.join(PROJECT_ROOT, 'dist', 'index.html'),
     resume: path.join(PROJECT_ROOT, 'dist', 'resume.html'),
+    resumePdf: path.join(PROJECT_ROOT, 'dist', 'resume-pdf.html'),
     mainCss: path.join(PROJECT_ROOT, 'dist', 'assets', 'css', 'main.css'),
     mainJs: path.join(PROJECT_ROOT, 'dist', 'assets', 'js', 'main.js'),
     commands: path.join(PROJECT_ROOT, 'dist', 'assets', 'js', 'commands.json'),
@@ -50,20 +53,8 @@ const DEFAULT_CONFIG = {
   'PERSON_NAME': 'Shubham Mate',
   'JOB_TITLE': 'DevOps Engineer',
   'SITE_LOGO_TEXT': 'devops.sh',
-  'PRELOADER_TEXT': 'Initializing...',
-  'NAV_HOME': 'Home',
-  'NAV_ABOUT': 'About',
-  'NAV_EXPERIENCE': 'Experience',
-  'NAV_STACK': 'Stack',
-  'NAV_PROJECTS': 'Projects',
-  'NAV_PIPELINE': 'Pipeline',
-  'NAV_CONTACT': 'Contact',
-  'NAV_RESUME': 'Resume',
-  'HIRE_ME_TEXT': 'HIRE ME',
-  'HERO_SUBTITLE': 'DevOps Engineer',
-  'YEARS_EXPERIENCE': '2+ years',
-  'SECTION_PROJECTS_TITLE': 'Featured Projects',
-  'PROJECTS_FLIP_HINT': 'click to flip'
+  'PRELOADER_TEXT': 'Initializing devops.sh...',
+  'HIRE_ME_TEXT': 'HIRE ME'
 };
 
 /* =========================================================================
@@ -384,7 +375,72 @@ function generateContactUI(config, type = 'grid') {
 }
 
 /* =========================================================================
-   4. CORE REPLACEMENT ENGINE
+   4. RESUME-SPECIFIC GENERATORS (LaTeX Replication)
+   ========================================================================= */
+
+function generateResumeExperience(config) {
+  if (!config.RESUME_EXPERIENCE) return '';
+  return config.RESUME_EXPERIENCE.map(exp => {
+    const bulletsHtml = exp.bullets.map(bullet => `<li>${escapeHtml(bullet)}</li>`).join('');
+    return `
+      <div class="subheading">
+        <span>${escapeHtml(exp.role)}</span>
+        <span>${escapeHtml(exp.start)} – ${escapeHtml(exp.end)}</span>
+      </div>
+      <div class="subheading-detail">
+        <span>${escapeHtml(exp.company)} — ${escapeHtml(exp.location || '')}</span>
+      </div>
+      <ul>${bulletsHtml}</ul>`;
+  }).join('');
+}
+
+function generateResumeSkills(config) {
+  if (!config.RESUME_SKILLS) return '';
+  const skillsHtml = Object.entries(config.RESUME_SKILLS).map(([category, skills]) => {
+    return `<li><b>${category}:</b> ${skills.join(', ')}</li>`;
+  }).join('');
+  return `<ul>${skillsHtml}</ul>`;
+}
+
+function generateResumeProjects(config) {
+  if (!config.RESUME_PROJECTS) return '';
+  return config.RESUME_PROJECTS.map(project => {
+    const bulletsHtml = (project.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join('');
+    return `
+      <div class="subheading">
+        <span><b>${escapeHtml(project.title)}</b> | <i>${escapeHtml(project.tech || '')}</i></span>
+        <span>${project.link ? `<a href="${project.link}" style="text-decoration:none; color:inherit;">Project Link</a>` : ''}</span>
+      </div>
+      <ul style="margin-top: 2pt;">${bulletsHtml}</ul>`;
+  }).join('');
+}
+
+function generateResumeCertifications(config) {
+  if (!config.RESUME_CERTIFICATIONS) return '';
+  return config.RESUME_CERTIFICATIONS.map(cert => `
+      <div class="subheading">
+        <span>${escapeHtml(cert.name)}</span>
+        <span>${escapeHtml(cert.date)}</span>
+      </div>
+      <div class="subheading-detail">
+        <span>${escapeHtml(cert.issuer)}</span>
+      </div>`).join('');
+}
+
+function generateResumeEducation(config) {
+  if (!config.RESUME_EDUCATION) return '';
+  return config.RESUME_EDUCATION.map(edu => `
+      <div class="subheading">
+        <span>${escapeHtml(edu.school)}</span>
+        <span>${escapeHtml(edu.date)}</span>
+      </div>
+      <div class="subheading-detail">
+        <span>${escapeHtml(edu.degree)} — ${escapeHtml(edu.location || '')}</span>
+      </div>`).join('');
+}
+
+/* =========================================================================
+   5. CORE REPLACEMENT ENGINE
    ========================================================================= */
 
 function minifyContent(content, type) {
@@ -515,6 +571,13 @@ async function build() {
     config.HIRE_ME_BUTTON = generateHireMeButton(config);
     generateProjects(config);
 
+    // 2b. Generate Resume-Specific Content
+    config.RESUME_EXPERIENCE_HTML = generateResumeExperience(config);
+    config.RESUME_SKILLS_HTML = generateResumeSkills(config);
+    config.RESUME_PROJECTS_HTML = generateResumeProjects(config);
+    config.RESUME_CERTIFICATIONS_HTML = generateResumeCertifications(config);
+    config.RESUME_EDUCATION_HTML = generateResumeEducation(config);
+
     // 3. Inject Terminal Data
     const currentMonth = new Date().toLocaleString('en-US', { month: 'short' });
     const currentDay = new Date().getDate().toString().padStart(2, ' ');
@@ -554,6 +617,7 @@ async function build() {
     const filesToProcess = [
       { src: PATHS.templates.index, dest: PATHS.output.index, name: 'index.html' },
       { src: PATHS.templates.resume, dest: PATHS.output.resume, name: 'resume.html' },
+      { src: PATHS.templates.resumePdf, dest: PATHS.output.resumePdf, name: 'resume-pdf.html' },
       { src: PATHS.templates.mainJs, dest: path.join(PATHS.output.assets, 'js', config.JS_FILENAME), name: config.JS_FILENAME },
       { src: PATHS.templates.commands, dest: PATHS.output.commands, name: 'commands.json' }
     ];
@@ -561,11 +625,16 @@ async function build() {
     filesToProcess.forEach(file => {
       if (fs.existsSync(file.src)) {
         let content = fs.readFileSync(file.src, 'utf8');
-        const ext = path.extname(file.src).substring(1); // 'html', 'js', 'json'
+        const ext = path.extname(file.src).substring(1);
         content = applyReplacements(content, config, ext);
-        validateContentIntegrity(content, `dist/${file.name}`);
-        fs.writeFileSync(file.dest, content, 'utf8');
-        console.log(`✔ Generated: ${file.name}`);
+        if (file.name === 'resume-pdf.html') {
+          // No validation for the hidden PDF template to avoid noise
+          fs.writeFileSync(file.dest, content, 'utf8');
+        } else {
+          validateContentIntegrity(content, `dist/${file.name}`);
+          fs.writeFileSync(file.dest, content, 'utf8');
+          console.log(`✔ Generated: ${file.name}`);
+        }
       }
     });
 
@@ -589,6 +658,33 @@ async function build() {
         fs.writeFileSync(destFile, content, 'utf8');
       });
       console.log('✔ Public root files synced. (robots.txt, sitemap.xml)');
+    }
+
+    // 8. Generate Automated PDF Resume
+    console.log('📄 Generating Automated PDF Resume...');
+    try {
+      const browser = await puppeteer.launch({ 
+        headless: 'new',
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+      });
+      const page = await browser.newPage();
+      await page.goto('file://' + path.resolve(PATHS.output.resumePdf), { waitUntil: 'networkidle0' });
+      await page.pdf({
+        path: path.join(PATHS.output.assets, 'resume.pdf'),
+        format: 'Letter',
+        printBackground: true
+      });
+      await browser.close();
+      
+      // Clean up the temporary PDF template
+      if (fs.existsSync(PATHS.output.resumePdf)) {
+        fs.unlinkSync(PATHS.output.resumePdf);
+      }
+      
+      console.log('✔ Generated: resume.pdf');
+    } catch (pdfError) {
+      console.warn('⚠️ PDF generation skipped or failed (Puppeteer error):', pdfError.message);
+      console.warn('   Note: You can still use the "Print" button in the browser on resume.html');
     }
 
     console.log('\n✨ Build complete! Your site is ready in /dist');

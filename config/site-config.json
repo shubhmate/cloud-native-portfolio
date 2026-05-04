@@ -1,4 +1,9 @@
 {
+  "// ─────────────────────────────────────────────────────-": "──────────────",
+  "// 🔥 PENDING UPDATES (TODO)": "Replace these placeholders before going live!",
+  "// [ ] RESUME_CONTACT_PHONE": "Replace +91-XXXXXXXXXX in Section 12",
+  "// [ ] RESUME_EDUCATION": "Replace 'Your University Name' in Section 12",
+  "// [ ] PROFILE_IMAGE": "Ensure your photo is at assets/img/profile.webp",
   "// ─────────────────────────────────────────────────────": "──────────────",
   "// 1. IDENTITY & SEO": "Edit your name, title, links and SEO meta here.",
   "PERSON_NAME": "Shubham Mate",
@@ -6,7 +11,6 @@
   "PORTFOLIO_URL": "https://shubhammate.com",
   "GITHUB_HANDLE": "https://github.com/shubhmate",
   "LINKEDIN_PROFILE": "https://www.linkedin.com/in/shubham-mate",
-  "HASHNODE_HANDLE": "",
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "PROFILE_IMAGE": "assets/img/profile.webp",
   "// 2. GLOBAL UI & NAVIGATION": "Logo, preloader text, and nav links.",
@@ -88,6 +92,7 @@
     {
       "role": "DevOps Engineer",
       "company": "Quantiphi",
+      "location": "Remote",
       "type": "Full-time",
       "start": "Sep 2021",
       "end": "Nov 2022",
@@ -101,6 +106,7 @@
     {
       "role": "Junior DevOps / Cloud Intern",
       "company": "Quantiphi",
+      "location": "Mumbai, India",
       "type": "Internship",
       "start": "Mar 2021",
       "end": "Aug 2021",
@@ -154,12 +160,12 @@
   ],
   "// 8. SKILLS SECTION": "Group colors and skills. Add/remove skills in SKILLS_GROUPED.",
   "SKILLS_COLORS": {
-    "Infrastructure": "blue",
-    "Version Control": "blue",
-    "CI/CD": "blue",
-    "Monitoring": "blue",
-    "Languages": "blue",
-    "Security": "blue"
+    "Infrastructure": "cyan",
+    "Version Control": "indigo",
+    "CI/CD": "purple",
+    "Monitoring": "orange",
+    "Languages": "emerald",
+    "Security": "rose"
   },
   "SKILLS_GROUPED": {
     "Infrastructure": [
@@ -252,7 +258,6 @@
     ]
   },
   "// 9. PROJECTS SECTION": "Add/remove projects in PROJECTS array. Each has a flip card.",
-  "PROJECT_2_TITLE": "CI/CD Pipeline for Microservices",
   "PROJECTS_SUBTITLE": "Hands-on labs & real projects built to learn by doing",
   "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
   "PROJECTS": [
@@ -445,7 +450,7 @@
       "type": "link"
     }
   ],
-  "// 12. RESUME PAGE": "Controls the /resume.html viewer page.",
+  "// 12. RESUME PAGE": "Controls the /resume.html viewer page and automated PDF content.",
   "RESUME_PAGE_TITLE": "Professional Resume",
   "RESUME_BACK_HOME": "Back to Home",
   "RESUME_FULLSCREEN": "Fullscreen",
@@ -454,6 +459,93 @@
   "RESUME_FILENAME": "Shubham_Mate_DevOps_Resume.pdf",
   "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
   "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
+  "// --- RESUME DATA SOURCE (Independent from website) ---": "Edit these to customize your PDF resume.",
+  "RESUME_CONTACT_PHONE": "+91-XXXXXXXXXX",
+  "RESUME_CONTACT_LOCATION": "Pune, India",
+  "RESUME_SUMMARY": "DevOps Engineer with 2+ years of hands-on experience in automating cloud infrastructure, building CI/CD pipelines, and managing containerized applications. Proven track record in reducing deployment times and improving system reliability through Infrastructure as Code (Terraform) and robust monitoring (Prometheus/Grafana).",
+  "RESUME_EXPERIENCE": [
+    {
+      "role": "DevOps Engineer",
+      "company": "Quantiphi",
+      "location": "Remote",
+      "start": "Sep 2021",
+      "end": "Nov 2022",
+      "bullets": [
+        "Maintain and improve CI/CD pipelines using GitHub Actions for 5+ microservices",
+        "Containerized legacy Node.js applications using Docker, reducing environment inconsistencies",
+        "Assisted in writing Terraform scripts to provision AWS EC2, S3, and RDS resources",
+        "Set up basic Prometheus + Grafana dashboards to monitor application health on EC2"
+      ]
+    },
+    {
+      "role": "Junior DevOps / Cloud Intern",
+      "company": "Quantiphi",
+      "location": "Mumbai, India",
+      "start": "Mar 2021",
+      "end": "Aug 2021",
+      "bullets": [
+        "Supported deployment of Dockerized applications to AWS ECS using shell scripts",
+        "Wrote Ansible playbooks to automate server configuration across dev environments",
+        "Learned and applied basic Kubernetes concepts — deployments, services, ConfigMaps",
+        "Collaborated with dev team to debug pipeline failures and reduce build times by 20%"
+      ]
+    }
+  ],
+  "RESUME_SKILLS": {
+    "Infrastructure": [
+      "Linux",
+      "AWS",
+      "GCP",
+      "Docker",
+      "Kubernetes",
+      "Terraform",
+      "Ansible"
+    ],
+    "CI/CD": [
+      "Jenkins",
+      "GitHub Actions",
+      "ArgoCD"
+    ],
+    "Monitoring": [
+      "Prometheus",
+      "Grafana"
+    ],
+    "Languages": [
+      "Python",
+      "Go (Learning)"
+    ]
+  },
+  "RESUME_PROJECTS": [
+    {
+      "title": "Cloud Native Portfolio",
+      "tech": "Terraform, AWS, GitHub Actions",
+      "link": "https://github.com/shubhmate/cloud-native-portfolio",
+      "bullets": [
+        "Automated multi-environment infrastructure provisioning using Terraform and AWS S3/CloudFront.",
+        "Implemented secure CI/CD pipelines with GitHub Actions and OIDC authentication."
+      ]
+    }
+  ],
+  "RESUME_CERTIFICATIONS": [
+    {
+      "name": "AWS Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "date": "2023"
+    },
+    {
+      "name": "Docker Essentials",
+      "issuer": "IBM",
+      "date": "2022"
+    }
+  ],
+  "RESUME_EDUCATION": [
+    {
+      "school": "Your University Name",
+      "degree": "Bachelor of Technology in Computer Science",
+      "location": "Pune, India",
+      "date": "Graduated May 2021"
+    }
+  ],
   "// 13. TERMINAL (VIRTUAL OS)": "The interactive terminal simulator config.",
   "TERMINAL_SSH_USER": "guest",
   "TERMINAL_SSH_HOST": "shubham-mate-vps-01",
