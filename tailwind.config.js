@@ -34,8 +34,8 @@ module.exports = {
     'text-cyan-400', 'text-teal-400', 'text-emerald-400',
     
     // Status & Certification Colors (bg-X-400/5, bg-X-400/10, border-X-400/30, text-X-400)
-    { pattern: /(bg|border|text)-(blue|green|yellow|purple|orange|red)-(400|500)\/(5|10|20|30)/ },
-    { pattern: /(text)-(blue|green|yellow|purple|orange|red)-(400|500)/ },
+    { pattern: /(bg|border|text)-(blue|green|yellow|purple|orange|red|cyan|indigo|emerald|rose)-(400|500)\/(5|10|20|30)/ },
+    { pattern: /(text)-(blue|green|yellow|purple|orange|red|cyan|indigo|emerald|rose)-(400|500)/ },
     
     // Core Dynamic UI
     'text-[var(--accent)]',
