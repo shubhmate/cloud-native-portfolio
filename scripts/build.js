@@ -405,7 +405,7 @@ function generateResumeExperience(config) {
     return `
       <div class="subheading">
         <span>${exp.role}</span>
-        <span>${exp.start} – ${exp.end}</span>
+        <span><i>${exp.start} – ${exp.end}</i></span>
       </div>
       <div class="subheading-detail">
         <span>${exp.company} — ${exp.location || ''}</span>
@@ -443,7 +443,7 @@ function generateResumeCertifications(config) {
   return config.RESUME_CERTIFICATIONS.map(cert => `
       <div class="subheading">
         <span>${cert.name}</span>
-        <span>${cert.link ? `<a href="${cert.link}" style="text-decoration:none; color:inherit;">View Credential</a>` : ''}</span>
+        <span>${cert.link ? `<a href="${cert.link}" style="text-decoration:none; color:inherit;"><i>View Credential</i></a>` : `<i>${cert.date}</i>`}</span>
       </div>
       <div class="subheading-detail">
         <span>${cert.issuer}${cert.certId ? ` · ID: ${cert.certId}` : ''}</span>
@@ -455,7 +455,7 @@ function generateResumeEducation(config) {
   return config.RESUME_EDUCATION.map(edu => `
       <div class="subheading">
         <span>${edu.school}</span>
-        <span>${edu.date}</span>
+        <span><i>${edu.date}</i></span>
       </div>
       <div class="subheading-detail">
         <span>${edu.degree} — ${edu.location || ''}</span>
