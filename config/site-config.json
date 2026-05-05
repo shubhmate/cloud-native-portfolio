@@ -1,11 +1,10 @@
 {
-  "// ─────────────────────────────────────────────────────-": "──────────────",
+  "// ─────────────────────────────────────────────────────────────────────────": "──────────────",
   "// 🔥 PENDING UPDATES (TODO)": "Replace these placeholders before going live!",
   "// [ ] RESUME_CONTACT_PHONE": "Replace +91-XXXXXXXXXX in Section 12",
   "// [ ] RESUME_EDUCATION": "Replace 'Your University Name' in Section 12",
   "// [ ] PROFILE_IMAGE": "Ensure your photo is at assets/img/profile.webp",
-  "// ─────────────────────────────────────────────────────": "──────────────",
-  "// 1. IDENTITY & SEO": "Edit your name, title, links and SEO meta here.",
+  "// 1. GLOBAL IDENTITY & SEO": "--------------------------------------------------",
   "PERSON_NAME": "Shubham Mate",
   "JOB_TITLE": "DevOps Engineer",
   "PORTFOLIO_URL": "https://shubhammate.com",
@@ -13,9 +12,10 @@
   "LINKEDIN_PROFILE": "https://www.linkedin.com/in/shubham-mate",
   "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
   "PROFILE_IMAGE": "assets/img/profile.webp",
-  "// 2. GLOBAL UI & NAVIGATION": "Logo, preloader text, and nav links.",
+  "// 2. NAVIGATION & UI": "--------------------------------------------------",
   "SITE_LOGO_TEXT": "devops.sh",
   "PRELOADER_TEXT": "Initializing devops.sh...",
+  "HIRE_ME_TEXT": "HIRE ME",
   "NAV_ITEMS": [
     {
       "label": "Home",
@@ -51,40 +51,27 @@
       "type": "button"
     }
   ],
-  "// 3. SECTION HEADERS": "The hint (small tag) and title for each section.",
-  "SECTION_ABOUT_HINT": "// about me",
-  "SECTION_ABOUT_TITLE": "Behind the Terminals",
-  "SECTION_EXPERIENCE_HINT": "// experience",
-  "SECTION_EXPERIENCE_TITLE": "Work History",
-  "SECTION_CERTIFICATIONS_HINT": "// certifications",
-  "SECTION_CERTIFICATIONS_TITLE": "Credentials",
-  "SECTION_SKILLS_HINT": "// the stack",
-  "SECTION_SKILLS_TITLE": "Tools & Technologies",
-  "SECTION_SKILLS_INTERACTIVE_HINT": "// interactive — try it",
-  "SECTION_PROJECTS_HINT": "// projects",
-  "SECTION_PROJECTS_TITLE": "Featured Work",
-  "SECTION_PIPELINE_HINT": "// meta-project",
-  "SECTION_PIPELINE_TITLE": "How This Site is Built",
-  "SECTION_CONTACT_HINT": "// contact",
-  "SECTION_CONTACT_TITLE": "Let's Build Something",
-  "// 4. HERO SECTION": "The first thing visitors see.",
+  "// 3. HERO SECTION": "--------------------------------------------------",
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
   "HERO_SUBTITLE": "Open to new opportunities",
   "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-cyan-400\">CI/CD Pipelines</span>, <span class=\"text-teal-400\">Containerization</span>, and <span class=\"text-emerald-400\">Cloud Infrastructure</span>.",
-  "HIRE_ME_BUTTON": "HIRE ME",
   "TYPEWRITER_PHRASES": [
     "DevOps Engineer",
     "Cloud Engineer",
     "DevSecOps Engineer"
   ],
-  "// 5. ABOUT SECTION": "Your bio, status, and location.",
+  "// 4. ABOUT SECTION": "--------------------------------------------------",
+  "SECTION_ABOUT_HINT": "// about me",
+  "SECTION_ABOUT_TITLE": "Behind the Terminals",
   "ABOUT_ME_DESCRIPTION": "I am a passionate DevOps Engineer with a strong foundation in cloud-native technologies. I specialize in automating complex workflows, managing scalable infrastructure, and ensuring the reliability of high-traffic applications. My journey in tech is driven by a curiosity for how systems work and a desire to build tools that empower developers.",
   "CURRENT_STATUS": "Open to full-time roles",
   "CURRENT_LOCATION": "Pune, India",
   "YEARS_EXPERIENCE": "~2 years experience",
   "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
-  "// 6. EXPERIENCE SECTION": "Work history timeline. Add/remove items in EXPERIENCE array.",
+  "// 5. EXPERIENCE & TIMELINE": "--------------------------------------------------",
+  "SECTION_EXPERIENCE_HINT": "// experience",
+  "SECTION_EXPERIENCE_TITLE": "Work History",
   "TIMELINE_DATE_1": "Oct 26, 2023",
   "TIMELINE_DATE_2": "Sep 15, 2023",
   "TIMELINE_DATE_3": "Aug 01, 2023",
@@ -118,47 +105,64 @@
       ]
     }
   ],
-  "// 7. CERTIFICATIONS SECTION": "Add/remove certs. Colors: yellow, purple, blue, orange, red, green.",
+  "// 6. CERTIFICATIONS": "--------------------------------------------------",
+  "SECTION_CERTIFICATIONS_HINT": "// certifications",
+  "SECTION_CERTIFICATIONS_TITLE": "Credentials",
   "CERTIFICATIONS_SUBTITLE": "Completed & actively pursuing",
   "CERTIFICATIONS": [
     {
       "name": "AWS Cloud Practitioner",
       "issuer": "Foundational",
       "status": "Completed",
-      "color": "yellow"
+      "color": "yellow",
+      "link": "assets/docs/certs/aws_cloud_practitioner.pdf",
+      "certId": "12345-ABC-XYZ"
     },
     {
       "name": "HashiCorp Terraform",
       "issuer": "Associate",
       "status": "In Progress",
-      "color": "purple"
+      "color": "purple",
+      "link": "",
+      "certId": ""
     },
     {
       "name": "AWS Solutions Architect",
       "issuer": "Associate",
       "status": "In Progress",
-      "color": "blue"
+      "color": "blue",
+      "link": "",
+      "certId": ""
     },
     {
       "name": "Kubernetes Basics",
       "issuer": "CNCF",
       "status": "Completed",
-      "color": "orange"
+      "color": "orange",
+      "link": "assets/docs/certs/kubernetes_basics.pdf",
+      "certId": "K8S-05-67-89"
     },
     {
       "name": "Linux Fundamentals",
       "issuer": "LFS101",
       "status": "Completed",
-      "color": "red"
+      "color": "red",
+      "link": "assets/docs/certs/linux_fundamentals.pdf",
+      "certId": "LF-99-00-11"
     },
     {
       "name": "Docker Essentials",
       "issuer": "IBM",
       "status": "Completed",
-      "color": "green"
+      "color": "green",
+      "link": "assets/docs/certs/docker_essentials.pdf",
+      "certId": "DKR-55-XY-ZZ"
     }
   ],
-  "// 8. SKILLS SECTION": "Group colors and skills. Add/remove skills in SKILLS_GROUPED.",
+  "// 7. TECH STACK & SKILLS": "--------------------------------------------------",
+  "SECTION_SKILLS_HINT": "// the stack",
+  "SECTION_SKILLS_TITLE": "Tools & Technologies",
+  "SECTION_SKILLS_INTERACTIVE_HINT": "// interactive — try it",
   "SKILLS_COLORS": {
     "Infrastructure": "cyan",
     "Version Control": "indigo",
@@ -257,7 +261,9 @@
       }
     ]
   },
-  "// 9. PROJECTS SECTION": "Add/remove projects in PROJECTS array. Each has a flip card.",
+  "// 8. PROJECTS": "--------------------------------------------------",
+  "SECTION_PROJECTS_HINT": "// projects",
+  "SECTION_PROJECTS_TITLE": "Featured Work",
   "PROJECTS_SUBTITLE": "Hands-on labs & real projects built to learn by doing",
   "PROJECTS_FLIP_HINT": "click &quot;flip&quot; to see architecture.",
   "PROJECTS": [
@@ -297,7 +303,7 @@
         "Checkov (Security Scan)"
       ],
       "problem": "Manual deployments are slow, insecure, and lack global performance metrics.",
-      "fix": "Implemented a full GitOps pipeline with automated security gates and global edge caching, achieving 99.9% availability."
+      "fix": "Implemented a full GitOps pipeline with automated security gates and global edge caching."
     },
     {
       "id": "project1",
@@ -310,79 +316,18 @@
         "HCL"
       ],
       "architecture": [
-        "React (port 3000)",
-        "→ Nginx reverse proxy",
-        "→ Node.js API (port 5000)",
-        "→ MongoDB (port 27017)",
-        "Volumes: mongo-data",
-        "Network: app-bridge"
+        "React (3000) ➔ ALB ➔ Node.js (5000)",
+        "ECR (Registry)",
+        "VPC Isolation",
+        "CloudWatch Logging"
       ],
       "problem": "App worked locally but broke in every other environment due to dependency mismatches.",
-      "fix": "Multi-stage Dockerfile + Docker Compose with named volumes and a shared bridge network. Image size reduced by ~55% using Alpine base."
-    },
-    {
-      "id": "project2",
-      "title": "Flask Express Cicd Jenkins Github Webhooks Aws Ec2",
-      "github_repo": "flask-express-cicd-jenkins-github-webhooks-aws-ec2",
-      "description": "🚀 Flask backend (port 5000) + Express frontend (port 3000) deployed on AWS EC2 with Jenkins CI/CD pipeline. Auto-deploys on every git push via GitHub webhook.",
-      "link": "https://github.com/shubhmate/flask-express-cicd-jenkins-github-webhooks-aws-ec2",
-      "image": "assets/img/project2-arch.png",
-      "tags": [
-        "JavaScript"
-      ],
-      "architecture": [
-        "VPC: 10.0.0.0/16",
-        "Public Subnet A/B → IGW",
-        "Private Subnet A/B → NAT GW",
-        "Security Groups: web, app, db",
-        "State: S3 + DynamoDB lock"
-      ],
-      "problem": "Manually creating VPCs was error-prone and took 30+ minutes per environment.",
-      "fix": "Reusable Terraform module with variable-driven CIDR blocks and AZ count. Full environment spun up in under 3 minutes with terraform apply."
-    },
-    {
-      "id": "project3",
-      "title": "AWS Lambda Http Function Url Tutorial",
-      "github_repo": "AWS_Lambda_Http_Function_Url_Tutorial",
-      "description": "📝 Learn serverless development with this AWS Lambda form handler! Submit forms → Store in DynamoDB → Display results instantly. Step-by-step tutorial included with complete code, IAM setup, and troubleshooting guide. Great for AWS beginners and serverless enthusiasts! 🎯",
-      "link": "https://github.com/shubhmate/AWS_Lambda_Http_Function_Url_Tutorial",
-      "image": "assets/img/project3-arch.png",
-      "tags": [
-        "JavaScript"
-      ],
-      "architecture": [
-        "Push to main",
-        "→ Lint + Test",
-        "→ Docker build & push ECR",
-        "→ SSH deploy to EC2",
-        "→ Health check",
-        "Rollback on failure"
-      ],
-      "problem": "Deployments were manual SSH sessions — slow, inconsistent, and risky.",
-      "fix": "GitHub Actions workflow with job dependencies, AWS credential secrets, and rollback step on failure. Deploy time cut from 15 min to under 3 min."
-    },
-    {
-      "id": "project4",
-      "title": "Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances",
-      "github_repo": "Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
-      "description": "This Terraform script automates deploying a Flask backend and Express frontend on separate EC2 instances. It provisions VPC networking, security groups, and uses Nginx reverse proxy via user data for seamless inter-service communication. The modular design ensures isolation, scalability, and easy access through automated infrastructure outputs.",
-      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
-      "image": "assets/img/project4-arch.png",
-      "tags": [
-        "Shell"
-      ],
-      "architecture": [
-        "EC2 t2.micro",
-        "Node Exporter :9100",
-        "→ Prometheus :9090 (15s scrape)",
-        "→ Grafana :3000",
-        "Alerts: CPU > 80%, Disk > 90%"
-      ],
-      "problem": "No visibility into server health. Apps would crash silently due to OOM errors.",
-      "fix": "Dockerized Prometheus + Grafana stack. Created custom dashboards and set up Slack alerts for high resource utilization. Detected memory leak within first 24 hours."
+      "fix": "Multi-stage Dockerfile + Docker Compose. Image size reduced by ~55% using Alpine base."
     }
   ],
-  "// 10. PIPELINE SECTION": "The CI/CD pipeline visualization steps.",
+  "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
+  "SECTION_PIPELINE_HINT": "// meta-project",
+  "SECTION_PIPELINE_TITLE": "How This Site is Built",
   "PIPELINE_DESCRIPTION": "This portfolio is itself a DevOps project — deployed via a fully automated CI/CD pipeline on AWS infrastructure provisioned with Terraform.",
   "PIPELINE_STEPS": [
     {
@@ -423,7 +368,9 @@
     }
   ],
   "PIPELINE_YAML": "name: 🚀 Deploy Portfolio\non:\n  push:\n    branches: [main]\n\njobs:\n  quality-gate:\n    name: 🔍 Lint & Security Scan\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: 🧪 Run ESLint & TypeCheck\n        run: npm ci && npm run lint:js && npm run type-check\n      - name: 🛡️ Infrastructure Scan (Checkov)\n        uses: bridgecrewio/checkov-action@master\n        with:\n          directory: terraform/\n\n  deploy:\n    name: 🌐 Production Deploy\n    needs: quality-gate\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      \n      - name: 📦 Build Site\n        run: npm ci && npm run build\n\n      - name: 🔐 Configure AWS\n        uses: aws-actions/configure-aws-credentials@v4\n        with:\n          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n          aws-region: us-east-1\n\n      - name: 🚀 Deploy to S3 + CloudFront\n        run: npm run deploy:aws",
-  "// 11. CONTACT & FOOTER": "Email, social links, and footer text.",
+  "// 10. CONTACT & FOOTER": "--------------------------------------------------",
+  "SECTION_CONTACT_HINT": "// contact",
+  "SECTION_CONTACT_TITLE": "Let's Build Something",
   "EMAILJS_SERVICE_ID": "service_ejk43c6",
   "EMAILJS_TEMPLATE_ID": "template_wav6wos",
   "EMAILJS_PUBLIC_KEY": "FvLsoXUl1h2UTUa5s",
@@ -443,7 +390,7 @@
       "type": "link"
     }
   ],
-  "// 12. RESUME PAGE": "Controls the /resume.html viewer page and automated PDF content.",
+  "// 11. RESUME PAGE (VIEWER)": "--------------------------------------------------",
   "RESUME_PAGE_TITLE": "Shubham Mate Resume",
   "RESUME_BACK_HOME": "Back to Home",
   "RESUME_FULLSCREEN": "Fullscreen",
@@ -452,7 +399,7 @@
   "RESUME_FILENAME": "Shubham_Mate_DevOps_Resume.pdf",
   "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
   "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
-  "// --- RESUME DATA SOURCE (Independent from website) ---": "Edit these to customize your PDF resume.",
+  "// 12. RESUME DATA SOURCE (Independent PDF Content)": "--------------------------------------------------",
   "RESUME_CONTACT_LOCATION": "Maharashtra, India",
   "RESUME_SUMMARY": "DevOps Engineer with 2+ years of hands-on experience in automating cloud infrastructure, building CI/CD pipelines, and managing containerized applications. Proven track record in reducing deployment times and improving system reliability through Infrastructure as Code (Terraform) and robust monitoring (Prometheus/Grafana).",
   "RESUME_EXPERIENCE": [
@@ -522,12 +469,16 @@
     {
       "name": "AWS Cloud Practitioner",
       "issuer": "Amazon Web Services",
-      "date": "2023"
+      "date": "2023",
+      "link": "assets/docs/certs/aws_cloud_practitioner.pdf",
+      "certId": "12345-ABC-XYZ"
     },
     {
       "name": "Docker Essentials",
       "issuer": "IBM",
-      "date": "2022"
+      "date": "2022",
+      "link": "assets/docs/certs/docker_essentials.pdf",
+      "certId": "DKR-55-XY-ZZ"
     }
   ],
   "RESUME_EDUCATION": [
@@ -538,7 +489,7 @@
       "date": "Graduated May 2021"
     }
   ],
-  "// 13. TERMINAL (VIRTUAL OS)": "The interactive terminal simulator config.",
+  "// 13. TERMINAL (VIRTUAL OS)": "--------------------------------------------------",
   "TERMINAL_SSH_USER": "guest",
   "TERMINAL_SSH_HOST": "shubham-mate-vps-01",
   "TERMINAL_SSH_SYSTEM": "Ubuntu 22.04.4 LTS (GNU/Linux 6.5.0-1021-aws x86_64)",

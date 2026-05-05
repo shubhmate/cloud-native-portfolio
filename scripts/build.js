@@ -219,10 +219,19 @@ function generateExperience(config) {
 function generateCertificationsHtml(config) {
   if (!config.CERTIFICATIONS) return '';
   return config.CERTIFICATIONS.map(cert => `
-              <div class="p-4 rounded-xl border border-${cert.color}-400/30 bg-${cert.color}-400/5 card-hover">
-                <i data-lucide="award" class="w-5 h-5 mb-2 text-${cert.color}-400"></i>
-                <p class="font-mono text-xs font-semibold leading-tight">${escapeHtml(cert.name)}</p>
-                <p class="text-xs text-[var(--muted)] mt-1">${escapeHtml(cert.issuer)} · ${escapeHtml(cert.status)}</p>
+              <div class="p-4 rounded-xl border border-${cert.color}-400/30 bg-${cert.color}-400/5 card-hover flex flex-col justify-between h-full">
+                <div>
+                  <i data-lucide="award" class="w-5 h-5 mb-2 text-${cert.color}-400"></i>
+                  <p class="font-mono text-xs font-semibold leading-tight">${cert.name}</p>
+                  <p class="text-[10px] text-[var(--muted)] mt-1 mb-4">
+                    ${cert.issuer} · ${cert.status}
+                    ${cert.certId ? `<br/><span class="text-[var(--accent)]/60">ID: ${cert.certId}</span>` : ''}
+                  </p>
+                </div>
+                ${cert.link ? `
+                <a href="${cert.link}" target="_blank" rel="noopener noreferrer" class="mt-auto inline-flex items-center gap-1.5 text-[10px] font-mono text-${cert.color}-400 hover:underline">
+                  <i data-lucide="external-link" class="w-3 h-3"></i> VERIFY
+                </a>` : ''}
               </div>`).join('');
 }
 
@@ -416,13 +425,16 @@ function generateResumeSkills(config) {
 function generateResumeProjects(config) {
   if (!config.RESUME_PROJECTS) return '';
   return config.RESUME_PROJECTS.map(project => {
-    const bulletsHtml = (project.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join('');
+    const bulletsHtml = (project.bullets || []).map(b => `<li>${b}</li>`).join('');
     return `
       <div class="subheading">
-        <span>${escapeHtml(project.title)} | <i>${escapeHtml(project.tech || '')}</i></span>
+        <span>${project.title}</span>
         <span>${project.link ? `<a href="${project.link}" style="text-decoration:none; color:inherit;">Project Link</a>` : ''}</span>
       </div>
-      <ul style="margin-top: 2pt;">${bulletsHtml}</ul>`;
+      <div class="subheading-detail" style="margin-bottom: 2pt;">
+        <i>${project.tech || ''}</i>
+      </div>
+      <ul style="margin-top: 0pt;">${bulletsHtml}</ul>`;
   }).join('');
 }
 
@@ -430,11 +442,11 @@ function generateResumeCertifications(config) {
   if (!config.RESUME_CERTIFICATIONS) return '';
   return config.RESUME_CERTIFICATIONS.map(cert => `
       <div class="subheading">
-        <span>${escapeHtml(cert.name)}</span>
-        <!-- <span>${escapeHtml(cert.date)}</span> -->
+        <span>${cert.name}</span>
+        <span>${cert.link ? `<a href="${cert.link}" style="text-decoration:none; color:inherit;">View Credential</a>` : ''}</span>
       </div>
       <div class="subheading-detail">
-        <span>${escapeHtml(cert.issuer)}</span>
+        <span>${cert.issuer}${cert.certId ? ` · ID: ${cert.certId}` : ''}</span>
       </div>`).join('');
 }
 
@@ -442,11 +454,11 @@ function generateResumeEducation(config) {
   if (!config.RESUME_EDUCATION) return '';
   return config.RESUME_EDUCATION.map(edu => `
       <div class="subheading">
-        <span>${escapeHtml(edu.school)}</span>
-        <span>${escapeHtml(edu.date)}</span>
+        <span>${edu.school}</span>
+        <span>${edu.date}</span>
       </div>
       <div class="subheading-detail">
-        <span>${escapeHtml(edu.degree)} — ${escapeHtml(edu.location || '')}</span>
+        <span>${edu.degree} — ${edu.location || ''}</span>
       </div>`).join('');
 }
 
