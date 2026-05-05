@@ -195,19 +195,19 @@ function generateExperience(config) {
     const bulletsHtml = exp.bullets.map(bullet => `
                     <li class="text-sm text-[var(--muted)] flex gap-2">
                       <span class="text-[var(--accent)] shrink-0">▸</span>
-                      ${escapeHtml(bullet)}
+                      ${bullet}
                     </li>`).join('');
 
     return `
                 <!-- Experience Item ${index + 1} -->
                 <div class="relative">
                   <div class="absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-[var(--accent)] bg-[var(--bg)]"></div>
-                  <div class="flex flex-wrap items-center gap-2 mb-1">
-                    <h3 class="font-mono font-semibold text-[var(--accent)]">${escapeHtml(exp.role)}</h3> 
-                    ${exp.end.toLowerCase() === 'present' ? '<span class="px-2 py-0.5 rounded text-xs font-mono bg-green-400/10 text-green-400">Full-time</span>' : `<span class="px-2 py-0.5 rounded text-xs font-mono bg-[var(--accent)]/10 text-[var(--accent)]">${escapeHtml(exp.type)}</span>`}
+                  <div class="flex items-center justify-between gap-2 mb-1">
+                    <h3 class="font-mono font-semibold text-[var(--accent)]">${exp.role}</h3> 
+                    ${exp.end.toLowerCase() === 'present' ? '<span class="px-2 py-0.5 rounded text-xs font-mono bg-green-400/10 text-green-400">Full-time</span>' : `<span class="px-2 py-0.5 rounded text-xs font-mono bg-[var(--accent)]/10 text-[var(--accent)]">${exp.type}</span>`}
                   </div>
-                  <p class="text-xs text-[var(--accent)] font-mono mb-1">@ ${escapeHtml(exp.company)}</p>
-                  <p class="text-xs text-[var(--muted)] font-mono mb-3">${escapeHtml(exp.start)} – ${escapeHtml(exp.end)}</p>
+                  <p class="text-xs text-[var(--accent)] font-mono mb-1 italic">@ ${exp.company}</p>
+                  <p class="text-xs text-[var(--muted)] font-mono mb-3 italic">${exp.start} – ${exp.end}</p>
                   <ul class="space-y-1.5">${bulletsHtml}</ul>
                 </div>`;
   }).join('');
@@ -324,8 +324,8 @@ function generateProjects(config) {
                   <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i data-lucide="zoom-in" class="w-6 h-6 text-white"></i></div>
                 </div>
                 <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3">${escapeHtml(project.title)}</h3>
-                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${escapeHtml(project.description)}</p>
+                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3">${project.title}</h3>
+                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${project.description}</p>
                 </div>
                 <div class="flex flex-wrap gap-2 mt-2 mb-2">${tagsHtml}</div>
                 <div class="flex items-center justify-between">
