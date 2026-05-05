@@ -424,19 +424,12 @@
   ],
   "PIPELINE_YAML": "name: 🚀 Deploy Portfolio\non:\n  push:\n    branches: [main]\n\njobs:\n  quality-gate:\n    name: 🔍 Lint & Security Scan\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: 🧪 Run ESLint & TypeCheck\n        run: npm ci && npm run lint:js && npm run type-check\n      - name: 🛡️ Infrastructure Scan (Checkov)\n        uses: bridgecrewio/checkov-action@master\n        with:\n          directory: terraform/\n\n  deploy:\n    name: 🌐 Production Deploy\n    needs: quality-gate\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '20' }\n      \n      - name: 📦 Build Site\n        run: npm ci && npm run build\n\n      - name: 🔐 Configure AWS\n        uses: aws-actions/configure-aws-credentials@v4\n        with:\n          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}\n          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}\n          aws-region: us-east-1\n\n      - name: 🚀 Deploy to S3 + CloudFront\n        run: npm run deploy:aws",
   "// 11. CONTACT & FOOTER": "Email, social links, and footer text.",
-  "EMAIL_ADDRESS": "shubhammate0604@gmail.com",
   "EMAILJS_SERVICE_ID": "service_ejk43c6",
   "EMAILJS_TEMPLATE_ID": "template_wav6wos",
   "EMAILJS_PUBLIC_KEY": "FvLsoXUl1h2UTUa5s",
   "CONTACT_DESCRIPTION": "Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.",
   "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
   "CONTACT_LINKS": [
-    {
-      "label": "Email",
-      "value": "shubhammate0604@gmail.com",
-      "icon": "mail",
-      "type": "copy"
-    },
     {
       "label": "GitHub",
       "value": "https://github.com/shubhmate",
@@ -451,7 +444,7 @@
     }
   ],
   "// 12. RESUME PAGE": "Controls the /resume.html viewer page and automated PDF content.",
-  "RESUME_PAGE_TITLE": "Professional Resume",
+  "RESUME_PAGE_TITLE": "Shubham Mate Resume",
   "RESUME_BACK_HOME": "Back to Home",
   "RESUME_FULLSCREEN": "Fullscreen",
   "RESUME_DOWNLOAD": "Download",
@@ -460,8 +453,7 @@
   "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
   "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
   "// --- RESUME DATA SOURCE (Independent from website) ---": "Edit these to customize your PDF resume.",
-  "RESUME_CONTACT_PHONE": "+91-XXXXXXXXXX",
-  "RESUME_CONTACT_LOCATION": "Pune, India",
+  "RESUME_CONTACT_LOCATION": "Maharashtra, India",
   "RESUME_SUMMARY": "DevOps Engineer with 2+ years of hands-on experience in automating cloud infrastructure, building CI/CD pipelines, and managing containerized applications. Proven track record in reducing deployment times and improving system reliability through Infrastructure as Code (Terraform) and robust monitoring (Prometheus/Grafana).",
   "RESUME_EXPERIENCE": [
     {

@@ -13,7 +13,7 @@
     }
 
     @page {
-      size: letter;
+      size: A4;
       margin: 0.5in;
     }
 
@@ -86,8 +86,11 @@
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 1pt;
-      font-weight: bold;
       font-size: 10.5pt;
+    }
+
+    .subheading span:first-child {
+      font-weight: bold;
     }
 
     .subheading-detail {
@@ -139,9 +142,7 @@
     <header class="header">
       <h1>{{PERSON_NAME}}</h1>
       <p>
-        {{RESUME_CONTACT_LOCATION}} | 
-        <a href="mailto:{{EMAIL_ADDRESS}}">{{EMAIL_ADDRESS}}</a> | 
-        {{RESUME_CONTACT_PHONE}}
+        {{RESUME_CONTACT_LOCATION}}
       </p>
       <p>
         <a href="{{PORTFOLIO_URL}}">Website</a> | 

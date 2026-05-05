@@ -18,6 +18,7 @@
 const fs = require('fs');
 const path = require('path');
 const puppeteer = require('puppeteer');
+const { PDFDocument } = require('pdf-lib');
 
 /* =========================================================================
    1. CONFIGURATION & PATHS
@@ -55,6 +56,16 @@ const DEFAULT_CONFIG = {
   'SITE_LOGO_TEXT': 'devops.sh',
   'PRELOADER_TEXT': 'Initializing devops.sh...',
   'HIRE_ME_TEXT': 'HIRE ME'
+};
+
+/**
+ * Pre-calculates the professional resume link
+ * @param {any} config 
+ * @returns {string}
+ */
+const getResumeLink = (config) => {
+  const fileName = config.RESUME_FILENAME || 'Shubham_Mate_Resume.pdf';
+  return `assets/${fileName}`;
 };
 
 /* =========================================================================
@@ -408,7 +419,7 @@ function generateResumeProjects(config) {
     const bulletsHtml = (project.bullets || []).map(b => `<li>${escapeHtml(b)}</li>`).join('');
     return `
       <div class="subheading">
-        <span><b>${escapeHtml(project.title)}</b> | <i>${escapeHtml(project.tech || '')}</i></span>
+        <span>${escapeHtml(project.title)} | <i>${escapeHtml(project.tech || '')}</i></span>
         <span>${project.link ? `<a href="${project.link}" style="text-decoration:none; color:inherit;">Project Link</a>` : ''}</span>
       </div>
       <ul style="margin-top: 2pt;">${bulletsHtml}</ul>`;
@@ -420,7 +431,7 @@ function generateResumeCertifications(config) {
   return config.RESUME_CERTIFICATIONS.map(cert => `
       <div class="subheading">
         <span>${escapeHtml(cert.name)}</span>
-        <span>${escapeHtml(cert.date)}</span>
+        <!-- <span>${escapeHtml(cert.date)}</span> -->
       </div>
       <div class="subheading-detail">
         <span>${escapeHtml(cert.issuer)}</span>
@@ -558,6 +569,9 @@ async function build() {
       SITE_VERSION: gitVersion 
     };
 
+    // Set professional resume link before processing any templates
+    config.RESUME_LINK = getResumeLink(config);
+
     console.log(`🚀 Starting Professional Build Process [${gitVersion}]...`);
     config.NAV_DESKTOP = generateNavigation(config, 'desktop');
     config.NAV_MOBILE = generateNavigation(config, 'mobile');
@@ -671,10 +685,31 @@ async function build() {
       await page.goto('file://' + path.resolve(PATHS.output.resumePdf), { waitUntil: 'networkidle0' });
       await page.pdf({
         path: path.join(PATHS.output.assets, 'resume.pdf'),
-        format: 'Letter',
+        format: 'A4',
         printBackground: true
       });
       await browser.close();
+      
+      // 8.1 Inject Professional Metadata using pdf-lib
+      const pdfPath = path.join(PATHS.dist, config.RESUME_LINK);
+      const pdfBytes = fs.readFileSync(path.join(PATHS.output.assets, 'resume.pdf'));
+      const pdfDoc = await PDFDocument.load(pdfBytes);
+      
+      pdfDoc.setTitle(`${config.PERSON_NAME} - Resume`);
+      pdfDoc.setAuthor(config.PERSON_NAME);
+      pdfDoc.setSubject(`Professional Resume of ${config.PERSON_NAME}`);
+      pdfDoc.setKeywords(['DevOps', 'Cloud Engineer', 'AWS', 'Terraform', 'Kubernetes', 'CI/CD']);
+      pdfDoc.setProducer('Professional Resume-as-Code Pipeline');
+      pdfDoc.setCreator(config.PERSON_NAME);
+      
+      const modifiedPdfBytes = await pdfDoc.save();
+      fs.writeFileSync(pdfPath, modifiedPdfBytes);
+      
+      // Remove the generic 'resume.pdf' if it exists
+      const genericPath = path.join(PATHS.output.assets, 'resume.pdf');
+      if (fs.existsSync(genericPath) && genericPath !== pdfPath) {
+        fs.unlinkSync(genericPath);
+      }
       
       // Clean up the temporary PDF template
       if (fs.existsSync(PATHS.output.resumePdf)) {

@@ -44,15 +44,10 @@
   "// CONTACT & SOCIAL": "--------------------------------------------------",
   "contact": {
     "output": [
-      "Email    → {{EMAIL_ADDRESS}}",
       "GitHub   → {{GITHUB_HANDLE}}",
       "LinkedIn → {{LINKEDIN_PROFILE}}"
     ],
     "color": "text-[var(--accent)]"
-  },
-  "email": {
-    "output": "📧 Email: {{EMAIL_ADDRESS}}",
-    "color": "text-blue-400"
   },
   "social": {
     "output": [
@@ -73,7 +68,6 @@
       "  <b>skills</b>    : Tech stack",
       "  <b>projects</b>  : Featured work",
       "  <b>contact</b>   : Get in touch",
-      "  <b>email</b>     : Show email address",
       "  <b>social</b>    : Show social links",
       "  <b>build</b>     : Build process simulation",
       "  <b>deploy</b>    : Deployment options",

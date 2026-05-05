@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{PERSON_NAME}} - {{RESUME_PAGE_TITLE}}</title>
+  <title>{{RESUME_PAGE_TITLE}}</title>
   
   <!-- SEO & Social -->
   <meta name="description" content="View the professional resume of {{PERSON_NAME}}, {{JOB_TITLE}}.">
@@ -80,13 +80,13 @@
       <iframe 
         src="{{RESUME_LINK}}#toolbar=1&navpanes=0&scrollbar=1" 
         class="resume-iframe"
-        title="{{PERSON_NAME}} Resume"
+        title="{{RESUME_FILENAME}}"
       >
         <div class="flex flex-col items-center justify-center h-full p-10 text-center">
             <i data-lucide="alert-circle" class="w-12 h-12 text-red-400 mb-4"></i>
             <h2 class="text-xl font-bold mb-2">{{RESUME_ERROR_TITLE}}</h2>
             <p class="text-[var(--muted)] mb-6">{{RESUME_ERROR_SUB}}</p>
-            <a href="{{RESUME_LINK}}" download class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">{{RESUME_DOWNLOAD}}</a>
+            <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">{{RESUME_DOWNLOAD}}</a>
         </div>
       </iframe>
     </div>
