@@ -511,7 +511,7 @@ function applyReplacements(content, config, fileType = 'html') {
     if (Object.hasOwnProperty.call(config, key)) {
       const value = config[key];
       const placeholder = `{{${key}}}`;
-      
+
       if (typeof value === 'object' && value !== null) {
         const stringified = JSON.stringify(value);
         const quotedPlaceholder = `"${placeholder}"`;
@@ -552,14 +552,14 @@ async function build() {
     const { execSync } = require('child_process');
     const tempCss = path.join(PATHS.dist, 'temp.css');
     if (!fs.existsSync(PATHS.dist)) fs.mkdirSync(PATHS.dist, { recursive: true });
-    
+
     try {
       execSync(`npx tailwindcss -c tailwind.config.js -i ./src/styles/main.css -o "${tempCss}" --minify`, { stdio: 'inherit' });
     } catch (e) {
       console.error('❌ Tailwind Build Failed:', e.message);
       // Fallback if tailwind fails
     }
-    
+
     // 1.1 Extract Version from package.json or Git
     const pkg = JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'package.json'), 'utf8'));
     let rawVersion = '';
@@ -569,16 +569,16 @@ async function build() {
     } catch (e) {
       rawVersion = pkg.version;
     }
-    
+
     // Strip 'v' and any suffixes to get clean numeric version (e.g. 1.3.0)
     const versionMatch = rawVersion.match(/(\d+\.\d+\.?\d*)/);
     const gitVersion = versionMatch ? versionMatch[0] : rawVersion;
-    
+
     /** @type {any} */
-    const config = { 
-      ...DEFAULT_CONFIG, 
+    const config = {
+      ...DEFAULT_CONFIG,
       ...userConfig,
-      SITE_VERSION: gitVersion 
+      SITE_VERSION: gitVersion
     };
 
     // Set professional resume link before processing any templates
@@ -607,10 +607,10 @@ async function build() {
     // 3. Inject Terminal Data
     const currentMonth = new Date().toLocaleString('en-US', { month: 'short' });
     const currentDay = new Date().getDate().toString().padStart(2, ' ');
-    
+
     config.VIRTUAL_FILES_DATA = config.VIRTUAL_FILES || {};
     config.VIRTUAL_FILES_DATA_JSON = JSON.stringify(config.VIRTUAL_FILES_DATA).replace(/\\/g, '\\\\').replace(/'/g, '\\\'');
-    
+
     if (config.EXPERIENCE) {
       config.TERMINAL_EXPERIENCE = config.EXPERIENCE.map(exp => `${exp.role.padEnd(25, ' ')} ${exp.start} – ${exp.end}`);
     }
@@ -625,9 +625,9 @@ async function build() {
       if (!fs.existsSync(file)) return 'default';
       return crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex').substring(0, 8);
     };
-    
+
     const jsHash = getHash(PATHS.templates.mainJs);
-    const cssHash = getHash(tempCss); 
+    const cssHash = getHash(tempCss);
 
     config.JS_FILENAME = `main.${jsHash}.js`;
     config.CSS_FILENAME = `main.${cssHash}.css`;
@@ -676,7 +676,7 @@ async function build() {
     const publicDir = path.join(PROJECT_ROOT, 'public');
     if (fs.existsSync(publicDir)) {
       fs.readdirSync(publicDir).forEach(file => {
-        const srcFile  = path.join(publicDir, file);
+        const srcFile = path.join(publicDir, file);
         const destFile = path.join(PATHS.dist, file);
         let content = fs.readFileSync(srcFile, 'utf8');
         const ext = path.extname(srcFile).substring(1);
@@ -689,7 +689,7 @@ async function build() {
     // 8. Generate Automated PDF Resume
     console.log('📄 Generating Automated PDF Resume...');
     try {
-      const browser = await puppeteer.launch({ 
+      const browser = await puppeteer.launch({
         headless: 'new',
         args: ['--no-sandbox', '--disable-setuid-sandbox']
       });
@@ -701,33 +701,33 @@ async function build() {
         printBackground: true
       });
       await browser.close();
-      
+
       // 8.1 Inject Professional Metadata using pdf-lib
       const pdfPath = path.join(PATHS.dist, config.RESUME_LINK);
       const pdfBytes = fs.readFileSync(path.join(PATHS.output.assets, 'resume.pdf'));
       const pdfDoc = await PDFDocument.load(pdfBytes);
-      
+
       pdfDoc.setTitle(`${config.PERSON_NAME} - Resume`);
       pdfDoc.setAuthor(config.PERSON_NAME);
       pdfDoc.setSubject(`Professional Resume of ${config.PERSON_NAME}`);
       pdfDoc.setKeywords(['DevOps', 'Cloud Engineer', 'AWS', 'Terraform', 'Kubernetes', 'CI/CD']);
       pdfDoc.setProducer('Professional Resume-as-Code Pipeline');
       pdfDoc.setCreator(config.PERSON_NAME);
-      
+
       const modifiedPdfBytes = await pdfDoc.save();
       fs.writeFileSync(pdfPath, modifiedPdfBytes);
-      
+
       // Remove the generic 'resume.pdf' if it exists
       const genericPath = path.join(PATHS.output.assets, 'resume.pdf');
       if (fs.existsSync(genericPath) && genericPath !== pdfPath) {
         fs.unlinkSync(genericPath);
       }
-      
+
       // Clean up the temporary PDF template
       if (fs.existsSync(PATHS.output.resumePdf)) {
         fs.unlinkSync(PATHS.output.resumePdf);
       }
-      
+
       console.log('✔ Generated: resume.pdf');
     } catch (pdfError) {
       console.warn('⚠️ PDF generation skipped or failed (Puppeteer error):', pdfError.message);
