@@ -401,14 +401,14 @@ function generateContactUI(config, type = 'grid') {
 function generateResumeExperience(config) {
   if (!config.RESUME_EXPERIENCE) return '';
   return config.RESUME_EXPERIENCE.map(exp => {
-    const bulletsHtml = exp.bullets.map(bullet => `<li>${escapeHtml(bullet)}</li>`).join('');
+    const bulletsHtml = exp.bullets.map(bullet => `<li>${bullet}</li>`).join('');
     return `
       <div class="subheading">
-        <span>${escapeHtml(exp.role)}</span>
-        <span>${escapeHtml(exp.start)} – ${escapeHtml(exp.end)}</span>
+        <span>${exp.role}</span>
+        <span>${exp.start} – ${exp.end}</span>
       </div>
       <div class="subheading-detail">
-        <span>${escapeHtml(exp.company)} — ${escapeHtml(exp.location || '')}</span>
+        <span>${exp.company} — ${exp.location || ''}</span>
       </div>
       <ul>${bulletsHtml}</ul>`;
   }).join('');
