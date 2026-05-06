@@ -36,3 +36,9 @@ variable "blog_render_url" {
   type        = string
   default     = "flask-blog-14oo.onrender.com" # Placeholder — update this!
 }
+
+variable "brevo_api_key" {
+  description = "API Key for Brevo Transactional Email"
+  type        = string
+  sensitive   = true 
+} 

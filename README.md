@@ -32,6 +32,10 @@ graph LR
         Deploy --> S3[S3 Bucket]
         S3 --> CF[CloudFront CDN]
         CF --> User[Global Users]
+        User -- Form Submit --> AGW[API Gateway]
+        AGW --> Lambda[AWS Lambda]
+        Lambda -- SMTP API --> Brevo[Brevo Engine]
+        Brevo -- Inbound --> Zoho[Zoho Inbox]
     end
 
     Code -.-> Push
@@ -45,7 +49,8 @@ graph LR
 | :--- | :--- |
 | **Frontend** | HTML5, Tailwind CSS, Vanilla JS, Lucide Icons |
 | **Automation** | Node.js (Custom Build Engine), Husky, Shell Scripts |
-| **Infrastructure** | Terraform (HCL), AWS (S3, CloudFront, Route 53, ACM) |
+| **Infrastructure** | Terraform (HCL), AWS (S3, CloudFront, Route 53, ACM, Lambda, API Gateway) |
+| **Communication** | Brevo (SMTP API), Zoho Mail (Domain Host), EmailJS (Failover) |
 | **Security** | Checkov (IaC Scan), TFLint, ESLint, Content Integrity Validation |
 | **CI/CD** | GitHub Actions (Multi-stage Pipelines) |
 
@@ -76,6 +81,17 @@ This project enforces high engineering standards through automated gates:
 - **IaC Linting**: TFLint ensures Terraform follows AWS best practices and tagging policies.
 - **Automated Cache Busting**: Implements cryptographic content hashing for JS/CSS assets to enable long-term immutable caching without staleness.
 - **Resume-as-Code Pipeline**: Automated headless rendering (Puppeteer) with professional metadata injection (`pdf-lib`) ensuring a high-fidelity, ATS-friendly PDF is always in sync with your JSON source data.
+
+---
+
+## 📧 Hybrid Cloud Messaging Architecture
+
+The v2.0.0 release introduces a professional, serverless communication pipeline designed for high deliverability and reliability.
+
+- **Primary Route (AWS Serverless)**: Form submissions are handled by an **AWS Lambda** microservice, protected behind **API Gateway**. The service communicates with the **Brevo API** to route messages from the custom domain (`contact@shubhammate.com`).
+- **Failover Route (High Availability)**: Implements an automatic client-side failover to **EmailJS** in case of primary service disruption, ensuring 100% communication uptime.
+- **Security-First**: API keys and secrets are managed via **AWS Lambda Environment Variables** and **Terraform Sensitive Variables**, never exposed to the client-side code.
+- **Authenticated Delivery**: Domain is hardened with **SPF**, **DKIM**, and **DMARC** records to ensure 100% inbox delivery and protection against spoofing.
 
 ---
 

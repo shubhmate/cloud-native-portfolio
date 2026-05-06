@@ -374,6 +374,7 @@
   "EMAILJS_SERVICE_ID": "service_ejk43c6",
   "EMAILJS_TEMPLATE_ID": "template_wav6wos",
   "EMAILJS_PUBLIC_KEY": "FvLsoXUl1h2UTUa5s",
+  "CONTACT_LAMBDA_URL": "https://huer5x832b.execute-api.us-east-1.amazonaws.com/contact",
   "CONTACT_DESCRIPTION": "Open to DevOps / Cloud Engineer roles and internship-to-full-time opportunities. Always happy to connect and talk infrastructure.",
   "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
   "CONTACT_LINKS": [

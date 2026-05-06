@@ -1,0 +1,101 @@
+/* =========================================================================
+   CONTACT FORM SERVERLESS BACKEND
+   =========================================================================
+   This file provisions the AWS Lambda function and API Gateway required 
+   to handle portfolio inquiries via the Brevo API securely.
+   ========================================================================= */
+
+# 1. Zip the Lambda Source Code
+data "archive_file" "lambda_zip" {
+  type        = "zip"
+  source_file = "${path.module}/../src/lambda/contact-form/index.js"
+  output_path = "${path.module}/contact_form_lambda.zip"
+}
+
+# 2. IAM Role for Lambda
+resource "aws_iam_role" "lambda_exec" {
+  name = "portfolio_contact_form_lambda_role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRole"
+      Effect = "Allow"
+      Sid    = ""
+      Principal = {
+        Service = "lambda.amazonaws.com"
+      }
+    }]
+  })
+}
+
+# 3. Basic CloudWatch Logging Permissions
+resource "aws_iam_role_policy_attachment" "lambda_logs" {
+  role       = aws_iam_role.lambda_exec.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+# 4. Lambda Function
+resource "aws_lambda_function" "contact_form" {
+  filename         = data.archive_file.lambda_zip.output_path
+  function_name    = "portfolio-contact-handler"
+  role             = aws_iam_role.lambda_exec.arn
+  handler          = "index.handler"
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
+  runtime          = "nodejs20.x"
+
+  environment {
+    variables = {
+      # We pull the API Key from a local variable or placeholder
+      # In a real CI/CD, this would come from a secret manager
+      BREVO_API_KEY = var.brevo_api_key
+    }
+  }
+}
+
+# 5. API Gateway (HTTP API - v2)
+resource "aws_apigatewayv2_api" "lambda" {
+  name          = "portfolio-contact-api"
+  protocol_type = "HTTP"
+  
+  cors_configuration {
+    allow_origins = ["*"] # We can restrict this to your domain later
+    allow_methods = ["POST", "OPTIONS"]
+    allow_headers = ["content-type"]
+    max_age       = 300
+  }
+}
+
+resource "aws_apigatewayv2_stage" "lambda" {
+  api_id      = aws_apigatewayv2_api.lambda.id
+  name        = "$default"
+  auto_deploy = true
+}
+
+resource "aws_apigatewayv2_integration" "contact_form" {
+  api_id             = aws_apigatewayv2_api.lambda.id
+  integration_uri    = aws_lambda_function.contact_form.invoke_arn
+  integration_type   = "AWS_PROXY"
+  integration_method = "POST"
+}
+
+resource "aws_apigatewayv2_route" "contact_form" {
+  api_id    = aws_apigatewayv2_api.lambda.id
+  route_key = "POST /contact"
+  target    = "integrations/${aws_apigatewayv2_integration.contact_form.id}"
+}
+
+# 6. Allow API Gateway to invoke Lambda
+resource "aws_lambda_permission" "api_gw" {
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.contact_form.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
+}
+
+# 7. Output the API Endpoint
+output "contact_api_url" {
+  description = "The URL of the contact form API"
+  value       = "${aws_apigatewayv2_api.lambda.api_endpoint}/contact"
+}

@@ -486,33 +486,59 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      // 4. Read EmailJS config from data attributes
+      // 4. Read config from data attributes
       const serviceId    = submitBtn.getAttribute('data-ejs-service');
       const templateId   = submitBtn.getAttribute('data-ejs-template');
       const publicKey    = submitBtn.getAttribute('data-ejs-key');
+      const lambdaUrl    = submitBtn.getAttribute('data-lambda-url');
 
-      if (!serviceId || serviceId.includes('YOUR_') || serviceId.includes('REPLACE')) {
-        showToast('EmailJS not configured — check site-config.json', 'error');
-        return;
-      }
-
-      // 5. Send via EmailJS (auto-reply is handled by EmailJS built-in feature)
+      // 5. Send logic with Failover (Primary: AWS Lambda | Secondary: EmailJS)
       submitBtn.disabled = true;
       const submitText = submitBtn.querySelector('#submit-text');
       const originalText = submitText.textContent;
       submitText.textContent = 'Sending...';
 
       try {
-        emailjs.init(publicKey);
-        await emailjs.send(serviceId, templateId, {
-          from_name : name,
-          reply_to  : email,
-          message   : message
-        });
+        let sent = false;
+
+        // --- STEP A: PRIMARY (AWS Lambda + Brevo) ---
+        if (lambdaUrl && !lambdaUrl.includes('{{')) {
+          console.log('Attempting Primary Send (AWS Lambda)...');
+          try {
+            const response = await fetch(lambdaUrl, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, email, message })
+            });
+
+            if (response.ok) {
+              console.log('Primary Send Successful ✓');
+              sent = true;
+            } else {
+              console.warn('Primary Send Failed (Status:', response.status, '). Falling back...');
+            }
+          } catch (err) {
+            console.warn('Primary Send Error (Network). Falling back...');
+          }
+        }
+
+        // --- STEP B: FAILOVER (EmailJS) ---
+        if (!sent) {
+          console.log('Activating Secondary Send (EmailJS)...');
+          emailjs.init(publicKey);
+          await emailjs.send(serviceId, templateId, {
+            from_name : name,
+            reply_to  : email,
+            message   : message
+          });
+          console.log('Secondary Send Successful ✓');
+          sent = true;
+        }
+
         showToast('Message sent! I\'ll get back to you soon. ✓');
         contactForm.reset();
       } catch (err) {
-        console.error('EmailJS error:', err);
+        console.error('Unified Sending Error:', err);
         showToast('Failed to send. Please email me directly.', 'error');
       } finally {
         submitBtn.disabled = false;
