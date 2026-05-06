@@ -40,5 +40,5 @@ variable "blog_render_url" {
 variable "brevo_api_key" {
   description = "API Key for Brevo Transactional Email"
   type        = string
-  sensitive   = true 
-} 
+  sensitive   = true
+}

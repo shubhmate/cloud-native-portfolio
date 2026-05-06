@@ -9,13 +9,24 @@ name: 🩺 Site Uptime Monitor
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Every 6 hours
+    - cron: '0 * * * *'
   workflow_dispatch: # Allow manual triggers
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
-  health-check:
+  monitor-health:
     runs-on: ubuntu-latest
     steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
       - name: 🔍 Check Main Site
         run: |
           status=$(curl -o /dev/null -s -w "%{http_code}" https://shubhammate.com)

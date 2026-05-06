@@ -69,7 +69,7 @@ resource "aws_apigatewayv2_api" "lambda" {
   tags = merge(var.tags, {
     Name = "portfolio-contact-api"
   })
-  
+
   cors_configuration {
     allow_origins = ["*"] # We can restrict this to your domain later
     allow_methods = ["POST", "OPTIONS"]
