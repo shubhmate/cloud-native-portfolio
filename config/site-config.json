@@ -400,6 +400,7 @@
   "RESUME_ERROR_TITLE": "Browser Preview Not Supported",
   "RESUME_ERROR_SUB": "Your browser doesn't support PDF previews. Please download the file to view it.",
   "// 12. RESUME DATA SOURCE (Independent PDF Content)": "--------------------------------------------------",
+  "// NOTE: Supports HTML tags like <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> in all text fields below.": "",
   "RESUME_CONTACT_LOCATION": "Maharashtra, India",
   "RESUME_SUMMARY": "DevOps Engineer with 2+ years of hands-on experience in automating cloud infrastructure, building CI/CD pipelines, and managing containerized applications. Proven track record in reducing deployment times and improving system reliability through Infrastructure as Code (Terraform) and robust monitoring (Prometheus/Grafana).",
   "RESUME_EXPERIENCE": [

@@ -6,7 +6,7 @@
 [![Security](https://img.shields.io/badge/Security-Checkov-blue?logo=checkov)](https://www.checkov.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A production-grade, high-performance static portfolio website engineered with a **Security-First** and **Automation-Driven** mindset. This project serves as a live demonstration of modern DevOps practices, including **Infrastructure as Code (IaC)**, **Quality Gates**, and **Cloud-Native Deployment**.
+A production-grade, high-performance static portfolio website engineered with a **Security-First** and **Automation-Driven** mindset. This project serves as a live demonstration of modern DevOps practices, including **Infrastructure as Code (IaC)**, **Quality Gates**, and an automated **Resume-as-Code** engine.
 
 ---
 
@@ -19,6 +19,7 @@ graph LR
     subgraph Local_Dev ["💻 Local Development"]
         Code[Source Code] --> Husky[Husky Hooks]
         Husky --> Build[Node.js Build Engine]
+        Build --> PDF[Resume PDF Generator]
     end
 
     subgraph GitHub_Actions ["⚙️ CI/CD Pipeline"]
@@ -74,6 +75,18 @@ This project enforces high engineering standards through automated gates:
 - **Pre-commit Hooks**: Husky ensures data is synced and linting passes before any commit is allowed.
 - **IaC Linting**: TFLint ensures Terraform follows AWS best practices and tagging policies.
 - **Automated Cache Busting**: Implements cryptographic content hashing for JS/CSS assets to enable long-term immutable caching without staleness.
+- **Resume-as-Code Pipeline**: Automated headless rendering (Puppeteer) with professional metadata injection (`pdf-lib`) ensuring a high-fidelity, ATS-friendly PDF is always in sync with your JSON source data.
+
+---
+
+## 👔 Resume-as-Code Engine
+
+The portfolio includes a sophisticated career-branding pipeline that treats your professional resume as version-controlled code.
+
+- **High-Fidelity Executive Layout**: Replicates industry-standard LaTeX styling for a premium, ATS-optimized presentation.
+- **Rich Text support**: Full support for standard HTML tags (`<b>`, `<i>`, `<u>`) directly within `site-config.json` for precise typographic control.
+- **Automated PDF Metadata**: Injects professional metadata (Title, Author, Producer) into the final PDF artifact during the build process.
+- **Localized Asset Sync**: Manages professional certifications and documents within a localized asset vault for high-speed delivery and reliable verification.
 
 ---
 
