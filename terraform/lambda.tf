@@ -27,6 +27,10 @@ resource "aws_iam_role" "lambda_exec" {
       }
     }]
   })
+
+  tags = merge(var.tags, {
+    Name = "portfolio-lambda-role"
+  })
 }
 
 # 3. Basic CloudWatch Logging Permissions
@@ -51,12 +55,20 @@ resource "aws_lambda_function" "contact_form" {
       BREVO_API_KEY = var.brevo_api_key
     }
   }
+
+  tags = merge(var.tags, {
+    Name = "portfolio-contact-handler"
+  })
 }
 
 # 5. API Gateway (HTTP API - v2)
 resource "aws_apigatewayv2_api" "lambda" {
   name          = "portfolio-contact-api"
   protocol_type = "HTTP"
+
+  tags = merge(var.tags, {
+    Name = "portfolio-contact-api"
+  })
   
   cors_configuration {
     allow_origins = ["*"] # We can restrict this to your domain later
@@ -70,6 +82,10 @@ resource "aws_apigatewayv2_stage" "lambda" {
   api_id      = aws_apigatewayv2_api.lambda.id
   name        = "$default"
   auto_deploy = true
+
+  tags = merge(var.tags, {
+    Name = "portfolio-contact-stage"
+  })
 }
 
 resource "aws_apigatewayv2_integration" "contact_form" {
