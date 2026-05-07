@@ -60,7 +60,7 @@
         <i data-lucide="terminal" class="absolute w-8 h-8 text-[var(--accent)] animate-pulse-custom top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
       </div>
       <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
-        <span class="animate-pulse-custom">_</span> Loading Technical Identity...
+        <span class="animate-pulse-custom">_</span> Loading Technical Blueprint...
       </p>
     </div>
   </div>
@@ -75,10 +75,6 @@
 
   {{GLOBAL_NAVBAR}}
 
-  <!-- Floating 'Hire Me' Button (Navigation for Resume Page) -->
-  <a href="index.html#contact" id="hire-me-nav" class="hire-me-btn flex items-center justify-center" aria-label="Hire me">
-    {{HIRE_ME_BUTTON}}
-  </a>
 
   <!-- Main Content -->
   <main id="main-content" class="pt-24 md:pt-32">
@@ -88,12 +84,11 @@
           <div>
             <div class="flex items-center gap-2 mb-2 text-[var(--accent)]">
               <i data-lucide="file-text" class="w-5 h-5"></i>
-              <p class="font-mono text-sm tracking-tight">// technical identity</p>
+              <p class="font-mono text-sm tracking-tight">{{RESUME_TAGLINE}}</p>
             </div>
-            <h1 class="font-mono text-4xl md:text-5xl font-bold mb-4">Professional Profile</h1>
+            <h1 class="font-mono text-4xl md:text-5xl font-bold mb-4">{{RESUME_TITLE}}</h1>
             <p class="text-[var(--muted)] text-lg max-w-2xl mb-8 leading-relaxed">
-              Automating high-availability cloud ecosystems with a focus on Infrastructure as Code, 
-              CI/CD security, and cost-efficient scale.
+              {{RESUME_SUBTITLE}}
             </p>
 
             <!-- Quick-Scan Competencies -->
@@ -105,19 +100,19 @@
               <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-mono">Security & Compliance</span>
             </div>
 
-            <p class="text-[var(--muted)] text-sm font-mono flex items-center gap-2">
-              <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              Version: {{SITE_VERSION}} · {{RESUME_FILENAME}}
+            <p class="text-[var(--muted)] text-sm font-mono flex items-start gap-2 leading-relaxed">
+              <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse mt-1.5 shrink-0"></span>
+              <span>Version: {{SITE_VERSION}} · {{RESUME_FILENAME}}</span>
             </p>
           </div>
           
-          <div class="flex flex-wrap items-center gap-3">
-            <a href="{{RESUME_LINK}}" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--accent)]/5">
-              <i data-lucide="maximize" class="w-4 h-4"></i>
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto mt-4 md:mt-0">
+            <a href="{{RESUME_LINK}}" target="_blank" rel="noopener noreferrer" class="group flex items-center justify-center gap-2 px-6 py-2.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white font-mono text-xs font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--accent)]/5 whitespace-nowrap">
+              <i data-lucide="maximize" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
               <span>Fullscreen</span>
             </a>
-            <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 bg-[var(--accent)] hover:bg-blue-600 text-white text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--accent)]/10">
-              <i data-lucide="download" class="w-4 h-4"></i>
+            <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="group flex items-center justify-center gap-2 px-6 py-2.5 bg-[var(--accent)] border border-transparent hover:bg-blue-600 text-white font-mono text-xs font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--accent)]/10 whitespace-nowrap">
+              <i data-lucide="download" class="w-4 h-4 transition-transform group-hover:translate-y-0.5"></i>
               <span>Download PDF</span>
             </a>
           </div>
@@ -134,12 +129,29 @@
                 <i data-lucide="alert-circle" class="w-12 h-12 text-red-400 mb-4"></i>
                 <h2 class="text-xl font-bold mb-2">{{RESUME_ERROR_TITLE}}</h2>
                 <p class="text-[var(--muted)] mb-6">{{RESUME_ERROR_SUB}}</p>
-                <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">{{RESUME_DOWNLOAD}}</a>
+                <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="group inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--accent)] hover:bg-blue-600 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--accent)]/20">
+                  <i data-lucide="download" class="w-4 h-4 transition-transform group-hover:translate-y-0.5"></i>
+                  {{RESUME_DOWNLOAD}}
+                </a>
             </div>
           </iframe>
         </div>
       </div>
     </section>
+
+    <!-- Closing CTA (Industry Standard: Closing Action) -->
+    <div class="mt-20 text-center animate-fade-up max-w-6xl mx-auto px-6">
+      <div class="p-12 rounded-3xl bg-[var(--accent)]/5 border border-[var(--accent)]/10 backdrop-blur-sm">
+        <h2 class="font-mono text-2xl font-bold mb-4">{{RESUME_CTA_TITLE}}</h2>
+        <p class="text-[var(--muted)] mb-8 max-w-md mx-auto">
+          {{RESUME_CTA_SUBTITLE}}
+        </p>
+        <a href="index.html#contact" class="group inline-flex items-center gap-2 px-8 py-3.5 bg-[var(--green)] hover:bg-green-600 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--green)]/20">
+          <i data-lucide="send" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+          {{RESUME_CTA_BUTTON}}
+        </a>
+      </div>
+    </div>
 
     {{GLOBAL_FOOTER}}
   </main>

@@ -201,15 +201,15 @@
 
         <!-- Call-to-action buttons -->
         <div class="flex flex-wrap gap-4 justify-center mb-12">
-          <a href="#projects" class="px-6 py-3 bg-[var(--accent)] hover:bg-blue-500 text-white font-semibold rounded-lg transition-all duration-200 hover:scale-105 flex items-center gap-2">
-            <i data-lucide="folder-git-2" class="w-4 h-4"></i>
-            View Projects
+          <a href="#projects" class="group flex items-center gap-2 px-8 py-3.5 bg-[var(--accent)] hover:bg-blue-600 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--accent)]/20">
+            <i data-lucide="folder-git-2" class="w-4 h-4 transition-transform group-hover:rotate-12"></i>
+            <span>View Projects</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
           </a>
-          <a
-            href="resume.html"
-            class="px-6 py-3 border border-[var(--green)] text-[var(--green)] font-semibold rounded-lg transition-all duration-200 flex items-center gap-2 hover:scale-105 hover:bg-[var(--green)] hover:text-white">
-            <i data-lucide="file-text" class="w-4 h-4"></i>
-            View Resume
+          <a href="resume.html" class="group flex items-center gap-2 px-8 py-3.5 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--green)]/10">
+            <i data-lucide="file-text" class="w-4 h-4 transition-transform group-hover:-rotate-12"></i>
+            <span>View Resume</span>
+            <i data-lucide="external-link" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
           </a>
         </div>
         
@@ -586,9 +586,9 @@
               data-ejs-template="{{EMAILJS_TEMPLATE_ID}}"
               data-ejs-key="{{EMAILJS_PUBLIC_KEY}}"
               data-lambda-url="{{CONTACT_LAMBDA_URL}}"
-              class="w-full py-3 bg-[var(--accent)] hover:bg-blue-500 disabled:opacity-50 text-white font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 card-hover"
+              class="group w-full py-3.5 bg-[var(--green)] hover:bg-green-600 disabled:opacity-50 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-[var(--green)]/20"
             >
-              <i data-lucide="send" class="w-4 h-4"></i>
+              <i data-lucide="send" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
               <span id="submit-text">Send Message</span>
             </button>
             <p id="status-message" class="text-red-400 text-xs font-mono text-center hidden"></p>

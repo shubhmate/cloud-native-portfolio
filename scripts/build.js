@@ -398,8 +398,9 @@ function generateProjectCard(project) {
 
   const hasBack = archHtml.trim().length > 0 || project.problem || project.fix;
   const flipButton = hasBack ? `
-                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
-                  <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
+                <button onclick="flipCard(this)" class="group flex items-center gap-1.5 px-3 py-1.5 text-[var(--accent)] hover:bg-[var(--accent)]/10 text-[10px] uppercase tracking-wider font-mono font-bold rounded-lg transition-all hover:scale-105 active:scale-95">
+                  <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 transition-transform duration-500 group-hover:rotate-180"></i>
+                  <span>Flip</span>
                 </button>` : '';
 
   const backCard = hasBack ? `
@@ -419,8 +420,9 @@ function generateProjectCard(project) {
                   </div>
                 </div>
               </div>
-              <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
-                <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
+              <button onclick="flipCard(this)" class="group flex items-center gap-1.5 px-3 py-1.5 text-[var(--accent)] hover:bg-[var(--accent)]/10 text-[10px] uppercase tracking-wider font-mono font-bold rounded-lg transition-all hover:scale-105 active:scale-95 self-end mt-4 shrink-0">
+                <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 transition-transform duration-500 group-hover:-rotate-180"></i>
+                <span>Back</span>
               </button>
             </div>` : '';
 
@@ -438,8 +440,11 @@ function generateProjectCard(project) {
                 <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${project.description}</p>
               </div>
               <div class="flex flex-wrap gap-2 mt-2 mb-2">${tagsHtml}</div>
-              <div class="flex items-center justify-between">
-                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline text-sm"><i data-lucide="github" class="w-4 h-4"></i> Code</a>
+              <div class="flex items-center justify-between pt-4 border-t border-[var(--border)]">
+                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-1.5 px-3 py-1.5 bg-[var(--accent)]/5 hover:bg-[var(--accent)] text-[var(--accent)] hover:text-white text-[10px] uppercase tracking-wider font-mono font-bold rounded-lg transition-all hover:scale-105 active:scale-95 shadow-sm">
+                  <i data-lucide="github" class="w-3.5 h-3.5 transition-transform group-hover:-rotate-12"></i>
+                  <span>Code</span>
+                </a>
                 ${flipButton}
               </div>
             </div>${backCard}
@@ -689,6 +694,24 @@ async function build() {
 
     // Set professional resume link before processing any templates
     config.RESUME_LINK = getResumeLink(config);
+
+    // 1.2 Flatten nested page configs for headless placeholder replacement
+    if (config.RESUME_PAGE) {
+      config.RESUME_TITLE = config.RESUME_PAGE.TITLE || '';
+      config.RESUME_SUBTITLE = config.RESUME_PAGE.SUBTITLE || '';
+      config.RESUME_TAGLINE = config.RESUME_PAGE.TAGLINE || '';
+      config.RESUME_CTA_TITLE = config.RESUME_PAGE.CTA_TITLE || '';
+      config.RESUME_CTA_SUBTITLE = config.RESUME_PAGE.CTA_SUBTITLE || '';
+      config.RESUME_CTA_BUTTON = config.RESUME_PAGE.CTA_BUTTON || '';
+    }
+    if (config.PROJECTS_PAGE) {
+      config.PROJECTS_TITLE = config.PROJECTS_PAGE.TITLE || '';
+      config.PROJECTS_SUBTITLE = config.PROJECTS_PAGE.SUBTITLE || '';
+      config.PROJECTS_TAGLINE = config.PROJECTS_PAGE.TAGLINE || '';
+      config.PROJECTS_CTA_TITLE = config.PROJECTS_PAGE.CTA_TITLE || '';
+      config.PROJECTS_CTA_SUBTITLE = config.PROJECTS_PAGE.CTA_SUBTITLE || '';
+      config.PROJECTS_CTA_BUTTON = config.PROJECTS_PAGE.CTA_BUTTON || '';
+    }
 
     console.log(`🚀 Starting Professional Build Process [${gitVersion}]...`);
     // Pre-calculate common parts

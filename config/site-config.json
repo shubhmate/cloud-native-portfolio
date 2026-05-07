@@ -59,6 +59,23 @@
       "type": "button"
     }
   ],
+  "// 2.5 PAGE CONTENT (HEADLESS)": "--------------------------------------------------",
+  "RESUME_PAGE": {
+    "TITLE": "DevOps & Cloud Specialist",
+    "SUBTITLE": "Scaling resilient ecosystems through Infrastructure as Code, secure CI/CD automation, and cost-efficient distributed logic.",
+    "TAGLINE": "// technical blueprint",
+    "CTA_TITLE": "Like what you see?",
+    "CTA_SUBTITLE": "I'm currently open to new opportunities and collaborations. Let's build something great together.",
+    "CTA_BUTTON": "Start a Collaboration"
+  },
+  "PROJECTS_PAGE": {
+    "TITLE": "Architecture Gallery",
+    "SUBTITLE": "A curated showcase of production-grade infrastructure, serverless patterns, and high-availability cloud-native systems.",
+    "TAGLINE": "// deployment registry",
+    "CTA_TITLE": "Ready to scale your infrastructure?",
+    "CTA_SUBTITLE": "Whether you're looking for a cloud or devops engineer, I'm ready to help you build the future.",
+    "CTA_BUTTON": "Start a Collaboration"
+  },
   "// 3. HERO SECTION": "--------------------------------------------------",
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
@@ -172,12 +189,12 @@
   "SECTION_SKILLS_TITLE": "Tools & Technologies",
   "SECTION_SKILLS_INTERACTIVE_HINT": "// interactive — try it",
   "SKILLS_COLORS": {
-    "Infrastructure": "cyan",
-    "Version Control": "indigo",
-    "CI/CD": "purple",
+    "Infrastructure": "yellow",
+    "Version Control": "purple",
+    "CI/CD": "blue",
     "Monitoring": "orange",
-    "Languages": "emerald",
-    "Security": "rose"
+    "Languages": "red",
+    "Security": "green"
   },
   "SKILLS_GROUPED": {
     "Infrastructure": [
