@@ -4,11 +4,12 @@ name: 🚀 Build & Deploy Portfolio
 # GitHub Actions CI/CD Pipeline — .github/workflows/deploy.yml
 # =============================================================================
 # This workflow automates:
-#   1. Quality Check (Linting)
-#   2. Professional Build (minification, optimization)
-#   3. AWS S3 Deployment (sync assets)
-#   4. CloudFront Cache Invalidation (instant updates)
-#   5. Health Check (verify site is UP)
+#   1. Infrastructure Management (Terraform Apply)
+#   2. Quality Check (Linting)
+#   3. Professional Build (minification, optimization)
+#   4. AWS S3 Deployment (sync assets)
+#   5. CloudFront Cache Invalidation (instant updates)
+#   6. Health Check (verify site is UP)
 # =============================================================================
 
 on:
@@ -18,12 +19,42 @@ on:
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  AWS_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
 
 jobs:
-  build-and-deploy:
+  # --- STAGE 1: INFRASTRUCTURE ---
+  terraform-infra:
+    name: 🏗️ Infrastructure (Terraform)
     runs-on: ubuntu-latest
-    name: 🏗️ Build and 🚀 Deploy
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
 
+      - name: 🏗️ Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: latest
+
+      - name: 🛠️ Terraform Init
+        working-directory: ./terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: terraform init
+
+      - name: 🚀 Terraform Apply
+        working-directory: ./terraform
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          TF_VAR_brevo_api_key: ${{ secrets.BREVO_API_KEY }}
+        run: terraform apply -auto-approve
+
+  # --- STAGE 2: BUILD & DEPLOY ---
+  build-and-deploy:
+    needs: terraform-infra
+    runs-on: ubuntu-latest
+    name: 📦 Build and 🚀 Deploy
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -43,7 +74,7 @@ jobs:
       - name: 🚀 Deploy to AWS
         env:
           DEPLOY_TARGET: aws
-          AWS_REGION: ${{ secrets.AWS_REGION || 'us-east-1' }}
+          AWS_REGION: ${{ env.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
@@ -53,16 +84,6 @@ jobs:
       - name: 🏥 Health Check
         run: |
           echo "Verifying deployment at https://shubhammate.com..."
-          # Wait a few seconds for CloudFront to propagate
           sleep 10
-          # Check for 200 OK status
           curl -f -L https://shubhammate.com || exit 1
           echo "✅ Site is UP and reachable!"
-
-  uptime-monitor:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    name: 🩺 Uptime Monitoring (Setup)
-    steps:
-      - name: Log Monitoring Status
-        run: echo "Uptime monitoring is active. Check Actions tab for history."
