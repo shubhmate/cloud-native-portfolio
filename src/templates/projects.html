@@ -73,8 +73,11 @@
       </a>
 
       <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-6">
-        <a href="index.html" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">Back to Home</a>
+      <div class="hidden lg:flex items-center gap-8 h-16">
+        <a href="index.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">Home</a>
+        <a href="projects.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] border-b-2 border-[var(--accent)] h-full flex items-center hover:scale-110 transition-all">Projects</a>
+        <a href="resume.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">Resume</a>
+        <div class="h-6 w-px bg-[var(--border)] mx-2 opacity-50"></div>
         <button id="theme-toggle" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
           <i data-lucide="sun" class="w-5 h-5"></i>
         </button>
@@ -92,8 +95,10 @@
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden">
-      <a href="index.html" class="block font-mono text-sm text-[var(--accent)] py-1">Back to Home</a>
+    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-4 hidden">
+      <a href="index.html" class="block font-mono text-sm font-medium text-[var(--accent)] py-1 transition-all">Home</a>
+      <a href="projects.html" class="block font-mono text-sm font-bold text-[var(--accent)] py-1 border-l-2 border-[var(--accent)] pl-2">Projects</a>
+      <a href="resume.html" class="block font-mono text-sm font-medium text-[var(--accent)] py-1 transition-all">Resume</a>
     </div>
   </nav>
 

@@ -5,93 +5,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{RESUME_PAGE_TITLE}}</title>
   
-  <!-- SEO & Social -->
   <meta name="description" content="View the professional resume of {{PERSON_NAME}}, {{JOB_TITLE}}.">
-  <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico">
+  <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon_io_white_bg_circle/favicon.ico" media="(prefers-color-scheme: light)">
 
-  <!-- Icons & Logic -->
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
-  <script src="assets/js/{{JS_FILENAME}}" defer></script>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
   <link rel="stylesheet" href="assets/css/{{CSS_FILENAME}}">
   
   <style>
-    body {
-      background-color: var(--bg);
-      color: var(--text);
-      overflow: hidden; /* Prevent double scrollbars */
+    #preloader {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background-color: #0a0a0a; z-index: 9999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      font-family: monospace;
     }
-    .viewer-container {
-      height: calc(100vh - 64px); /* Full height minus header */
+    .preloader-content { display: flex; flex-direction: column; align-items: center; color: #3b82f6; }
+    @keyframes pulse-custom { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+    .animate-pulse-custom { animation: pulse-custom 2s infinite; }
+
+    /* Fluid Resume Viewer */
+    .resume-viewer-frame {
       width: 100%;
-      background: var(--surface);
-      display: flex;
-      flex-direction: column;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+      height: 600px; /* Mobile Default */
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #fdfdfd;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
-    .resume-iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
+    @media (min-width: 768px) {
+      .resume-viewer-frame { height: 850px; }
     }
-    .glass-header {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+    @media (min-width: 1024px) {
+      .resume-viewer-frame { height: 1100px; }
+    }
+    .dark .resume-viewer-frame {
+      background: #1a1a1a;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
     }
   </style>
 </head>
+
 <body class="font-sans">
-
-  <!-- Minimal Header -->
-  <header class="glass-header h-16 fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-4 md:px-6">
-    <div class="flex items-center gap-2 md:gap-4">
-      <a href="index.html" class="flex items-center gap-2 text-[var(--accent)] hover:scale-105 transition-transform font-mono font-bold text-sm md:text-base">
-        <i data-lucide="arrow-left" class="w-5 h-5"></i>
-        <span class="hidden sm:inline">{{RESUME_BACK_HOME}}</span>
-        <span class="sm:hidden">Back</span>
-      </a>
-      <div class="hidden md:block h-6 w-px bg-[var(--border)]"></div>
-      <h1 class="hidden lg:block font-mono text-sm text-[var(--muted)]">{{RESUME_FILENAME}}</h1>
+  <!-- Preloader (Identical to index.html) -->
+  <div id="preloader">
+    <div class="preloader-content animate-fade-up">
+      <div class="relative w-24 h-24 flex items-center justify-center">
+        <i data-lucide="cloud" class="w-full h-full text-[var(--accent)]"></i>
+        <i data-lucide="terminal" class="absolute w-8 h-8 text-[var(--accent)] animate-pulse-custom top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+      </div>
+      <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
+        <span class="animate-pulse-custom">_</span> Loading Resume...
+      </p>
     </div>
+  </div>
 
-    <div class="flex items-center gap-2 md:gap-3">
-      <!-- Fullscreen Button (Best for Mobile Zoom/Scroll) -->
-      <a href="{{RESUME_LINK}}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-3 py-2 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white hover:brightness-110 text-xs font-bold rounded-lg transition-all">
-        <i data-lucide="maximize" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">{{RESUME_FULLSCREEN}}</span>
-      </a>
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
 
-      <!-- Direct Download Fallback -->
-      <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="flex items-center gap-2 px-3 py-2 md:px-4 bg-[var(--accent)] hover:brightness-110 text-white text-xs font-bold rounded-lg transition-all shadow-lg shadow-blue-500/20">
-        <i data-lucide="download" class="w-4 h-4"></i>
-        <span class="hidden sm:inline">{{RESUME_DOWNLOAD}}</span>
-      </a>
-      
-      <!-- Theme Toggle (Perfect Sync with Home Page) -->
-      <button id="theme-toggle" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-        <i data-lucide="sun" class="w-5 h-5"></i>
-      </button>
-    </div>
-  </header>
+  <!-- Scroll to Top -->
+  <button id="scroll-to-top" class="p-3 rounded-xl border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-all">
+    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  </button>
 
-  <!-- Native PDF Viewer Container -->
-  <main class="pt-16">
-    <div class="viewer-container">
-      <iframe 
-        src="{{RESUME_LINK}}#toolbar=1&navpanes=0&scrollbar=1" 
-        class="resume-iframe"
-        title="{{RESUME_FILENAME}}"
-      >
-        <div class="flex flex-col items-center justify-center h-full p-10 text-center">
-            <i data-lucide="alert-circle" class="w-12 h-12 text-red-400 mb-4"></i>
-            <h2 class="text-xl font-bold mb-2">{{RESUME_ERROR_TITLE}}</h2>
-            <p class="text-[var(--muted)] mb-6">{{RESUME_ERROR_SUB}}</p>
-            <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">{{RESUME_DOWNLOAD}}</a>
+  <!-- Navbar (Synchronized with index.html) -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 font-mono font-bold text-[var(--accent)] group">
+        <div class="relative w-8 h-8 flex items-center justify-center">
+          <i data-lucide="cloud" class="w-8 h-8 text-[var(--accent)] animate-pulse"></i>
+          <i data-lucide="terminal" class="absolute w-3.5 h-3.5 text-[var(--accent)] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"></i>
         </div>
-      </iframe>
+        <span class="tracking-tight">{{SITE_LOGO_TEXT}}</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8 h-16">
+        <a href="index.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">Home</a>
+        <a href="projects.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">Projects</a>
+        <a href="resume.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] border-b-2 border-[var(--accent)] h-full flex items-center hover:scale-110 transition-all">Resume</a>
+        <div class="h-6 w-px bg-[var(--border)] mx-2 opacity-50"></div>
+        <button id="theme-toggle" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+          <i data-lucide="sun" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="flex items-center gap-3 lg:hidden">
+        <button id="theme-toggle-mobile" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+          <i data-lucide="sun" class="w-5 h-5"></i>
+        </button>
+        <button id="mobile-menu-btn" class="p-1.5 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
     </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-4 hidden">
+      <a href="index.html" class="block font-mono text-sm font-medium text-[var(--accent)] py-1 transition-all">Home</a>
+      <a href="projects.html" class="block font-mono text-sm font-medium text-[var(--accent)] py-1 transition-all">Projects</a>
+      <a href="resume.html" class="block font-mono text-sm font-bold text-[var(--accent)] font-bold py-1 border-l-2 border-[var(--accent)] pl-2">Resume</a>
+    </div>
+  </nav>
+
+  <!-- Floating 'Hire Me' Button (Navigation for Resume Page) -->
+  <a href="index.html#contact" id="hire-me-nav" class="hire-me-btn flex items-center justify-center" aria-label="Hire me">
+    {{HIRE_ME_BUTTON}}
+  </a>
+
+  <!-- Main Content -->
+  <main id="main-content" class="pt-24 md:pt-32 pb-20">
+    <section class="max-w-6xl mx-auto px-6">
+      <div class="animate-fade-up">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <div class="flex items-center gap-2 mb-2">
+              <i data-lucide="file-text" class="w-5 h-5 text-[var(--accent)]"></i>
+              <p class="font-mono text-[var(--accent)] text-sm">// resume</p>
+            </div>
+            <h1 class="font-mono text-4xl md:text-5xl font-bold mb-4">Resume Details</h1>
+            <p class="text-[var(--muted)] text-lg max-w-2xl leading-relaxed">
+              Updated: {{SITE_VERSION}} · {{RESUME_FILENAME}}
+            </p>
+          </div>
+          
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="{{RESUME_LINK}}" target="_blank" rel="noopener noreferrer" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-4 py-2.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--accent)]/5">
+              <i data-lucide="maximize" class="w-4 h-4"></i>
+              <span>Fullscreen</span>
+            </a>
+            <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 bg-[var(--accent)] hover:bg-blue-600 text-white text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--accent)]/10">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              <span>Download PDF</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Resume Viewer -->
+        <div class="animate-fade-up">
+          <iframe 
+            src="{{RESUME_LINK}}#toolbar=1&navpanes=0&scrollbar=1" 
+            class="resume-viewer-frame"
+            title="{{RESUME_FILENAME}}"
+          >
+            <div class="flex flex-col items-center justify-center h-full p-10 text-center">
+                <i data-lucide="alert-circle" class="w-12 h-12 text-red-400 mb-4"></i>
+                <h2 class="text-xl font-bold mb-2">{{RESUME_ERROR_TITLE}}</h2>
+                <p class="text-[var(--muted)] mb-6">{{RESUME_ERROR_SUB}}</p>
+                <a href="{{RESUME_LINK}}" download="{{RESUME_FILENAME}}" class="px-6 py-3 bg-[var(--accent)] text-white rounded-lg font-bold">{{RESUME_DOWNLOAD}}</a>
+            </div>
+          </iframe>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- Note: Theme and Icon logic is handled by main.js -->
+  <!-- Footer (100% Synchronized) -->
+  <footer class="py-12 border-t border-[var(--border)]">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
+      <p class="font-mono text-xs text-[var(--muted)]">
+        {{FOOTER_TECH_STACK}}
+      </p>
+      <div class="flex items-center gap-4 text-[var(--muted)]">
+        {{FOOTER_SOCIAL_LINKS}}
+      </div>
+      <p class="font-mono text-xs text-[var(--muted)]">
+        © <span id="current-year">2026</span> {{PERSON_NAME}} · Made with ❤️
+      </p> 
+      <div class="flex items-center gap-2 mt-2">
+        <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-widest opacity-60">
+          release: <span class="text-green-400 font-bold">{{SITE_VERSION}}</span>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/{{JS_FILENAME}}" defer></script>
 </body>
 </html>

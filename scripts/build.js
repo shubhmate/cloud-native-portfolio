@@ -174,16 +174,16 @@ function generateNavigation(config, type = 'desktop') {
   if (type === 'desktop') {
     return items.map(item => {
       if (item.type === 'button') {
-        return `<a href="${item.href}" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm rounded-lg transition-colors" aria-label="${item.label}">${item.label}</a>`;
+        return `<a href="${item.href}" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-medium rounded-lg transition-colors" aria-label="${item.label}">${item.label}</a>`;
       }
-      return `<a href="${item.href}" class="font-mono text-sm text-[var(--accent)] hover:scale-110 transition-colors">${item.label}</a>`;
+      return `<a href="${item.href}" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">${item.label}</a>`;
     }).join('\n        ');
   }
   return items.map(item => {
     if (item.type === 'button') {
-      return `<a href="${item.href}" class="block px-2 py-1 w-fit font-mono text-sm text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="${item.label}">${item.label}</a>`;
+      return `<a href="${item.href}" class="block px-2 py-1 w-fit font-mono text-sm font-medium text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="${item.label}">${item.label}</a>`;
     }
-    return `<a href="${item.href}" class="block font-mono text-sm text-[var(--accent)] transition-colors py-1">${item.label}</a>`;
+    return `<a href="${item.href}" class="block font-mono text-sm font-medium tracking-tight text-[var(--accent)] transition-all py-1">${item.label}</a>`;
   }).join('\n      ');
 }
 
