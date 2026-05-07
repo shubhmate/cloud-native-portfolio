@@ -271,7 +271,7 @@
       "id": "portfolio",
       "title": "Cloud Native Portfolio",
       "github_repo": "cloud-native-portfolio",
-      "description": "High-Performance Cloud-Native Portfolio | Terraform | AWS (S3, DynamoDB, CloudFront, Route 53) | Automated CI/CD Pipelines. A professional cloud-native DevOps portfolio featuring automated CI/CD, Infrastructure as Code (Terraform), and security-first engineering standards.",
+      "description": "Elite Cloud-Native Portfolio | Serverless Messaging Backend | Honeypot Anti-Bot Security | Terraform IaC | AWS (Lambda, API Gateway, Route 53, CloudFront, S3, DynamoDB) | Automated CI/CD. A high-fidelity DevOps showcase featuring atomic deployments, security-first engineering, and automated infrastructure management.",
       "link": "https://github.com/shubhmate/cloud-native-portfolio",
       "image": "assets/img/github-social-preview-pro-final.png",
       "tags": [
@@ -365,9 +365,15 @@
       "description": "CloudFront cache invalidated for instant updates",
       "icon": "zap",
       "color": "orange"
+    },
+    {
+      "title": "Health Check",
+      "description": "Automated verification ensures site is 100% UP and reachable",
+      "icon": "heart",
+      "color": "rose"
     }
   ],
-  "PIPELINE_YAML": "name: 🚀 Deploy Portfolio\n\non:\n  push:\n    branches: [main]\n\njobs:\n  terraform-infra:\n    name: 🏗️ Infrastructure (Terraform)\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: hashicorp/setup-terraform@v3\n      - run: terraform init\n      - run: terraform apply -auto-approve\n\n  build-and-deploy:\n    name: 📦 Build and 🚀 Deploy\n    needs: terraform-infra\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '24' }\n      - run: npm ci && npm run build\n      - name: 🚀 Deploy to AWS\n        run: node scripts/deploy.js",
+  "PIPELINE_YAML": "name: 🚀 Deploy Portfolio\n\non:\n  push:\n    branches: [main]\n\njobs:\n  terraform-infra:\n    name: 🏗️ Infrastructure (Terraform)\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: hashicorp/setup-terraform@v3\n      - run: terraform init\n      - run: terraform apply -auto-approve\n\n  build-and-deploy:\n    name: 📦 Build and 🚀 Deploy\n    needs: terraform-infra\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with: { node-version: '24' }\n      - run: npm ci && npm run build\n      - name: 🚀 Deploy to AWS\n        run: node scripts/deploy.js\n      - name: 🏥 Health Check\n        run: curl -f https://shubhammate.com",
   "// 10. CONTACT & FOOTER": "--------------------------------------------------",
   "SECTION_CONTACT_HINT": "// contact",
   "SECTION_CONTACT_TITLE": "Let's Build Something",
@@ -503,7 +509,8 @@
     "  4. Terraform automatically APPLIES infrastructure",
     "  5. Build engine optimizes frontend assets",
     "  6. scripts/deploy.js handles S3 + CloudFront",
-    "  7. Portfolio live at api.shubhammate.com!"
+    "  7. Automated Health Check verifies site stability",
+    "  8. Portfolio live at https://shubhammate.com!"
   ],
   "TERMINAL_DEPLOY_STEPS": [
     "Deployment Steps:",
