@@ -26,3 +26,8 @@ output "website_url" {
   description = "The final website URL"
   value       = "https://${var.domain_name}"
 }
+
+output "contact_api_url" {
+  description = "The branded contact form API URL"
+  value       = "https://api.shubhammate.com/contact"
+}

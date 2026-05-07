@@ -610,6 +610,12 @@
                 placeholder="Tell me about the opportunity or project..."
               ></textarea>
             </div>
+
+            <!-- Honeypot Field (Bot Protection) -->
+            <div class="hidden" aria-hidden="true">
+              <input type="text" name="website" id="hp-website" tabindex="-1" autocomplete="off">
+            </div>
+
             <button
               type="submit"
               id="submit-btn"

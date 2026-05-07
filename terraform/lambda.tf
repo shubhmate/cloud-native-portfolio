@@ -40,6 +40,13 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
 }
 
 # 4. Lambda Function
+# Log Group for Lambda (with retention to save costs)
+resource "aws_cloudwatch_log_group" "contact_form" {
+  name              = "/aws/lambda/${aws_lambda_function.contact_form.function_name}"
+  retention_in_days = 14
+  tags              = var.tags
+}
+
 resource "aws_lambda_function" "contact_form" {
   filename         = data.archive_file.lambda_zip.output_path
   function_name    = "portfolio-contact-handler"
@@ -82,6 +89,12 @@ resource "aws_apigatewayv2_stage" "lambda" {
   api_id      = aws_apigatewayv2_api.lambda.id
   name        = "$default"
   auto_deploy = true
+
+  # Throttling (Rate Limiting) to prevent abuse/spam
+  default_route_settings {
+    throttling_burst_limit = 10
+    throttling_rate_limit  = 5
+  }
 
   tags = merge(var.tags, {
     Name = "portfolio-contact-stage"

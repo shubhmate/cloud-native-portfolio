@@ -48,10 +48,42 @@ exports.handler = async (event) => {
     };
   }
 
-  const { name, email, message } = body;
+  const { name, email, message, website } = body;
   const brevoApiKey = process.env.BREVO_API_KEY;
 
-  // --- 1. NOTIFICATION EMAIL (To Shubham) ---
+  // --- 1. HONEYPOT CHECK (Bot Protection) ---
+  if (website && website.trim() !== "") {
+    console.warn('Honeypot Triggered: Bot Detected.');
+    // We return 200 (Success) to the bot so it doesn't know it failed, 
+    // but we SILENTLY reject it without sending any emails.
+    return {
+      statusCode: 200,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ message: 'Success', note: 'Silent rejection' })
+    };
+  }
+
+  // --- 2. DATA VALIDATION ---
+  if (!name || !email || !message || name.length < 2 || message.length < 10) {
+    console.warn('Validation Failed: Insufficient data.');
+    return {
+      statusCode: 400,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ message: 'Validation failed' })
+    };
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    console.warn('Validation Failed: Invalid email format.');
+    return {
+      statusCode: 400,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify({ message: 'Invalid email' })
+    };
+  }
+
+  // --- 3. NOTIFICATION EMAIL (To Shubham) ---
   const notificationPayload = JSON.stringify({
     sender: { name: 'Portfolio Alerts', email: 'contact@shubhammate.com' },
     to: [{ email: 'contact@shubhammate.com', name: 'Shubham Mate' }],
@@ -69,7 +101,7 @@ exports.handler = async (event) => {
     `
   });
 
-  // --- 2. AUTO-REPLY EMAIL (To Visitor) ---
+  // --- 4. AUTO-REPLY EMAIL (To Visitor) ---
   const autoReplyPayload = JSON.stringify({
     sender: { name: 'Shubham Mate', email: 'contact@shubhammate.com' },
     to: [{ email: email, name: name }],
@@ -98,6 +130,11 @@ exports.handler = async (event) => {
   console.log('Notification Response:', res1.body);
 
   if (res1.statusCode >= 200 && res1.statusCode < 300) {
+    // EXTRA CHECK: If Brevo accepts it but warns it's queued/deferred, 
+    // we want to know, but we'll treat it as success for now.
+    // However, if statusCode is 202 (Accepted but not sent yet), 
+    // you can choose to treat it as a 'soft fail' to trigger EmailJS.
+    
     console.log('Sending Auto-Reply...');
     const res2 = await sendEmail(autoReplyPayload, brevoApiKey);
     console.log('Auto-Reply Status:', res2.statusCode);
@@ -109,13 +146,19 @@ exports.handler = async (event) => {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ message: 'Success' })
+      body: JSON.stringify({ message: 'Success', primary: 'delivered' })
     };
   } else {
+    // If we are here, Brevo blocked us (Quota, Auth, or Error)
+    console.warn('Brevo Blocked Request. Triggering Client-Side Failover...');
     return {
-      statusCode: res1.statusCode,
+      statusCode: 500, // Force 500 to trigger the frontend 'catch' block
       headers: { 'Access-Control-Allow-Origin': '*' },
-      body: JSON.stringify({ message: 'Primary Mail Error', details: res1.body })
+      body: JSON.stringify({ 
+        message: 'Primary Mail Error', 
+        details: res1.body,
+        trigger_fallback: true 
+      })
     };
   }
 };

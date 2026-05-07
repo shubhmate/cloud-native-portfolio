@@ -463,9 +463,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // --- Validation Logic ---
       const formData = new FormData(contactForm);
-      const name    = formData.get('name')?.trim();
-      const email   = formData.get('email')?.trim();
-      const message = formData.get('message')?.trim();
+      const name     = formData.get('name')?.trim();
+      const email    = formData.get('email')?.trim();
+      const message  = formData.get('message')?.trim();
+      const website  = formData.get('website')?.trim(); // Honeypot field
 
       // 1. Check for empty fields
       if (!name || !email || !message) {
@@ -508,7 +509,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(lambdaUrl, {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ name, email, message })
+              body: JSON.stringify({ name, email, message, website })
             });
 
             if (response.ok) {

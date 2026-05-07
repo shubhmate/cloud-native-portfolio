@@ -1,6 +1,6 @@
 {
   "name": "cloud-native-portfolio",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "A professional, high-performance static portfolio website built with HTML5, Tailwind CSS, and Vanilla JavaScript. Features comprehensive enhancements including dark/light theme toggle, toast notifications, and enhanced accessibility.",
   "main": "index.js",
   "directories": {
