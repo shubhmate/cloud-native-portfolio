@@ -167,24 +167,118 @@ function generateHireMeButton(config) {
 }
 
 /**
- * Generates Desktop/Mobile Navigation links.
+ * Generates the FULL Navigation Navbar HTML (Standardized)
  */
-function generateNavigation(config, type = 'desktop') {
+function generateFullNavbar(config, activePage = 'home') {
   const items = config.NAV_ITEMS || [];
-  if (type === 'desktop') {
-    return items.map(item => {
-      if (item.type === 'button') {
-        return `<a href="${item.href}" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-medium rounded-lg transition-colors" aria-label="${item.label}">${item.label}</a>`;
-      }
-      return `<a href="${item.href}" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">${item.label}</a>`;
-    }).join('\n        ');
-  }
-  return items.map(item => {
-    if (item.type === 'button') {
-      return `<a href="${item.href}" class="block px-2 py-1 w-fit font-mono text-sm font-medium text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="${item.label}">${item.label}</a>`;
+  const logoText = config.SITE_LOGO_TEXT || 'devops.sh';
+  const isHomePage = activePage === 'index';
+  
+  // 1. Generate Desktop Links
+  const desktopLinks = items.map(item => {
+    const isActive = item.id === activePage;
+    const activeClasses = isActive ? 'border-b-2 border-[var(--accent)] h-full flex items-center' : '';
+    const hoverClasses = !isActive ? 'hover:scale-110 transition-all' : '';
+    
+    // Fix: If we are on a sub-page, anchor links should point to index.html#section
+    let href = item.href;
+    if (!isHomePage && href.startsWith('#')) {
+      href = `index.html${href}`;
     }
-    return `<a href="${item.href}" class="block font-mono text-sm font-medium tracking-tight text-[var(--accent)] transition-all py-1">${item.label}</a>`;
+
+    if (item.type === 'button') {
+      return `<a href="${href}" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-medium rounded-lg transition-colors" aria-label="${item.label}">${item.label}</a>`;
+    }
+    return `<a href="${href}" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] ${activeClasses} ${hoverClasses}">${item.label}</a>`;
+  }).join('\n        ');
+
+  // 2. Generate Mobile Links
+  const mobileLinks = items.map(item => {
+    const isActive = item.id === activePage;
+    const activeClasses = isActive ? 'font-bold border-l-2 border-[var(--accent)] pl-2' : '';
+    
+    // Fix: If we are on a sub-page, anchor links should point to index.html#section
+    let href = item.href;
+    if (!isHomePage && href.startsWith('#')) {
+      href = `index.html${href}`;
+    }
+
+    if (item.type === 'button') {
+      return `<a href="${href}" class="block px-2 py-1 w-fit font-mono text-sm font-medium text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="${item.label}">${item.label}</a>`;
+    }
+    return `<a href="${href}" class="block font-mono text-sm text-[var(--accent)] ${activeClasses} py-1">${item.label}</a>`;
   }).join('\n      ');
+
+  return `
+  <!-- Navbar (Industry Standard: Synchronized) -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
+    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="${isHomePage ? '#home' : 'index.html'}" class="flex items-center gap-3 font-mono font-bold text-[var(--accent)] group">
+        <div class="relative w-8 h-8 flex items-center justify-center">
+          <i data-lucide="cloud" class="w-8 h-8 text-[var(--accent)] animate-pulse"></i>
+          <i data-lucide="terminal" class="absolute w-3.5 h-3.5 text-[var(--accent)] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"></i>
+        </div>
+        <span class="tracking-tight">${logoText}</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-8 h-16">
+        ${desktopLinks}
+        <div class="h-6 w-px bg-[var(--border)] mx-2 opacity-50"></div>
+        <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+          <i data-lucide="sun" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Mobile Controls -->
+      <div class="flex items-center gap-3 lg:hidden">
+        <button id="theme-toggle-mobile" aria-label="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+          <i data-lucide="sun" class="w-5 h-5"></i>
+        </button>
+        <button id="mobile-menu-btn" aria-label="Toggle menu" class="p-1.5 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-4 hidden">
+      ${mobileLinks}
+    </div>
+  </nav>`;
+}
+
+/**
+ * Generates the FULL Global Footer HTML (Standardized)
+ */
+function generateFullFooter(config) {
+  const personName = config.PERSON_NAME || 'Shubham Mate';
+  const siteVersion = config.SITE_VERSION || '2.0.3';
+  const techStack = config.FOOTER_TECH_STACK || '';
+  const socialLinks = generateContactUI(config, 'footer');
+  
+  return `
+    <!-- ==================== Footer (Industry Standard: Synchronized) ==================== -->
+    <footer class="pb-20">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="mt-16 pt-8 border-t border-[var(--border)] flex flex-col items-center gap-4">
+          <p class="font-mono text-xs text-[var(--muted)] text-center md:text-left">
+            ${techStack}
+          </p>
+          <div class="flex items-center gap-4 text-[var(--muted)]">
+            ${socialLinks}
+          </div>
+          <p class="font-mono text-xs text-[var(--muted)] text-center md:text-left">
+            © <span id="current-year">2026</span> ${personName} · Made with ❤️
+          </p> 
+          <div class="flex items-center gap-2 mt-2">
+            <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-widest opacity-60">
+              release: <span class="text-green-400 font-bold">${siteVersion}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>`;
 }
 
 /**
@@ -597,8 +691,7 @@ async function build() {
     config.RESUME_LINK = getResumeLink(config);
 
     console.log(`🚀 Starting Professional Build Process [${gitVersion}]...`);
-    config.NAV_DESKTOP = generateNavigation(config, 'desktop');
-    config.NAV_MOBILE = generateNavigation(config, 'mobile');
+    // Pre-calculate common parts
     config.SKILLS_GRID = generateSkills(config);
     config.EXPERIENCE_TIMELINE = generateExperience(config);
     config.CERTIFICATIONS_GRID = generateCertificationsHtml(config); // Keeping old name for compatibility
@@ -653,10 +746,10 @@ async function build() {
 
     // 6. Process Files
     const filesToProcess = [
-      { src: PATHS.templates.index, dest: PATHS.output.index, name: 'index.html' },
-      { src: PATHS.templates.projects, dest: path.join(PATHS.dist, 'projects.html'), name: 'projects.html' },
-      { src: PATHS.templates.resume, dest: PATHS.output.resume, name: 'resume.html' },
-      { src: PATHS.templates.resumePdf, dest: PATHS.output.resumePdf, name: 'resume-pdf.html' },
+      { src: PATHS.templates.index, dest: PATHS.output.index, name: 'index.html', id: 'home' },
+      { src: PATHS.templates.projects, dest: path.join(PATHS.dist, 'projects.html'), name: 'projects.html', id: 'projects' },
+      { src: PATHS.templates.resume, dest: PATHS.output.resume, name: 'resume.html', id: 'resume' },
+      { src: PATHS.templates.resumePdf, dest: PATHS.output.resumePdf, name: 'resume-pdf.html', id: 'none' },
       { src: PATHS.templates.mainJs, dest: path.join(PATHS.output.assets, 'js', config.JS_FILENAME), name: config.JS_FILENAME },
       { src: PATHS.templates.commands, dest: PATHS.output.commands, name: 'commands.json' }
     ];
@@ -665,6 +758,13 @@ async function build() {
       if (fs.existsSync(file.src)) {
         let content = fs.readFileSync(file.src, 'utf8');
         const ext = path.extname(file.src).substring(1);
+        
+        // Generate Dynamic Components per page if it's HTML
+        if (ext === 'html') {
+          config.GLOBAL_NAVBAR = generateFullNavbar(config, file.id);
+          config.GLOBAL_FOOTER = generateFullFooter(config);
+        }
+
         content = applyReplacements(content, config, ext);
         if (file.name === 'resume-pdf.html') {
           // No validation for the hidden PDF template to avoid noise

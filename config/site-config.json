@@ -18,34 +18,42 @@
   "HIRE_ME_TEXT": "HIRE ME",
   "NAV_ITEMS": [
     {
+      "id": "index",
       "label": "Home",
       "href": "#home"
     },
     {
+      "id": "about",
       "label": "About",
       "href": "#about"
     },
     {
+      "id": "experience",
       "label": "Experience",
       "href": "#experience"
     },
     {
+      "id": "skills",
       "label": "Stack",
       "href": "#skills"
     },
     {
+      "id": "projects",
       "label": "Projects",
-      "href": "#projects"
+      "href": "projects.html"
     },
     {
+      "id": "pipeline",
       "label": "Pipeline",
       "href": "#pipeline"
     },
     {
+      "id": "contact",
       "label": "Contact",
       "href": "#contact"
     },
     {
+      "id": "resume",
       "label": "Resume",
       "href": "resume.html",
       "type": "button"

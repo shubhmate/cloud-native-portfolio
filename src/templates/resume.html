@@ -60,7 +60,7 @@
         <i data-lucide="terminal" class="absolute w-8 h-8 text-[var(--accent)] animate-pulse-custom top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
       </div>
       <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
-        <span class="animate-pulse-custom">_</span> Loading Resume...
+        <span class="animate-pulse-custom">_</span> Loading Technical Identity...
       </p>
     </div>
   </div>
@@ -73,46 +73,7 @@
     <i data-lucide="arrow-up" class="w-5 h-5"></i>
   </button>
 
-  <!-- Navbar (Synchronized with index.html) -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 font-mono font-bold text-[var(--accent)] group">
-        <div class="relative w-8 h-8 flex items-center justify-center">
-          <i data-lucide="cloud" class="w-8 h-8 text-[var(--accent)] animate-pulse"></i>
-          <i data-lucide="terminal" class="absolute w-3.5 h-3.5 text-[var(--accent)] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"></i>
-        </div>
-        <span class="tracking-tight">{{SITE_LOGO_TEXT}}</span>
-      </a>
-
-      <!-- Desktop Navigation -->
-      <div class="hidden lg:flex items-center gap-8 h-16">
-        <a href="index.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">Home</a>
-        <a href="projects.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] hover:scale-110 transition-all">Projects</a>
-        <a href="resume.html" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] border-b-2 border-[var(--accent)] h-full flex items-center hover:scale-110 transition-all">Resume</a>
-        <div class="h-6 w-px bg-[var(--border)] mx-2 opacity-50"></div>
-        <button id="theme-toggle" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="sun" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- Mobile Controls -->
-      <div class="flex items-center gap-3 lg:hidden">
-        <button id="theme-toggle-mobile" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="sun" class="w-5 h-5"></i>
-        </button>
-        <button id="mobile-menu-btn" class="p-1.5 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-4 hidden">
-      <a href="index.html" class="block font-mono text-sm font-medium text-[var(--accent)] py-1 transition-all">Home</a>
-      <a href="projects.html" class="block font-mono text-sm font-medium text-[var(--accent)] py-1 transition-all">Projects</a>
-      <a href="resume.html" class="block font-mono text-sm font-bold text-[var(--accent)] font-bold py-1 border-l-2 border-[var(--accent)] pl-2">Resume</a>
-    </div>
-  </nav>
+  {{GLOBAL_NAVBAR}}
 
   <!-- Floating 'Hire Me' Button (Navigation for Resume Page) -->
   <a href="index.html#contact" id="hire-me-nav" class="hire-me-btn flex items-center justify-center" aria-label="Hire me">
@@ -120,18 +81,33 @@
   </a>
 
   <!-- Main Content -->
-  <main id="main-content" class="pt-24 md:pt-32 pb-20">
+  <main id="main-content" class="pt-24 md:pt-32">
     <section class="max-w-6xl mx-auto px-6">
       <div class="animate-fade-up">
         <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <div class="flex items-center gap-2 mb-2">
-              <i data-lucide="file-text" class="w-5 h-5 text-[var(--accent)]"></i>
-              <p class="font-mono text-[var(--accent)] text-sm">// resume</p>
+            <div class="flex items-center gap-2 mb-2 text-[var(--accent)]">
+              <i data-lucide="file-text" class="w-5 h-5"></i>
+              <p class="font-mono text-sm tracking-tight">// technical identity</p>
             </div>
-            <h1 class="font-mono text-4xl md:text-5xl font-bold mb-4">Resume Details</h1>
-            <p class="text-[var(--muted)] text-lg max-w-2xl leading-relaxed">
-              Updated: {{SITE_VERSION}} · {{RESUME_FILENAME}}
+            <h1 class="font-mono text-4xl md:text-5xl font-bold mb-4">Professional Profile</h1>
+            <p class="text-[var(--muted)] text-lg max-w-2xl mb-8 leading-relaxed">
+              Automating high-availability cloud ecosystems with a focus on Infrastructure as Code, 
+              CI/CD security, and cost-efficient scale.
+            </p>
+
+            <!-- Quick-Scan Competencies -->
+            <div class="flex flex-wrap gap-3 mb-4">
+              <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-mono">AWS / Azure</span>
+              <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-mono">Kubernetes & Docker</span>
+              <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-mono">Terraform / Ansible</span>
+              <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-mono">CI/CD Automation</span>
+              <span class="px-3 py-1 rounded-full bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-mono">Security & Compliance</span>
+            </div>
+
+            <p class="text-[var(--muted)] text-sm font-mono flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+              Version: {{SITE_VERSION}} · {{RESUME_FILENAME}}
             </p>
           </div>
           
@@ -164,28 +140,9 @@
         </div>
       </div>
     </section>
+
+    {{GLOBAL_FOOTER}}
   </main>
-
-  <!-- Footer (100% Synchronized) -->
-  <footer class="py-12 border-t border-[var(--border)]">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
-      <p class="font-mono text-xs text-[var(--muted)]">
-        {{FOOTER_TECH_STACK}}
-      </p>
-      <div class="flex items-center gap-4 text-[var(--muted)]">
-        {{FOOTER_SOCIAL_LINKS}}
-      </div>
-      <p class="font-mono text-xs text-[var(--muted)]">
-        © <span id="current-year">2026</span> {{PERSON_NAME}} · Made with ❤️
-      </p> 
-      <div class="flex items-center gap-2 mt-2">
-        <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-widest opacity-60">
-          release: <span class="text-green-400 font-bold">{{SITE_VERSION}}</span>
-        </p>
-      </div>
-    </div>
-  </footer>
-
   <script src="assets/js/{{JS_FILENAME}}" defer></script>
 </body>
 </html>

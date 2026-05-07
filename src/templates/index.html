@@ -162,53 +162,7 @@
   </button>
 
 
-  <!-- Navbar --> 
-  <!-- <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-2 font-mono font-bold text-[var(--accent)]">
-        <i data-lucide="terminal" class="w-5 h-5"></i>
-        <span>devops.sh</span>
-      </a> -->
-  <!-- <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)] bg-black/80 backdrop-blur-md"> -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-[var(--border)]">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#home" class="flex items-center gap-3 font-mono font-bold text-[var(--accent)] group">
-        <!-- Integrated Logo Container -->
-        <div class="relative w-8 h-8 flex items-center justify-center">
-            <!-- Cloud: Slightly faded, stays in background -->
-          <i data-lucide="cloud" 
-             class="w-8 h-8 text-[var(--accent)] animate-pulse"></i>
-          <!-- Terminal: Centered and sharp -->
-          <i data-lucide="terminal" 
-             class="absolute w-3.5 h-3.5 text-[var(--accent)] top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2 animate-pulse"></i>
-        </div>
-        <span class="tracking-tight">{{SITE_LOGO_TEXT}}</span>
-      </a>
-
-      <!-- Desktop Navigation Links -->
-      <div class="hidden lg:flex items-center gap-6">
-        {{NAV_DESKTOP}}
-        <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="sun" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- Mobile Menu Toggle Button -->
-      <div class="flex items-center gap-3 lg:hidden">
-        <button id="theme-toggle-mobile" aria-label="Toggle dark/light theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="sun" class="w-5 h-5"></i>
-        </button>
-        <button id="mobile-menu-btn" aria-label="Toggle menu" aria-expanded="false" class="p-1.5 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="menu" class="w-6 h-6"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Navigation Menu (hidden by default, toggled by JS) -->
-    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-3 hidden" role="navigation" aria-label="Mobile menu">
-      {{NAV_MOBILE}}
-    </div>
-  </nav>
+  {{GLOBAL_NAVBAR}}
 
   <!-- ==================== Main Content Area ==================== -->
   <main id="main-content" role="main"> <!-- Main content wrapper for accessibility -->
@@ -641,24 +595,7 @@
           </form>
         </div>
 
-        <!-- ==================== Footer ==================== -->
-        <!-- Footer with current year, social links, and a note about the tech stack used to build the site. -->
-        <div class="mt-16 pt-8 border-t border-[var(--border)] flex flex-col items-center gap-4">
-          <p class="font-mono text-xs text-[var(--muted)] text-center md:text-left">
-            {{FOOTER_TECH_STACK}}
-          </p>
-          <div class="flex items-center gap-4 text-[var(--muted)]">
-            {{FOOTER_SOCIAL_LINKS}}
-          </div>
-          <p class="font-mono text-xs text-[var(--muted)] text-center md:text-left">
-            © <span id="current-year">2026</span> {{PERSON_NAME}} · Made with ❤️
-          </p> 
-          <div class="flex items-center gap-2 mt-2">
-            <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-widest opacity-60">
-              release: <span class="text-green-400 font-bold">{{SITE_VERSION}}</span>
-            </p>
-          </div>
-        </div>
+        {{GLOBAL_FOOTER}}
       </div>
     </section>
   </main>
