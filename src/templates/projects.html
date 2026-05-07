@@ -98,6 +98,11 @@
   </nav>
 
   <!-- Main Content -->
+  <!-- Floating 'Hire Me' Button (Updated to Navigation for Projects Page) -->
+  <a href="index.html#contact" id="hire-me-nav" class="hire-me-btn flex items-center justify-center" aria-label="Hire me">
+    {{HIRE_ME_BUTTON}}
+  </a>
+
   <main id="main-content">
     <section class="pt-32 pb-20 border-b border-[var(--border)]">
       <div class="max-w-6xl mx-auto px-6">
@@ -117,8 +122,8 @@
           {{PROJECTS_LIBRARY_GRID}}
         </div>
       
-      <div class="mt-20 text-center">
-        <a href="index.html#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] hover:bg-blue-500 text-white font-bold rounded-xl transition-all hover:scale-105">
+      <div class="mt-20 text-center animate-fade-up">
+        <a href="index.html#contact" class="inline-flex items-center gap-2 px-8 py-4 bg-[var(--accent)] hover:bg-blue-600 text-white font-bold rounded-xl transition-all hover:scale-105">
           <i data-lucide="send" class="w-5 h-5"></i>
           Start a Collaboration
         </a>
@@ -126,16 +131,23 @@
     </section>
   </main>
 
-  <!-- Footer (Synchronized with index.html) -->
+  <!-- Footer (100% Synchronized with index.html) -->
   <footer class="py-12 border-t border-[var(--border)]">
     <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-4 text-center">
-      <p class="font-mono text-xs text-[var(--muted)]">{{FOOTER_TECH_STACK}}</p>
+      <p class="font-mono text-xs text-[var(--muted)]">
+        {{FOOTER_TECH_STACK}}
+      </p>
       <div class="flex items-center gap-4 text-[var(--muted)]">
         {{FOOTER_SOCIAL_LINKS}}
       </div>
       <p class="font-mono text-xs text-[var(--muted)]">
-        © 2026 {{PERSON_NAME}} · v{{SITE_VERSION}}
-      </p>
+        © <span id="current-year">2026</span> {{PERSON_NAME}} · Made with ❤️
+      </p> 
+      <div class="flex items-center gap-2 mt-2">
+        <p class="font-mono text-[10px] text-[var(--muted)] uppercase tracking-widest opacity-60">
+          release: <span class="text-green-400 font-bold">{{SITE_VERSION}}</span>
+        </p>
+      </div>
     </div>
   </footer>
 
