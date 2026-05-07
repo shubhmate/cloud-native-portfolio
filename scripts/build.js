@@ -316,7 +316,7 @@ function generateProjects(config) {
 
     return `
           <!-- Project: ${project.title} -->
-          <div class="flip-card h-[520px] sm:h-[480px] md:h-[450px]">
+          <div class="flip-card h-[580px] sm:h-[540px] md:h-[520px]">
             <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors bg-[var(--surface)]">
               <div class="flip-card-front p-6 flex flex-col overflow-hidden">
                 <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('${project.image}')">
