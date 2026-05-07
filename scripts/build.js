@@ -33,6 +33,7 @@ const PATHS = {
     index: path.join(PROJECT_ROOT, 'src', 'templates', 'index.html'),
     resume: path.join(PROJECT_ROOT, 'src', 'templates', 'resume.html'),
     resumePdf: path.join(PROJECT_ROOT, 'src', 'templates', 'resume-pdf-template.html'),
+    projects: path.join(PROJECT_ROOT, 'src', 'templates', 'projects.html'),
     mainCss: path.join(PROJECT_ROOT, 'src', 'styles', 'main.css'),
     mainJs: path.join(PROJECT_ROOT, 'src', 'scripts', 'main.js'),
     commands: path.join(PROJECT_ROOT, 'src', 'scripts', 'commands.json'),
@@ -278,67 +279,78 @@ function generateSkills(config) {
 function generateProjects(config) {
   if (!config.PROJECTS) return;
 
-  config.PROJECTS_GRID = config.PROJECTS.map(project => {
-    const tagsHtml = (project.tags || []).map(tag => `\n                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">${tag}</span>`).join('');
-    const archHtml = (project.architecture || []).map(step => `
-                  <div class="flex items-start gap-2 font-mono text-xs">
-                    <span class="text-[var(--accent)]">▸</span>
-                    <span class="text-[var(--muted)]">${escapeHtml(step)}</span>
-                  </div>`).join('');
+  // 1. Generate ALL projects for the Library page
+  const allProjectsHtml = config.PROJECTS.map(project => generateProjectCard(project)).join('');
+  config.PROJECTS_LIBRARY_GRID = allProjectsHtml;
 
-    const hasBack = archHtml.trim().length > 0 || project.problem || project.fix;
-    const flipButton = hasBack ? `
-                  <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
-                    <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
-                  </button>` : '';
-
-    const backCard = hasBack ? `
-              <div class="flip-card-back p-6 flex flex-col overflow-hidden">
-                <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
-                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-[var(--accent)] font-bold mb-4">${escapeHtml(project.title)}</h3>
-                  <div class="space-y-2 mb-4">${archHtml}</div>
-                  <div class="space-y-4 text-xs mb-4">
-                    <div class="flex flex-col gap-1">
-                      <span class="text-red-400 font-mono font-semibold uppercase tracking-wider">Problem:</span>
-                      <span class="text-slate-400 leading-relaxed">${escapeHtml(project.problem) || 'N/A'}</span>
-                    </div>
-                    <div class="flex flex-col gap-1">
-                      <span class="text-green-400 font-mono font-semibold uppercase tracking-wider">Fix:</span>
-                      <span class="text-slate-400 leading-relaxed">${escapeHtml(project.fix) || 'N/A'}</span>
-                    </div>
-                  </div>
-                </div>
-                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
-                  <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
-                </button>
-              </div>` : '';
-
-    return `
-          <!-- Project: ${project.title} -->
-          <div class="flip-card h-[580px] sm:h-[540px] md:h-[520px]">
-            <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors bg-[var(--surface)]">
-              <div class="flip-card-front p-6 flex flex-col overflow-hidden">
-                <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('${project.image}')">
-                  <img src="${project.image}" alt="Project Architecture" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
-                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i data-lucide="zoom-in" class="w-6 h-6 text-white"></i></div>
-                </div>
-                <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
-                  <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3">${project.title}</h3>
-                  <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${project.description}</p>
-                </div>
-                <div class="flex flex-wrap gap-2 mt-2 mb-2">${tagsHtml}</div>
-                <div class="flex items-center justify-between">
-                  <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline text-sm"><i data-lucide="github" class="w-4 h-4"></i> Code</a>
-                  ${flipButton}
-                </div>
-              </div>${backCard}
-            </div>
-          </div>`;
-  }).join('');
+  // 2. Generate only top 2 projects for the Home page
+  const featuredProjectsHtml = config.PROJECTS.slice(0, 2).map(project => generateProjectCard(project)).join('');
+  config.PROJECTS_GRID = featuredProjectsHtml;
 
   config.TERMINAL_PROJECTS = config.PROJECTS.map((p, i) => `${i + 1}. ${p.title}`);
   config.TERMINAL_PROJECTS.push('', 'Run \'open projects\' to jump to the section.');
+}
+
+/**
+ * Internal helper to generate a single project card HTML.
+ */
+function generateProjectCard(project) {
+  const tagsHtml = (project.tags || []).map(tag => `\n                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">${tag}</span>`).join('');
+  const archHtml = (project.architecture || []).map(step => `
+                <div class="flex items-start gap-2 font-mono text-xs">
+                  <span class="text-[var(--accent)]">▸</span>
+                  <span class="text-[var(--muted)]">${escapeHtml(step)}</span>
+                </div>`).join('');
+
+  const hasBack = archHtml.trim().length > 0 || project.problem || project.fix;
+  const flipButton = hasBack ? `
+                <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline">
+                  <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip
+                </button>` : '';
+
+  const backCard = hasBack ? `
+            <div class="flip-card-back p-6 flex flex-col overflow-hidden">
+              <p class="font-mono text-xs font-semibold mb-4 text-[var(--accent)] shrink-0">// architecture</p>
+              <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                <h3 class="font-mono text-[var(--accent)] font-bold mb-4">${escapeHtml(project.title)}</h3>
+                <div class="space-y-2 mb-4">${archHtml}</div>
+                <div class="space-y-4 text-xs mb-4">
+                  <div class="flex flex-col gap-1">
+                    <span class="text-red-400 font-mono font-semibold uppercase tracking-wider">Problem:</span>
+                    <span class="text-slate-400 leading-relaxed">${escapeHtml(project.problem) || 'N/A'}</span>
+                  </div>
+                  <div class="flex flex-col gap-1">
+                    <span class="text-green-400 font-mono font-semibold uppercase tracking-wider">Fix:</span>
+                    <span class="text-slate-400 leading-relaxed">${escapeHtml(project.fix) || 'N/A'}</span>
+                  </div>
+                </div>
+              </div>
+              <button onclick="flipCard(this)" class="text-xs font-mono flex items-center gap-1.5 text-[var(--accent)] hover:underline self-end mt-4 shrink-0">
+                <i data-lucide="rotate-ccw" class="w-3 h-3"></i> flip back
+              </button>
+            </div>` : '';
+
+  return `
+        <!-- Project: ${project.title} -->
+        <div class="flip-card h-[580px] sm:h-[540px] md:h-[520px]">
+          <div class="flip-card-inner card-hover rounded-xl border border-[var(--border)] hover:border-[var(--accent)] transition-colors bg-[var(--surface)]">
+            <div class="flip-card-front p-6 flex flex-col overflow-hidden">
+              <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('${project.image}')">
+                <img src="${project.image}" alt="Project Architecture" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
+                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i data-lucide="zoom-in" class="w-6 h-6 text-white"></i></div>
+              </div>
+              <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
+                <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3">${project.title}</h3>
+                <p class="text-[var(--muted)] text-sm mb-4 leading-relaxed">${project.description}</p>
+              </div>
+              <div class="flex flex-wrap gap-2 mt-2 mb-2">${tagsHtml}</div>
+              <div class="flex items-center justify-between">
+                <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-[var(--accent)] hover:underline text-sm"><i data-lucide="github" class="w-4 h-4"></i> Code</a>
+                ${flipButton}
+              </div>
+            </div>${backCard}
+          </div>
+        </div>`;
 }
 
 /**
@@ -642,6 +654,7 @@ async function build() {
     // 6. Process Files
     const filesToProcess = [
       { src: PATHS.templates.index, dest: PATHS.output.index, name: 'index.html' },
+      { src: PATHS.templates.projects, dest: path.join(PATHS.dist, 'projects.html'), name: 'projects.html' },
       { src: PATHS.templates.resume, dest: PATHS.output.resume, name: 'resume.html' },
       { src: PATHS.templates.resumePdf, dest: PATHS.output.resumePdf, name: 'resume-pdf.html' },
       { src: PATHS.templates.mainJs, dest: path.join(PATHS.output.assets, 'js', config.JS_FILENAME), name: config.JS_FILENAME },

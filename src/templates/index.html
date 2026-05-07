@@ -448,8 +448,17 @@
         </div>
 
         <!-- Projects Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
           {{PROJECTS_GRID}}
+        </div>
+
+        <!-- View All Projects Button -->
+        <div class="flex justify-center animate-fade-up">
+          <a href="projects.html" class="group flex items-center gap-2 px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white font-mono text-sm rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--accent)]/5">
+            <i data-lucide="archive" class="w-4 h-4 transition-transform group-hover:-rotate-12"></i>
+            <span>View Full Project Library</span>
+            <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+          </a>
         </div>
       </div>
     </section>
