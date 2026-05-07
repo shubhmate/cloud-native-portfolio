@@ -105,15 +105,14 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuBtn.addEventListener('click', () => {
       const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
       mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
-      mobileMenu.classList.toggle('hidden');
-      mobileMenu.classList.toggle('flex');
+      mobileMenu.classList.toggle('active');
       mobileMenu.classList.toggle('flex-col');
     });
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
-        mobileMenu.classList.add('hidden');
-        mobileMenu.classList.remove('flex', 'flex-col');
+        mobileMenu.classList.remove('active');
+        mobileMenu.classList.remove('flex-col');
       });
     });
   }
@@ -193,6 +192,36 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     tryRenderLucide();
   });
+
+  // --- 1.6 Scroll Spy (Intelligent Navigation) ---
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  
+  if (sections.length > 0 && navLinks.length > 0) {
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(link => {
+            const href = link.getAttribute('href') || '';
+            const normalizedHref = href.split('/').pop(); // Handles index.html#id
+            
+            const isMatch = normalizedHref === `#${id}` || 
+                            normalizedHref === `index.html#${id}` ||
+                            (id === 'projects' && normalizedHref === 'projects.html') ||
+                            (id === 'home' && (normalizedHref === '#home' || normalizedHref === 'index.html'));
+            
+            link.classList.toggle('active', isMatch);
+          });
+        }
+      });
+    }, { 
+      threshold: 0.1,
+      rootMargin: '-10% 0px -40% 0px' 
+    });
+
+    sections.forEach(section => spyObserver.observe(section));
+  }
 
 
   /* =========================================================================

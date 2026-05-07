@@ -88,6 +88,65 @@
 #preloader.hidden { opacity: 0; pointer-events: none; }
 
 /* --- 2.2 Navigation & Theme Toggle --- */
+.nav-link {
+  position: relative;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+  border-radius: 10px;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+.nav-link:hover {
+  transform: translateY(-1px);
+}
+@media (max-width: 1024px) {
+  .nav-link:hover { transform: translateX(4px); }
+  .nav-link::after {
+    bottom: auto;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 0;
+    transition: height 0.3s ease;
+  }
+  .nav-link.active::after,
+  .nav-link:hover::after {
+    height: 16px;
+    width: 3px;
+  }
+}
+
+.nav-link:active {
+  transform: scale(0.95);
+}
+
+/* Mobile Menu Animation */
+#mobile-menu {
+  display: none;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+#mobile-menu.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
 .theme-toggle:hover { transform: rotate(20deg); }
 

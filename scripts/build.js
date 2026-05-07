@@ -177,8 +177,7 @@ function generateFullNavbar(config, activePage = 'home') {
   // 1. Generate Desktop Links
   const desktopLinks = items.map(item => {
     const isActive = item.id === activePage;
-    const activeClasses = isActive ? 'border-b-2 border-[var(--accent)] h-full flex items-center' : '';
-    const hoverClasses = !isActive ? 'hover:scale-110 transition-all' : '';
+    const activeClasses = isActive ? 'active' : '';
     
     // Fix: If we are on a sub-page, anchor links should point to index.html#section
     let href = item.href;
@@ -187,15 +186,15 @@ function generateFullNavbar(config, activePage = 'home') {
     }
 
     if (item.type === 'button') {
-      return `<a href="${href}" class="px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-medium rounded-lg transition-colors" aria-label="${item.label}">${item.label}</a>`;
+      return `<a href="${href}" class="group px-4 py-2 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--green)]/10" aria-label="${item.label}">${item.label}</a>`;
     }
-    return `<a href="${href}" class="font-mono text-sm font-medium tracking-tight text-[var(--accent)] ${activeClasses} ${hoverClasses}">${item.label}</a>`;
+    return `<a href="${href}" class="nav-link font-mono text-sm font-medium tracking-tight text-[var(--accent)] ${activeClasses}">${item.label}</a>`;
   }).join('\n        ');
 
   // 2. Generate Mobile Links
   const mobileLinks = items.map(item => {
     const isActive = item.id === activePage;
-    const activeClasses = isActive ? 'font-bold border-l-2 border-[var(--accent)] pl-2' : '';
+    const activeClasses = isActive ? 'active' : '';
     
     // Fix: If we are on a sub-page, anchor links should point to index.html#section
     let href = item.href;
@@ -204,9 +203,9 @@ function generateFullNavbar(config, activePage = 'home') {
     }
 
     if (item.type === 'button') {
-      return `<a href="${href}" class="block px-2 py-1 w-fit font-mono text-sm font-medium text-[var(--green)] transition-colors border border-[var(--green)] rounded-lg" aria-label="${item.label}">${item.label}</a>`;
+      return `<a href="${href}" class="block px-4 py-2 w-fit font-mono text-sm font-bold text-[var(--green)] transition-all border border-[var(--green)] rounded-xl active:scale-95" aria-label="${item.label}">${item.label}</a>`;
     }
-    return `<a href="${href}" class="block font-mono text-sm text-[var(--accent)] ${activeClasses} py-1">${item.label}</a>`;
+    return `<a href="${href}" class="nav-link block font-mono text-sm text-[var(--accent)] ${activeClasses} py-2 transition-all active:scale-95 active:pl-4">${item.label}</a>`;
   }).join('\n      ');
 
   return `
