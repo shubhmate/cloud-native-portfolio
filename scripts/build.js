@@ -349,7 +349,7 @@ function generatePipeline(config) {
   return config.PIPELINE_STEPS.map((step, index) => {
     const isLast = index === config.PIPELINE_STEPS.length - 1;
     const arrow = isLast ? '' : `
-              <div class="flex items-center justify-center my-2 md:mx-2 shrink-0">
+              <div class="flex items-center justify-center my-2 md:mt-6 md:mx-2 shrink-0">
                 <i data-lucide="arrow-down" class="w-6 h-6 text-border block md:hidden"></i>
                 <i data-lucide="arrow-right" class="w-6 h-6 text-border hidden md:block"></i>
               </div>`;
