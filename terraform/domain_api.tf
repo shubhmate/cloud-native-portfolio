@@ -2,7 +2,7 @@
 resource "aws_acm_certificate" "api" {
   domain_name       = "api.shubhammate.com"
   validation_method = "DNS"
-  tags              = var.tags
+  tags              = merge(var.tags, { Name = "portfolio-api-cert" })
 
   lifecycle {
     create_before_destroy = true
@@ -44,6 +44,8 @@ resource "aws_apigatewayv2_domain_name" "api" {
   }
 
   depends_on = [aws_acm_certificate_validation.api]
+
+  tags = merge(var.tags, { Name = "portfolio-api-domain" })
 }
 
 # --- 5. Route53 Record for API Domain (A Record Alias) ---

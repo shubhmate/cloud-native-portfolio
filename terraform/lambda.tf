@@ -44,7 +44,7 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
 resource "aws_cloudwatch_log_group" "contact_form" {
   name              = "/aws/lambda/${aws_lambda_function.contact_form.function_name}"
   retention_in_days = 14
-  tags              = var.tags
+  tags              = merge(var.tags, { Name = "/aws/lambda/portfolio-contact-handler" })
 }
 
 resource "aws_lambda_function" "contact_form" {
@@ -123,8 +123,3 @@ resource "aws_lambda_permission" "api_gw" {
   source_arn    = "${aws_apigatewayv2_api.lambda.execution_arn}/*/*"
 }
 
-# 7. Output the API Endpoint
-output "contact_api_url" {
-  description = "The URL of the contact form API"
-  value       = "${aws_apigatewayv2_api.lambda.api_endpoint}/contact"
-}
