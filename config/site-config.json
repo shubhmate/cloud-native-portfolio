@@ -411,6 +411,12 @@
   "FOOTER_TECH_STACK": "Crafted with HTML5, Tailwind CSS, Vanilla JS and AI. Statically hosted for performance.",
   "CONTACT_LINKS": [
     {
+      "label": "Email",
+      "value": "contact@shubhammate.com",
+      "icon": "mail",
+      "type": "copy"
+    },
+    {
       "label": "GitHub",
       "value": "https://github.com/shubhmate",
       "icon": "github",
@@ -421,12 +427,6 @@
       "value": "https://www.linkedin.com/in/shubham-mate",
       "icon": "linkedin",
       "type": "link"
-    },
-    {
-      "label": "Email",
-      "value": "contact@shubhammate.com",
-      "icon": "mail",
-      "type": "copy"
     }
   ],
   "// 11. RESUME PAGE (VIEWER)": "--------------------------------------------------",
