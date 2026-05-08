@@ -373,6 +373,7 @@
               <span class="font-mono text-xs text-green-400 shrink-0">$</span>
               <input
                 id="terminal-input" 
+                name="terminal-input"
                 class="flex-1 bg-transparent font-mono text-xs text-green-500 outline-none caret-[var(--accent)] placeholder:text-green-500"
                 placeholder="type a command..."
                 autocomplete="off"
@@ -530,7 +531,7 @@
 
           <!-- Right Column: Contact Form -->
           <form id="contact-form" class="space-y-4" novalidate> <!-- novalidate prevents default browser validation -->
-            <input name="_gotcha" type="text" tabindex="-1" aria-hidden="true" class="hidden" autocomplete="off">
+            <input id="form-gotcha" name="_gotcha" type="text" tabindex="-1" aria-hidden="true" class="hidden" autocomplete="off">
 
             <div>
               <label for="name" class="block font-mono text-xs mb-1.5">Name <span class="text-red-400">*</span></label>
