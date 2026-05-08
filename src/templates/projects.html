@@ -56,9 +56,9 @@
   <!-- Toast Container -->
   <div id="toast-container"></div>
 
-  <!-- Scroll to Top -->
-  <button id="scroll-to-top" class="p-3 rounded-xl border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-all">
-    <i data-lucide="arrow-up" class="w-5 h-5"></i>
+  <!-- Scroll to Top Button -->
+  <button id="scroll-to-top" aria-label="Scroll to top" title="Back to top" class="group flex items-center justify-center w-12 h-12 rounded-2xl bg-white/70 dark:bg-slate-950/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[var(--accent)] transition-all shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.4)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/5 hover:scale-105 active:scale-95">
+    <i data-lucide="arrow-up" class="w-5 h-5 transition-transform group-hover:-translate-y-1"></i>
   </button>
 
   {{GLOBAL_NAVBAR}}
