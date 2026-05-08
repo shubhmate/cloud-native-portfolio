@@ -364,6 +364,7 @@ html.dark .hire-me-btn {
     top: auto;
     bottom: 2rem;
     right: 1.5rem;
+    left: auto;
     flex-direction: row;
     padding: 12px 24px;
     border-radius: 50px;
@@ -373,15 +374,16 @@ html.dark .hire-me-btn {
     letter-spacing: 2px;
     height: auto;
     width: auto;
-    right: 1.5rem;
   }
   .hire-me-btn.visible {
     animation: fadeUp 0.6s ease-out forwards;
     bottom: 2rem;
     right: 1.5rem;
+    left: auto;
   }
   .hire-me-btn:hover { 
     right: 1.5rem; 
+    left: auto;
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(var(--green-rgb), 0.2);
   }

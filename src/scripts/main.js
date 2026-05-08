@@ -158,14 +158,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const scrollToTopBtn = document.getElementById('scroll-to-top');
   const hireMeBtn = document.getElementById('hire-me');
   if (scrollToTopBtn || hireMeBtn) {
+    const contactSection = document.getElementById('contact');
     window.addEventListener('scroll', () => {
-      const isVisible = window.scrollY > 300;
+      const scrollPos = window.scrollY;
+      const isVisible = scrollPos > 300;
+      
+      // Intelligent Suppression: Hide button when contact section is in view to avoid overlap
+      let isNearContact = false;
+      if (contactSection && window.innerWidth < 1024) { // Only suppress on mobile/tablet where overlap occurs
+        const rect = contactSection.getBoundingClientRect();
+        isNearContact = rect.top < window.innerHeight - 100;
+      }
+
       if (scrollToTopBtn) {
         if (isVisible) scrollToTopBtn.classList.add('visible');
         else scrollToTopBtn.classList.remove('visible');
       }
       if (hireMeBtn) {
-        if (isVisible) hireMeBtn.classList.add('visible');
+        if (isVisible && !isNearContact) hireMeBtn.classList.add('visible');
         else hireMeBtn.classList.remove('visible');
       }
     });
