@@ -420,6 +420,12 @@
       "value": "https://www.linkedin.com/in/shubham-mate",
       "icon": "linkedin",
       "type": "link"
+    },
+    {
+      "label": "Email",
+      "value": "contact@shubhammate.com",
+      "icon": "mail",
+      "type": "copy"
     }
   ],
   "// 11. RESUME PAGE (VIEWER)": "--------------------------------------------------",
