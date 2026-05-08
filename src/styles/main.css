@@ -203,7 +203,16 @@
   color: var(--green);
   cursor: pointer;
   box-shadow: -4px 0 15px rgba(0, 0, 0, 0.05);
-  transition: all 0.4s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hire-me-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+  right: -2px;
 }
 .hire-me-btn:hover {
   right: 0;
@@ -325,6 +334,11 @@
     border-radius: 50px;
     border-right: 1px solid var(--green);
     transform: none;
+  }
+  .hire-me-btn.visible {
+    bottom: 2rem;
+    right: 1.5rem;
+    transform: scale(1);
   }
   .hire-me-btn:hover { right: 1.5rem; transform: translateY(-5px); }
   .hire-me-btn span:not(.pulse-dot) { writing-mode: horizontal-tb; text-orientation: mixed; }

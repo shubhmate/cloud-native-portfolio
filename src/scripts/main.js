@@ -156,12 +156,22 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const scrollToTopBtn = document.getElementById('scroll-to-top');
-  if (scrollToTopBtn) {
+  const hireMeBtn = document.getElementById('hire-me');
+  if (scrollToTopBtn || hireMeBtn) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) scrollToTopBtn.classList.add('visible');
-      else scrollToTopBtn.classList.remove('visible');
+      const isVisible = window.scrollY > 300;
+      if (scrollToTopBtn) {
+        if (isVisible) scrollToTopBtn.classList.add('visible');
+        else scrollToTopBtn.classList.remove('visible');
+      }
+      if (hireMeBtn) {
+        if (isVisible) hireMeBtn.classList.add('visible');
+        else hireMeBtn.classList.remove('visible');
+      }
     });
-    scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    if (scrollToTopBtn) {
+      scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    }
   }
 
   // --- 1.5 System Initialization (Lucide & Animations) ---
