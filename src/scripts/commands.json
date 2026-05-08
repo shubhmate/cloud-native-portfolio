@@ -44,14 +44,14 @@
   "// CONTACT & SOCIAL": "--------------------------------------------------",
   "contact": {
     "output": [
-      "GitHub   → {{GITHUB_HANDLE}}",
+      "Email    → {{CONTACT_EMAIL}}",
       "LinkedIn → {{LINKEDIN_PROFILE}}"
     ],
     "color": "text-[var(--accent)]"
   },
-  "social": {
+  "presence": {
     "output": [
-      "🔗 Social Links:",
+      "🔗 Professional Ecosystem:",
       "  GitHub   → {{GITHUB_HANDLE}}",
       "  LinkedIn → {{LINKEDIN_PROFILE}}"
     ],
@@ -68,7 +68,7 @@
       "  <b>skills</b>    : Tech stack",
       "  <b>projects</b>  : Featured work",
       "  <b>contact</b>   : Get in touch",
-      "  <b>social</b>    : Show social links",
+      "  <b>presence</b>  : Show professional profiles",
       "  <b>build</b>     : Build process simulation",
       "  <b>deploy</b>    : Deployment options",
       "  <b>ssh</b>       : Connect to server (try 'ssh guest@shubham-mate-vps-01')",
