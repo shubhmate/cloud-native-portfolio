@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (existingIcon) existingIcon.remove();
     const newIcon = document.createElement('i');
     newIcon.setAttribute('data-lucide', iconName);
-    newIcon.classList.add('w-5', 'h-5');
+    const iconClass = iconName === 'sun' ? 'sun-icon' : 'moon-icon';
+    newIcon.classList.add('w-5', 'h-5', iconClass);
     container.appendChild(newIcon);
         
     const tryRenderLucideIcon = () => {
@@ -72,6 +73,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function toggleTheme() {
+    // 1. Trigger Cosmic Shockwave effect
+    const createShockwave = (btn) => {
+      if (!btn) return;
+      const shockwave = document.createElement('div');
+      shockwave.className = 'orb-shockwave';
+      shockwave.style.animation = 'orb-shockwave 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+      btn.appendChild(shockwave);
+      setTimeout(() => shockwave.remove(), 700);
+    };
+
+    // 2. Icon Kinetic Spin & Scale logic
+    const animateIcon = (btn) => {
+      if (!btn) return;
+      const icon = btn.querySelector('i');
+      if (icon) {
+        icon.style.transform = 'rotate(360deg) scale(0)';
+        setTimeout(() => {
+          icon.style.transform = 'rotate(360deg) scale(1)';
+          setTimeout(() => {
+            icon.style.transform = '';
+          }, 500);
+        }, 150);
+      }
+    };
+
+    createShockwave(themeToggleBtn);
+    createShockwave(themeToggleBtnMobile);
+    animateIcon(themeToggleBtn);
+    animateIcon(themeToggleBtnMobile);
+
     if (htmlElement.classList.contains('dark')) {
       htmlElement.classList.remove('dark');
       htmlElement.classList.add('light');

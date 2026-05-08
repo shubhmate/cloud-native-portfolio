@@ -179,6 +179,40 @@
 .toast.removing { animation: slideOut 0.3s ease forwards; }
 
 /* --- 2.4 "Hire Me" Side Tab --- */
+.theme-toggle {
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-toggle i {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sun-icon {
+  color: #fbbf24 !important;
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+}
+.moon-icon {
+  color: #818cf8 !important;
+  filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.5));
+}
+.executive-orb {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 10px 20px rgba(0, 0, 0, 0.08),
+    0 10px 15px -5px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+html.dark .executive-orb {
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    inset 0 10px 20px rgba(0, 0, 0, 0.4),
+    0 15px 30px -10px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
 .hire-me-btn {
   position: fixed;
   right: -50px;
@@ -340,6 +374,19 @@ html.dark .hire-me-btn {
 }
 @keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
 @keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+@keyframes orb-shockwave {
+  0% { transform: scale(1); opacity: 0.8; border-width: 2px; }
+  100% { transform: scale(1.8); opacity: 0; border-width: 1px; }
+}
+.orb-shockwave {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  pointer-events: none;
+  z-index: -1;
+}
+
 @keyframes tactical-entry {
   0% { opacity: 0; transform: translateY(20px) scale(0.8); }
   60% { opacity: 1; transform: translateY(-8px) scale(1.1); }

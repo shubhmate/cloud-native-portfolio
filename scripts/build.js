@@ -233,18 +233,18 @@ function generateFullNavbar(config, activePage = 'home') {
       <div class="hidden lg:flex items-center gap-8 h-16">
         ${desktopLinks}
         <div class="h-6 w-px bg-[var(--border)] mx-2 opacity-50"></div>
-        <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="sun" class="w-5 h-5"></i>
+        <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle executive-orb w-10 h-10 relative flex items-center justify-center rounded-full border border-white/20 dark:border-white/10 transition-all duration-300 ${DISH_HOVER_CLASSES} text-[var(--accent)] group">
+          <i data-lucide="sun" class="w-5 h-5 transition-transform duration-500"></i>
         </button>
       </div>
 
       <!-- Mobile Controls -->
       <div class="flex items-center gap-3 lg:hidden">
-        <button id="theme-toggle-mobile" aria-label="Toggle theme" class="theme-toggle p-2 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="sun" class="w-5 h-5"></i>
+        <button id="theme-toggle-mobile" aria-label="Toggle theme" class="theme-toggle executive-orb w-11 h-11 relative flex items-center justify-center rounded-full border border-white/20 dark:border-white/10 transition-all duration-300 ${DISH_HOVER_CLASSES} text-[var(--accent)] group">
+          <i data-lucide="sun" class="w-5 h-5 transition-transform duration-500"></i>
         </button>
-        <button id="mobile-menu-btn" aria-label="Toggle menu" class="p-1.5 rounded-lg border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white transition-colors">
-          <i data-lucide="menu" class="w-6 h-6"></i>
+        <button id="mobile-menu-btn" aria-label="Toggle menu" class="w-10 h-10 flex items-center justify-center rounded-2xl relative bg-gradient-to-br from-white/10 to-white/5 dark:from-slate-900/60 dark:to-slate-800/80 border border-white/20 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.4)] transition-all duration-300 ${DISH_HOVER_CLASSES} text-[var(--accent)] active:scale-90">
+          <i data-lucide="menu" class="w-5 h-5"></i>
         </button>
       </div>
     </div>
