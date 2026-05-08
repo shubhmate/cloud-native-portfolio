@@ -51,6 +51,15 @@ const PATHS = {
   }
 };
 
+/* =========================================================================
+   2. GLOBAL DESIGN SYSTEM (3D ARCHITECTURE)
+   ========================================================================= */
+
+const DISH_CLASSES = `flex items-center justify-center rounded-full bg-gradient-to-br from-white/[0.12] to-white/[0.04] border border-white/20 text-[var(--accent)] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_1px_1px_rgba(255,255,255,0.1),0_8px_12px_-3px_rgba(0,0,0,0.5)]`;
+const DISH_HOVER_CLASSES = `hover:scale-105 group-hover:scale-105 hover:border-white/30 group-hover:border-white/30 active:scale-95`;
+const ICON_CLASSES_MD = `w-4 h-4 transition-transform group-hover:scale-110 drop-shadow-md`;
+const ICON_CLASSES_LG = `w-6 h-6 transition-transform group-hover:scale-110 drop-shadow-md`;
+
 const DEFAULT_CONFIG = {
   'PERSON_NAME': 'Shubham Mate',
   'JOB_TITLE': 'DevOps Engineer',
@@ -148,8 +157,8 @@ function generateHeroSocialLinks(config) {
   return config.CONTACT_LINKS
     .filter(link => link.type === 'link')
     .map(link => `
-          <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHtml(link.label)} profile" class="hover:text-[var(--accent)] transition-all hover:scale-110">
-            <i data-lucide="${link.icon}" class="w-6 h-6"></i>
+          <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="Visit ${escapeHtml(link.label)} profile" class="group ${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-12 h-12">
+            <i data-lucide="${link.icon}" class="${ICON_CLASSES_LG}"></i>
           </a>`).join('');
 }
 
@@ -173,12 +182,12 @@ function generateFullNavbar(config, activePage = 'home') {
   const items = config.NAV_ITEMS || [];
   const logoText = config.SITE_LOGO_TEXT || 'devops.sh';
   const isHomePage = activePage === 'index';
-  
+
   // 1. Generate Desktop Links
   const desktopLinks = items.map(item => {
     const isActive = item.id === activePage;
     const activeClasses = isActive ? 'active' : '';
-    
+
     // Fix: If we are on a sub-page, anchor links should point to index.html#section
     let href = item.href;
     if (!isHomePage && href.startsWith('#')) {
@@ -195,7 +204,7 @@ function generateFullNavbar(config, activePage = 'home') {
   const mobileLinks = items.map(item => {
     const isActive = item.id === activePage;
     const activeClasses = isActive ? 'active' : '';
-    
+
     // Fix: If we are on a sub-page, anchor links should point to index.html#section
     let href = item.href;
     if (!isHomePage && href.startsWith('#')) {
@@ -255,7 +264,7 @@ function generateFullFooter(config) {
   const siteVersion = config.SITE_VERSION || '2.0.3';
   const techStack = config.FOOTER_TECH_STACK || '';
   const socialLinks = generateContactUI(config, 'footer');
-  
+
   return `
     <!-- ==================== Footer (Industry Standard: Synchronized) ==================== -->
     <footer class="pb-20">
@@ -482,22 +491,24 @@ function generatePipeline(config) {
  */
 function generateContactUI(config, type = 'grid') {
   if (!config.CONTACT_LINKS) return '';
+  
   if (type === 'footer') {
     return config.CONTACT_LINKS
       .filter(link => link.type === 'link')
       .map(link => `
-            <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="text-[var(--muted)] hover:text-[var(--accent)] transition-all hover:scale-110">
-              <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+            <a href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" class="group ${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-11 h-11 text-[var(--accent)]" aria-label="${escapeHtml(link.label)}">
+              <i data-lucide="${link.icon}" class="${ICON_CLASSES_MD}"></i>
             </a>`).join('');
   }
+
   return config.CONTACT_LINKS.map(link => {
     const isCopy = link.type === 'copy';
     const tag = isCopy ? 'button' : 'a';
     const attrs = isCopy ? `onclick="copyToClipboard('${escapeHtml(link.value)}', event)" title="Click to copy"` : `href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(link.label)}"`;
     return `
               <${tag} ${attrs} class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group ${isCopy ? 'copy-btn w-full text-left' : ''}">
-                <div class="p-2 rounded-lg border border-[var(--border)] group-hover:border-[var(--accent)] bg-[var(--surface)]">
-                  <i data-lucide="${link.icon}" class="w-4 h-4"></i>
+                <div class="${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-11 h-11">
+                  <i data-lucide="${link.icon}" class="${ICON_CLASSES_MD}"></i>
                 </div>
                 <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
               </${tag}>`;
@@ -780,7 +791,7 @@ async function build() {
       if (fs.existsSync(file.src)) {
         let content = fs.readFileSync(file.src, 'utf8');
         const ext = path.extname(file.src).substring(1);
-        
+
         // Generate Dynamic Components per page if it's HTML
         if (ext === 'html') {
           config.GLOBAL_NAVBAR = generateFullNavbar(config, file.id);
