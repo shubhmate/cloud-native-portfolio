@@ -158,21 +158,21 @@
     </section>
 
     <!-- Closing CTA (Industry Standard: Closing Action) -->
-    <div class="mt-20 text-center animate-fade-up max-w-6xl mx-auto px-6">
-      <div class="p-12 rounded-3xl bg-[var(--accent)]/5 border border-[var(--accent)]/10 backdrop-blur-sm">
-        <h2 class="font-mono text-2xl font-bold mb-4">{{RESUME_CTA_TITLE}}</h2>
-        <p class="text-[var(--muted)] mb-8 max-w-md mx-auto">
+    <section class="mt-24 animate-fade-up max-w-6xl mx-auto px-6">
+      <div class="p-8 sm:p-12 md:p-16 rounded-3xl bg-[var(--accent)]/5 border border-[var(--accent)]/10 backdrop-blur-sm flex flex-col items-center text-center shadow-sm dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
+        <h2 class="font-mono text-2xl md:text-3xl font-bold mb-4 tracking-tight">{{RESUME_CTA_TITLE}}</h2>
+        <p class="text-[var(--muted)] mb-10 max-w-lg mx-auto text-base md:text-lg leading-relaxed">
           {{RESUME_CTA_SUBTITLE}}
         </p>
-        <a href="index.html#contact" class="group w-72 inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-[var(--green)] hover:bg-green-600 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--green)]/20">
-          <i data-lucide="send" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
-          {{RESUME_CTA_BUTTON}}
+        <a href="index.html#contact" class="group w-full sm:w-auto min-w-[280px] inline-flex items-center justify-center gap-3 px-10 py-4 bg-[var(--green)] hover:bg-green-600 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--green)]/20 whitespace-nowrap">
+          <i data-lucide="send" class="w-5 h-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+          <span>{{RESUME_CTA_BUTTON}}</span>
         </a>
       </div>
-    </div>
-
-    {{GLOBAL_FOOTER}}
+    </section>
   </main>
+
+  {{GLOBAL_FOOTER}}
   <script src="assets/js/{{JS_FILENAME}}" defer></script>
 </body>
 </html>
