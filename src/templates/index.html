@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
+
 <head>
   <!-- Basic Meta Tags -->
   <meta charset="UTF-8">
@@ -33,21 +34,27 @@
   <!-- Legacy Support -->
   <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico" media="(prefers-color-scheme: dark)">
   <!-- Apple Devices (Home Screen) -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon_io_black_bg_circle/apple-touch-icon.png" media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon_io_black_bg_circle/apple-touch-icon.png"
+    media="(prefers-color-scheme: dark)">
   <!-- Standard Favicon -->
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon_io_black_bg_circle/favicon-512x512.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon_io_black_bg_circle/android-chrome-192x192.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io_black_bg_circle/favicon-32x32.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io_black_bg_circle/favicon-16x16.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon_io_black_bg_circle/favicon-512x512.png"
+    media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="192x192"
+    href="assets/img/favicon_io_black_bg_circle/android-chrome-192x192.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io_black_bg_circle/favicon-32x32.png"
+    media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io_black_bg_circle/favicon-16x16.png"
+    media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="assets/img/favicon_io_black_bg_circle/site.webmanifest">
   <!-- Loads when the browser/OS is in Light Mode -->
-   <!-- Legacy Support -->
+  <!-- Legacy Support -->
   <link rel="icon" href="assets/img/favicon_io_white_bg_circle/favicon.ico" media="(prefers-color-scheme: light)">
   <!-- Apple Devices (Home Screen) -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon_io_white_bg_circle/apple-touch-icon.png">
   <!-- Standard Favicon -->
   <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon_io_white_bg_circle/favicon-512x512.png">
-  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon_io_white_bg_circle/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192"
+    href="assets/img/favicon_io_white_bg_circle/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io_white_bg_circle/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io_white_bg_circle/favicon-16x16.png">
   <link rel="manifest" href="assets/img/favicon_io_white_bg_circle/site.webmanifest">
@@ -62,8 +69,11 @@
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Schema.org Structured Data for SEO -->
   <!-- Helps Google show a knowledge panel with your name, title & social links -->
@@ -81,7 +91,7 @@
     "knowsAbout": ["AWS", "Docker", "Kubernetes", "Terraform", "CI/CD", "GitHub Actions", "Prometheus", "Grafana"]
   }
   </script>
-  
+
   <!-- Icons -->
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
@@ -105,16 +115,27 @@
       justify-content: center;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
+
     .preloader-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #3b82f6; /* Fallback accent blue */
+      color: #3b82f6;
+      /* Fallback accent blue */
     }
+
     @keyframes pulse-custom {
-      0%, 100% { opacity: 1; }
-      50% { opacity: .5; }
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: .5;
+      }
     }
+
     .animate-pulse-custom {
       animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
@@ -135,7 +156,8 @@
         <!-- Cloud (The Base) -->
         <i data-lucide="cloud" class="w-full h-full text-[var(--accent)]"></i>
         <!-- Terminal (The Overlay) -->
-        <i data-lucide="terminal" class="absolute w-8 h-8 text-[var(--accent)] animate-pulse-custom top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+        <i data-lucide="terminal"
+          class="absolute w-8 h-8 text-[var(--accent)] animate-pulse-custom top-[55%] left-1/2 -translate-x-1/2 -translate-y-1/2"></i>
       </div>
       <!-- Text -->
       <p class="font-mono text-xl text-[var(--accent)] mt-6 flex items-center gap-2">
@@ -146,13 +168,15 @@
   </div>
 
   <!-- Skip to Main Content Link -->
-  <a class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:bg-accent focus:text-white focus:p-3 focus:rounded-br-lg" href="#main-content">Skip to main content</a>
-  
+  <a class="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:bg-accent focus:text-white focus:p-3 focus:rounded-br-lg"
+    href="#main-content">Skip to main content</a>
+
   <!-- Toast Container -->
   <div id="toast-container"></div>
 
   <!-- Scroll to Top Button -->
-  <button id="scroll-to-top" aria-label="Scroll to top" title="Back to top" class="group flex items-center justify-center w-12 h-12 rounded-2xl bg-white/70 dark:bg-slate-950/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[var(--accent)] transition-all shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.4)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/5 hover:scale-105 active:scale-95">
+  <button id="scroll-to-top" aria-label="Scroll to top" title="Back to top"
+    class="group flex items-center justify-center w-12 h-12 rounded-2xl bg-white/70 dark:bg-slate-950/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[var(--accent)] transition-all shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.4)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/5 hover:scale-105 active:scale-95">
     <i data-lucide="arrow-up" class="w-5 h-5 transition-transform group-hover:-translate-y-1"></i>
   </button>
 
@@ -166,7 +190,7 @@
 
   <!-- ==================== Main Content Area ==================== -->
   <main id="main-content" role="main"> <!-- Main content wrapper for accessibility -->
-    
+
     <!-- ==================== Hero Section ==================== -->
     <!-- Explains the user's background and value proposition -->
     <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -176,7 +200,8 @@
       <!-- Hero content -->
       <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
         <!-- Status Indicator -->
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 text-[var(--accent)] text-sm font-mono mb-6 animate-fade-up">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[var(--accent)]/30 bg-[var(--accent)]/10 text-[var(--accent)] text-sm font-mono mb-6 animate-fade-up">
           <span class="w-2.5 h-2.5 rounded-full bg-green-400 animate-pulse"></span>
           {{HERO_SUBTITLE}} · {{YEARS_EXPERIENCE}}
         </div>
@@ -201,30 +226,46 @@
 
         <!-- Call-to-action buttons -->
         <div class="flex flex-wrap gap-4 justify-center mb-12">
-          <a href="#projects" class="group w-56 flex items-center justify-center gap-2 px-8 py-3.5 bg-[var(--accent)] hover:bg-blue-600 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--accent)]/20">
+          <a href="#projects"
+            class="group w-56 flex items-center justify-center gap-2 px-8 py-3.5 bg-[var(--accent)] hover:bg-blue-600 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[var(--accent)]/20">
             <i data-lucide="folder-git-2" class="w-4 h-4 transition-transform group-hover:rotate-12"></i>
             <span>View Projects</span>
             <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
           </a>
-          <a href="resume.html" class="group w-56 flex items-center justify-center gap-2 px-8 py-3.5 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--green)]/10">
+          <a href="resume.html"
+            class="group w-56 flex items-center justify-center gap-2 px-8 py-3.5 border border-[var(--green)] text-[var(--green)] hover:bg-[var(--green)] hover:text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--green)]/10">
             <i data-lucide="file-text" class="w-4 h-4 transition-transform group-hover:-rotate-12"></i>
             <span>View Resume</span>
             <i data-lucide="external-link" class="w-4 h-4 transition-transform group-hover:scale-110"></i>
           </a>
         </div>
-        
+
         <!-- Social media links -->
-        <div class="flex justify-center gap-6 text-[var(--muted)]">
+        <div class="flex justify-center gap-6 text-[var(--muted)] mb-16">
           {{HERO_SOCIAL_LINKS}}
         </div>
       </div>
 
-      <!-- Scroll down indicator -->
-      <a href="#about" class="group flex items-center justify-center absolute bottom-8 left-0 right-0 mx-auto w-11 h-11 rounded-2xl bg-white/70 dark:bg-slate-950/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[var(--accent)] transition-all shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.4)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/5 hover:scale-105 active:scale-95 animate-bounce" aria-label="Scroll down to about section">
-        <i data-lucide="arrow-down" class="w-5 h-5 transition-transform group-hover:translate-y-1"></i>
+      <!-- Volumetric 3D Horizon (Geometric Depth Lock) -->
+      <div class="absolute bottom-0 inset-x-0 flex flex-col items-center z-20">
+        <div class="w-48 h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-30"></div>
+        <div class="w-24 h-[1px] bg-[var(--accent)] animate-pulse shadow-[0_0_15px_var(--accent)]"></div>
+        <!-- Vertical Tether (Logical Path) -->
+        <div class="w-px h-6 bg-gradient-to-b from-[var(--accent)] to-transparent opacity-20 mt-1"></div>
+      </div>
+
+      <!-- Scroll Command (Executive Terminal Aesthetic) -->
+      <a href="#about"
+        class="group absolute bottom-12 inset-x-0 mx-auto w-fit flex flex-col items-center gap-2 z-30 transition-all hover:scale-110 active:scale-95"
+        aria-label="Scroll down to about section">
+        <div
+          class="flex items-center gap-2.5 font-mono text-xs uppercase tracking-[0.4em] text-[var(--accent)] opacity-50 group-hover:opacity-100 transition-opacity">
+          <span>Explore</span>
+          <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
+        </div>
       </a>
     </section>
-  
+
     <!-- ==================== About Section ==================== -->
     <!-- Detailed background about the user with a profile photo. -->
     <section id="about" class="py-20">
@@ -234,16 +275,15 @@
           <div class="relative shrink-0 animate-fade-up">
             <div class="w-48 h-48 md:w-64 md:h-64 rounded-full border-2 border-[var(--accent)] p-2 relative z-10">
               <div class="w-full h-full rounded-full overflow-hidden">
-                <img 
-                  src="{{PROFILE_IMAGE}}" 
-                  alt="{{PERSON_NAME}}" 
+                <img src="{{PROFILE_IMAGE}}" alt="{{PERSON_NAME}}"
                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                  onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=' + encodeURIComponent('{{PERSON_NAME}}') + '&background=0D8ABC&color=fff&size=512';"
-                />
+                  onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=' + encodeURIComponent('{{PERSON_NAME}}') + '&background=0D8ABC&color=fff&size=512';" />
               </div>
             </div>
             <!-- Decorative circle behind photo -->
-            <div class="absolute -inset-1 bg-gradient-to-tr from-[var(--accent)] to-cyan-400 rounded-full blur opacity-20 animate-pulse"></div>
+            <div
+              class="absolute -inset-1 bg-gradient-to-tr from-[var(--accent)] to-cyan-400 rounded-full blur opacity-20 animate-pulse">
+            </div>
           </div>
 
           <!-- About Content -->
@@ -258,10 +298,12 @@
                 {{ABOUT_ME_DESCRIPTION}}
               </p>
               <div class="pt-4 flex flex-wrap gap-4">
-                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] font-mono text-xs">
+                <div
+                  class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] font-mono text-xs">
                   <span class="text-[var(--accent)]">●</span> Status: {{CURRENT_STATUS}}
                 </div>
-                <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] font-mono text-xs">
+                <div
+                  class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--surface)] border border-[var(--border)] font-mono text-xs">
                   <span class="text-[var(--accent)]">●</span> Location: {{CURRENT_LOCATION}}
                 </div>
               </div>
@@ -313,7 +355,7 @@
         </div>
       </div>
     </section>
-  
+
     <!-- ==================== Skills Section ==================== -->
     <!-- Explains the user's technical skills and proficiencies. -->
     <section id="skills" class="py-20">
@@ -332,11 +374,11 @@
         <div class="flex gap-8 animate-marquee group-hover:pause">
           <!-- First set of items for continuous scroll -->
           <div class="flex gap-8 text-[var(--accent)]">
-{{SKILLS_MARQUEE}}
+            {{SKILLS_MARQUEE}}
           </div>
           <!-- Duplicate for seamless loop -->
           <div class="flex gap-8 text-[var(--accent)]">
-{{SKILLS_MARQUEE}}
+            {{SKILLS_MARQUEE}}
           </div>
         </div>
       </div>
@@ -346,7 +388,7 @@
         <div class="space-y-8">
           <div class="animate-fade-up">
             <div class="grid grid-cols-2 gap-4">
-{{SKILLS_GRID}}
+              {{SKILLS_GRID}}
             </div>
           </div>
         </div>
@@ -354,8 +396,11 @@
         <!-- Right — terminal -->
         <!-- Interactive Terminal Simulator -->
         <div class="animate-fade-up">
-          <p class="font-mono text-xs mb-3 text-[var(--accent)] transition-colors cursor-text">{{SECTION_SKILLS_INTERACTIVE_HINT}}</p>
-          <div class="rounded-xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden hover:border-[var(--accent)] cursor-text card-hover" id="terminal">
+          <p class="font-mono text-xs mb-3 text-[var(--accent)] transition-colors cursor-text">
+            {{SECTION_SKILLS_INTERACTIVE_HINT}}</p>
+          <div
+            class="rounded-xl border border-[var(--border)] bg-[var(--surface)] overflow-hidden hover:border-[var(--accent)] cursor-text card-hover"
+            id="terminal">
             <!-- Title bar -->
             <div class="flex items-center gap-2 px-4 py-3 border-b border-[var(--border)] bg-[var(--bg)]">
               <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
@@ -371,14 +416,9 @@
             <!-- Terminal Input Field -->
             <div class="flex items-center gap-2 px-4 py-3 border-t border-[var(--border)] bg-[var(--bg)]">
               <span class="font-mono text-xs text-green-400 shrink-0">$</span>
-              <input
-                id="terminal-input" 
-                name="terminal-input"
+              <input id="terminal-input" name="terminal-input"
                 class="flex-1 bg-transparent font-mono text-xs text-green-500 outline-none caret-[var(--accent)] placeholder:text-green-500"
-                placeholder="type a command..."
-                autocomplete="off"
-                spellcheck="false"
-              />
+                placeholder="type a command..." autocomplete="off" spellcheck="false" />
             </div>
           </div>
         </div>
@@ -409,7 +449,8 @@
 
         <!-- View All Projects Button -->
         <div class="flex justify-center animate-fade-up">
-          <a href="projects.html" class="group flex items-center gap-2 px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white font-mono text-sm rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--accent)]/5">
+          <a href="projects.html"
+            class="group flex items-center gap-2 px-8 py-3.5 border border-[var(--accent)] text-[var(--accent)] hover:bg-[var(--accent)] hover:text-white font-mono text-sm rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-[var(--accent)]/5">
             <i data-lucide="archive" class="w-4 h-4 transition-transform group-hover:-rotate-12"></i>
             <span>View Full Project Library</span>
             <i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
@@ -484,7 +525,8 @@
         <div class="animate-fade-up">
           <div class="overflow-x-auto pb-4"> <!-- Allows horizontal scrolling on smaller screens -->
             <!-- Inner container for pipeline steps: vertical on mobile, horizontal on md+ -->
-            <div class="flex flex-col items-center gap-4 mb-12 md:flex-row md:justify-center md:flex-wrap md:items-start">
+            <div
+              class="flex flex-col items-center gap-4 mb-12 md:flex-row md:justify-center md:flex-wrap md:items-start">
               {{PIPELINE_STEPS_GRID}}
             </div>
           </div>
@@ -499,7 +541,8 @@
               <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
               <span class="ml-2 font-mono text-xs text-[var(--muted)]">.github/workflows/deploy.yml</span>
             </div>
-            <pre class="p-4 text-xs font-mono text-[var(--text)] overflow-x-auto leading-relaxed"><code>{{PIPELINE_YAML}}</code></pre>
+            <pre
+              class="p-4 text-xs font-mono text-[var(--text)] overflow-x-auto leading-relaxed"><code>{{PIPELINE_YAML}}</code></pre>
           </div>
         </div>
       </div>
@@ -508,7 +551,7 @@
 
 
     <!-- ==================== Contact Section ==================== -->
-    <!-- Provides contact information and social media links, with copy-to-clipboard functionality for email. --> 
+    <!-- Provides contact information and social media links, with copy-to-clipboard functionality for email. -->
     <section id="contact" class="py-20">
       <div class="max-w-6xl mx-auto px-6">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
@@ -531,48 +574,30 @@
 
           <!-- Right Column: Contact Form -->
           <form id="contact-form" class="space-y-4" novalidate> <!-- novalidate prevents default browser validation -->
-            <input id="form-gotcha" name="_gotcha" type="text" tabindex="-1" aria-hidden="true" class="hidden" autocomplete="off">
+            <input id="form-gotcha" name="_gotcha" type="text" tabindex="-1" aria-hidden="true" class="hidden"
+              autocomplete="off">
 
             <div>
               <label for="name" class="block font-mono text-xs mb-1.5">Name <span class="text-red-400">*</span></label>
-              <input
-                id="name"
-                name="name"
-                required
-                maxlength="100"
-                autocomplete="name"
+              <input id="name" name="name" required maxlength="100" autocomplete="name"
                 class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors card-hover"
-                placeholder="Your Name"
-              />
+                placeholder="Your Name" />
             </div>
             <div>
-              <label for="email" class="block font-mono text-xs mb-1.5">Email <span class="text-red-400">*</span></label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                maxlength="254"
-                autocomplete="email"
+              <label for="email" class="block font-mono text-xs mb-1.5">Email <span
+                  class="text-red-400">*</span></label>
+              <input id="email" name="email" type="email" required maxlength="254" autocomplete="email"
                 class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors card-hover"
-                placeholder="your@email.com"
-              />
+                placeholder="your@email.com" />
             </div>
             <div>
               <label for="message" class="block font-mono text-xs mb-1.5">
                 Message <span class="text-red-400">*</span>
                 <span class="text-[var(--muted)] ml-2">(max 2000 chars)</span>
               </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                minlength="10"
-                maxlength="2000"
-                rows="5"
+              <textarea id="message" name="message" required minlength="10" maxlength="2000" rows="5"
                 class="w-full px-4 py-3 rounded-lg border border-[var(--border)] bg-[var(--surface)] text-[var(--text)] text-sm focus:outline-none focus:border-[var(--accent)] transition-colors resize-none card-hover"
-                placeholder="Tell me about the opportunity or project..."
-              ></textarea>
+                placeholder="Tell me about the opportunity or project..."></textarea>
             </div>
 
             <!-- Honeypot Field (Bot Protection) -->
@@ -580,16 +605,12 @@
               <input type="text" name="website" id="hp-website" tabindex="-1" autocomplete="off">
             </div>
 
-            <button
-              type="submit"
-              id="submit-btn"
-              data-ejs-service="{{EMAILJS_SERVICE_ID}}"
-              data-ejs-template="{{EMAILJS_TEMPLATE_ID}}"
-              data-ejs-key="{{EMAILJS_PUBLIC_KEY}}"
+            <button type="submit" id="submit-btn" data-ejs-service="{{EMAILJS_SERVICE_ID}}"
+              data-ejs-template="{{EMAILJS_TEMPLATE_ID}}" data-ejs-key="{{EMAILJS_PUBLIC_KEY}}"
               data-lambda-url="{{CONTACT_LAMBDA_URL}}"
-              class="group w-full py-4 bg-[var(--green)] hover:bg-green-600 disabled:opacity-50 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-[var(--green)]/20"
-            >
-              <i data-lucide="send" class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
+              class="group w-full py-4 bg-[var(--green)] hover:bg-green-600 disabled:opacity-50 text-white font-mono text-sm font-bold rounded-xl transition-all hover:scale-[1.01] active:scale-95 flex items-center justify-center gap-2 shadow-xl shadow-[var(--green)]/20">
+              <i data-lucide="send"
+                class="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"></i>
               <span id="submit-text">Send Message</span>
             </button>
             <p id="status-message" class="text-red-400 text-xs font-mono text-center hidden"></p>
@@ -602,10 +623,15 @@
 
   <!-- ==================== Custom JavaScript ==================== -->
   <!-- Image Zoom Modal -->
-  <div id="image-modal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md items-center justify-center p-4 cursor-zoom-out" onclick="window.closeImageModal()">
+  <div id="image-modal"
+    class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md items-center justify-center p-4 cursor-zoom-out"
+    onclick="window.closeImageModal()">
     <div class="relative max-w-5xl w-full h-full flex items-center justify-center">
-      <img id="modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Zoomed Project Image" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95 opacity-0">
-      <button onclick="window.closeImageModal()" class="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-[var(--accent)] transition-colors">
+      <img id="modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        alt="Zoomed Project Image"
+        class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95 opacity-0">
+      <button onclick="window.closeImageModal()"
+        class="absolute top-4 right-4 p-2 rounded-full bg-black/50 text-white hover:bg-[var(--accent)] transition-colors">
         <i data-lucide="x" class="w-6 h-6"></i>
       </button>
     </div>
