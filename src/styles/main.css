@@ -150,6 +150,53 @@
 .theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
 .theme-toggle:hover { transform: rotate(20deg); }
 
+/* --- 2.2.1 Kinetic Hamburger --- */
+.mobile-menu-btn .hamburger-box {
+  display: inline-block;
+  vertical-align: middle;
+}
+.mobile-menu-btn .hamburger-inner {
+  display: block;
+  top: 50%;
+  margin-top: -1px;
+  width: 20px;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+.mobile-menu-btn .hamburger-inner::before,
+.mobile-menu-btn .hamburger-inner::after {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 2px;
+  background-color: var(--accent);
+  border-radius: 4px;
+  position: absolute;
+  transition-property: transform;
+  transition-duration: 0.15s;
+  transition-timing-function: ease;
+}
+.mobile-menu-btn .hamburger-inner::before { top: -6px; }
+.mobile-menu-btn .hamburger-inner::after { bottom: -6px; }
+
+/* Hamburger Active States (The Cross Transformation) */
+.mobile-menu-btn.is-active .hamburger-inner {
+  transform: rotate(45deg);
+}
+.mobile-menu-btn.is-active .hamburger-inner::before {
+  top: 0;
+  opacity: 0;
+}
+.mobile-menu-btn.is-active .hamburger-inner::after {
+  bottom: 0;
+  transform: rotate(-90deg);
+}
+
 /* --- 2.3 Toast Notifications --- */
 #toast-container {
   position: fixed;

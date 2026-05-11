@@ -244,7 +244,9 @@ function generateFullNavbar(config, activePage = 'home') {
           <i data-lucide="sun" class="w-5 h-5 transition-transform duration-700 group-hover:rotate-[360deg]"></i>
         </button>
         <button id="mobile-menu-btn" aria-label="Toggle menu" class="mobile-menu-btn ${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-10 h-10 text-[var(--accent)] group">
-          <i data-lucide="menu" class="w-5 h-5 transition-transform duration-300"></i>
+          <div class="hamburger-box w-5 h-5 relative flex items-center justify-center">
+            <div class="hamburger-inner"></div>
+          </div>
         </button>
       </div>
     </div>

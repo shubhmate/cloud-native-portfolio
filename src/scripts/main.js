@@ -136,12 +136,14 @@ document.addEventListener('DOMContentLoaded', () => {
     mobileMenuBtn.addEventListener('click', () => {
       const isExpanded = mobileMenuBtn.getAttribute('aria-expanded') === 'true';
       mobileMenuBtn.setAttribute('aria-expanded', !isExpanded);
+      mobileMenuBtn.classList.toggle('is-active');
       mobileMenu.classList.toggle('active');
       mobileMenu.classList.toggle('flex-col');
     });
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.classList.remove('is-active');
         mobileMenu.classList.remove('active');
         mobileMenu.classList.remove('flex-col');
       });
