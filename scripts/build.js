@@ -212,7 +212,7 @@ function generateFullNavbar(config, activePage = 'home') {
     }
 
     if (item.type === 'button') {
-      return `<a href="${href}" class="block px-4 py-2 w-fit font-mono text-sm font-bold text-[var(--green)] transition-all border border-[var(--green)] rounded-xl active:scale-95" aria-label="${item.label}">${item.label}</a>`;
+      return `<a href="${href}" class="block mt-4 px-4 py-2 w-fit font-mono text-sm font-bold text-[var(--green)] transition-all border border-[var(--green)] rounded-xl active:scale-95" aria-label="${item.label}">${item.label}</a>`;
     }
     return `<a href="${href}" class="nav-link block font-mono text-sm text-[var(--accent)] ${activeClasses} py-2 transition-all active:scale-95 active:pl-4">${item.label}</a>`;
   }).join('\n      ');
@@ -252,7 +252,7 @@ function generateFullNavbar(config, activePage = 'home') {
     </div>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-4 hidden">
+    <div id="mobile-menu" class="lg:hidden bg-brand-bg/95 backdrop-blur-md border-b border-[var(--border)] px-6 py-4 space-y-1 hidden">
       ${mobileLinks}
     </div>
   </nav>`;
@@ -493,7 +493,7 @@ function generatePipeline(config) {
  */
 function generateContactUI(config, type = 'grid') {
   if (!config.CONTACT_LINKS) return '';
-  
+
   if (type === 'footer') {
     return config.CONTACT_LINKS
       .filter(link => link.type === 'link')
