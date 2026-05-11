@@ -55,10 +55,10 @@ const PATHS = {
    2. GLOBAL DESIGN SYSTEM (3D ARCHITECTURE)
    ========================================================================= */
 
-const DISH_CLASSES = `flex items-center justify-center rounded-full bg-gradient-to-br from-white/[0.12] to-white/[0.04] border border-white/20 text-[var(--accent)] transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.3),0_1px_1px_rgba(255,255,255,0.1),0_8px_12px_-3px_rgba(0,0,0,0.5)]`;
-const DISH_HOVER_CLASSES = `hover:scale-105 group-hover:scale-105 hover:border-white/30 group-hover:border-white/30 active:scale-95`;
-const ICON_CLASSES_MD = `w-4 h-4 transition-transform group-hover:scale-110 drop-shadow-md`;
-const ICON_CLASSES_LG = `w-6 h-6 transition-transform group-hover:scale-110 drop-shadow-md`;
+const DISH_CLASSES = `flex items-center justify-center rounded-full bg-gradient-to-br from-white/[0.12] to-white/[0.04] backdrop-blur-md border border-white/20 text-[var(--accent)] transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_10px_20px_rgba(0,0,0,0.4)]`;
+const DISH_HOVER_CLASSES = `hover:scale-105 group-hover:scale-105 hover:border-white/30 group-hover:border-white/30 hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] active:scale-95`;
+const ICON_CLASSES_MD = `w-4 h-4 transition-transform group-hover:scale-110 drop-shadow-[0_0_5px_var(--accent)]`;
+const ICON_CLASSES_LG = `w-6 h-6 transition-transform group-hover:scale-110 drop-shadow-[0_0_8px_var(--accent)]`;
 
 const DEFAULT_CONFIG = {
   'PERSON_NAME': 'Shubham Mate',
@@ -233,18 +233,18 @@ function generateFullNavbar(config, activePage = 'home') {
       <div class="hidden lg:flex items-center gap-5 h-16">
         ${desktopLinks}
         <div class="h-6 w-px bg-[var(--border)] mx-2 opacity-50"></div>
-        <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle executive-orb w-10 h-10 relative flex items-center justify-center rounded-full border border-white/20 dark:border-white/10 transition-all duration-300 ${DISH_HOVER_CLASSES} text-[var(--accent)] group">
-          <i data-lucide="sun" class="w-5 h-5 transition-transform duration-500"></i>
+        <button id="theme-toggle" aria-label="Toggle theme" class="theme-toggle ${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-10 h-10 text-[var(--accent)] group">
+          <i data-lucide="sun" class="w-5 h-5 transition-transform duration-700 group-hover:rotate-[360deg]"></i>
         </button>
       </div>
 
       <!-- Mobile Controls -->
       <div class="flex items-center gap-2 lg:hidden">
-        <button id="theme-toggle-mobile" aria-label="Toggle theme" class="theme-toggle executive-orb w-10 h-10 relative flex items-center justify-center rounded-full border border-white/20 dark:border-white/10 transition-all duration-300 ${DISH_HOVER_CLASSES} text-[var(--accent)] group">
-          <i data-lucide="sun" class="w-5 h-5 transition-transform duration-500"></i>
+        <button id="theme-toggle-mobile" aria-label="Toggle theme" class="theme-toggle ${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-10 h-10 text-[var(--accent)] group">
+          <i data-lucide="sun" class="w-5 h-5 transition-transform duration-700 group-hover:rotate-[360deg]"></i>
         </button>
-        <button id="mobile-menu-btn" aria-label="Toggle menu" class="w-10 h-10 flex items-center justify-center rounded-2xl relative bg-gradient-to-br from-white/10 to-white/5 dark:from-slate-900/60 dark:to-slate-800/80 border border-white/20 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.4)] transition-all duration-300 ${DISH_HOVER_CLASSES} text-[var(--accent)] active:scale-90">
-          <i data-lucide="menu" class="w-5 h-5"></i>
+        <button id="mobile-menu-btn" aria-label="Toggle menu" class="mobile-menu-btn ${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-10 h-10 text-[var(--accent)] group">
+          <i data-lucide="menu" class="w-5 h-5 transition-transform duration-300"></i>
         </button>
       </div>
     </div>
