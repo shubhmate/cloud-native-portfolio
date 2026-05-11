@@ -259,6 +259,28 @@ function generateFullNavbar(config, activePage = 'home') {
 }
 
 /**
+ * Generates the Global Image Zoom Modal (Standardized)
+ */
+function generateImageModal(config) {
+  return `
+  <!-- Image Zoom Modal (Executive Bottom-Tier Refinement) -->
+  <div id="image-modal"
+    class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-md items-center justify-center p-4 cursor-zoom-out"
+    onclick="window.closeImageModal()">
+    <div class="relative max-w-5xl w-full h-full flex flex-col items-center justify-center gap-6">
+      <img id="modal-img" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        alt="Zoomed Project Image"
+        class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-95 opacity-0">
+      
+      <button onclick="window.closeImageModal()"
+        class="flex items-center justify-center w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-[var(--accent)] hover:border-[var(--accent)] transition-all hover:scale-110 active:scale-95 group shadow-2xl">
+        <i data-lucide="x" class="w-6 h-6 transition-transform group-hover:rotate-90"></i>
+      </button>
+    </div>
+  </div>`;
+}
+
+/**
  * Generates the FULL Global Footer HTML (Standardized)
  */
 function generateFullFooter(config) {
@@ -798,6 +820,7 @@ async function build() {
         if (ext === 'html') {
           config.GLOBAL_NAVBAR = generateFullNavbar(config, file.id);
           config.GLOBAL_FOOTER = generateFullFooter(config);
+          config.GLOBAL_IMAGE_MODAL = generateImageModal(config);
         }
 
         content = applyReplacements(content, config, ext);
