@@ -506,11 +506,11 @@ function generateContactUI(config, type = 'grid') {
     const tag = isCopy ? 'button' : 'a';
     const attrs = isCopy ? `onclick="copyToClipboard('${escapeHtml(link.value)}', event)" title="Click to copy"` : `href="${escapeHtml(link.value)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHtml(link.label)}"`;
     return `
-              <${tag} ${attrs} class="flex items-center gap-3 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group ${isCopy ? 'copy-btn w-full text-left' : ''}">
-                <div class="${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-11 h-11">
+              <${tag} ${attrs} class="flex items-start gap-4 text-[var(--muted)] hover:text-[var(--accent)] transition-colors group pr-6 ${isCopy ? 'copy-btn w-full text-left' : ''}">
+                <div class="${DISH_CLASSES} ${DISH_HOVER_CLASSES} w-11 h-11 shrink-0 aspect-square flex items-center justify-center">
                   <i data-lucide="${link.icon}" class="${ICON_CLASSES_MD}"></i>
                 </div>
-                <span class="font-mono text-sm">${escapeHtml(link.value)}</span>
+                <span class="font-mono text-sm pt-2.5 break-all leading-relaxed">${escapeHtml(link.value)}</span>
               </${tag}>`;
   }).join('');
 }
