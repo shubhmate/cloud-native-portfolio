@@ -608,5 +608,8 @@
       "color": "text-red-400",
       "content": "Permission denied: Access to production secrets is restricted."
     }
-  }
+  },
+  "// 14. DATA REGISTRY (GOOGLE SHEETS)": "--------------------------------------------------",
+  "GOOGLE_SHEET_URL": "https://script.google.com/macros/s/AKfycbx-lMtgKgWFZZ3bq_LVxOezB_SgUV_zsORQuEAcUEDQnAuY9Ogk9MzFUU2C3_MFfgyp/exec",
+  "GOOGLE_SHEET_TOKEN": "shubham_mate_executive_vault_2026"
 }

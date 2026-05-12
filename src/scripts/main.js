@@ -574,6 +574,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const templateId   = submitBtn.getAttribute('data-ejs-template');
       const publicKey    = submitBtn.getAttribute('data-ejs-key');
       const lambdaUrl    = submitBtn.getAttribute('data-lambda-url');
+      const sheetUrl     = submitBtn.getAttribute('data-sheet-url');
+      const sheetToken   = submitBtn.getAttribute('data-sheet-token');
 
       // 5. Send logic with Failover (Primary: AWS Lambda | Secondary: EmailJS)
       submitBtn.disabled = true;
@@ -616,6 +618,18 @@ document.addEventListener('DOMContentLoaded', () => {
           });
           console.log('Secondary Send Successful ✓');
           sent = true;
+        }
+
+        // --- STEP C: LOGGING (Google Sheets Registry) ---
+        if (sheetUrl && !sheetUrl.includes('{{')) {
+          console.log('Logging to Executive Registry (Google Sheets)...');
+          // Fire-and-forget background logging
+          fetch(sheetUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message, token: sheetToken })
+          }).catch(err => console.warn('Registry Logging Error:', err));
         }
 
         showToast('Message sent! I\'ll get back to you soon. ✓');
