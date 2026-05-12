@@ -1,41 +1,39 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- ==================== Analytics & Tracking ==================== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7EET7JXCE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-J7EET7JXCE');
   </script>
-  <!-- Basic Meta Tags -->
+
+  <!-- ==================== Basic Meta Tags & SEO ==================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- SEO Meta Tags -->
   <meta name="description" content="Project Library | Detailed technical case studies and cloud-native solutions by {{PERSON_NAME}}.">
   <meta name="author" content="{{PERSON_NAME}}">
   <meta name="theme-color" content="#0f1117">
   <meta name="google-site-verification" content="coUns_TAORdxxDo1tvnhKrEO367dmIXNwi7hq5YSWl8" />
 
-  <!-- Favicons (Shared with index.html) -->
+  <!-- ==================== Page Title & Favicons ==================== -->
+  <title>Project Library | {{PERSON_NAME}} - {{JOB_TITLE}}</title>
   <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico" media="(prefers-color-scheme: dark)">
   <link rel="icon" href="assets/img/favicon_io_white_bg_circle/favicon.ico" media="(prefers-color-scheme: light)">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon_io_black_bg_circle/apple-touch-icon.png">
 
-  <title>Project Library | {{PERSON_NAME}} - {{JOB_TITLE}}</title>
-
-  <!-- Fonts -->
+  <!-- ==================== Fonts & Icons ==================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Icons -->
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
-  
+
+  <!-- ==================== Core Styles & Inline CSS ==================== -->
   <link rel="stylesheet" href="assets/css/{{CSS_FILENAME}}">
   <style>
+    /* Critical Preloader Styles */
     #preloader {
       position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       background-color: #0a0a0a; z-index: 9999;
@@ -49,6 +47,8 @@
 </head>
 
 <body>
+  <!-- ==================== Global UI Components ==================== -->
+
   <!-- Preloader (Identical to index.html) -->
   <div id="preloader">
     <div class="preloader-content animate-fade-up">
@@ -70,10 +70,10 @@
     <i data-lucide="arrow-up" class="w-5 h-5 transition-transform group-hover:-translate-y-1"></i>
   </button>
 
+  <!-- Navigation Bar -->
   {{GLOBAL_NAVBAR}}
 
-  <!-- Main Content -->
-
+  <!-- ==================== Main Content Area ==================== -->
   <main id="main-content" class="pt-24 md:pt-32">
     <section class="max-w-6xl mx-auto px-6">
       <div class="animate-fade-up">
@@ -93,7 +93,7 @@
       </div>
     </section>
     
-    <!-- Closing CTA (Industry Standard: Closing Action) -->
+    <!-- ==================== CTA Section (Closing Action) ==================== -->
     <section class="mt-24 animate-fade-up max-w-6xl mx-auto px-6">
       <div class="p-8 sm:p-12 md:p-16 rounded-3xl bg-[var(--accent)]/5 border border-[var(--accent)]/10 backdrop-blur-sm flex flex-col items-center text-center shadow-sm dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]">
         <h2 class="font-mono text-2xl md:text-3xl font-bold mb-4 tracking-tight">{{PROJECTS_CTA_TITLE}}</h2>
@@ -108,10 +108,11 @@
     </section>
   </main>
 
+  <!-- ==================== Global Footer & Modals ==================== -->
   {{GLOBAL_FOOTER}}
-
   {{GLOBAL_IMAGE_MODAL}}
 
+  <!-- Final Core Script -->
   <script src="assets/js/{{JS_FILENAME}}" defer></script>
 </body>
 </html>
