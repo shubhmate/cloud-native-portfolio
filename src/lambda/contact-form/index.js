@@ -1,4 +1,7 @@
 const https = require('https');
+const { DynamoDBClient, PutItemCommand } = require('@aws-sdk/client-dynamodb');
+
+const ddbClient = new DynamoDBClient({ region: process.env.AWS_REGION || 'us-east-1' });
 
 /**
  * Utility to send a single email via Brevo API
@@ -81,6 +84,29 @@ exports.handler = async (event) => {
       headers: { 'Access-Control-Allow-Origin': '*' },
       body: JSON.stringify({ message: 'Invalid email' })
     };
+  }
+
+  // --- 2.5 CLOUD CORE PERSISTENCE (DynamoDB) ---
+  try {
+    const leadId = `lead_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+    const dbParams = {
+      TableName: 'portfolio-leads',
+      Item: {
+        lead_id: { S: leadId },
+        name: { S: name },
+        email: { S: email },
+        message: { S: message },
+        timestamp: { S: new Date().toISOString() },
+        source: { S: 'portfolio-contact-form' }
+      }
+    };
+    
+    console.log('Logging to Cloud Core (DynamoDB)...');
+    await ddbClient.send(new PutItemCommand(dbParams));
+    console.log('Cloud Core Logging Successful ✓');
+  } catch (dbErr) {
+    console.error('Cloud Core Logging Error (Silently bypassing):', dbErr);
+    // We don't fail the request if DB fails — prioritize email delivery
   }
 
   // --- 3. NOTIFICATION EMAIL (To Shubham) ---

@@ -39,6 +39,25 @@ resource "aws_iam_role_policy_attachment" "lambda_logs" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+# 3.5 DynamoDB Write Permissions (Least Privilege)
+resource "aws_iam_role_policy" "lambda_dynamodb" {
+  name = "portfolio_lambda_dynamodb_write"
+  role = aws_iam_role.lambda_exec.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "dynamodb:PutItem"
+        ]
+        Effect   = "Allow"
+        Resource = aws_dynamodb_table.portfolio_leads.arn
+      }
+    ]
+  })
+}
+
 # 4. Lambda Function
 # Log Group for Lambda (with retention to save costs)
 resource "aws_cloudwatch_log_group" "contact_form" {
