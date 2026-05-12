@@ -2,7 +2,7 @@
 <html lang="en" class="dark">
 
 <head>
-  <!-- Google tag (gtag.js) -->
+  <!-- ==================== Analytics & Tracking ==================== -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-J7EET7JXCE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -10,11 +10,12 @@
     gtag('js', new Date());
     gtag('config', 'G-J7EET7JXCE');
   </script>
-  <!-- Basic Meta Tags -->
+
+  <!-- ==================== Basic Meta Tags ==================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- SEO Meta Tags -->
+  <!-- ==================== SEO & Indexing ==================== -->
   <meta name="description" content="{{META_DESCRIPTION}}">
   <meta name="keywords" content="DevOps, AWS, Docker, Kubernetes, Terraform, CI/CD, GitHub Actions, {{JOB_TITLE}}">
   <meta name="author" content="{{PERSON_NAME}}">
@@ -22,14 +23,14 @@
   <meta name="theme-color" content="#0f1117">
   <meta name="google-site-verification" content="coUns_TAORdxxDo1tvnhKrEO367dmIXNwi7hq5YSWl8" />
 
-  <!-- Open Graph / Social Media Meta Tags -->
+  <!-- ==================== Open Graph / Social Media ==================== -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{PERSON_NAME}} — {{JOB_TITLE}}">
   <meta property="og:description" content="{{META_DESCRIPTION}}">
   <meta property="og:url" content="{{PORTFOLIO_URL}}">
   <meta property="og:image" content="{{PORTFOLIO_URL}}/assets/img/og-image.webp">
 
-  <!-- Twitter Card Meta Tags -->
+  <!-- ==================== Twitter Card ==================== -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{PERSON_NAME}} — {{JOB_TITLE}}">
   <meta name="twitter:description" content="{{META_DESCRIPTION}}">
@@ -38,51 +39,36 @@
   <!-- Canonical URL for SEO -->
   <link rel="canonical" href="{{PORTFOLIO_URL}}">
 
-  <!-- Favicon -->
-  <!-- Loads when the browser/OS is in Dark Mode -->
-  <!-- Legacy Support -->
+  <!-- ==================== Page Title & Favicons ==================== -->
+  <title>{{PERSON_NAME}} - {{JOB_TITLE}}</title>
+
+  <!-- Dark Mode Favicons -->
   <link rel="icon" href="assets/img/favicon_io_black_bg_circle/favicon.ico" media="(prefers-color-scheme: dark)">
-  <!-- Apple Devices (Home Screen) -->
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon_io_black_bg_circle/apple-touch-icon.png"
-    media="(prefers-color-scheme: dark)">
-  <!-- Standard Favicon -->
-  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon_io_black_bg_circle/favicon-512x512.png"
-    media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" sizes="192x192"
-    href="assets/img/favicon_io_black_bg_circle/android-chrome-192x192.png" media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io_black_bg_circle/favicon-32x32.png"
-    media="(prefers-color-scheme: dark)">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io_black_bg_circle/favicon-16x16.png"
-    media="(prefers-color-scheme: dark)">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon_io_black_bg_circle/apple-touch-icon.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon_io_black_bg_circle/favicon-512x512.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon_io_black_bg_circle/android-chrome-192x192.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io_black_bg_circle/favicon-32x32.png" media="(prefers-color-scheme: dark)">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io_black_bg_circle/favicon-16x16.png" media="(prefers-color-scheme: dark)">
   <link rel="manifest" href="assets/img/favicon_io_black_bg_circle/site.webmanifest">
-  <!-- Loads when the browser/OS is in Light Mode -->
-  <!-- Legacy Support -->
+
+  <!-- Light Mode Favicons -->
   <link rel="icon" href="assets/img/favicon_io_white_bg_circle/favicon.ico" media="(prefers-color-scheme: light)">
-  <!-- Apple Devices (Home Screen) -->
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon_io_white_bg_circle/apple-touch-icon.png">
-  <!-- Standard Favicon -->
   <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon_io_white_bg_circle/favicon-512x512.png">
-  <link rel="icon" type="image/png" sizes="192x192"
-    href="assets/img/favicon_io_white_bg_circle/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon_io_white_bg_circle/android-chrome-192x192.png">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon_io_white_bg_circle/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon_io_white_bg_circle/favicon-16x16.png">
   <link rel="manifest" href="assets/img/favicon_io_white_bg_circle/site.webmanifest">
 
-  <!-- Page Title -->
-  <title>{{PERSON_NAME}} - Cloud & {{JOB_TITLE}}</title>
-
-  <!-- Preload critical resources -->
+  <!-- ==================== Preload & External Resources ==================== -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="dns-prefetch" href="https://unpkg.com">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style"
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap"
-    rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
   <!-- Schema.org Structured Data for SEO -->
   <!-- Helps Google show a knowledge panel with your name, title & social links -->
@@ -101,21 +87,16 @@
   }
   </script>
 
-  <!-- Icons -->
-  <!-- Lucide Icons CDN -->
+  <!-- ==================== Core Scripts & Styles ==================== -->
   <script src="https://unpkg.com/lucide@0.311.0/dist/umd/lucide.js" defer></script>
-
-  <!-- EmailJS SDK — Contact Form -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
   <link rel="stylesheet" href="assets/css/{{CSS_FILENAME}}">
+
   <style>
     /* Critical Preloader Styles */
     #preloader {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background-color: #0a0a0a;
       z-index: 9999;
       display: flex;
@@ -124,27 +105,16 @@
       justify-content: center;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
-
     .preloader-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: #3b82f6;
-      /* Fallback accent blue */
+      color: #3b82f6; /* Fallback accent blue */
     }
-
     @keyframes pulse-custom {
-
-      0%,
-      100% {
-        opacity: 1;
-      }
-
-      50% {
-        opacity: .5;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
     }
-
     .animate-pulse-custom {
       animation: pulse-custom 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     }
@@ -152,11 +122,6 @@
 </head>
 
 <body>
-  <!-- Preloader -->
-  <!-- <div id="preloader" class="preloader">
-    <i data-lucide="terminal" class="w-12 h-12 text-[var(--accent)] animate-pulse2"></i>
-    <p class="font-mono text-xl text-[var(--accent)] mt-4">Initializing devops.sh...</p>
-  </div> -->
   <!-- Preloader -->
   <div id="preloader">
     <div class="preloader-content animate-fade-up">
@@ -183,6 +148,8 @@
   <!-- Toast Container -->
   <div id="toast-container"></div>
 
+  <!-- ==================== Global UI Components ==================== -->
+  
   <!-- Scroll to Top Button -->
   <button id="scroll-to-top" aria-label="Scroll to top" title="Back to top"
     class="group flex items-center justify-center w-12 h-12 rounded-2xl bg-white/70 dark:bg-slate-950/60 backdrop-blur-md border border-slate-200 dark:border-white/10 text-[var(--accent)] transition-all shadow-md dark:shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_10px_20px_rgba(0,0,0,0.4)] hover:border-[var(--accent)]/50 hover:bg-[var(--accent)]/5 hover:scale-105 active:scale-95">
@@ -194,7 +161,7 @@
     {{HIRE_ME_BUTTON}}
   </button>
 
-
+  <!-- Navigation Bar -->
   {{GLOBAL_NAVBAR}}
 
   <!-- ==================== Main Content Area ==================== -->
@@ -471,53 +438,6 @@
       </div>
     </section>
 
-    <!-- ==================== Blog Section (Commented Out) ==================== -->
-    <!--
-    <section id="blog" class="py-20">
-      <div class="max-w-6xl mx-auto px-6">
-        <div class="animate-fade-up">
-          <div class="flex items-center gap-2 mb-2">
-            <i data-lucide="book-open" class="w-5 h-5 text-[var(--accent)]"></i>
-            <p class="font-mono text-[var(--accent)] text-sm">// blog</p>
-          </div>
-          <h2 class="font-mono text-3xl font-bold mb-3">Latest Insights</h2>
-          <p class="text-[var(--muted)] mb-12 max-w-2xl">
-            Thoughts, tutorials, and deep dives into DevOps, Cloud, and automation.
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <a href="/blog/post-1" class="block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--surface)] transition-colors card-hover p-6">
-            <img src="assets/img/blog-post-1.png" alt="Blog Post Image" class="w-full h-40 object-cover rounded-lg mb-4" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
-            <p class="font-mono text-xs text-[var(--accent)] mb-2">AWS & Terraform · {{TIMELINE_DATE_1}}</p>
-            <h3 class="font-mono text-lg font-bold mb-2">Automating Cloud Infrastructure Modules</h3>
-            <p class="text-[var(--muted)] text-sm line-clamp-3">A step-by-step guide to building reusable Terraform modules for AWS VPCs, including public and private subnets, NAT gateways, and internet gateways.</p>
-          </a>
-
-          <a href="/blog/post-2" class="block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--surface)] transition-colors card-hover p-6">
-            <img src="assets/img/blog-post-2.png" alt="Blog Post Image" class="w-full h-40 object-cover rounded-lg mb-4" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
-            <p class="font-mono text-xs text-[var(--accent)] mb-2">CI/CD · {{TIMELINE_DATE_2}}</p>
-            <h3 class="font-mono text-lg font-bold mb-2">GitHub Actions for Dockerized Node.js Apps</h3>
-            <p class="text-[var(--muted)] text-sm line-clamp-3">Learn how to set up a robust CI/CD pipeline using GitHub Actions to lint, test, build Docker images, push to ECR, and deploy to EC2 instances.</p>
-          </a>
-
-          <a href="/blog/post-3" class="block rounded-xl border border-[var(--border)] hover:border-[var(--accent)] bg-[var(--surface)] transition-colors card-hover p-6">
-            <img src="assets/img/blog-post-3.png" alt="Blog Post Image" class="w-full h-40 object-cover rounded-lg mb-4" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
-            <p class="font-mono text-xs text-[var(--accent)] mb-2">Monitoring · {{TIMELINE_DATE_3}}</p>
-            <h3 class="font-mono text-lg font-bold mb-2">Prometheus & Grafana on EC2: A Quick Start</h3>
-            <p class="text-[var(--muted)] text-sm line-clamp-3">Deploy a basic monitoring stack on AWS EC2 using Docker Compose, Prometheus Node Exporter, and Grafana for real-time server metrics.</p>
-          </a>
-        </div>
-
-        <div class="text-center mt-12">
-          <a href="/blog" class="px-6 py-3 border border-[var(--accent)] text-[var(--accent)] font-semibold rounded-lg transition-all duration-200 hover:scale-105 hover:bg-[var(--accent)] hover:text-white">
-            Read More Posts
-          </a>
-        </div>
-      </div>
-    </section>
-    -->
-
     <!-- ==================== Pipeline Section (Meta-Project) ==================== -->
     <!-- Explains how this portfolio website itself is built and deployed using DevOps principles. -->
     <section id="pipeline" class="py-20 border-[var(--border)]">
@@ -637,10 +557,7 @@
   <!-- ==================== Custom JavaScript ==================== -->
   {{GLOBAL_IMAGE_MODAL}}
 
-  <!-- Final Lucide Icons Initialization -->
-  <script>
-    // Note: Lucide initialization logic is already in assets/js/main.js
-  </script>
+  <!-- Final Core Script -->
   <script src="assets/js/{{JS_FILENAME}}" defer></script>
 </body>
 
