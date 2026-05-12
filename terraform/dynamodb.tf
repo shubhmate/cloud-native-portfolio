@@ -23,8 +23,12 @@ resource "aws_dynamodb_table" "portfolio_leads" {
   # Global Secondary Index for efficient querying by email
   global_secondary_index {
     name            = "EmailIndex"
-    hash_key        = "email"
     projection_type = "ALL"
+
+    key_schema {
+      attribute_name = "email"
+      key_type       = "HASH"
+    }
   }
 
   # TTL (Time to Live) - Optional: Automatically delete old leads after 1 year
