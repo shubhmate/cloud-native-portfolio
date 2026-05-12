@@ -1,12 +1,30 @@
 /**
  * @file main.css
  * @description Professional Design System & Component Styles
- * Reorganized by visual section order for better maintainability.
+ * @version 2.0.3
+ *
+ * Table of Contents:
+ * 1. DESIGN TOKENS & BASE STYLES
+ * 2. GLOBAL COMPONENTS
+ *    2.1 Preloader
+ *    2.2 Navigation & Theme Toggle
+ *    2.3 Mobile Menu & Hamburger
+ *    2.4 Toast Notifications
+ *    2.5 "Hire Me" Side Tab
+ *    2.6 Scroll-to-Top
+ *    2.7 Copy Feedback
+ * 3. SECTION-SPECIFIC STYLES
+ *    3.1 Hero Section
+ *    3.2 Skills Section
+ *    3.3 Projects Section
+ * 4. ANIMATION LIBRARY
+ * 5. RESPONSIVE OVERRIDES
  */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 /* =========================================================================
    1. DESIGN TOKENS & BASE STYLES
@@ -112,6 +130,11 @@
 .nav-link:hover {
   transform: translateY(-1px);
 }
+.nav-link:active {
+  transform: scale(0.95);
+}
+
+/* Nav-link mobile overrides (vertical indicator instead of underline) */
 @media (max-width: 1024px) {
   .nav-link:hover { transform: translateX(4px); }
   .nav-link::after {
@@ -130,11 +153,44 @@
   }
 }
 
-.nav-link:active {
-  transform: scale(0.95);
+/* Theme Toggle (Glassmorphic Orb) */
+.theme-toggle {
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-toggle:hover { transform: rotate(20deg); }
+.theme-toggle i {
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.sun-icon {
+  color: #fbbf24 !important;
+  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
+}
+.moon-icon {
+  color: #818cf8 !important;
+  filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.5));
+}
+.executive-orb {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    inset 0 10px 20px rgba(0, 0, 0, 0.08),
+    0 10px 15px -5px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+html.dark .executive-orb {
+  background: rgba(15, 23, 42, 0.8);
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.1),
+    inset 0 10px 20px rgba(0, 0, 0, 0.4),
+    0 15px 30px -10px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* Mobile Menu Animation */
+/* --- 2.3 Mobile Menu & Hamburger --- */
 #mobile-menu {
   display: none;
   opacity: 0;
@@ -147,10 +203,7 @@
   transform: translateY(0);
 }
 
-.theme-toggle { cursor: pointer; transition: transform 0.3s ease; }
-.theme-toggle:hover { transform: rotate(20deg); }
-
-/* --- 2.2.1 Kinetic Hamburger --- */
+/* Hamburger lines */
 .mobile-menu-btn .hamburger-box {
   display: inline-block;
   vertical-align: middle;
@@ -184,7 +237,7 @@
 .mobile-menu-btn .hamburger-inner::before { top: -6px; }
 .mobile-menu-btn .hamburger-inner::after { bottom: -6px; }
 
-/* Hamburger Active States (The Cross Transformation) */
+/* Hamburger → Cross transformation */
 .mobile-menu-btn.is-active .hamburger-inner {
   transform: rotate(45deg);
 }
@@ -197,7 +250,7 @@
   transform: rotate(-90deg);
 }
 
-/* --- 2.3 Toast Notifications --- */
+/* --- 2.4 Toast Notifications --- */
 #toast-container {
   position: fixed;
   bottom: 1.5rem;
@@ -219,57 +272,13 @@
   pointer-events: all;
   animation: slideIn 0.3s ease forwards;
 }
-
-/* --- 2.2.3 Executive Keyframes --- */
-@keyframes sonar {
-  0% { transform: scale(1); opacity: 0.4; }
-  100% { transform: scale(2.8); opacity: 0; }
-}
-.animate-sonar {
-  animation: sonar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-}
-
 .toast.success { border-color: var(--green); }
 .toast.success::before { content: '✓'; color: var(--green); font-weight: bold; }
 .toast.error { border-color: #ef4444; }
 .toast.error::before { content: '✕'; color: #ef4444; font-weight: bold; }
 .toast.removing { animation: slideOut 0.3s ease forwards; }
 
-/* --- 2.4 "Hire Me" Side Tab --- */
-.theme-toggle {
-  cursor: pointer;
-  position: relative;
-  overflow: visible;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-.theme-toggle i {
-  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-.sun-icon {
-  color: #fbbf24 !important;
-  filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.5));
-}
-.moon-icon {
-  color: #818cf8 !important;
-  filter: drop-shadow(0 0 10px rgba(129, 140, 248, 0.5));
-}
-.executive-orb {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(12px);
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.4),
-    inset 0 10px 20px rgba(0, 0, 0, 0.08),
-    0 10px 15px -5px rgba(0, 0, 0, 0.15);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-html.dark .executive-orb {
-  background: rgba(15, 23, 42, 0.8);
-  box-shadow: 
-    inset 0 1px 1px rgba(255, 255, 255, 0.1),
-    inset 0 10px 20px rgba(0, 0, 0, 0.4),
-    0 15px 30px -10px rgba(0, 0, 0, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
+/* --- 2.5 "Hire Me" Side Tab --- */
 .hire-me-btn {
   position: fixed;
   right: -50px;
@@ -317,7 +326,7 @@ html.dark .hire-me-btn {
 }
 .hire-me-btn span:not(.pulse-dot) { writing-mode: vertical-rl; text-orientation: upright; }
 
-/* --- 2.5 Scroll-to-Top --- */
+/* --- 2.6 Scroll-to-Top --- */
 #scroll-to-top {
   position: fixed;
   bottom: 2rem;
@@ -328,25 +337,25 @@ html.dark .hire-me-btn {
   transform: translateY(10px);
   transition: all 0.3s ease;
 }
-#scroll-to-top.visible { 
-  opacity: 1; 
-  pointer-events: all; 
+#scroll-to-top.visible {
+  opacity: 1;
+  pointer-events: all;
   transform: translateY(0);
   animation: tactical-entry 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-/* --- 2.6 Copy Feedback --- */
-.copy-btn.copied, 
-.copy-btn.copied * { 
-  color: var(--green) !important; 
+/* --- 2.7 Copy Feedback --- */
+.copy-btn.copied,
+.copy-btn.copied * {
+  color: var(--green) !important;
 }
-.copy-btn.copied div { 
-  border-color: var(--green) !important; 
+.copy-btn.copied div {
+  border-color: var(--green) !important;
 }
 
 
 /* =========================================================================
-   3. SECTION SPECIFIC STYLES
+   3. SECTION-SPECIFIC STYLES
    ========================================================================= */
 
 /* --- 3.1 Hero Section --- */
@@ -374,11 +383,6 @@ html.dark .hire-me-btn {
   border-radius: 50%;
   border: 1px solid var(--status-green);
   animation: pulse-ring 2s infinite;
-}
-@keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0.4); opacity: 1; }
-  70% { box-shadow: 0 0 0 6px rgba(var(--green-rgb), 0); opacity: 0; }
-  100% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0); opacity: 0; }
 }
 
 /* --- 3.2 Skills Section --- */
@@ -411,6 +415,8 @@ html.dark .hire-me-btn {
   background-color: var(--surface);
 }
 .flip-card-back { transform: rotateY(180deg); }
+
+/* Inner scrollbar for project cards */
 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
 .custom-scrollbar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
@@ -421,18 +427,61 @@ html.dark .hire-me-btn {
    4. ANIMATION LIBRARY
    ========================================================================= */
 
-@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-@keyframes fadeUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
-@keyframes pulse-dot { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.2); opacity: 0.7; } }
+/* Scroll & Reveal */
+@keyframes fadeUp {
+  0%   { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+
+/* Hero Status Indicator */
+@keyframes sonar {
+  0%   { transform: scale(1); opacity: 0.4; }
+  100% { transform: scale(2.8); opacity: 0; }
+}
+.animate-sonar { animation: sonar 3s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+@keyframes pulse-dot {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.2); opacity: 0.7; }
+}
 @keyframes pulse-ring {
-  0% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0.7); }
-  70% { box-shadow: 0 0 0 8px rgba(var(--green-rgb), 0); }
+  0%   { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0.7); }
+  70%  { box-shadow: 0 0 0 8px rgba(var(--green-rgb), 0); }
   100% { box-shadow: 0 0 0 0 rgba(var(--green-rgb), 0); }
 }
-@keyframes slideIn { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
-@keyframes slideOut { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+
+/* Skills Marquee */
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Toast Slide */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(100%); }
+}
+
+/* Component Entry Animations */
+@keyframes tactical-entry {
+  0%   { opacity: 0; transform: translateY(20px) scale(0.8); }
+  60%  { opacity: 1; transform: translateY(-8px) scale(1.1); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes tactical-slide {
+  0%   { opacity: 0; right: -50px; }
+  70%  { opacity: 1; right: 8px; }
+  100% { opacity: 1; right: -2px; }
+}
+
+/* Theme Toggle Orb Shockwave */
 @keyframes orb-shockwave {
-  0% { transform: scale(1); opacity: 0.8; border-width: 2px; }
+  0%   { transform: scale(1); opacity: 0.8; border-width: 2px; }
   100% { transform: scale(1.8); opacity: 0; border-width: 1px; }
 }
 .orb-shockwave {
@@ -444,26 +493,16 @@ html.dark .hire-me-btn {
   z-index: -1;
 }
 
-@keyframes tactical-entry {
-  0% { opacity: 0; transform: translateY(20px) scale(0.8); }
-  60% { opacity: 1; transform: translateY(-8px) scale(1.1); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-@keyframes tactical-slide {
-  0% { opacity: 0; right: -50px; }
-  70% { opacity: 1; right: 8px; }
-  100% { opacity: 1; right: -2px; }
-}
-
-.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
-
 
 /* =========================================================================
    5. RESPONSIVE OVERRIDES
    ========================================================================= */
 
 @media (max-width: 768px) {
+  /* Reposition scroll-to-top above the hire-me pill */
   #scroll-to-top { bottom: 5.5rem; right: 1.5rem; }
+
+  /* Hire Me: vertical tab → horizontal pill on mobile */
   .hire-me-btn {
     top: auto;
     bottom: 2rem;
@@ -485,20 +524,21 @@ html.dark .hire-me-btn {
     right: 1.5rem;
     left: auto;
   }
-  .hire-me-btn:hover { 
-    right: 1.5rem; 
+  .hire-me-btn:hover {
+    right: 1.5rem;
     left: auto;
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(var(--green-rgb), 0.2);
   }
-  .hire-me-btn span:not(.pulse-dot) { 
-    writing-mode: horizontal-tb; 
-    text-orientation: mixed; 
+  .hire-me-btn span:not(.pulse-dot) {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
   }
   .pulse-dot { margin-bottom: 0; margin-right: 8px; }
-  
+
+  /* Toast: centered on mobile */
   #toast-container {
-    bottom: 6rem;
+    bottom: 9rem;
     inset-inline: 1.5rem;
     display: flex;
     justify-content: center;
