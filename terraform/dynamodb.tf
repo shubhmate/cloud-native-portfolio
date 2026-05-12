@@ -8,7 +8,7 @@
 resource "aws_dynamodb_table" "portfolio_leads" {
   name         = "portfolio-leads"
   billing_mode = "PAY_PER_REQUEST" # Serverless on-demand scaling
-  hash_key     = "lead_id"       # Unique Partition Key
+  hash_key     = "lead_id"         # Unique Partition Key
 
   attribute {
     name = "lead_id"
