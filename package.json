@@ -26,9 +26,9 @@
     "type-check": "tsc",
     "prepare": "husky"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["portfolio", "devops", "cloud-native", "aws", "gcp", "terraform", "static-site"],
+  "author": "Shubham Mate",
+  "license": "MIT",
   "type": "commonjs",
   "devDependencies": {
     "@aws-sdk/client-cloudfront": "^3.1038.0",
