@@ -1,9 +1,31 @@
+/**
+ * @file fetch-github.js
+ * @description Pre-build script that syncs project metadata from the GitHub API.
+ *
+ * Reads PROJECTS from site-config.json, fetches each repo's description,
+ * title, link, and topics from GitHub, then writes the updated config back.
+ * Runs automatically via the `predev` and `prebuild` npm hooks.
+ *
+ * Usage:
+ *   node scripts/fetch-github.js
+ */
+
+'use strict';
+
 const fs = require('fs');
 const path = require('path');
 const https = require('https');
 
 const configPath = path.join(__dirname, '..', 'config', 'site-config.json');
 
+/**
+ * Fetches repository metadata from the GitHub REST API.
+ * Resolves with the parsed JSON data, or null on any failure.
+ *
+ * @param {string} username - GitHub username.
+ * @param {string} repo     - Repository name.
+ * @returns {Promise<object|null>}
+ */
 function fetchRepoData(username, repo) {
   return new Promise((resolve, reject) => {
     const options = {
@@ -32,6 +54,7 @@ function fetchRepoData(username, repo) {
   });
 }
 
+/** Reads config, fetches GitHub data for each project, and updates the config file. */
 async function main() {
   console.log('Fetching project data from GitHub...');
 
