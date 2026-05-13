@@ -1,38 +1,71 @@
-// Ensure all DOM content is loaded before executing JavaScript
+/**
+ * @file main.js
+ * @description Core application logic for the Cloud-Native Portfolio
+ * @version 2.0.3
+ *
+ * Table of Contents:
+ * 1. CORE SYSTEMS (Global UI & Infrastructure)
+ *    1.1 Preloader
+ *    1.2 Theme Toggle (Dark/Light Mode)
+ *    1.3 Navigation (Navbar Scroll & Mobile Menu)
+ *    1.4 Toast Notifications & Clipboard
+ *    1.5 Scroll-to-Top & Hire Me Visibility
+ *    1.6 Intersection Observer (Fade-Up Animations)
+ *    1.7 Lucide Icon Initialization
+ *    1.8 Scroll Spy (Active Nav Highlighting)
+ * 2. HERO SECTION
+ *    2.1 Particle Canvas
+ *    2.2 Typewriter Effect
+ *    2.3 "Hire Me" Navigation
+ * 3. TERMINAL SECTION
+ *    3.1 Dynamic Command Handlers
+ *    3.2 Command Loader & Input Handler
+ * 4. PROJECTS SECTION
+ *    4.1 Flip Cards
+ *    4.2 Image Zoom Modal
+ * 5. CONTACT SECTION
+ *    5.1 Form Validation & Dual-Send (Lambda + EmailJS Failover)
+ * 6. FOOTER
+ */
+
+'use strict';
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* =========================================================================
-       1. CORE SYSTEMS (Global UI & Infrastructure)
-       ========================================================================= */
+     1. CORE SYSTEMS (Global UI & Infrastructure)
+     ========================================================================= */
 
-  // --- 1.1 Preloader Logic ---
+  // --- 1.1 Preloader ---
   const preloader = document.getElementById('preloader');
   if (preloader) {
     window.addEventListener('load', () => {
       preloader.classList.add('hidden');
-      preloader.addEventListener('transitionend', () => {
-        preloader.remove();
-      });
-      // Safe fallback to ensure preloader is removed if transition fails
-      setTimeout(() => { if(preloader.parentElement) preloader.remove(); }, 3000);
+      preloader.addEventListener('transitionend', () => preloader.remove());
+      // Fallback removal if CSS transition doesn't fire
+      setTimeout(() => { if (preloader.parentElement) preloader.remove(); }, 3000);
     });
   }
 
-  // --- 1.2 Theme Toggle Functionality (Dark/Light Mode) ---
+  // --- 1.2 Theme Toggle (Dark/Light Mode) ---
   const themeToggleBtn = document.getElementById('theme-toggle');
   const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
   const htmlElement = document.documentElement;
 
+  /**
+   * Replaces the icon inside a theme toggle button container.
+   * Uses a retry loop to wait for Lucide icons to become available.
+   */
   function updateSingleThemeIconElement(container, iconName) {
     if (!container) return;
     const existingIcon = container.querySelector('i, svg');
     if (existingIcon) existingIcon.remove();
+
     const newIcon = document.createElement('i');
     newIcon.setAttribute('data-lucide', iconName);
-    const iconClass = iconName === 'sun' ? 'sun-icon' : 'moon-icon';
-    newIcon.classList.add('w-5', 'h-5', iconClass);
+    newIcon.classList.add('w-5', 'h-5', iconName === 'sun' ? 'sun-icon' : 'moon-icon');
     container.appendChild(newIcon);
-        
+
     const tryRenderLucideIcon = () => {
       if (typeof lucide !== 'undefined' && lucide.createIcons) {
         if (lucide.icons && Object.keys(lucide.icons).length > 0) {
@@ -46,17 +79,23 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     tryRenderLucideIcon();
   }
-    
-  // Check for saved theme OR use system preference
+
+  /** Updates both desktop and mobile theme toggle icons. */
+  function updateThemeIcon(theme) {
+    const iconName = theme === 'dark' ? 'sun' : 'moon';
+    updateSingleThemeIconElement(themeToggleBtn, iconName);
+    updateSingleThemeIconElement(themeToggleBtnMobile, iconName);
+  }
+
+  // Resolve initial theme: saved preference > system preference > dark
   const savedTheme = localStorage.getItem('theme');
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   const currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-    
   htmlElement.classList.remove('light', 'dark');
   htmlElement.classList.add(currentTheme);
   updateThemeIcon(currentTheme);
-    
-  // Listen for system theme changes
+
+  // Respond to OS-level theme changes (only if user hasn't manually chosen)
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
     if (!localStorage.getItem('theme')) {
       const newTheme = e.matches ? 'dark' : 'light';
@@ -65,15 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon(newTheme);
     }
   });
-    
-  function updateThemeIcon(theme) {
-    const iconName = theme === 'dark' ? 'sun' : 'moon';
-    updateSingleThemeIconElement(themeToggleBtn, iconName);
-    updateSingleThemeIconElement(themeToggleBtnMobile, iconName);
-  }
 
+  /** Toggles between dark/light themes with shockwave & spin animations. */
   function toggleTheme() {
-    // 1. Trigger Cosmic Shockwave effect
+    // Shockwave ripple effect on the orb
     const createShockwave = (btn) => {
       if (!btn) return;
       const shockwave = document.createElement('div');
@@ -83,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => shockwave.remove(), 700);
     };
 
-    // 2. Icon Kinetic Spin & Scale logic
+    // Icon spin & scale micro-animation
     const animateIcon = (btn) => {
       if (!btn) return;
       const icon = btn.querySelector('i');
@@ -91,9 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
         icon.style.transform = 'rotate(360deg) scale(0)';
         setTimeout(() => {
           icon.style.transform = 'rotate(360deg) scale(1)';
-          setTimeout(() => {
-            icon.style.transform = '';
-          }, 500);
+          setTimeout(() => { icon.style.transform = ''; }, 500);
         }, 150);
       }
     };
@@ -115,6 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateThemeIcon('dark');
     }
   }
+
   if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
   if (themeToggleBtnMobile) themeToggleBtnMobile.addEventListener('click', toggleTheme);
 
@@ -140,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mobileMenu.classList.toggle('active');
       mobileMenu.classList.toggle('flex-col');
     });
+    // Close mobile menu when a link is clicked
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         mobileMenuBtn.setAttribute('aria-expanded', 'false');
@@ -150,34 +184,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- 1.4 Global UI Feedback (Toasts & Clipboard) ---
+  // --- 1.4 Toast Notifications & Clipboard ---
   const toastContainer = document.getElementById('toast-container');
+
+  /** Displays a temporary toast notification. Clears any existing toasts first. */
   function showToast(message, type = 'success') {
     if (!toastContainer) return;
-        
     // Clear existing toasts to prevent stacking
     while (toastContainer.firstChild) {
       toastContainer.removeChild(toastContainer.firstChild);
     }
-
     const toast = document.createElement('div');
     toast.className = `toast ${type}`;
     toast.textContent = message;
     toastContainer.appendChild(toast);
-        
     setTimeout(() => {
       toast.classList.add('removing');
       toast.addEventListener('animationend', () => toast.remove());
     }, 3000);
   }
 
+  /** Global clipboard copy handler — attached to onclick in HTML. */
   window.copyToClipboard = function(text, event) {
-    // Capture the button immediately before any async operations
-    const copyBtn = event ? (event.currentTarget || event.target.closest('.copy-btn')) : document.querySelector('.copy-btn');
-        
+    const copyBtn = event
+      ? (event.currentTarget || event.target.closest('.copy-btn'))
+      : document.querySelector('.copy-btn');
+
     navigator.clipboard.writeText(text).then(() => {
       showToast('Email copied to clipboard!');
-            
       if (copyBtn) {
         copyBtn.classList.add('copied');
         setTimeout(() => copyBtn.classList.remove('copied'), 2000);
@@ -188,6 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // --- 1.5 Scroll-to-Top & Hire Me Visibility ---
   const scrollToTopBtn = document.getElementById('scroll-to-top');
   const hireMeBtn = document.getElementById('hire-me');
   if (scrollToTopBtn || hireMeBtn) {
@@ -195,21 +230,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
       const scrollPos = window.scrollY;
       const isVisible = scrollPos > 300;
-      
-      // Intelligent Suppression: Hide button when contact section is in view to avoid overlap
+
+      // Suppress Hire Me when contact section is visible on mobile to avoid overlap
       let isNearContact = false;
-      if (contactSection && window.innerWidth < 1024) { // Only suppress on mobile/tablet where overlap occurs
+      if (contactSection && window.innerWidth < 1024) {
         const rect = contactSection.getBoundingClientRect();
         isNearContact = rect.top < window.innerHeight - 100;
       }
 
       if (scrollToTopBtn) {
-        if (isVisible) scrollToTopBtn.classList.add('visible');
-        else scrollToTopBtn.classList.remove('visible');
+        scrollToTopBtn.classList.toggle('visible', isVisible);
       }
       if (hireMeBtn) {
-        if (isVisible && !isNearContact) hireMeBtn.classList.add('visible');
-        else hireMeBtn.classList.remove('visible');
+        hireMeBtn.classList.toggle('visible', isVisible && !isNearContact);
       }
     });
     if (scrollToTopBtn) {
@@ -217,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // --- 1.5 System Initialization (Lucide & Animations) ---
+  // --- 1.6 Intersection Observer (Fade-Up Animations) ---
   const fadeUpElements = document.querySelectorAll('.animate-fade-up');
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
@@ -236,6 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
+  // --- 1.7 Lucide Icon Initialization ---
   window.addEventListener('load', () => {
     const tryRenderLucide = () => {
       if (typeof lucide !== 'undefined' && lucide.createIcons) {
@@ -246,10 +280,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tryRenderLucide();
   });
 
-  // --- 1.6 Scroll Spy (Intelligent Navigation) ---
+  // --- 1.8 Scroll Spy (Active Nav Highlighting) ---
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-link');
-  
+
   if (sections.length > 0 && navLinks.length > 0) {
     const spyObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -258,39 +292,38 @@ document.addEventListener('DOMContentLoaded', () => {
           navLinks.forEach(link => {
             const href = link.getAttribute('href') || '';
             const normalizedHref = href.split('/').pop(); // Handles index.html#id
-            
-            const isMatch = normalizedHref === `#${id}` || 
+            const isMatch = normalizedHref === `#${id}` ||
                             normalizedHref === `index.html#${id}` ||
                             (id === 'projects' && normalizedHref === 'projects.html') ||
                             (id === 'home' && (normalizedHref === '#home' || normalizedHref === 'index.html'));
-            
             link.classList.toggle('active', isMatch);
           });
         }
       });
-    }, { 
+    }, {
       threshold: 0.1,
-      rootMargin: '-10% 0px -40% 0px' 
+      rootMargin: '-10% 0px -40% 0px'
     });
-
     sections.forEach(section => spyObserver.observe(section));
   }
 
 
   /* =========================================================================
-       2. HERO SECTION
-       ========================================================================= */
+     2. HERO SECTION
+     ========================================================================= */
 
   // --- 2.1 Particle Canvas ---
   const canvas = document.getElementById('hero-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
     let particles = [];
-    let mouse = { x: null, y: null, radius: 100 };
+    const mouse = { x: null, y: null, radius: 100 };
+
     function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
+
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -301,17 +334,19 @@ document.addEventListener('DOMContentLoaded', () => {
         this.color = `rgba(59, 130, 246, ${Math.random() * 0.5 + 0.1})`;
       }
       update() {
+        // Repel particles away from mouse cursor
         if (mouse.x !== null) {
-          let dx = this.x - mouse.x;
-          let dy = this.y - mouse.y;
-          let dist = Math.sqrt(dx*dx + dy*dy);
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < mouse.radius) {
-            this.x += (dx/dist) * ((mouse.radius-dist)/mouse.radius) * 10;
-            this.y += (dy/dist) * ((mouse.radius-dist)/mouse.radius) * 10;
+            this.x += (dx / dist) * ((mouse.radius - dist) / mouse.radius) * 10;
+            this.y += (dy / dist) * ((mouse.radius - dist) / mouse.radius) * 10;
           }
         }
         this.x += this.speedX;
         this.y += this.speedY;
+        // Bounce off edges
         if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
         if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
       }
@@ -322,22 +357,26 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.fill();
       }
     }
+
     function init() {
       particles = [];
       for (let i = 0; i < 150; i++) particles.push(new Particle());
     }
+
+    /** Main render loop — updates particles and draws connection lines. */
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p, i) => {
         p.update();
         p.draw();
+        // Draw connection lines between nearby particles
         for (let j = i; j < particles.length; j++) {
-          let dx = p.x - particles[j].x;
-          let dy = p.y - particles[j].y;
-          let dist = Math.sqrt(dx*dx + dy*dy);
+          const dx = p.x - particles[j].x;
+          const dy = p.y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < 100) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(59, 130, 246, ${1 - (dist/100)})`;
+            ctx.strokeStyle = `rgba(59, 130, 246, ${1 - (dist / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -347,6 +386,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       requestAnimationFrame(animate);
     }
+
     window.addEventListener('resize', resize);
     canvas.addEventListener('mousemove', e => {
       const rect = canvas.getBoundingClientRect();
@@ -354,7 +394,10 @@ document.addEventListener('DOMContentLoaded', () => {
       mouse.y = e.clientY - rect.top;
     });
     canvas.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
-    resize(); init(); animate();
+
+    resize();
+    init();
+    animate();
   }
 
   // --- 2.2 Typewriter Effect ---
@@ -362,10 +405,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (typewriterElement) {
     const phrases = JSON.parse('{{TYPEWRITER_PHRASES}}');
     let phraseIdx = 0, charIdx = 0, isDeleting = false;
+
     function type() {
       const current = phrases[phraseIdx];
-      typewriterElement.textContent = isDeleting ? current.substring(0, charIdx - 1) : current.substring(0, charIdx + 1);
+      typewriterElement.textContent = isDeleting
+        ? current.substring(0, charIdx - 1)
+        : current.substring(0, charIdx + 1);
       charIdx = isDeleting ? charIdx - 1 : charIdx + 1;
+
       let speed = isDeleting ? 50 : 100;
       if (!isDeleting && charIdx === current.length) { speed = 1500; isDeleting = true; }
       else if (isDeleting && charIdx === 0) { speed = 500; isDeleting = false; phraseIdx = (phraseIdx + 1) % phrases.length; }
@@ -385,15 +432,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =========================================================================
-       3. TERMINAL SECTION
-       ========================================================================= */
+     3. TERMINAL SECTION (Interactive Skills Terminal)
+     ========================================================================= */
 
   const terminalInput = document.getElementById('terminal-input');
   const terminalOutput = document.getElementById('terminal-output');
   let commands = {};
 
+  // --- 3.1 Dynamic Command Handlers ---
+  // These commands require runtime logic (DOM access, date, etc.)
+  // and cannot be defined in the static commands.json file.
   const dynamicHandlers = {
-    clear: () => { terminalOutput.innerHTML = ''; addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400'); },
+    clear: () => {
+      terminalOutput.innerHTML = '';
+      addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400');
+    },
     echo: (args) => ({ output: args.join(' '), color: 'text-yellow-400' }),
     date: () => ({ output: new Date().toLocaleString(), color: 'text-purple-400' }),
     uptime: () => ({ output: 'Simulated uptime: 120 days, 5 hours, 30 minutes', color: 'text-purple-400' }),
@@ -429,9 +482,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const user = '{{TERMINAL_SSH_USER}}';
       const host = '{{TERMINAL_SSH_HOST}}';
       const target = args[0]?.toLowerCase();
-            
       if (target === `${user}@${host}`) {
-        return { 
+        return {
           output: [
             'Connecting...',
             'Authenticating...',
@@ -441,14 +493,16 @@ document.addEventListener('DOMContentLoaded', () => {
             '<span class="text-green-400">System: {{TERMINAL_SSH_SYSTEM}}</span>',
             '',
             'Type \'ls\' or \'cat secret.txt\''
-          ], 
-          color: 'text-green-400' 
+          ],
+          color: 'text-green-400'
         };
       }
       return { output: `Usage: ssh ${user}@${host}`, color: 'text-red-400' };
     }
   };
 
+  // --- 3.2 Command Loader & Input Handler ---
+  // Merge static commands from JSON with dynamic handlers
   fetch('assets/js/commands.json')
     .then(res => res.json())
     .then(data => {
@@ -467,6 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    /** Appends a line (or array of lines) to the terminal output. */
     function addOutput(text, color = 'text-slate-200') {
       const div = document.createElement('div');
       div.className = `font-mono text-xs ${color}`;
@@ -475,12 +530,13 @@ document.addEventListener('DOMContentLoaded', () => {
       terminalOutput.appendChild(div);
     }
 
+    /** Parses and executes a terminal command string. */
     function execute(input) {
       const parts = input.toLowerCase().split(' ');
       const cmd = parts[0];
       const args = parts.slice(1);
       if (commands[cmd]) {
-        let res = typeof commands[cmd] === 'function' ? commands[cmd](args) : commands[cmd];
+        const res = typeof commands[cmd] === 'function' ? commands[cmd](args) : commands[cmd];
         addOutput(res.output || res, res.color);
       } else {
         addOutput(`Command not found: ${cmd}`, 'text-red-400');
@@ -490,13 +546,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =========================================================================
-       4. PROJECTS SECTION
-       ========================================================================= */
+     4. PROJECTS SECTION
+     ========================================================================= */
 
   // --- 4.1 Flip Cards ---
+  /** Toggles the flipped state of a project card. */
   window.flipCard = function(button) {
     button.closest('.flip-card')?.classList.toggle('flipped');
   };
+  // Keyboard accessibility for flip cards
   document.querySelectorAll('.flip-card button').forEach(btn => {
     btn.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.flipCard(btn); }
@@ -506,24 +564,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- 4.2 Image Zoom Modal ---
   const imageModal = document.getElementById('image-modal');
   const modalImg = document.getElementById('modal-img');
+
+  /** Opens the fullscreen image modal with a scale-up transition. */
   window.openImageModal = function(src) {
     if (!imageModal || !modalImg) return;
     modalImg.src = src;
     imageModal.classList.remove('hidden');
     imageModal.classList.add('flex');
-        
-    // Trigger animation after a tiny delay to ensure browser handles the display change
+    // Trigger animation after display change is processed
     setTimeout(() => {
       modalImg.classList.remove('opacity-0', 'scale-95');
       modalImg.classList.add('opacity-100', 'scale-100');
     }, 10);
   };
+
+  /** Closes the image modal with a scale-down transition. */
   window.closeImageModal = function() {
     if (!imageModal || !modalImg) return;
     modalImg.classList.remove('opacity-100', 'scale-100');
     modalImg.classList.add('opacity-0', 'scale-95');
-        
-    // Wait for transition to finish before hiding the container
+    // Wait for CSS transition before hiding the container
     setTimeout(() => {
       imageModal.classList.add('hidden');
       imageModal.classList.remove('flex');
@@ -532,52 +592,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* =========================================================================
-       5. CONTACT SECTION
-       ========================================================================= */
+     5. CONTACT SECTION (Dual-Send with Failover)
+     ========================================================================= */
 
   const contactForm = document.getElementById('contact-form');
   const submitBtn = document.getElementById('submit-btn');
-  const statusMessage = document.getElementById('status-message');
 
   if (contactForm && submitBtn) {
     contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // --- Validation Logic ---
+      // --- Field Extraction ---
       const formData = new FormData(contactForm);
-      const name     = formData.get('name')?.trim();
-      const email    = formData.get('email')?.trim();
-      const message  = formData.get('message')?.trim();
-      const website  = formData.get('website')?.trim(); // Honeypot field
+      const name    = formData.get('name')?.trim();
+      const email   = formData.get('email')?.trim();
+      const message = formData.get('message')?.trim();
+      const website = formData.get('website')?.trim(); // Honeypot (anti-bot)
 
-      // 1. Check for empty fields
+      // --- Validation ---
       if (!name || !email || !message) {
         showToast('Please fill in all required fields.', 'error');
         return;
       }
-
-      // 2. Validate email format
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email)) {
         showToast('Please enter a valid email address.', 'error');
         return;
       }
-
-      // 3. Check message length
       if (message.length < 10) {
         showToast('Message must be at least 10 characters long.', 'error');
         return;
       }
 
-      // 4. Read config from data attributes
-      const serviceId    = submitBtn.getAttribute('data-ejs-service');
-      const templateId   = submitBtn.getAttribute('data-ejs-template');
-      const publicKey    = submitBtn.getAttribute('data-ejs-key');
-      const lambdaUrl    = submitBtn.getAttribute('data-lambda-url');
-      const sheetUrl     = submitBtn.getAttribute('data-sheet-url');
-      const sheetToken   = submitBtn.getAttribute('data-sheet-token');
+      // --- Config from data attributes ---
+      const serviceId  = submitBtn.getAttribute('data-ejs-service');
+      const templateId = submitBtn.getAttribute('data-ejs-template');
+      const publicKey  = submitBtn.getAttribute('data-ejs-key');
+      const lambdaUrl  = submitBtn.getAttribute('data-lambda-url');
+      const sheetUrl   = submitBtn.getAttribute('data-sheet-url');
+      const sheetToken = submitBtn.getAttribute('data-sheet-token');
 
-      // 5. Send logic with Failover (Primary: AWS Lambda | Secondary: EmailJS)
+      // --- Send with failover ---
       submitBtn.disabled = true;
       const submitText = submitBtn.querySelector('#submit-text');
       const originalText = submitText.textContent;
@@ -586,7 +641,7 @@ document.addEventListener('DOMContentLoaded', () => {
       try {
         let sent = false;
 
-        // --- STEP A: PRIMARY (AWS Lambda + Brevo) ---
+        // STEP A: Primary — AWS Lambda + Brevo
         if (lambdaUrl && !lambdaUrl.includes('{{')) {
           console.log('Attempting Primary Send (AWS Lambda)...');
           try {
@@ -595,7 +650,6 @@ document.addEventListener('DOMContentLoaded', () => {
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ name, email, message, website })
             });
-
             if (response.ok) {
               console.log('Primary Send Successful ✓');
               sent = true;
@@ -607,23 +661,22 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
-        // --- STEP B: FAILOVER (EmailJS) ---
+        // STEP B: Failover — EmailJS
         if (!sent) {
           console.log('Activating Secondary Send (EmailJS)...');
           emailjs.init(publicKey);
           await emailjs.send(serviceId, templateId, {
-            from_name : name,
-            reply_to  : email,
-            message   : message
+            from_name: name,
+            reply_to: email,
+            message: message
           });
           console.log('Secondary Send Successful ✓');
           sent = true;
         }
 
-        // --- STEP C: LOGGING (Google Sheets Registry) ---
+        // STEP C: Background Logging — Google Sheets Registry
         if (sheetUrl && !sheetUrl.includes('{{')) {
-          console.log('Logging to Executive Registry (Google Sheets)...');
-          // Fire-and-forget background logging
+          console.log('Logging to Registry (Google Sheets)...');
           fetch(sheetUrl, {
             method: 'POST',
             mode: 'no-cors',
@@ -645,10 +698,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-
   /* =========================================================================
-       6. FOOTER SECTION
-       ========================================================================= */
+     6. FOOTER
+     ========================================================================= */
 
   const currentYearSpan = document.getElementById('current-year');
   if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
