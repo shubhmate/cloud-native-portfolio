@@ -1,22 +1,35 @@
 /**
- * =============================================================================
- * SITE BUILD AUTOMATION ENGINE
- * =============================================================================
- * This script transforms templates and site-config.json into a production-ready
- * static website. It handles dynamic HTML generation, placeholder replacement,
- * and build validation.
- * 
- * Logic Flow:
- * 1. Load config & paths
- * 2. Generate dynamic HTML components (Projects, Experience, etc.)
- * 3. Replace placeholders in templates
- * 4. Validate output integrity
- * 5. Sync static assets
- * =============================================================================
+ * @file build.js
+ * @description Site Build Automation Engine
+ * @version 2.0.3
+ *
+ * Transforms templates + site-config.json into a production-ready static site.
+ *
+ * Table of Contents:
+ * 1. CONFIGURATION & PATHS
+ * 2. DESIGN SYSTEM CONSTANTS
+ * 3. UTILITY HELPERS
+ * 4. DYNAMIC HTML GENERATORS
+ *    4.1 Hero & Navigation
+ *    4.2 Experience, Skills, Projects, Pipeline
+ *    4.3 Contact & Footer
+ * 5. RESUME-SPECIFIC GENERATORS (LaTeX Replication)
+ * 6. CORE REPLACEMENT ENGINE (Minification & Placeholder Injection)
+ * 7. MAIN BUILD PROCESS
+ *    Step 0: Clean dist/
+ *    Step 1: Load config & compile Tailwind
+ *    Step 2: Generate dynamic HTML components
+ *    Step 3: Process & validate template files
+ *    Step 4: Sync static assets & public files
+ *    Step 5: Generate PDF resume via Puppeteer
  */
+
+'use strict';
 
 const fs = require('fs');
 const path = require('path');
+const { execSync } = require('child_process');
+const crypto = require('crypto');
 const puppeteer = require('puppeteer');
 const { PDFDocument } = require('pdf-lib');
 
@@ -52,7 +65,7 @@ const PATHS = {
 };
 
 /* =========================================================================
-   2. GLOBAL DESIGN SYSTEM (3D ARCHITECTURE)
+   2. DESIGN SYSTEM CONSTANTS
    ========================================================================= */
 
 const DISH_CLASSES = `flex items-center justify-center rounded-full bg-gradient-to-br from-white/[0.12] to-white/[0.04] backdrop-blur-md border border-white/20 text-[var(--accent)] transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.15),0_10px_20px_rgba(0,0,0,0.4)]`;
@@ -79,7 +92,7 @@ const getResumeLink = (config) => {
 };
 
 /* =========================================================================
-   2. UTILITY HELPERS
+   3. UTILITY HELPERS
    ========================================================================= */
 
 /**
@@ -146,7 +159,7 @@ function validateContentIntegrity(content, fileName) {
 }
 
 /* =========================================================================
-   3. DYNAMIC HTML GENERATORS
+   4. DYNAMIC HTML GENERATORS
    ========================================================================= */
 
 /**
@@ -540,7 +553,7 @@ function generateContactUI(config, type = 'grid') {
 }
 
 /* =========================================================================
-   4. RESUME-SPECIFIC GENERATORS (LaTeX Replication)
+   5. RESUME-SPECIFIC GENERATORS (LaTeX Replication)
    ========================================================================= */
 
 function generateResumeExperience(config) {
@@ -608,7 +621,7 @@ function generateResumeEducation(config) {
 }
 
 /* =========================================================================
-   5. CORE REPLACEMENT ENGINE
+   6. CORE REPLACEMENT ENGINE
    ========================================================================= */
 
 function minifyContent(content, type) {
@@ -674,27 +687,26 @@ function applyReplacements(content, config, fileType = 'html') {
 }
 
 /* =========================================================================
-   5. MAIN BUILD PROCESS
+   7. MAIN BUILD PROCESS
    ========================================================================= */
 
 async function build() {
   try {
     console.log('🚀 Starting Professional Build Process...');
 
-    // 0. Clean dist folder to ensure no orphan files remain
+    // --- Step 0: Clean dist/ to prevent orphan files ---
     if (fs.existsSync(PATHS.dist)) {
       deleteRecursiveSync(PATHS.dist);
       console.log('✔ Cleaned dist/ directory.');
     }
-    // 1. Load User Config
+    // --- Step 1: Load config, compile CSS, resolve version ---
     let userConfig = {};
     if (fs.existsSync(PATHS.config)) {
       userConfig = JSON.parse(fs.readFileSync(PATHS.config, 'utf8'));
     }
 
-    // 1.1 Compile Tailwind CSS first so we can hash it
+    // Compile Tailwind CSS first so we can hash it
     console.log('🎨 Compiling Tailwind CSS...');
-    const { execSync } = require('child_process');
     const tempCss = path.join(PATHS.dist, 'temp.css');
     if (!fs.existsSync(PATHS.dist)) fs.mkdirSync(PATHS.dist, { recursive: true });
 
@@ -705,11 +717,10 @@ async function build() {
       // Fallback if tailwind fails
     }
 
-    // 1.1 Extract Version from package.json or Git
+    // Extract version from Git tag or package.json fallback
     const pkg = JSON.parse(fs.readFileSync(path.join(PROJECT_ROOT, 'package.json'), 'utf8'));
     let rawVersion = '';
     try {
-      const { execSync } = require('child_process');
       rawVersion = execSync('git describe --tags --abbrev=0', { encoding: 'utf8' }).trim();
     } catch (e) {
       rawVersion = pkg.version;
@@ -729,7 +740,7 @@ async function build() {
     // Set professional resume link before processing any templates
     config.RESUME_LINK = getResumeLink(config);
 
-    // 1.2 Flatten nested page configs for headless placeholder replacement
+    // Flatten nested page configs for placeholder replacement
     if (config.RESUME_PAGE) {
       config.RESUME_TITLE = config.RESUME_PAGE.TITLE || '';
       config.RESUME_SUBTITLE = config.RESUME_PAGE.SUBTITLE || '';
@@ -748,7 +759,8 @@ async function build() {
     }
 
     console.log(`🚀 Starting Professional Build Process [${gitVersion}]...`);
-    // Pre-calculate common parts
+
+    // --- Step 2: Generate dynamic HTML components ---
     config.SKILLS_GRID = generateSkills(config);
     config.EXPERIENCE_TIMELINE = generateExperience(config);
     config.CERTIFICATIONS_GRID = generateCertificationsHtml(config); // Keeping old name for compatibility
@@ -759,14 +771,14 @@ async function build() {
     config.HIRE_ME_BUTTON = generateHireMeButton(config);
     generateProjects(config);
 
-    // 2b. Generate Resume-Specific Content
+    // Resume-specific content (LaTeX replication)
     config.RESUME_EXPERIENCE_HTML = generateResumeExperience(config);
     config.RESUME_SKILLS_HTML = generateResumeSkills(config);
     config.RESUME_PROJECTS_HTML = generateResumeProjects(config);
     config.RESUME_CERTIFICATIONS_HTML = generateResumeCertifications(config);
     config.RESUME_EDUCATION_HTML = generateResumeEducation(config);
 
-    // 3. Inject Terminal Data
+    // Terminal virtual filesystem data
     const currentMonth = new Date().toLocaleString('en-US', { month: 'short' });
     const currentDay = new Date().getDate().toString().padStart(2, ' ');
 
@@ -777,12 +789,11 @@ async function build() {
       config.TERMINAL_EXPERIENCE = config.EXPERIENCE.map(exp => `${exp.role.padEnd(25, ' ')} ${exp.start} – ${exp.end}`);
     }
 
-    // 4. Ensure Output Directories
+    // Ensure output directories exist
     [PATHS.dist, PATHS.output.assets, path.join(PATHS.output.assets, 'css'), path.join(PATHS.output.assets, 'js'), path.join(PATHS.output.assets, 'img')]
       .forEach(dir => !fs.existsSync(dir) && fs.mkdirSync(dir, { recursive: true }));
 
-    // 5. Generate Hashes for Cache Busting
-    const crypto = require('crypto');
+    // Cache-busting: generate content hashes for asset filenames
     const getHash = (file) => {
       if (!fs.existsSync(file)) return 'default';
       return crypto.createHash('md5').update(fs.readFileSync(file)).digest('hex').substring(0, 8);
@@ -801,7 +812,7 @@ async function build() {
       console.log(`✔ Generated: ${config.CSS_FILENAME}`);
     }
 
-    // 6. Process Files
+    // --- Step 3: Process & validate template files ---
     const filesToProcess = [
       { src: PATHS.templates.index, dest: PATHS.output.index, name: 'index.html', id: 'home' },
       { src: PATHS.templates.projects, dest: path.join(PATHS.dist, 'projects.html'), name: 'projects.html', id: 'projects' },
@@ -835,7 +846,7 @@ async function build() {
       }
     });
 
-    // 7. Final Sync
+    // --- Step 4: Sync static assets & public files ---
     if (fs.existsSync(PATHS.templates.assets)) {
       copyRecursiveSync(PATHS.templates.assets, PATHS.output.assets);
       console.log('✔ Static assets synced.');
@@ -843,7 +854,7 @@ async function build() {
     fs.copyFileSync(PATHS.config, PATHS.output.clientConfig);
     console.log('✔ Client configuration synced.');
 
-    // 7. Process & Copy public/ root files (robots.txt, sitemap.xml, etc.)
+    // Process & copy public/ root files (robots.txt, sitemap.xml, etc.)
     const publicDir = path.join(PROJECT_ROOT, 'public');
     if (fs.existsSync(publicDir)) {
       fs.readdirSync(publicDir).forEach(file => {
@@ -857,7 +868,7 @@ async function build() {
       console.log('✔ Public root files synced. (robots.txt, sitemap.xml)');
     }
 
-    // 8. Generate Automated PDF Resume
+    // --- Step 5: Generate PDF resume via Puppeteer ---
     console.log('📄 Generating Automated PDF Resume...');
     try {
       const browser = await puppeteer.launch({
