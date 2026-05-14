@@ -1,9 +1,9 @@
-/* =========================================================================
-   CONTACT FORM SERVERLESS BACKEND
-   =========================================================================
-   This file provisions the AWS Lambda function and API Gateway required 
-   to handle portfolio inquiries via the Brevo API securely.
-   ========================================================================= */
+# =============================================================================
+# Lambda Backend — terraform/lambda.tf
+# =============================================================================
+# Provisions the serverless backend (Lambda + API Gateway) for the contact form.
+# Handles email delivery via Brevo and inquiry storage in DynamoDB.
+# =============================================================================
 
 # 1. Zip the Lambda Source Code
 data "archive_file" "lambda_zip" {
