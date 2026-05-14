@@ -1,9 +1,9 @@
-/* =========================================================================
-   DYNAMODB LEADS REGISTRY (CLOUD CORE)
-   =========================================================================
-   This file provisions the high-availability NoSQL table required to 
-   persistently store contact form submissions as an "Elite" technical registry.
-   ========================================================================= */
+# =============================================================================
+# DynamoDB Leads Table — terraform/dynamodb.tf
+# =============================================================================
+# Provisions a high-availability NoSQL table to store contact form submissions.
+# Uses PAY_PER_REQUEST billing for serverless on-demand scaling.
+# =============================================================================
 
 resource "aws_dynamodb_table" "portfolio_leads" {
   name         = "portfolio-leads"
