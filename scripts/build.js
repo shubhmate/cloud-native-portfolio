@@ -1,7 +1,7 @@
 /**
  * @file build.js
  * @description Site Build Automation Engine
- * @version 2.0.3
+ * @version 2.1.0
  *
  * Transforms templates + site-config.json into a production-ready static site.
  *

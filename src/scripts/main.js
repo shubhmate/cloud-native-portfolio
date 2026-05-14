@@ -1,7 +1,7 @@
 /**
  * @file main.js
  * @description Core application logic for the Cloud-Native Portfolio
- * @version 2.0.3
+ * @version 2.1.0
  *
  * Table of Contents:
  * 1. CORE SYSTEMS (Global UI & Infrastructure)
