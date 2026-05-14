@@ -1,4 +1,11 @@
-# --- 1. SSL Certificate for API ---
+# =============================================================================
+# Custom Domain for API — terraform/domain_api.tf
+# =============================================================================
+# Configures the api.shubhammate.com custom domain for the Lambda backend.
+# Handles SSL/TLS certificates, DNS validation, and API Gateway mapping.
+# =============================================================================
+
+# 1. SSL Certificate for API
 resource "aws_acm_certificate" "api" {
   domain_name       = "api.shubhammate.com"
   validation_method = "DNS"
@@ -9,7 +16,7 @@ resource "aws_acm_certificate" "api" {
   }
 }
 
-# --- 2. DNS Validation Record ---
+# 2. DNS Validation Record
 resource "aws_route53_record" "api_validation" {
   for_each = {
     for dvo in aws_acm_certificate.api.domain_validation_options : dvo.domain_name => {
@@ -27,13 +34,13 @@ resource "aws_route53_record" "api_validation" {
   zone_id         = aws_route53_zone.main.zone_id
 }
 
-# --- 3. Certificate Validation Waiter ---
+# 3. Certificate Validation Waiter
 resource "aws_acm_certificate_validation" "api" {
   certificate_arn         = aws_acm_certificate.api.arn
   validation_record_fqdns = [for record in aws_route53_record.api_validation : record.fqdn]
 }
 
-# --- 4. API Gateway Custom Domain ---
+# 4. API Gateway Custom Domain
 resource "aws_apigatewayv2_domain_name" "api" {
   domain_name = "api.shubhammate.com"
 
@@ -48,7 +55,7 @@ resource "aws_apigatewayv2_domain_name" "api" {
   tags = merge(var.tags, { Name = "portfolio-api-domain" })
 }
 
-# --- 5. Route53 Record for API Domain (A Record Alias) ---
+# 5. Route53 Record for API Domain (A Record Alias)
 resource "aws_route53_record" "api" {
   name    = "api.shubhammate.com"
   type    = "A"
@@ -61,7 +68,7 @@ resource "aws_route53_record" "api" {
   }
 }
 
-# --- 6. API Mapping ---
+# 6. API Mapping
 resource "aws_apigatewayv2_api_mapping" "api" {
   api_id      = aws_apigatewayv2_api.lambda.id
   domain_name = aws_apigatewayv2_domain_name.api.id
