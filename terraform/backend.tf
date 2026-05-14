@@ -13,7 +13,8 @@ terraform {
     bucket         = "shubhammate-portfolio-terraform-state"
     key            = "global/s3/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "shubhammate-portfolio-terraform-locks"
+    # dynamodb_table = "shubhammate-portfolio-terraform-locks" # DEPRECATED: Replaced by use_lockfile in v1.10+
+    use_lockfile   = true
     encrypt        = true
   }
 }

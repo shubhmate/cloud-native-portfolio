@@ -46,7 +46,14 @@ resource "aws_s3_bucket_public_access_block" "terraform_state" {
   restrict_public_buckets = true
 }
 
-# DynamoDB Table for State Locking
+# =============================================================================
+# OBSOLETE: DynamoDB Table for State Locking
+# =============================================================================
+# As of Terraform v1.10+, S3 backends support native locking via 'use_lockfile'.
+# This DynamoDB table is no longer required but kept here as a commented 
+# reference for understanding the legacy architecture.
+# =============================================================================
+/*
 resource "aws_dynamodb_table" "terraform_locks" {
   name         = "${var.project_name}-terraform-locks"
   billing_mode = "PAY_PER_REQUEST"
@@ -59,3 +66,6 @@ resource "aws_dynamodb_table" "terraform_locks" {
 
   tags = merge(var.tags, { Name = "${var.project_name}-terraform-locks" })
 }
+*/
+
+
