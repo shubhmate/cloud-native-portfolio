@@ -437,7 +437,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const terminalInput = document.getElementById('terminal-input');
   const terminalOutput = document.getElementById('terminal-output');
-  let commands = {};
+  
+  /** Appends a line (or array of lines) to the terminal output. */
+  function addOutput(text, color = 'text-slate-200') {
+    if (!terminalOutput) return;
+    const div = document.createElement('div');
+    div.className = `font-mono text-xs ${color}`;
+    if (Array.isArray(text)) div.innerHTML = text.join('<br>');
+    else div.appendChild(document.createTextNode(text));
+    terminalOutput.appendChild(div);
+    // Auto-scroll to bottom
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+  }
+
+  /** Parses and executes a terminal command string. */
+  function execute(input) {
+    const parts = input.toLowerCase().split(' ');
+    const cmd = parts[0];
+    const args = parts.slice(1);
+    if (commands[cmd]) {
+      const res = typeof commands[cmd] === 'function' ? commands[cmd](args) : commands[cmd];
+      addOutput(res.output || res, res.color);
+    } else {
+      addOutput(`Command not found: ${cmd}`, 'text-red-400');
+    }
+  }
 
   // --- 3.1 Dynamic Command Handlers ---
   // These commands require runtime logic (DOM access, date, etc.)
@@ -500,14 +524,27 @@ document.addEventListener('DOMContentLoaded', () => {
       return { output: `Usage: ssh ${user}@${host}`, color: 'text-red-400' };
     }
   };
+  let commands = Object.assign({}, dynamicHandlers);
 
   // --- 3.2 Command Loader & Input Handler ---
   // Merge static commands from JSON with dynamic handlers
+  // 1. Show welcome message immediately
+  if (terminalOutput) {
+    addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400');
+  }
+
+  // 2. Load commands asynchronously
   fetch('assets/js/commands.json')
-    .then(res => res.json())
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return res.json();
+    })
     .then(data => {
       commands = Object.assign({}, data, dynamicHandlers);
-      if (terminalOutput) addOutput('Welcome to devops.sh — type \'help\' to get started.', 'text-green-400');
+    })
+    .catch(err => {
+      console.warn('Terminal command loader: Failed to load static commands.json. Falling back to dynamic handlers only.', err);
+      commands = Object.assign({}, dynamicHandlers);
     });
 
   if (terminalInput && terminalOutput) {
@@ -517,31 +554,8 @@ document.addEventListener('DOMContentLoaded', () => {
         terminalInput.value = '';
         addOutput(`$ ${input}`, 'text-green-400');
         execute(input);
-        terminalOutput.scrollTop = terminalOutput.scrollHeight;
       }
     });
-
-    /** Appends a line (or array of lines) to the terminal output. */
-    function addOutput(text, color = 'text-slate-200') {
-      const div = document.createElement('div');
-      div.className = `font-mono text-xs ${color}`;
-      if (Array.isArray(text)) div.innerHTML = text.join('<br>');
-      else div.appendChild(document.createTextNode(text));
-      terminalOutput.appendChild(div);
-    }
-
-    /** Parses and executes a terminal command string. */
-    function execute(input) {
-      const parts = input.toLowerCase().split(' ');
-      const cmd = parts[0];
-      const args = parts.slice(1);
-      if (commands[cmd]) {
-        const res = typeof commands[cmd] === 'function' ? commands[cmd](args) : commands[cmd];
-        addOutput(res.output || res, res.color);
-      } else {
-        addOutput(`Command not found: ${cmd}`, 'text-red-400');
-      }
-    }
   }
 
 
