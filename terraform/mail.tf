@@ -1,5 +1,8 @@
-# 📧 Email Infrastructure for shubhammate.com
+# =============================================================================
+# Email Infrastructure — terraform/mail.tf
+# =============================================================================
 # Managing Zoho (Human Inbox) and Brevo (Application Sending Engine)
+# =============================================================================
 
 # 1. Root TXT Records (Verification & SPF)
 # Keeping original resource name to prevent Route53 "Already Exists" errors
