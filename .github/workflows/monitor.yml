@@ -3,13 +3,13 @@ name: 🩺 Site Uptime Monitor
 # =============================================================================
 # Health Check & Uptime Monitoring — .github/workflows/monitor.yml
 # =============================================================================
-# Runs automatically every 6 hours to verify the site is online.
+# Runs automatically every 12 hours to verify the site is online.
 # Checks both the root domain and the resume page.
 # =============================================================================
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */12 * * *'
   workflow_dispatch: # Allow manual triggers
 
 env:
