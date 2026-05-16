@@ -1,16 +1,14 @@
 {
   "// ─────────────────────────────────────────────────────────────────────────": "──────────────",
   "// 🔥 PENDING UPDATES (TODO)": "Replace these placeholders before going live!",
-  "// [ ] RESUME_CONTACT_PHONE": "Replace +91-XXXXXXXXXX in Section 12",
-  "// [ ] RESUME_EDUCATION": "Replace 'Your University Name' in Section 12",
-  "// [ ] PROFILE_IMAGE": "Ensure your photo is at assets/img/profile.webp",
+  "// ───────────────────────────────────────────────────────────────────────── ": "────────────── ",
   "// 1. GLOBAL IDENTITY & SEO": "--------------------------------------------------",
   "PERSON_NAME": "Shubham Mate",
-  "JOB_TITLE": "DevOps Engineer",
+  "JOB_TITLE": "DevOps and Cloud Engineer",
   "PORTFOLIO_URL": "https://shubhammate.com",
   "GITHUB_HANDLE": "https://github.com/shubhmate",
   "LINKEDIN_PROFILE": "https://www.linkedin.com/in/shubham-mate",
-  "META_DESCRIPTION": "DevOps Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS. 2+ years hands-on experience.",
+  "META_DESCRIPTION": "DevOps and Cloud Engineer portfolio featuring CI/CD pipelines, cloud infrastructure, containerization, and automation on AWS/GCP. 2+ years hands-on experience.",
   "CONTACT_EMAIL": "contact@shubhammate.com",
   "PROFILE_IMAGE": "assets/img/profile.webp",
   "// 2. NAVIGATION & UI": "--------------------------------------------------",
@@ -81,7 +79,8 @@
   "HERO_TITLE_LINE_1": "Building & Automating",
   "HERO_TITLE_LINE_2": "Cloud Infrastructure",
   "HERO_SUBTITLE": "Open to new opportunities",
-  "HERO_DESCRIPTION": "DevOps Engineer focused on <span class=\"text-cyan-400\">CI/CD Pipelines</span>, <span class=\"text-teal-400\">Containerization</span>, and <span class=\"text-emerald-400\">Cloud Infrastructure</span>.",
+  "YEARS_EXPERIENCE": "~2 years experience",
+  "HERO_DESCRIPTION": "DevOps and Cloud Engineer focused on <span class=\"text-cyan-400\">CI/CD Pipelines</span>, <span class=\"text-teal-400\">Containerization</span>, and <span class=\"text-emerald-400\">Cloud Infrastructure</span>.",
   "TYPEWRITER_PHRASES": [
     "DevOps Engineer",
     "Cloud Engineer",
@@ -90,22 +89,18 @@
   "// 4. ABOUT SECTION": "--------------------------------------------------",
   "SECTION_ABOUT_HINT": "// about me",
   "SECTION_ABOUT_TITLE": "Behind the Terminals",
-  "ABOUT_ME_DESCRIPTION": "I am a passionate DevOps Engineer with a strong foundation in cloud-native technologies. I specialize in automating complex workflows, managing scalable infrastructure, and ensuring the reliability of high-traffic applications. My journey in tech is driven by a curiosity for how systems work and a desire to build tools that empower developers.",
+  "ABOUT_ME_DESCRIPTION": "I am a passionate DevOps and Cloud Engineer with a strong foundation in cloud-native technologies. I specialize in automating complex workflows, managing scalable infrastructure, and ensuring the reliability of high-traffic applications. My journey in tech is driven by a curiosity for how systems work and a desire to build tools that empower developers.",
   "CURRENT_STATUS": "Open to full-time roles",
-  "CURRENT_LOCATION": "Pune, India",
-  "YEARS_EXPERIENCE": "~2 years experience",
-  "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
+  "CURRENT_LOCATION": "Maharashtra, India",
   "// 5. EXPERIENCE & TIMELINE": "--------------------------------------------------",
   "SECTION_EXPERIENCE_HINT": "// experience",
   "SECTION_EXPERIENCE_TITLE": "Work History",
-  "TIMELINE_DATE_1": "Oct 26, 2023",
-  "TIMELINE_DATE_2": "Sep 15, 2023",
-  "TIMELINE_DATE_3": "Aug 01, 2023",
+  "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
   "EXPERIENCE": [
     {
-      "role": "DevOps Engineer",
+      "role": "Framework Engineer",
       "company": "Quantiphi",
-      "location": "Remote",
+      "location": "Mumbai, India",
       "type": "Full-time",
       "start": "Sep 2021",
       "end": "Nov 2022",
@@ -117,7 +112,7 @@
       ]
     },
     {
-      "role": "Junior DevOps / Cloud Intern",
+      "role": "Intern Framework Engineer",
       "company": "Quantiphi",
       "location": "Mumbai, India",
       "type": "Internship",
@@ -339,7 +334,13 @@
       "link": "https://github.com/shubhmate/Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
       "image": "assets/img/project1-arch.png",
       "tags": [
-        "HCL"
+        "aws",
+        "docker",
+        "ecr",
+        "ecs",
+        "fargate",
+        "terraform",
+        "vpc"
       ],
       "architecture": [
         "React (3000) ➔ ALB ➔ Node.js (5000)",
@@ -417,15 +418,15 @@
       "type": "copy"
     },
     {
-      "label": "GitHub",
-      "value": "https://github.com/shubhmate",
-      "icon": "github",
-      "type": "link"
-    },
-    {
       "label": "LinkedIn",
       "value": "https://www.linkedin.com/in/shubham-mate",
       "icon": "linkedin",
+      "type": "link"
+    },
+    {
+      "label": "GitHub",
+      "value": "https://github.com/shubhmate",
+      "icon": "github",
       "type": "link"
     }
   ],
@@ -441,7 +442,7 @@
   "// 12. RESUME DATA SOURCE (Independent PDF Content)": "--------------------------------------------------",
   "// NOTE: Supports HTML tags like <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> in all text fields below.": "",
   "RESUME_CONTACT_LOCATION": "Maharashtra, India",
-  "RESUME_SUMMARY": "DevOps Engineer with 2+ years of hands-on experience in automating cloud infrastructure, building CI/CD pipelines, and managing containerized applications. Proven track record in reducing deployment times and improving system reliability through Infrastructure as Code (Terraform) and robust monitoring (Prometheus/Grafana).",
+  "RESUME_SUMMARY": "DevOps and Cloud Engineer with 2+ years of hands-on experience in automating cloud infrastructure, building CI/CD pipelines, and managing containerized applications. Proven track record in reducing deployment times and improving system reliability through Infrastructure as Code (Terraform) and robust monitoring (Prometheus/Grafana).",
   "RESUME_EXPERIENCE": [
     {
       "role": "DevOps Engineer",
@@ -509,14 +510,14 @@
     {
       "name": "AWS Cloud Practitioner",
       "issuer": "Amazon Web Services",
-      "date": "2023",
+      "date": "2026",
       "link": "assets/docs/certs/aws_cloud_practitioner.pdf",
       "certId": "12345-ABC-XYZ"
     },
     {
       "name": "Docker Essentials",
       "issuer": "IBM",
-      "date": "2022",
+      "date": "2025",
       "link": "assets/docs/certs/docker_essentials.pdf",
       "certId": "DKR-55-XY-ZZ"
     }
@@ -546,10 +547,10 @@
   ],
   "TERMINAL_DEPLOY_STEPS": [
     "Deployment Steps:",
-    "  Deploy to GitHub Pages: git push origin main",
-    "  Deploy to Netlify: npm run build && netlify deploy",
-    "  Deploy to AWS (S3/CF): npm run deploy:aws",
-    "  Localstack Simulation: npm run deploy:localstack"
+    "  1. Deploy to GitHub Pages: git push origin main",
+    "  2. Deploy to Netlify: npm run build && netlify deploy",
+    "  3. Deploy to AWS (S3/CF): npm run deploy:aws",
+    "  4. Localstack Simulation: npm run deploy:localstack"
   ],
   "VIRTUAL_FILES": {
     "infrastructure.tf": {
