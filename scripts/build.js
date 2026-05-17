@@ -434,7 +434,7 @@ function generateProjects(config) {
  * Internal helper to generate a single project card HTML.
  */
 function generateProjectCard(project) {
-  const tagsHtml = (project.tags || []).map(tag => `\n                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">${tag}</span>`).join('');
+  const tagsHtml = (project.tags || []).slice(0, 10).map(tag => `\n                  <span class="px-2 py-0.5 rounded text-xs font-mono bg-blue-500/10 text-blue-400">${tag}</span>`).join('');
   const archHtml = (project.architecture || []).map(step => `
                 <div class="flex items-start gap-2 font-mono text-xs">
                   <span class="text-[var(--accent)]">▸</span>
