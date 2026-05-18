@@ -294,7 +294,7 @@
       "github_repo": "cloud-native-portfolio",
       "description": "Elite Cloud-Native Portfolio | Serverless Messaging Backend | Honeypot Anti-Bot Security | Terraform IaC | AWS (Lambda, API Gateway, Route 53, CloudFront, S3, DynamoDB) | Automated CI/CD. A high-fidelity DevOps showcase featuring atomic deployments, security-first engineering, and automated infrastructure management.",
       "link": "https://github.com/shubhmate/cloud-native-portfolio",
-      "image": "assets/img/github-social-preview-pro-final.png",
+      "image": "assets/img/github-social-preview-pro-final.webp",
       "tags": [
         "ai",
         "automation",
@@ -332,7 +332,7 @@
       "github_repo": "Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
       "description": "This project deploys a Flask backend and Express frontend using Docker and AWS ECS Fargate. Managed via Terraform, it features a VPC for isolation, an ALB for path-based routing, and ECR for image hosting. It includes secure private subnets, CloudWatch logging, and automated infrastructure as code (IaC) workflows.",
       "link": "https://github.com/shubhmate/Terraform-for-Deploying-Simple-Frontend-Backend-App-Using-Docker-AWS-VPC-ECR-and-ECS-Fargate",
-      "image": "assets/img/project1-arch.png",
+      "image": "assets/img/project1-arch.webp",
       "tags": [
         "aws",
         "docker",
