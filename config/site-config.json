@@ -132,52 +132,52 @@
   "CERTIFICATIONS_SUBTITLE": "Completed & actively pursuing",
   "CERTIFICATIONS": [
     {
-      "name": "AWS Cloud Practitioner",
-      "issuer": "Foundational",
+      "name": "Crash Course: AI-Powered DevOps",
+      "issuer": "KodeKloud",
+      "status": "Completed",
+      "color": "purple",
+      "link": "assets/docs/certs/kodekloud_ai_powered_devops.webp",
+      "certId": "79473108-c5c7-4345-8235-58a7d496d00f"
+    },
+    {
+      "name": "DevOps Course",
+      "issuer": "Tutedude",
+      "status": "Completed",
+      "color": "blue",
+      "link": "assets/docs/certs/tutedude_devops_course.webp",
+      "certId": "TD-SHUB-DO-2308"
+    },
+    {
+      "name": "DevOps Training",
+      "issuer": "TWS",
       "status": "Completed",
       "color": "yellow",
-      "link": "assets/docs/certs/aws_cloud_practitioner.pdf",
-      "certId": "12345-ABC-XYZ"
+      "link": "assets/docs/certs/tws_devops_course.webp",
+      "certId": "NGS4PMHG"
     },
     {
-      "name": "HashiCorp Terraform",
-      "issuer": "Associate",
+      "name": "100 Days of Python",
+      "issuer": "Udemy",
       "status": "In Progress",
-      "color": "purple",
-      "link": "",
-      "certId": ""
-    },
-    {
-      "name": "AWS Solutions Architect",
-      "issuer": "Associate",
-      "status": "In Progress",
-      "color": "blue",
-      "link": "",
-      "certId": ""
-    },
-    {
-      "name": "Kubernetes Basics",
-      "issuer": "CNCF",
-      "status": "Completed",
       "color": "orange",
-      "link": "assets/docs/certs/kubernetes_basics.pdf",
-      "certId": "K8S-05-67-89"
+      "link": "https://github.com/shubhmate/100_Days_of_Python",
+      "certId": ""
     },
     {
-      "name": "Linux Fundamentals",
-      "issuer": "LFS101",
-      "status": "Completed",
+      "name": "100 Days of DevOps",
+      "issuer": "KodeKloud",
+      "status": "In Progress",
       "color": "red",
-      "link": "assets/docs/certs/linux_fundamentals.pdf",
-      "certId": "LF-99-00-11"
+      "link": "https://github.com/shubhmate/100_Days_of_DevOps",
+      "certId": ""
     },
     {
-      "name": "Docker Essentials",
-      "issuer": "IBM",
-      "status": "Completed",
+      "name": "100 Days of Cloud (AWS)",
+      "issuer": "KodeKloud",
+      "status": "In Progress",
       "color": "green",
-      "link": "assets/docs/certs/docker_essentials.pdf",
-      "certId": "DKR-55-XY-ZZ"
+      "link": "https://github.com/shubhmate/100_Days_of_AWS",
+      "certId": ""
     }
   ],
   "// 7. TECH STACK & SKILLS": "--------------------------------------------------",
