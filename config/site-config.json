@@ -508,24 +508,37 @@
   ],
   "RESUME_CERTIFICATIONS": [
     {
-      "name": "AWS Cloud Practitioner",
-      "issuer": "Amazon Web Services",
+      "name": "Crash Course: AI-Powered DevOps",
+      "issuer": "KodeKloud",
       "date": "2026",
-      "link": "assets/docs/certs/aws_cloud_practitioner.pdf",
-      "certId": "12345-ABC-XYZ"
+      "link": "assets/docs/certs/kodekloud_ai_powered_devops.webp",
+      "certId": "79473108-c5c7-4345-8235-58a7d496d00f"
     },
     {
-      "name": "Docker Essentials",
-      "issuer": "IBM",
-      "date": "2025",
-      "link": "assets/docs/certs/docker_essentials.pdf",
-      "certId": "DKR-55-XY-ZZ"
+      "name": "DevOps Course",
+      "issuer": "Tutedude",
+      "status": "Completed",
+      "link": "assets/docs/certs/tutedude_devops_course.webp",
+      "certId": "TD-SHUB-DO-2308"
+    },
+    {
+      "name": "DevOps Training",
+      "issuer": "TWS",
+      "status": "Completed",
+      "link": "assets/docs/certs/tws_devops_course.webp",
+      "certId": "NGS4PMHG"
     }
   ],
   "RESUME_EDUCATION": [
     {
-      "school": "Your University Name",
-      "degree": "Bachelor of Technology in Computer Science",
+      "school": "Centre for Development of Advanced Computing (C-DAC)",
+      "degree": "PG-DAC, Software Development",
+      "location": "Mumbai, India",
+      "date": ""
+    },
+    {
+      "school": "Savitribai Phule Pune University",
+      "degree": "Bachelor of Engineering, Electronic and Telecommunications Engineering",
       "location": "Pune, India",
       "date": ""
     }
