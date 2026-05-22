@@ -740,6 +740,10 @@ async function build() {
     // Set professional resume link before processing any templates
     config.RESUME_LINK = getResumeLink(config);
 
+    // Set absolute base URL for the resume PDF based on environment
+    const isDev = process.env.IS_DEV === 'true';
+    config.RESUME_BASE_URL = isDev ? 'http://127.0.0.1:8081/' : `${config.PORTFOLIO_URL}/`;
+
     // Flatten nested page configs for placeholder replacement
     if (config.RESUME_PAGE) {
       config.RESUME_TITLE = config.RESUME_PAGE.TITLE || '';
