@@ -587,7 +587,7 @@ function generateResumeProjects(config) {
     return `
       <div class="subheading">
         <span>${project.title}</span>
-        <span>${project.link ? `<a href="${project.link.startsWith('http') ? project.link : (config.PORTFOLIO_URL + '/' + project.link)}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">Project Link</a>` : ''}</span>
+        <span>${project.link ? `<a href="${project.link}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;">Project Link</a>` : ''}</span>
       </div>
       <div class="subheading-detail" style="margin-bottom: 2pt;">
         <i>${project.tech || ''}</i>
@@ -601,7 +601,7 @@ function generateResumeCertifications(config) {
   return config.RESUME_CERTIFICATIONS.map(cert => `
       <div class="subheading">
         <span>${cert.name}</span>
-        <span>${cert.link ? `<a href="${cert.link.startsWith('http') ? cert.link : (config.PORTFOLIO_URL + '/' + cert.link)}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;"><i>View Credential</i></a>` : `<i>${cert.date}</i>`}</span>
+        <span>${cert.link ? `<a href="${cert.link}" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit;"><i>View Credential</i></a>` : `<i>${cert.date}</i>`}</span>
       </div>
       <div class="subheading-detail">
         <span>${cert.issuer}${cert.certId ? ` · ID: ${cert.certId}` : ''}</span>
