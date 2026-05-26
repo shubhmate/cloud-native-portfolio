@@ -487,7 +487,7 @@ function generateProjectCard(project) {
               <div class="flex flex-wrap gap-2 mt-2 mb-2">${tagsHtml}</div>
               <div class="flex items-center justify-between pt-4 border-t border-[var(--border)]">
                 <a href="${project.link}" target="_blank" rel="noopener noreferrer" class="group flex items-center gap-1.5 px-3 py-1.5 bg-[var(--accent)]/5 hover:bg-[var(--accent)] text-[var(--accent)] hover:text-white text-[10px] uppercase tracking-wider font-mono font-bold rounded-lg transition-all hover:scale-105 active:scale-95 shadow-sm">
-                  <i data-lucide="github" class="w-3.5 h-3.5 transition-transform group-hover:-rotate-12"></i>
+                  <i data-lucide="${process.env.DR_MODE === 'true' ? 'gitlab' : 'github'}" class="w-3.5 h-3.5 transition-transform group-hover:-rotate-12"></i>
                   <span>Code</span>
                 </a>
                 ${flipButton}
@@ -683,6 +683,15 @@ function applyReplacements(content, config, fileType = 'html') {
       }
     }
   }
+
+  // --- Disaster Recovery Text Rewriting ---
+  if (process.env.DR_MODE === 'true' && fileType === 'html') {
+    modifiedContent = modifiedContent
+      .split('>GitHub</a>').join('>GitLab</a>')
+      .split('>GitHub </a>').join('>GitLab </a>')
+      .split('GitHub Actions').join('GitLab CI/CD');
+  }
+
   return minifyContent(modifiedContent, fileType);
 }
 
@@ -740,6 +749,12 @@ async function build() {
     // --- Disaster Recovery (DR) Mode Intercept ---
     if (process.env.DR_MODE === 'true') {
       console.log('🚨 DR MODE ACTIVE: Rewriting GitHub links to GitLab...');
+      
+      // Deduplicate: If both exist, filter out the GitHub social link to avoid two identical GitLab icons
+      if (config.CONTACT_LINKS) {
+        config.CONTACT_LINKS = config.CONTACT_LINKS.filter(link => link.label !== 'GitHub');
+      }
+
       let configStr = JSON.stringify(config);
       configStr = configStr.replace(/github\.com\/shubhmate/g, 'gitlab.com/shubhmate');
       config = JSON.parse(configStr);

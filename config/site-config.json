@@ -441,6 +441,12 @@
       "value": "https://github.com/shubhmate",
       "icon": "github",
       "type": "link"
+    },
+    {
+      "label": "GitLab",
+      "value": "https://gitlab.com/shubhmate",
+      "icon": "gitlab",
+      "type": "link"
     }
   ],
   "// 11. RESUME PAGE (VIEWER)": "--------------------------------------------------",
