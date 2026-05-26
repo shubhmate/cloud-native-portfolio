@@ -1,0 +1,57 @@
+# =============================================================================
+# GitLab CI/CD Pipeline — .gitlab-ci.yml (Disaster Recovery Fallback)
+# =============================================================================
+# This pipeline acts as a highly resilient standby for your GitHub Actions.
+# It validates your code on every push, but WILL NOT deploy to AWS automatically.
+# If GitHub goes down, simply click "Play" on the manual deployment job here!
+# =============================================================================
+
+stages:
+  - build
+  - deploy
+
+variables:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  AWS_REGION: "us-east-1"
+  # Note: You must add AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_BUCKET, 
+  # CF_DIST_ID, and BREVO_API_KEY to GitLab CI/CD Settings > Variables
+
+image: node:24-alpine
+
+build-and-test:
+  stage: build
+  script:
+    - echo "🏗️ Building DR Version of Portfolio (Swapping GitHub links to GitLab)..."
+    - npm ci
+    - npm run build:dr
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "push"
+
+deploy-to-aws:
+  stage: deploy
+  image: hashicorp/terraform:latest
+  before_script:
+    - apk add --no-cache nodejs npm curl
+  script:
+    - echo "🛠️ Terraform Init..."
+    - cd terraform
+    - terraform init -reconfigure
+    - echo "🚀 Terraform Apply..."
+    - terraform apply -auto-approve
+    - cd ..
+    - echo "🚀 Deploying Site to AWS S3 & CloudFront..."
+    - npm ci
+    - npm run build:dr
+    - export DEPLOY_TARGET="aws"
+    - node scripts/deploy.js
+    - echo "🏥 Verifying deployment..."
+    - sleep 10
+    - curl -f -L https://shubhammate.com || exit 1
+    - echo "✅ Site is UP and reachable!"
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+      when: manual # 🚨 CRITICAL: Prevents race condition with GitHub Actions

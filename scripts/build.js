@@ -731,11 +731,19 @@ async function build() {
     const gitVersion = versionMatch ? versionMatch[0] : rawVersion;
 
     /** @type {any} */
-    const config = {
+    let config = {
       ...DEFAULT_CONFIG,
       ...userConfig,
       SITE_VERSION: gitVersion
     };
+
+    // --- Disaster Recovery (DR) Mode Intercept ---
+    if (process.env.DR_MODE === 'true') {
+      console.log('🚨 DR MODE ACTIVE: Rewriting GitHub links to GitLab...');
+      let configStr = JSON.stringify(config);
+      configStr = configStr.replace(/github\.com\/shubhmate/g, 'gitlab.com/shubhmate');
+      config = JSON.parse(configStr);
+    }
 
     // Set professional resume link before processing any templates
     config.RESUME_LINK = getResumeLink(config);
