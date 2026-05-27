@@ -515,6 +515,25 @@
       ],
       "problem": "Deploying containerized apps dynamically without robust orchestration causes scaling and security difficulties.",
       "fix": "Configured AWS ECS service tasks behind ALB in an isolated VPC utilizing secure ECR container images."
+    },
+    {
+      "id": "project6",
+      "title": "Flask Express Cicd Jenkins Github Webhooks Aws Ec2",
+      "github_repo": "flask-express-cicd-jenkins-github-webhooks-aws-ec2",
+      "description": "Flask backend (port 5000) + Express frontend (port 3000) deployed on AWS EC2 with Jenkins CI/CD pipeline. Auto-deploys on every git push via GitHub webhook.",
+      "link": "https://github.com/shubhmate/flask-express-cicd-jenkins-github-webhooks-aws-ec2",
+      "image": "assets/img/project6-arch.webp",
+      "tags": [
+        "JavaScript"
+      ],
+      "architecture": [
+        "Git Push ➔ GitHub Webhook ➔ Jenkins (Pipeline) ➔ AWS EC2 Deployment",
+        "Jenkins Master Server",
+        "Automated Bash Scripts",
+        "Service Unit Configurations"
+      ],
+      "problem": "Manual deployment of services onto EC2 instances creates high overhead and prone to configuration errors.",
+      "fix": "Built a fully automated CI/CD flow utilizing Jenkins pipelines and GitHub Webhooks to test and deploy changes instantly on EC2."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
