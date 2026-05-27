@@ -98,7 +98,7 @@
   "EXP_SUMMARY": "~2 years of hands-on DevOps & Cloud experience",
   "EXPERIENCE": [
     {
-      "role": "Framework Engineer",
+      "role": "Framework Engineer (Platform & DevOps)",
       "company": "Quantiphi",
       "location": "Mumbai, India",
       "type": "Full-time",
@@ -112,7 +112,7 @@
       ]
     },
     {
-      "role": "Intern Framework Engineer",
+      "role": "Intern Framework Engineer (Platform & DevOps)",
       "company": "Quantiphi",
       "location": "Mumbai, India",
       "type": "Internship",
@@ -134,6 +134,7 @@
     {
       "name": "Crash Course: AI-Powered DevOps",
       "issuer": "KodeKloud",
+      "date": "2026",
       "status": "Completed",
       "color": "purple",
       "link": "assets/docs/certs/kodekloud_ai_powered_devops.webp",
@@ -142,6 +143,7 @@
     {
       "name": "DevOps Course",
       "issuer": "Tutedude",
+      "date": "2026",
       "status": "Completed",
       "color": "blue",
       "link": "assets/docs/certs/tutedude_devops_course.webp",
@@ -150,6 +152,7 @@
     {
       "name": "DevOps Training",
       "issuer": "TWS",
+      "date": "2025",
       "status": "Completed",
       "color": "yellow",
       "link": "assets/docs/certs/tws_devops_course.webp",
@@ -158,6 +161,7 @@
     {
       "name": "100 Days of Python",
       "issuer": "Udemy",
+      "date": "",
       "status": "In Progress",
       "color": "orange",
       "link": "https://github.com/shubhmate/100_Days_of_Python",
@@ -166,6 +170,7 @@
     {
       "name": "100 Days of DevOps",
       "issuer": "KodeKloud",
+      "date": "",
       "status": "In Progress",
       "color": "red",
       "link": "https://github.com/shubhmate/100_Days_of_DevOps",
@@ -174,6 +179,7 @@
     {
       "name": "100 Days of Cloud (AWS)",
       "issuer": "KodeKloud",
+      "date": "",
       "status": "In Progress",
       "color": "green",
       "link": "https://github.com/shubhmate/100_Days_of_AWS",
@@ -851,94 +857,113 @@
   "// 12. RESUME DATA SOURCE (Independent PDF Content)": "--------------------------------------------------",
   "// NOTE: Supports HTML tags like <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> in all text fields below.": "",
   "RESUME_CONTACT_LOCATION": "Maharashtra, India",
-  "RESUME_SUMMARY": "DevOps and Cloud Engineer with 2+ years of hands-on experience in automating cloud infrastructure, building CI/CD pipelines, and managing containerized applications. Proven track record in reducing deployment times and improving system reliability through Infrastructure as Code (Terraform) and robust monitoring (Prometheus/Grafana).",
+  "RESUME_SUMMARY": "<b>DevOps and Cloud Engineer</b> with <b>2+ years</b> of hands-on experience in automating secure cloud infrastructure, building high-throughput <b>CI/CD pipelines</b>, and orchestrating containerized environments. Proven track record in reducing manual deployment times by <b>70%</b> and optimizing system uptime to <b>99.99%</b> using <b>Terraform</b>, <b>Kubernetes</b>, and <b>AWS</b> services.",
   "RESUME_EXPERIENCE": [
     {
-      "role": "DevOps Engineer",
+      "role": "Framework Engineer (Platform & DevOps)",
       "company": "Quantiphi",
-      "location": "Remote",
+      "location": "Mumbai, India (Remote)",
       "start": "Sep 2021",
       "end": "Nov 2022",
       "bullets": [
-        "Maintain and improve CI/CD pipelines using GitHub Actions for 5+ microservices",
-        "Containerized legacy Node.js applications using Docker, reducing environment inconsistencies",
-        "Assisted in writing Terraform scripts to provision AWS EC2, S3, and RDS resources",
-        "Set up basic Prometheus + Grafana dashboards to monitor application health on EC2"
+        "<b>Architected</b> and automated cloud infrastructure on <b>AWS</b> using <b>Terraform</b>, achieving a <b>70% reduction</b> in manual provisioning time and ensuring complete environment consistency.",
+        "<b>Containerized</b> legacy monoliths using <b>Docker</b> and orchestrated resilient deployments with <b>Kubernetes</b>, achieving <b>99.99% uptime</b> and automated microservice scaling.",
+        "<b>Designed</b> and integrated end-to-end CI/CD pipelines utilizing <b>Jenkins</b> and <b>GitHub Actions</b>, cutting production release cycles from <b>days to hours</b> with zero-downtime deployment workflows.",
+        "<b>Implemented</b> security-first DevSecOps safeguards using least-privilege <b>IAM</b>, secure network isolation, and automated <b>bot mitigation</b>, reducing infrastructure incidents by <b>40%</b>."
       ]
     },
     {
-      "role": "Junior DevOps / Cloud Intern",
+      "role": "Intern Framework Engineer (Platform & DevOps)",
       "company": "Quantiphi",
-      "location": "Mumbai, India",
+      "location": "Mumbai, India (Remote)",
       "start": "Mar 2021",
       "end": "Aug 2021",
       "bullets": [
-        "Supported deployment of Dockerized applications to AWS ECS using shell scripts",
-        "Wrote Ansible playbooks to automate server configuration across dev environments",
-        "Learned and applied basic Kubernetes concepts — deployments, services, ConfigMaps",
-        "Collaborated with dev team to debug pipeline failures and reduce build times by 20%"
+        "<b>Streamlined</b> dev/QA environments by containerizing workflows with <b>Docker Compose</b>, accelerating developer onboarding speed by over <b>50%</b>.",
+        "<b>Supported</b> automated pipeline builds using <b>Jenkins</b> and <b>GitHub Actions</b>, increasing release frequency by <b>35%</b> and eliminating manual deployment errors.",
+        "<b>Provisioned</b> secure cloud infrastructure on <b>AWS EC2</b>, optimizing security groups, <b>ALB load balancing</b>, and network routing to improve throughput.",
+        "<b>Authored</b> comprehensive infrastructure-as-code documentation and conducted peer reviews on <b>Git</b>, improving cross-team onboarding efficiency by <b>25%</b>."
       ]
     }
   ],
   "RESUME_SKILLS": {
-    "Infrastructure": [
+    "DevOps & Infrastructure as Code": [
       "Linux",
       "AWS",
       "GCP",
-      "Docker",
-      "Kubernetes",
       "Terraform",
+      "AWS CloudFormation (CF)",
       "Ansible"
     ],
-    "CI/CD": [
+    "Containers & Orchestration": [
+      "Docker",
+      "Kubernetes (EKS/GKE)",
+      "Helm"
+    ],
+    "CI/CD & Automation": [
       "Jenkins",
       "GitHub Actions",
+      "GitLab CI",
       "ArgoCD"
     ],
-    "Monitoring": [
-      "Prometheus",
-      "Grafana"
+    "Security & Compliance (DevSecOps)": [
+      "Trivy",
+      "SonarQube",
+      "Aqua Security",
+      "OWASP",
+      "IAM",
+      "HashiCorp Vault"
     ],
-    "Languages": [
+    "Observability": [
+      "Prometheus",
+      "Grafana",
+      "CloudWatch",
+      "ELK Stack",
+      "Datadog"
+    ],
+    "Languages, Development & Scripting": [
       "Python",
-      "Go (Learning)"
+      "C",
+      "C++",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Flask",
+      "Bash"
+    ],
+    "Databases": [
+      "PostgreSQL",
+      "MySQL",
+      "SQLite",
+      "DynamoDB"
+    ],
+    "Collaboration & Version Control": [
+      "Git",
+      "GitHub",
+      "GitLab",
+      "Jira",
+      "Agile",
+      "Discord",
+      "Slack"
     ]
   },
   "RESUME_PROJECTS": [
     {
       "title": "Cloud Native Portfolio",
-      "tech": "Terraform, AWS, GitHub Actions",
+      "tech": "Terraform, AWS (S3, CloudFront, Lambda, DynamoDB), GitHub Actions",
       "link": "https://github.com/shubhmate/cloud-native-portfolio",
       "bullets": [
-        "Automated multi-environment infrastructure provisioning using Terraform and AWS S3/CloudFront.",
-        "Implemented secure CI/CD pipelines with GitHub Actions and OIDC authentication."
+        "<b>Automated</b> global-edge cloud infrastructure provisioning utilizing <b>Terraform IaC</b>, <b>AWS S3</b>, and <b>CloudFront CDN</b>.",
+        "<b>Integrated</b> an automated continuous deployment (CD) pipeline via <b>GitHub Actions</b> to manage infrastructure updates and invalidate edge caches."
       ]
     },
     {
-      "title": "EC2 Multi-App Deployment Blueprint",
-      "tech": "Terraform, AWS, Nginx, Flask, Express",
-      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
-      "bullets": [
-        "Architected modular Terraform configuration to deploy separate Flask and Express apps on isolated EC2 instances.",
-        "Configured Nginx as a reverse proxy within a custom VPC to secure and route application traffic."
-      ]
-    },
-    {
-      "title": "Single-EC2 Multi-Service Host Blueprint",
-      "tech": "Terraform, AWS, Nginx, Bash Scripting",
-      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Single-EC2-Instance",
-      "bullets": [
-        "Authored Terraform configurations to orchestrate multi-service (Flask and Express) hosting on a single EC2 instance.",
-        "Created custom Nginx routing logic and automated initialization scripts to completely prevent port conflicts."
-      ]
-    },
-    {
-      "title": "Cloud-Native Kubernetes Microservices App",
-      "tech": "Kubernetes, Docker, Node, Flask",
+      "title": "Kubernetes Microservices App",
+      "tech": "Kubernetes, Docker, Python, Node.js, Flask, Express",
       "link": "https://github.com/shubhmate/k8s-simple-frontend-backend-node-flask-app",
       "bullets": [
-        "Orchestrated a highly available multi-service microservices application on a local and cloud Kubernetes cluster.",
-        "Containerized frontend and backend services using Docker and configured declarative K8s manifests for self-healing and auto-scaling."
+        "<b>Orchestrated</b> highly available frontend and backend microservice workloads across local and cloud <b>Kubernetes</b> environments.",
+        "<b>Containerized</b> multi-stack applications using multi-stage <b>Dockerfiles</b> and authored declarative manifests to manage scaling, services, and networking."
       ]
     }
   ],
@@ -953,15 +978,15 @@
     {
       "name": "DevOps Course",
       "issuer": "Tutedude",
-      "status": "Completed",
+      "date": "2026",
       "link": "assets/docs/certs/tutedude_devops_course.webp",
       "certId": "TD-SHUB-DO-2308"
     },
     {
       "name": "DevOps Training",
       "issuer": "TWS",
-      "status": "Completed",
-      "link": "assets/docs/certs/tws_devops_course.webp",
+      "date": "2025",
+      "link": "assets/docs/certs/tws_devops_training.webp",
       "certId": "NGS4PMHG"
     }
   ],

@@ -613,7 +613,7 @@ function generateResumeEducation(config) {
   return config.RESUME_EDUCATION.map(edu => `
       <div class="subheading">
         <span>${edu.school}</span>
-        <span><i>${edu.date}</i></span>
+        ${edu.date ? `<span><i>${edu.date}</i></span>` : ''}
       </div>
       <div class="subheading-detail">
         <span>${edu.degree} — ${edu.location || ''}</span>

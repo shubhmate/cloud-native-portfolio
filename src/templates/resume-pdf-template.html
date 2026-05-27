@@ -11,12 +11,12 @@
     /* --- HIGH-FIDELITY LATEX REPLICATION --- */
     :root {
       --brand-color: rgb(0, 51, 102);
-      --font-size-base: 11pt;
+      --font-size-base: 9.8pt;
     }
 
     @page {
       size: A4;
-      margin: 0.5in;
+      margin: 0.35in;
     }
 
     * {
@@ -28,7 +28,7 @@
     body {
       font-family: "Times New Roman", Times, serif;
       font-size: var(--font-size-base);
-      line-height: 1.2;
+      line-height: 1.15;
       color: #000;
       margin: 0;
       padding: 0;
@@ -42,20 +42,20 @@
     /* 1. HEADING */
     .header {
       text-align: center;
-      margin-bottom: 12pt;
+      margin-bottom: 6pt;
     }
 
     .header h1 {
       font-variant: small-caps;
       color: var(--brand-color);
-      font-size: 26pt;
-      margin: 0 0 2pt 0;
+      font-size: 22pt;
+      margin: 0 0 1pt 0;
       font-weight: normal;
     }
 
     .header p {
-      margin: 2pt 0;
-      font-size: 10.5pt;
+      margin: 1pt 0;
+      font-size: 9.5pt;
     }
 
     .header a {
@@ -65,21 +65,21 @@
 
     /* 2. SECTIONS */
     section {
-      margin-top: 10pt;
-      margin-bottom: 5pt;
+      margin-top: 6pt;
+      margin-bottom: 3pt;
     }
 
     h2 {
       font-variant: small-caps;
       color: var(--brand-color);
-      font-size: 12.5pt;
+      font-size: 11pt;
       font-weight: bold;
       margin: 0;
       padding: 0;
       text-align: left;
       border-bottom: 1px solid var(--brand-color);
       padding-bottom: 1pt;
-      margin-bottom: 4pt;
+      margin-bottom: 2pt;
     }
 
     /* 3. SUBHEADINGS (LaTeX resumeSubheading) */
@@ -88,7 +88,7 @@
       justify-content: space-between;
       align-items: baseline;
       margin-bottom: 1pt;
-      font-size: 10.5pt;
+      font-size: 9.8pt;
     }
 
     .subheading span:first-child {
@@ -96,38 +96,38 @@
     }
 
     .subheading span:last-child {
-      font-size: 10pt;
+      font-size: 9.5pt;
     }
 
     .subheading-detail {
       display: flex;
       justify-content: space-between;
       font-style: italic;
-      font-size: 10pt;
-      margin-bottom: 3pt;
+      font-size: 9.5pt;
+      margin-bottom: 1px;
     }
 
     /* 4. ITEMS (LaTeX resumeItem) */
     ul {
-      margin: 0 0 6pt 15pt;
+      margin: 0 0 3pt 12pt;
       padding: 0;
       list-style-type: disc;
     }
 
     li {
-      margin-bottom: 2pt;
-      font-size: 10pt;
+      margin-bottom: 1px;
+      font-size: 9.5pt;
       text-align: justify;
     }
 
     /* 5. SKILLS */
     .skills-container {
       margin-left: 0;
-      font-size: 10pt;
+      font-size: 9.5pt;
     }
 
     .skills-item {
-      margin-bottom: 2pt;
+      margin-bottom: 1px;
     }
 
     .skills-item b {
@@ -137,7 +137,7 @@
     /* Project Link Override */
     .subheading a {
       font-weight: normal;
-      font-size: 9pt;
+      font-size: 8.5pt;
       font-style: italic;
     }
   </style>
