@@ -477,6 +477,44 @@
       ],
       "problem": "Monolithic or ad-hoc microservice structures lack scalability and struggle with dynamic service discovery.",
       "fix": "Re-architected to a cloud-native Kubernetes design utilizing service discovery, ingress routing, and pod auto-scaling."
+    },
+    {
+      "id": "project5",
+      "title": "Hosting Simple Full Stack App Using Docker Container AWS VPC ECR ECS Services",
+      "github_repo": "Hosting_Simple_Full_Stack_App_Using_Docker_Container_AWS_VPC_ECR_ECS_Services",
+      "description": "Deploy a simple full stack application featuring a Flask backend (port 5000) and Express frontend (port 3000) using Docker containers. Utilize AWS ECR, ECS, and VPC for cloud-native orchestration and scalable deployment.",
+      "link": "https://github.com/shubhmate/Hosting_Simple_Full_Stack_App_Using_Docker_Container_AWS_VPC_ECR_ECS_Services",
+      "image": "assets/img/default-project.webp",
+      "tags": [
+        "aws",
+        "backend",
+        "cicd",
+        "cloud-computing",
+        "cloud-deployment",
+        "container",
+        "devops",
+        "docker",
+        "ecr",
+        "ecs",
+        "express",
+        "flask",
+        "frontend",
+        "full-stack",
+        "infrastructure-as-code",
+        "microservices",
+        "nodejs",
+        "python",
+        "vpc",
+        "web-application"
+      ],
+      "architecture": [
+        "React/Express (Frontend) ➔ ALB ➔ Flask (Backend)",
+        "ECS Services & Tasks",
+        "ECR Image Hosting",
+        "Isolated VPC Networking"
+      ],
+      "problem": "Deploying containerized apps dynamically without robust orchestration causes scaling and security difficulties.",
+      "fix": "Configured AWS ECS service tasks behind ALB in an isolated VPC utilizing secure ECR container images."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
