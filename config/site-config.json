@@ -676,6 +676,34 @@
       ],
       "problem": "Co-locating multiple services on a single host compromises system security, resource isolation, and increases fault blast radius.",
       "fix": "Architected a dual-EC2 decoupled deployment schema isolating the Express frontend and Flask backend in secure VPC groups."
+    },
+    {
+      "id": "project11",
+      "title": "Single EC2 Instance Shared Hosting Blueprint",
+      "github_repo": "Single_EC2_Instance_Shared_Hosting_Simple_Full_Stack_App",
+      "description": "Full stack app sharing one EC2 with Nginx, Gunicorn, PM2—production hosting practices.",
+      "link": "https://github.com/shubhmate/Single_EC2_Instance_Shared_Hosting_Simple_Full_Stack_App",
+      "image": "assets/img/project11-arch.webp",
+      "tags": [
+        "aws",
+        "ec2",
+        "shared-hosting",
+        "nginx",
+        "reverse-proxy",
+        "gunicorn",
+        "pm2",
+        "flask",
+        "expressjs",
+        "devops"
+      ],
+      "architecture": [
+        "User ➔ Nginx Proxy (Port 80) ➔ PM2 (Express Port 3000) & Gunicorn (Flask Port 5000)",
+        "Single EC2 Host Instance",
+        "Nginx Reverse Proxy routing",
+        "Gunicorn & PM2 Process Managers"
+      ],
+      "problem": "Running multiple web applications on a single server without clean proxy routing and process management causes server crashes and port collision issues.",
+      "fix": "Designed and configured a resilient single-instance hosting configuration utilizing Nginx reverse proxying, Gunicorn WSGI, and PM2 process monitoring to securely manage and scale services."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
