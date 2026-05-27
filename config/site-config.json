@@ -439,6 +439,44 @@
       ],
       "problem": "Running multiple services on a single host manually causes port conflicts and complex config overhead.",
       "fix": "Used Terraform IaC with custom automated scripts to isolate, proxy, and secure multiple services on one instance."
+    },
+    {
+      "id": "project4",
+      "title": "K8s Simple Frontend Backend Node Flask App",
+      "github_repo": "k8s-simple-frontend-backend-node-flask-app",
+      "description": "Full-stack web application | Node.js/Express frontend with Flask backend | Kubernetes-ready deployment | Docker containerized microservices | Form-based user interface | REST API backend | Production-grade infrastructure-as-code | Multi-service orchestration | Cloud-native application architecture",
+      "link": "https://github.com/shubhmate/k8s-simple-frontend-backend-node-flask-app",
+      "image": "assets/img/project4-arch.webp",
+      "tags": [
+        "backend-api",
+        "ci-cd",
+        "cloud-deployment",
+        "containerization",
+        "devops",
+        "docker",
+        "docker-compose",
+        "educational-project",
+        "express",
+        "flask",
+        "frontend-service",
+        "full-stack-application",
+        "helm-ready",
+        "k8s-deployment",
+        "kubernetes",
+        "microservice",
+        "nodejs",
+        "orchestration",
+        "python",
+        "rest-api"
+      ],
+      "architecture": [
+        "React (Frontend Pods) ➔ Ingress ➔ Flask (Backend Pods)",
+        "Kubernetes Cluster",
+        "Docker Containerization",
+        "Declarative K8s Manifests"
+      ],
+      "problem": "Monolithic or ad-hoc microservice structures lack scalability and struggle with dynamic service discovery.",
+      "fix": "Re-architected to a cloud-native Kubernetes design utilizing service discovery, ingress routing, and pod auto-scaling."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
@@ -616,6 +654,15 @@
       "bullets": [
         "Authored Terraform configurations to orchestrate multi-service (Flask and Express) hosting on a single EC2 instance.",
         "Created custom Nginx routing logic and automated initialization scripts to completely prevent port conflicts."
+      ]
+    },
+    {
+      "title": "Cloud-Native Kubernetes Microservices App",
+      "tech": "Kubernetes, Docker, Node, Flask",
+      "link": "https://github.com/shubhmate/k8s-simple-frontend-backend-node-flask-app",
+      "bullets": [
+        "Orchestrated a highly available multi-service microservices application on a local and cloud Kubernetes cluster.",
+        "Containerized frontend and backend services using Docker and configured declarative K8s manifests for self-healing and auto-scaling."
       ]
     }
   ],
