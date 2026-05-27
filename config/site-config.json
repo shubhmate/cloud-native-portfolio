@@ -363,6 +363,44 @@
       ],
       "problem": "App worked locally but broke in every other environment due to dependency mismatches.",
       "fix": "Multi-stage Dockerfile + Docker Compose. Image size reduced by ~55% using Alpine base."
+    },
+    {
+      "id": "project2",
+      "title": "Terraform For Deploying Both Flask And Express On A Seprate EC2 Instances",
+      "github_repo": "Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
+      "description": "Terraform script | Automates deployment of Flask backend and Express frontend on separate EC2 instances | Provisions VPC, security groups, and Nginx reverse proxy | Ensures isolated, scalable, and accessible infrastructure | Modular design",
+      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
+      "image": "assets/img/project2-arch.webp",
+      "tags": [
+        "automation",
+        "aws",
+        "backend-frontend",
+        "cloud",
+        "cloud-deployment",
+        "devops",
+        "ec2",
+        "expressjs",
+        "flask",
+        "infrastructure-as-code",
+        "modular-infrastructure",
+        "networking",
+        "nginx",
+        "provisioning",
+        "reverse-proxy",
+        "scalability",
+        "security-groups",
+        "terraforrm",
+        "user-data",
+        "vpc"
+      ],
+      "architecture": [
+        "Nginx (80) ➔ Flask (5000) / Express (3000)",
+        "Separate EC2 Instances",
+        "VPC Isolation",
+        "Security Groups Routing"
+      ],
+      "problem": "Manual configuration of dual-app servers leads to configuration drift and security gaps.",
+      "fix": "Designed modular Terraform blueprints to spin up isolated EC2 instances in private subnets behind Nginx proxy."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
@@ -522,6 +560,15 @@
       "bullets": [
         "Automated multi-environment infrastructure provisioning using Terraform and AWS S3/CloudFront.",
         "Implemented secure CI/CD pipelines with GitHub Actions and OIDC authentication."
+      ]
+    },
+    {
+      "title": "EC2 Multi-App Deployment Blueprint",
+      "tech": "Terraform, AWS, Nginx, Flask, Express",
+      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Seprate-EC2-Instances",
+      "bullets": [
+        "Architected modular Terraform configuration to deploy separate Flask and Express apps on isolated EC2 instances.",
+        "Configured Nginx as a reverse proxy within a custom VPC to secure and route application traffic."
       ]
     }
   ],
