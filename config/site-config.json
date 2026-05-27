@@ -484,7 +484,7 @@
       "github_repo": "Hosting_Simple_Full_Stack_App_Using_Docker_Container_AWS_VPC_ECR_ECS_Services",
       "description": "Deploy a simple full stack application featuring a Flask backend (port 5000) and Express frontend (port 3000) using Docker containers. Utilize AWS ECR, ECS, and VPC for cloud-native orchestration and scalable deployment.",
       "link": "https://github.com/shubhmate/Hosting_Simple_Full_Stack_App_Using_Docker_Container_AWS_VPC_ECR_ECS_Services",
-      "image": "assets/img/default-project.webp",
+      "image": "assets/img/project5-arch.png",
       "tags": [
         "aws",
         "backend",
