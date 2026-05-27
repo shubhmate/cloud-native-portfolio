@@ -648,6 +648,34 @@
       ],
       "problem": "Setting up boilerplate code for cross-stack (Express + Flask) projects manually delays rapid prototyping of full-stack ideas.",
       "fix": "Built a production-grade, highly extensible full-stack template featuring predefined API routing, cors middleware, and robust JSON schemas."
+    },
+    {
+      "id": "project10",
+      "title": "Flask & Express Separate EC2 Hosting Blueprint",
+      "github_repo": "Separate_EC2_Instances_Separate_Hosting_Simple_Full_Stack_App",
+      "description": "Flask & Express on separate AWS EC2 for isolation—demonstrates cloud basics and deployment hygiene.",
+      "link": "https://github.com/shubhmate/Separate_EC2_Instances_Separate_Hosting_Simple_Full_Stack_App",
+      "image": "assets/img/project10-arch.webp",
+      "tags": [
+        "aws",
+        "ec2",
+        "isolation",
+        "deployment",
+        "flask",
+        "expressjs",
+        "cloud-infrastructure",
+        "networking",
+        "security-groups",
+        "devops"
+      ],
+      "architecture": [
+        "User ➔ Express Instance (EC2 A) ➔ VPC Network ➔ Flask Instance (EC2 B)",
+        "Isolated EC2 Host (Frontend)",
+        "Isolated EC2 Host (Backend)",
+        "VPC Security Group Rules"
+      ],
+      "problem": "Co-locating multiple services on a single host compromises system security, resource isolation, and increases fault blast radius.",
+      "fix": "Architected a dual-EC2 decoupled deployment schema isolating the Express frontend and Flask backend in secure VPC groups."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
