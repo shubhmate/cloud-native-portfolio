@@ -534,6 +534,44 @@
       ],
       "problem": "Manual deployment of services onto EC2 instances creates high overhead and prone to configuration errors.",
       "fix": "Built a fully automated CI/CD flow utilizing Jenkins pipelines and GitHub Webhooks to test and deploy changes instantly on EC2."
+    },
+    {
+      "id": "project7",
+      "title": "AWS Lambda Http Function Url Tutorial",
+      "github_repo": "AWS_Lambda_Http_Function_Url_Tutorial",
+      "description": "AWS Lambda HTTP Form Handler Tutorial | Step-by-step guide for building a serverless form handler with AWS Lambda | Store submissions in DynamoDB | Real-time results display | Includes IAM setup & troubleshooting | Ideal for AWS and serverless development beginners",
+      "link": "https://github.com/shubhmate/AWS_Lambda_Http_Function_Url_Tutorial",
+      "image": "assets/img/project7-arch.webp",
+      "tags": [
+        "api",
+        "automation",
+        "aws",
+        "aws-lambda",
+        "backend",
+        "beginner-friendly",
+        "cloud-computing",
+        "dynamodb",
+        "form-handler",
+        "html",
+        "iam",
+        "javascript",
+        "lambda",
+        "no-server",
+        "nodejs",
+        "real-time",
+        "serverless",
+        "serverless-architectures",
+        "tutorial",
+        "web-development"
+      ],
+      "architecture": [
+        "HTTP Request ➔ AWS Lambda Function URL ➔ IAM Role Authorization ➔ DynamoDB Storage",
+        "Lambda Serverless Handler",
+        "DynamoDB Database Storage",
+        "IAM Execution Policies"
+      ],
+      "problem": "Provisioning and managing full servers (like EC2) for simple HTTP APIs introduces high costs and complex operational maintenance.",
+      "fix": "Re-engineered as a completely serverless event-driven architecture using AWS Lambda Function URLs and DynamoDB for zero-administration scaling."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
