@@ -401,6 +401,44 @@
       ],
       "problem": "Manual configuration of dual-app servers leads to configuration drift and security gaps.",
       "fix": "Designed modular Terraform blueprints to spin up isolated EC2 instances in private subnets behind Nginx proxy."
+    },
+    {
+      "id": "project3",
+      "title": "Terraform For Deploying Both Flask And Express On A Single EC2 Instance",
+      "github_repo": "Terraform-for-Deploying-Both-Flask-and-Express-on-a-Single-EC2-Instance",
+      "description": "This Terraform script sets up an EC2 instance on AWS and deploys both a Flask application and an Express application on it. The script includes the necessary configurations for security groups, key pairs, and user data to automate the deployment process.",
+      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Single-EC2-Instance",
+      "image": "assets/img/project3-arch.webp",
+      "tags": [
+        "automation",
+        "aws",
+        "cloud",
+        "deployment",
+        "devops",
+        "ec2",
+        "express",
+        "flask",
+        "full-stack",
+        "hcl",
+        "infrastructure-as-code",
+        "multistack",
+        "nodejs",
+        "provisioning",
+        "python",
+        "security-groups",
+        "shell",
+        "terrraform",
+        "user-data",
+        "webhosting"
+      ],
+      "architecture": [
+        "Nginx (80) ➔ Flask (5000) & Express (3000)",
+        "Single EC2 Host Instance",
+        "Security Group Rules",
+        "Automated Setup Scripts"
+      ],
+      "problem": "Running multiple services on a single host manually causes port conflicts and complex config overhead.",
+      "fix": "Used Terraform IaC with custom automated scripts to isolate, proxy, and secure multiple services on one instance."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
@@ -569,6 +607,15 @@
       "bullets": [
         "Architected modular Terraform configuration to deploy separate Flask and Express apps on isolated EC2 instances.",
         "Configured Nginx as a reverse proxy within a custom VPC to secure and route application traffic."
+      ]
+    },
+    {
+      "title": "Single-EC2 Multi-Service Host Blueprint",
+      "tech": "Terraform, AWS, Nginx, Bash Scripting",
+      "link": "https://github.com/shubhmate/Terraform-for-Deploying-Both-Flask-and-Express-on-a-Single-EC2-Instance",
+      "bullets": [
+        "Authored Terraform configurations to orchestrate multi-service (Flask and Express) hosting on a single EC2 instance.",
+        "Created custom Nginx routing logic and automated initialization scripts to completely prevent port conflicts."
       ]
     }
   ],
