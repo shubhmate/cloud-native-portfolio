@@ -335,7 +335,7 @@ function generateExperience(config) {
     const bulletsHtml = exp.bullets.map(bullet => `
                     <li class="text-sm text-[var(--muted)] flex gap-2">
                       <span class="text-[var(--accent)] shrink-0">▸</span>
-                      ${bullet}
+                      <span>${bullet}</span>
                     </li>`).join('');
 
     return `
