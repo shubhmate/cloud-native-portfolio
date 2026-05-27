@@ -572,6 +572,44 @@
       ],
       "problem": "Provisioning and managing full servers (like EC2) for simple HTTP APIs introduces high costs and complex operational maintenance.",
       "fix": "Re-engineered as a completely serverless event-driven architecture using AWS Lambda Function URLs and DynamoDB for zero-administration scaling."
+    },
+    {
+      "id": "project8",
+      "title": "Setup Full Stack App With Docker Compose",
+      "github_repo": "Setup-full-stack-app-with-Docker-Compose",
+      "description": "Docker Assignment Frontend (Node.js) and Backend (Flask) | Full Stack Application | Seamless integration using Docker Compose | Modular codebase with HTML, JavaScript, and Python | Easy deployment and local development",
+      "link": "https://github.com/shubhmate/Setup-full-stack-app-with-Docker-Compose",
+      "image": "assets/img/project8-arch.webp",
+      "tags": [
+        "api",
+        "backend",
+        "containerization",
+        "deployment",
+        "devops",
+        "docker",
+        "docker-compose",
+        "flask",
+        "frontend",
+        "full-stack",
+        "html",
+        "javascript",
+        "microservices",
+        "modern-stack",
+        "nodejs",
+        "open-source",
+        "python",
+        "software-engineering",
+        "web-development",
+        "webapp"
+      ],
+      "architecture": [
+        "User ➔ Docker Compose (Port 80/3000) ➔ React Container ➔ Express/Flask Containers",
+        "Docker Compose Multi-Container Orchestration",
+        "React Frontend Service",
+        "Flask Backend Service"
+      ],
+      "problem": "Manual container orchestration and networking for multiple services on local machines creates configuration drifts and complex setup processes.",
+      "fix": "Consolidated frontend and backend services into a single unified Docker Compose manifest with automated volume mounting, dynamic port-mapping, and bridge networking."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
