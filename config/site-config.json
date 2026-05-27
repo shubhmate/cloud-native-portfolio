@@ -857,7 +857,7 @@
   "// 12. RESUME DATA SOURCE (Independent PDF Content)": "--------------------------------------------------",
   "// NOTE: Supports HTML tags like <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> in all text fields below.": "",
   "RESUME_CONTACT_LOCATION": "Maharashtra, India",
-  "RESUME_SUMMARY": "<b>DevOps and Cloud Engineer</b> with <b>2+ years</b> of hands-on experience in automating secure cloud infrastructure, building high-throughput <b>CI/CD pipelines</b>, and orchestrating containerized environments. Proven track record in reducing manual deployment times by <b>70%</b> and optimizing system uptime to <b>99.99%</b> using <b>Terraform</b>, <b>Kubernetes</b>, and <b>AWS</b> services.",
+  "RESUME_SUMMARY": "<b>DevOps and Cloud Engineer</b> with <b>2+ years</b> of hands-on experience in automating secure cloud infrastructure, building robust <b>CI/CD pipelines</b>, and orchestrating containerized environments. Proven track record in reducing manual deployment times by <b>70%</b> and optimizing system uptime to <b>99.99%</b> using <b>Terraform</b>, <b>Kubernetes</b>, and <b>AWS</b> services.",
   "RESUME_EXPERIENCE": [
     {
       "role": "Framework Engineer (Platform & DevOps)",
@@ -866,10 +866,10 @@
       "start": "Sep 2021",
       "end": "Nov 2022",
       "bullets": [
-        "<b>Architected</b> and automated cloud infrastructure on <b>AWS</b> using <b>Terraform</b>, achieving a <b>70% reduction</b> in manual provisioning time and ensuring complete environment consistency.",
-        "<b>Containerized</b> legacy monoliths using <b>Docker</b> and orchestrated resilient deployments with <b>Kubernetes</b>, achieving <b>99.99% uptime</b> and automated microservice scaling.",
-        "<b>Designed</b> and integrated end-to-end CI/CD pipelines utilizing <b>Jenkins</b> and <b>GitHub Actions</b>, cutting production release cycles from <b>days to hours</b> with zero-downtime deployment workflows.",
-        "<b>Implemented</b> security-first DevSecOps safeguards using least-privilege <b>IAM</b>, secure network isolation, and automated <b>bot mitigation</b>, reducing infrastructure incidents by <b>40%</b>."
+        "<b>Architected</b> and <b>automated</b> cloud infrastructure on <i>AWS</i> using <i>Terraform</i>, resulting in a <i>70% reduction in manual provisioning time</i>.",
+        "<b>Containerized</b> legacy monoliths using <i>Docker</i> and <b>orchestrated</b> resilient deployments with <i>Kubernetes</i>, resulting in <i>99.99% uptime and automated scaling</i>.",
+        "<b>Designed</b> and <b>integrated</b> end-to-end CI/CD pipelines utilizing <i>Jenkins</i> and <i>GitHub Actions</i>, resulting in <i>release cycles cutting from days to hours</i>.",
+        "<b>Implemented</b> security-first DevSecOps safeguards using least-privilege <i>IAM</i>, secure network isolation, and automated <i>bot mitigation</i>, resulting in a <i>40% reduction in infrastructure incidents</i>."
       ]
     },
     {
@@ -879,10 +879,10 @@
       "start": "Mar 2021",
       "end": "Aug 2021",
       "bullets": [
-        "<b>Streamlined</b> dev/QA environments by containerizing workflows with <b>Docker Compose</b>, accelerating developer onboarding speed by over <b>50%</b>.",
-        "<b>Supported</b> automated pipeline builds using <b>Jenkins</b> and <b>GitHub Actions</b>, increasing release frequency by <b>35%</b> and eliminating manual deployment errors.",
-        "<b>Provisioned</b> secure cloud infrastructure on <b>AWS EC2</b>, optimizing security groups, <b>ALB load balancing</b>, and network routing to improve throughput.",
-        "<b>Authored</b> comprehensive infrastructure-as-code documentation and conducted peer reviews on <b>Git</b>, improving cross-team onboarding efficiency by <b>25%</b>."
+        "<b>Streamlined</b> dev/QA environments by containerizing workflows with <i>Docker Compose</i>, resulting in <i>50% faster developer onboarding</i>.",
+        "<b>Automated</b> pipeline builds using <i>Jenkins</i> and <i>GitHub Actions</i>, resulting in a <i>35% increase in release frequency</i> and zero manual deployment errors.",
+        "<b>Provisioned</b> secure cloud infrastructure on <i>AWS EC2</i>, optimizing security groups, <i>ALB load balancing</i>, and network routing to improve throughput.",
+        "<b>Authored</b> comprehensive infrastructure-as-code documentation and <b>conducted</b> peer reviews on <i>Git</i>, resulting in a <i>25% improvement in cross-team onboarding efficiency</i>."
       ]
     }
   ],
@@ -953,8 +953,8 @@
       "tech": "Terraform, AWS (S3, CloudFront, Lambda, DynamoDB), GitHub Actions",
       "link": "https://github.com/shubhmate/cloud-native-portfolio",
       "bullets": [
-        "<b>Automated</b> global-edge cloud infrastructure provisioning utilizing <b>Terraform IaC</b>, <b>AWS S3</b>, and <b>CloudFront CDN</b>.",
-        "<b>Integrated</b> an automated continuous deployment (CD) pipeline via <b>GitHub Actions</b> to manage infrastructure updates and invalidate edge caches."
+        "<b>Automated</b> global-edge cloud infrastructure provisioning utilizing <i>Terraform IaC</i>, <i>AWS S3</i>, and <i>CloudFront CDN</i>.",
+        "<b>Integrated</b> an automated continuous deployment (CD) pipeline via <i>GitHub Actions</i> to manage infrastructure updates and invalidate edge caches."
       ]
     },
     {
@@ -962,8 +962,8 @@
       "tech": "Kubernetes, Docker, Python, Node.js, Flask, Express",
       "link": "https://github.com/shubhmate/k8s-simple-frontend-backend-node-flask-app",
       "bullets": [
-        "<b>Orchestrated</b> highly available frontend and backend microservice workloads across local and cloud <b>Kubernetes</b> environments.",
-        "<b>Containerized</b> multi-stack applications using multi-stage <b>Dockerfiles</b> and authored declarative manifests to manage scaling, services, and networking."
+        "<b>Orchestrated</b> highly available frontend and backend microservice workloads across local and cloud <i>Kubernetes</i> environments.",
+        "<b>Containerized</b> multi-stack applications using multi-stage <i>Dockerfiles</i> and <b>authored</b> declarative manifests to manage scaling, services, and networking."
       ]
     }
   ],
