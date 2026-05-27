@@ -610,6 +610,44 @@
       ],
       "problem": "Manual container orchestration and networking for multiple services on local machines creates configuration drifts and complex setup processes.",
       "fix": "Consolidated frontend and backend services into a single unified Docker Compose manifest with automated volume mounting, dynamic port-mapping, and bridge networking."
+    },
+    {
+      "id": "project9",
+      "title": "Simple Full Stack App Frontend Express Backend Flask",
+      "github_repo": "Simple_Full_Stack_App_Frontend_Express_Backend_Flask",
+      "description": "Full-Stack Starter App | Express.js Frontend | Flask Backend | Node.js web UI integrated with Python API | Clean boilerplate | Simple routing | JSON data exchange | Ideal for cross-stack web development and rapid prototyping",
+      "link": "https://github.com/shubhmate/Simple_Full_Stack_App_Frontend_Express_Backend_Flask",
+      "image": "assets/img/project9-arch.webp",
+      "tags": [
+        "api",
+        "backend",
+        "boilerplate",
+        "cross-platform",
+        "crud",
+        "devtools",
+        "expressjs",
+        "flask",
+        "frontend",
+        "fullstack",
+        "javascript",
+        "json",
+        "nodejs",
+        "python",
+        "rapid-prototyping",
+        "rest-api",
+        "starter",
+        "template",
+        "webapp",
+        "webdevelopment"
+      ],
+      "architecture": [
+        "User ➔ Express Frontend (Port 3000) ➔ JSON HTTP API Calls ➔ Flask Backend (Port 5000)",
+        "Express Web Interface",
+        "Flask JSON API Handler",
+        "Cross-Origin Resource Sharing"
+      ],
+      "problem": "Setting up boilerplate code for cross-stack (Express + Flask) projects manually delays rapid prototyping of full-stack ideas.",
+      "fix": "Built a production-grade, highly extensible full-stack template featuring predefined API routing, cors middleware, and robust JSON schemas."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
