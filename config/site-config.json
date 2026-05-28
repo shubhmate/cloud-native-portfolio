@@ -593,13 +593,14 @@
         "web-development"
       ],
       "architecture": [
-        "HTTP Request ➔ AWS Lambda Function URL ➔ IAM Role Authorization ➔ DynamoDB Storage",
-        "Lambda Serverless Handler",
-        "DynamoDB Database Storage",
-        "IAM Execution Policies"
+        "HTTP Ingress ➔ AWS Lambda HTTP Function URL (Auth: NONE)",
+        "AWS Lambda Serverless Compute (Node.js 22.x Runtime)",
+        "DynamoDB Submissions Table (Partition Key: PK, Sort Key: SK)",
+        "AWS IAM Execution Policy (Scan/Put Permissions for Table)",
+        "Dynamic Server-Side HTML Template Compile"
       ],
-      "problem": "Provisioning and managing full servers (like EC2) for simple HTTP APIs introduces high costs and complex operational maintenance.",
-      "fix": "Re-engineered as a completely serverless event-driven architecture using AWS Lambda Function URLs and DynamoDB for zero-administration scaling."
+      "problem": "Provisioning, patching, and maintaining dedicated virtual machine servers (like EC2) for low-traffic forms or simple microservice endpoints creates high cost and operational overhead.",
+      "fix": "Architected a completely serverless, event-driven form handler that dynamically compiles HTML and persists form payloads to DynamoDB on-demand, running on AWS Lambda with zero idle costs."
     },
     {
       "id": "project8",
