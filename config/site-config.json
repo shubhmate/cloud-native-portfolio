@@ -363,13 +363,14 @@
         "vpc"
       ],
       "architecture": [
-        "React (3000) ➔ ALB ➔ Node.js (5000)",
-        "ECR (Registry)",
-        "VPC Isolation",
-        "CloudWatch Logging"
+        "Express ➔ ALB ➔ Flask (Fargate Tasks)",
+        "VPC w/ Public & Private Subnets",
+        "NAT Gateways & VPC Endpoints",
+        "Amazon ECR (Container Registry)",
+        "CloudWatch Logs & Metrics Alarms"
       ],
-      "problem": "App worked locally but broke in every other environment due to dependency mismatches.",
-      "fix": "Multi-stage Dockerfile + Docker Compose. Image size reduced by ~55% using Alpine base."
+      "problem": "High operational overhead of managing EC2 servers, environment drifts, and insecure public exposure of microservices.",
+      "fix": "Architected a serverless AWS ECS Fargate cluster with a private subnet layout, secure VPC Endpoints, and ALB path-based routing managed by Terraform IaC."
     },
     {
       "id": "project2",
