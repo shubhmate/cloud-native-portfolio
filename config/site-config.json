@@ -730,28 +730,25 @@
         "aws-ec2",
         "cloud-infrastructure",
         "deployment",
-        "docker",
         "express",
         "flask",
         "full-stack",
         "gunicorn",
-        "infrastructure-as-code",
-        "load-balancing",
         "nginx",
         "pm2",
-        "production-deployment",
         "reverse-proxy",
         "server-configuration",
         "web-server"
       ],
       "architecture": [
-        "User ➔ Nginx Proxy (Port 80) ➔ PM2 (Express Port 3000) & Gunicorn (Flask Port 5000)",
-        "Single EC2 Host Instance",
-        "Nginx Reverse Proxy routing",
-        "Gunicorn & PM2 Process Managers"
+        "User HTTP Inbound ➔ Nginx reverse proxy routing (Port 80/443)",
+        "Nginx dynamic endpoint path matching (/api requests to port 5000, all others to port 3000)",
+        "Co-located services on a single virtual host instance",
+        "PM2 Node.js daemon controller managing Express lifecycle (localhost:3000)",
+        "Gunicorn WSGI web daemon controller managing Flask backend (localhost:5000)"
       ],
-      "problem": "Running multiple web applications on a single server without clean proxy routing and process management causes server crashes and port collision issues.",
-      "fix": "Designed and configured a resilient single-instance hosting configuration utilizing Nginx reverse proxying, Gunicorn WSGI, and PM2 process monitoring to securely manage and scale services."
+      "problem": "Running multiple decoupled web processes on a single server without structured gateway path matching leads to port collisions and configuration drift.",
+      "fix": "Engineered a resilient shared hosting model on a single EC2 host deploying Nginx reverse proxying, Gunicorn, and PM2 managers to dynamically route paths and secure local processes."
     },
     {
       "id": "project12",
