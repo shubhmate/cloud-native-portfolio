@@ -309,7 +309,6 @@
         "cloud-native",
         "cloudfront",
         "devops",
-        "docker-compose",
         "dynamodb",
         "emailjs",
         "github-actions",
@@ -317,21 +316,22 @@
         "husky",
         "infrastructure-as-code",
         "portfolio",
+        "portfolio-website",
         "route53",
         "s3",
         "tailwind-css",
         "terraform",
-        "vanila-js"
+        "vanilla-js"
       ],
       "architecture": [
-        "S3 (Origin) ➔ CloudFront (CDN)",
-        "API Gateway ➔ Lambda ➔ DynamoDB",
-        "Terraform (IaC)",
-        "GitHub Actions (CI/CD)",
-        "Checkov (Security Scan)"
+        "S3 Bucket Static Web Hosting fronted by CloudFront CDN Edge Caching",
+        "API Gateway Ingress routing contacts to AWS Lambda serverless microservice",
+        "Brevo SMTP Mail Integration & Client-Side EmailJS Failover Controller",
+        "Checkov Security Scans & ESLint quality gates built in CI/CD pipeline",
+        "Terraform Declarative IaC managing all Route 53, ACM, and serverless resources"
       ],
-      "problem": "Manual deployments are slow, insecure, and lack global performance metrics.",
-      "fix": "Implemented a full GitOps pipeline with automated security gates and global edge caching."
+      "problem": "Manual build steps, missing infrastructure quality gates, and static message delivery endpoints create security vulnerabilities and maintenance drift.",
+      "fix": "Engineered a serverless GitOps pipeline featuring Checkov quality checks, S3/CloudFront atomic hosting, and an API Gateway/Lambda hybrid contacts fallback endpoint."
     },
     {
       "id": "project1",
@@ -768,6 +768,7 @@
         "gunicorn",
         "postgresql",
         "python",
+        "python-blog",
         "render",
         "sqlalchemy",
         "sqlite",
