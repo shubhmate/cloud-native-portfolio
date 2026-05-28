@@ -767,21 +767,21 @@
         "full-stack",
         "gunicorn",
         "postgresql",
-        "pyth",
-        "python-blog",
+        "python",
         "render",
         "sqlalchemy",
         "sqlite",
         "web-app"
       ],
       "architecture": [
-        "User ➔ Web Browser ➔ Flask Server (Routing) ➔ SQLAlchemy ORM ➔ SQLite Database",
-        "Flask MVC Engine",
-        "SQLAlchemy DB Models",
-        "Session Cookie Auth"
+        "Flask MVC Engine (server-rendered templates via Jinja2)",
+        "SQLAlchemy ORM Data Interface Layer (relational DB schemas)",
+        "Local SQLite / Production PostgreSQL Database Instances",
+        "Session Cookie State Authorization (Flask-Login hashed validation)",
+        "XSS Bleach Sanitization & Custom Form CSRF Protection Tokens"
       ],
-      "problem": "Building dynamic web portals with secure user roles, admin panels, and real-time commentary from scratch requires complex boilerplate integration.",
-      "fix": "Developed a robust, modular Flask application featuring custom cookie auth, full dashboard administration panels, database schemas, and structured routing files."
+      "problem": "Building secure, modular, and dynamic web portals from scratch requires integrating complex session authentication, database persistence, and form sanitization layers manually.",
+      "fix": "Engineered a robust Flask blog platform implementing secure cookie sessions, SQLAlchemy relational models, and built-in BLEACH XSS filtering for seamless administration and posts management."
     }
   ],
   "// 9. CI/CD PIPELINE VIEW": "--------------------------------------------------",
