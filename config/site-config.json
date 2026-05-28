@@ -481,13 +481,14 @@
         "rest-api"
       ],
       "architecture": [
-        "React (Frontend Pods) ➔ Ingress ➔ Flask (Backend Pods)",
-        "Kubernetes Cluster",
-        "Docker Containerization",
-        "Declarative K8s Manifests"
+        "External Access ➔ Node.js/Express Web Service (ClusterIP: 3000)",
+        "Node.js Frontend Pods ➔ K8s CoreDNS resolution ➔ Flask Backend Service (ClusterIP: 5000)",
+        "Replicated Pods & Decoupled Containerized Stacks",
+        "Declarative Deployment & Service Manifests (YAML)",
+        "Explicit Pod Resource Constraints (Limits & Requests)"
       ],
-      "problem": "Monolithic or ad-hoc microservice structures lack scalability and struggle with dynamic service discovery.",
-      "fix": "Re-architected to a cloud-native Kubernetes design utilizing service discovery, ingress routing, and pod auto-scaling."
+      "problem": "Managing distributed multi-tier apps manually causes environment drift, port conflicts, and complex inter-service discovery.",
+      "fix": "Containerized both application tiers via multi-stage Dockerfiles and architected declarative Kubernetes manifests to handle microservice discovery, resource allocation, and environment variable routing via internal ClusterIP DNS."
     },
     {
       "id": "project5",
