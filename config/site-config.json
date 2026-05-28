@@ -437,18 +437,19 @@
         "python",
         "security-groups",
         "shell",
-        "terrraform",
+        "terraform",
         "user-data",
         "webhosting"
       ],
       "architecture": [
-        "Nginx (80) ➔ Flask (5000) & Express (3000)",
-        "Single EC2 Host Instance",
-        "Security Group Rules",
-        "Automated Setup Scripts"
+        "Public Traffic ➔ AWS Security Group Inbound Filters (Ports 3000 & 5000)",
+        "Single Amazon EC2 Compute Host Instance",
+        "Node.js Express App (Port 3000) running under PM2 Manager",
+        "Python Flask App (Port 5000) running under Gunicorn WSGI",
+        "Idempotent Bash Shell Provisioning (User Data Script)"
       ],
-      "problem": "Running multiple services on a single host manually causes port conflicts and complex config overhead.",
-      "fix": "Used Terraform IaC with custom automated scripts to isolate, proxy, and secure multiple services on one instance."
+      "problem": "Manual provisioning and co-locating multi-stack services on a single host leads to environment conflicts, configuration drift, and insecure exposed ports.",
+      "fix": "Designed modular Terraform HCL blueprints to provision a single EC2 instance with custom security groups, automating the deployment of both Express (PM2) and Flask (Gunicorn) apps via custom bash shell scripts."
     },
     {
       "id": "project4",
