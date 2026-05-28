@@ -478,7 +478,12 @@ function generateProjectCard(project) {
             <div class="flip-card-front p-6 flex flex-col overflow-hidden">
               <div class="shrink-0 group relative w-full h-32 rounded-lg border border-[var(--border)] mb-4 flex items-center justify-center overflow-hidden cursor-zoom-in" onclick="window.openImageModal('${project.image}')">
                 <img src="${project.image}" alt="Project Architecture" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.onerror=null; this.src='assets/img/default-project.png';">
-                <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><i data-lucide="zoom-in" class="w-6 h-6 text-white"></i></div>
+                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                  <div class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/20 text-white font-mono text-[10px] uppercase font-bold tracking-wider shadow-2xl transform scale-90 group-hover:scale-100 transition-all duration-300">
+                    <i data-lucide="zoom-in" class="w-4 h-4 text-white"></i>
+                    <span>Zoom Blueprint</span>
+                  </div>
+                </div>
               </div>
               <div class="flex-1 overflow-y-auto pr-2 custom-scrollbar">
                 <h3 class="font-mono text-lg font-bold mb-2 text-[var(--accent)] line-clamp-3">${project.title}</h3>
