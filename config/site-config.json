@@ -710,13 +710,14 @@
         "web-app"
       ],
       "architecture": [
-        "User ➔ Express Instance (EC2 A) ➔ VPC Network ➔ Flask Instance (EC2 B)",
-        "Isolated EC2 Host (Frontend)",
-        "Isolated EC2 Host (Backend)",
-        "VPC Security Group Rules"
+        "User Request ➔ EC2 Instance A (Frontend App) ➔ HTTP API Requests ➔ EC2 Instance B (Backend API)",
+        "Standalone Ubuntu Linux 22.04 LTS Environments",
+        "Frontend EC2 Host (Express web process proxied locally via Nginx at port 80/443)",
+        "Backend EC2 Host (Flask app run by Gunicorn WSGI proxied locally via Nginx at port 80/443)",
+        "VPC Security Group Rules (isolate instances and restrict inbound traffic)"
       ],
-      "problem": "Co-locating multiple services on a single host compromises system security, resource isolation, and increases fault blast radius.",
-      "fix": "Architected a dual-EC2 decoupled deployment schema isolating the Express frontend and Flask backend in secure VPC groups."
+      "problem": "Co-locating multiple services on a single virtual machine increases security exposure, compromises hardware resource isolation, and expands the system blast radius.",
+      "fix": "Architected a fully decoupled multi-instance EC2 deployment blueprint hosting Node/Express and Flask on independent hosts behind custom-configured Nginx reverse proxies."
     },
     {
       "id": "project11",
