@@ -671,13 +671,14 @@
         "webdevelopment"
       ],
       "architecture": [
-        "User ➔ Express Frontend (Port 3000) ➔ JSON HTTP API Calls ➔ Flask Backend (Port 5000)",
-        "Express Web Interface",
-        "Flask JSON API Handler",
-        "Cross-Origin Resource Sharing"
+        "User Request ➔ Express Frontend (Port 3000) ➔ Flask Backend (Port 5000)",
+        "Express Web Interface Service (serve static UI assets)",
+        "Flask JSON API Controller (REST endpoint routing)",
+        "JSON Bidirectional Data Exchange Loop (HTTP fetch queries)",
+        "Cross-Origin Resource Sharing (CORS dynamic authorization)"
       ],
-      "problem": "Setting up boilerplate code for cross-stack (Express + Flask) projects manually delays rapid prototyping of full-stack ideas.",
-      "fix": "Built a production-grade, highly extensible full-stack template featuring predefined API routing, cors middleware, and robust JSON schemas."
+      "problem": "Setting up boilerplate configurations for multi-service cross-stack local development manually delays dynamic prototyping and leads to configuration fatigue.",
+      "fix": "Engineered a production-ready starter template integrating Express routing and a Flask API, configured with default JSON schemas and CORS security protocols out-of-the-box."
     },
     {
       "id": "project10",
