@@ -325,6 +325,7 @@
       ],
       "architecture": [
         "S3 (Origin) ➔ CloudFront (CDN)",
+        "API Gateway ➔ Lambda ➔ DynamoDB",
         "Terraform (IaC)",
         "GitHub Actions (CI/CD)",
         "Checkov (Security Scan)"
