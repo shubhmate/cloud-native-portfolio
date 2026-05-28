@@ -632,13 +632,14 @@
         "webapp"
       ],
       "architecture": [
-        "User ➔ Docker Compose (Port 80/3000) ➔ React Container ➔ Express/Flask Containers",
-        "Docker Compose Multi-Container Orchestration",
-        "React Frontend Service",
-        "Flask Backend Service"
+        "User Request ➔ Frontend Port 3000 (Exposed Host) ➔ Backend Port 5000 (Exposed Host)",
+        "Docker Compose Multi-Container Orchestration (YAML Engine)",
+        "Frontend Container (Node.js Node:18-Alpine Host)",
+        "Backend Container (Python Python:3.9-Slim Host)",
+        "Bridge Virtual Network (my-app-network Bridge)"
       ],
-      "problem": "Manual container orchestration and networking for multiple services on local machines creates configuration drifts and complex setup processes.",
-      "fix": "Consolidated frontend and backend services into a single unified Docker Compose manifest with automated volume mounting, dynamic port-mapping, and bridge networking."
+      "problem": "Manual multi-service container building, port linking, and virtual networking on local environments leads to configuration errors and operational friction.",
+      "fix": "Consolidated Node.js web and Flask API containers into a unified Docker Compose manifest leveraging an isolated bridge network for seamless local microservice orchestration."
     },
     {
       "id": "project9",
