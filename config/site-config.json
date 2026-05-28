@@ -363,14 +363,14 @@
         "vpc"
       ],
       "architecture": [
-        "Express ➔ ALB ➔ Flask (Fargate Tasks)",
-        "VPC w/ Public & Private Subnets",
-        "NAT Gateways & VPC Endpoints",
-        "Amazon ECR (Container Registry)",
-        "CloudWatch Logs & Metrics Alarms"
+        "ALB Port Listener Routing (Port 80 ➔ Express, Port 5000 ➔ Flask)",
+        "ECS Service Connect (Secure Internal DNS microservice-to-microservice traffic)",
+        "Private VPC Subnets (Total task isolation, zero public IP exposure)",
+        "NAT Gateways & ECR VPC Endpoints (Secure container image pulling)",
+        "Encrypted CloudWatch Logging (KMS Customer Managed Key & Rotation)"
       ],
       "problem": "High operational overhead of managing EC2 servers, environment drifts, and insecure public exposure of microservices.",
-      "fix": "Architected a serverless AWS ECS Fargate cluster with a private subnet layout, secure VPC Endpoints, and ALB path-based routing managed by Terraform IaC."
+      "fix": "Architected a serverless AWS ECS Fargate cluster hosting containerized services inside private subnets, utilizing ECS Service Connect for secure internal discovery and port-based ALB routing managed by Terraform IaC."
     },
     {
       "id": "project2",
@@ -397,18 +397,20 @@
         "reverse-proxy",
         "scalability",
         "security-groups",
-        "terraforrm",
+        "terraform",
         "user-data",
         "vpc"
       ],
       "architecture": [
-        "Nginx (80) ➔ Flask (5000) / Express (3000)",
-        "Separate EC2 Instances",
-        "VPC Isolation",
-        "Security Groups Routing"
+        "Express (3000) ➔ Nginx Proxy (127.0.0.1:5000) ➔ Flask Private IP (5000)",
+        "Separate AWS EC2 Instances",
+        "Custom VPC & Public Subnet Routing",
+        "Idempotent Shell Provisioning (User Data)",
+        "VPC Security Group Rules",
+        "Git Sparse Directory Checkout"
       ],
-      "problem": "Manual configuration of dual-app servers leads to configuration drift and security gaps.",
-      "fix": "Designed modular Terraform blueprints to spin up isolated EC2 instances in private subnets behind Nginx proxy."
+      "problem": "Manual provisioning of multi-tier apps causes configuration drift, while exposing backend database/API ports to the public internet creates severe security vulnerabilities.",
+      "fix": "Developed modular Terraform blueprints and shell setups to spin up separate EC2 hosts, utilizing local Nginx reverse proxies to keep backend communications isolated inside the private VPC network."
     },
     {
       "id": "project3",
