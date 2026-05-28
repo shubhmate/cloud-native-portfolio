@@ -533,20 +533,35 @@
       "id": "project6",
       "title": "Flask Express Cicd Jenkins Github Webhooks Aws Ec2",
       "github_repo": "flask-express-cicd-jenkins-github-webhooks-aws-ec2",
-      "description": "Flask backend (port 5000) + Express frontend (port 3000) deployed on AWS EC2 with Jenkins CI/CD pipeline. Auto-deploys on every git push via GitHub webhook.",
+      "description": "This project establishes a fully automated CI/CD pipeline on a single AWS EC2 instance. Integrating GitHub webhooks and an automated Jenkins master server, it orchestrates code checkout, dependencies installation (Python venv and npm), pytest unit testing, and host application restarts under the PM2 process manager.",
       "link": "https://github.com/shubhmate/flask-express-cicd-jenkins-github-webhooks-aws-ec2",
       "image": "assets/img/project6-arch.webp",
       "tags": [
-        "JavaScript"
+        "automation",
+        "aws",
+        "backend",
+        "ci-cd",
+        "devops",
+        "ec2",
+        "express",
+        "flask",
+        "frontend",
+        "github-webhooks",
+        "jenkins",
+        "nodejs",
+        "pm2",
+        "python",
+        "testing"
       ],
       "architecture": [
-        "Git Push ➔ GitHub Webhook ➔ Jenkins (Pipeline) ➔ AWS EC2 Deployment",
-        "Jenkins Master Server",
-        "Automated Bash Scripts",
-        "Service Unit Configurations"
+        "Git Push ➔ GitHub Webhook ➔ Jenkins Pipeline (Port 8080)",
+        "Amazon EC2 Instance Host (Ubuntu 22.04 LTS)",
+        "Automated Multi-Stage Pipeline (Checkout, Install, Test, Deploy)",
+        "Host Process Management (PM2 Service Controller)",
+        "Sudoers Permission Delegations (NOPASSWD for PM2)"
       ],
-      "problem": "Manual deployment of services onto EC2 instances creates high overhead and prone to configuration errors.",
-      "fix": "Built a fully automated CI/CD flow utilizing Jenkins pipelines and GitHub Webhooks to test and deploy changes instantly on EC2."
+      "problem": "Manual SSH code pulls and server restarts slow down deployment cycles, lead to configuration drift, and lack reliable automated test feedback loops.",
+      "fix": "Configured a local Jenkins build pipeline on the EC2 target triggered by GitHub webhooks to dynamically test applications and orchestrate seamless PM2 hot-reloads under a secure permissions framework."
     },
     {
       "id": "project7",
