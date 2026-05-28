@@ -520,13 +520,14 @@
         "web-application"
       ],
       "architecture": [
-        "React/Express (Frontend) ➔ ALB ➔ Flask (Backend)",
-        "ECS Services & Tasks",
-        "ECR Image Hosting",
-        "Isolated VPC Networking"
+        "Express Web Server Container ➔ ALB ➔ Python Flask API Container",
+        "AWS ECS Fargate Orchestrated Services & Task Definitions",
+        "AWS ECR Private Image Registries",
+        "Multi-AZ Public & Private Subnet Isolation (AWS VPC)",
+        "Application Load Balancer (ALB) Public Ingress Gateway"
       ],
-      "problem": "Deploying containerized apps dynamically without robust orchestration causes scaling and security difficulties.",
-      "fix": "Configured AWS ECS service tasks behind ALB in an isolated VPC utilizing secure ECR container images."
+      "problem": "Deploying and scaling multi-stack containerized microservices manually without orchestration introduces severe operational complexity, security vulnerabilities, and deployment downtime.",
+      "fix": "Architected an AWS ECS Fargate orchestration model deploying containerized microservices in multi-AZ private subnets, frontend by an Application Load Balancer (ALB) with secure ECR pipelines."
     },
     {
       "id": "project6",
