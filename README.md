@@ -14,6 +14,8 @@ A production-grade, high-performance static portfolio website engineered with a 
 
 This project implements a professional **Source-to-Edge** workflow, separating source logic from build artifacts and infrastructure management.
 
+![Cloud-Native Portfolio Architecture](src/assets/img/portfolio-arch.webp)
+
 ```mermaid
 graph LR
     subgraph Local_Dev ["💻 Local Development"]
