@@ -69,7 +69,9 @@ jobs:
         run: npm ci
 
       - name: 🌐 Install Puppeteer Chrome
-        run: npx puppeteer browsers install chrome
+        run: |
+          rm -rf ~/.cache/puppeteer
+          npx puppeteer browsers install chrome
 
       - name: 🏗️ Professional Build
         run: npm run build
