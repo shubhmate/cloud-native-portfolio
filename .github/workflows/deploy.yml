@@ -68,13 +68,10 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
-      - name: 🏗️ Professional Build
-        env:
-          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
-        run: npm run build
 
       - name: 🚀 Deploy to AWS
         env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
           DEPLOY_TARGET: aws
           AWS_REGION: ${{ env.AWS_REGION }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
