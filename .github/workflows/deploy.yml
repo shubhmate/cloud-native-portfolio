@@ -68,12 +68,9 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
-      - name: 🌐 Install Puppeteer Chrome
-        run: |
-          rm -rf ~/.cache/puppeteer
-          npx puppeteer install
-
       - name: 🏗️ Professional Build
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
         run: npm run build
 
       - name: 🚀 Deploy to AWS
