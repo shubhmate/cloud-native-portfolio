@@ -5,8 +5,11 @@
 [![CI/CD](https://img.shields.io/badge/CI%2FCD-GitHub%20Actions-2088FF?logo=github-actions)](https://github.com/features/actions)
 [![Security](https://img.shields.io/badge/Security-Checkov-blue?logo=checkov)](https://www.checkov.io/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Version](https://img.shields.io/badge/Version-2.1.0-brightgreen)
 
 A production-grade, high-performance static portfolio website engineered with a **Security-First** and **Automation-Driven** mindset. This project serves as a live demonstration of modern DevOps practices, including **Infrastructure as Code (IaC)**, **Quality Gates**, and an automated **Resume-as-Code** engine.
+
+🌐 **Live Demo:** [shubhammate.com](https://shubhammate.com)
 
 ---
 
@@ -54,7 +57,8 @@ graph LR
 | **Infrastructure** | Terraform (HCL), AWS (S3, CloudFront, Route 53, ACM, Lambda, API Gateway) |
 | **Communication** | Brevo (SMTP API), Zoho Mail (Domain Host), EmailJS (Failover) |
 | **Security** | Checkov (IaC Scan), TFLint, ESLint, Content Integrity Validation |
-| **CI/CD** | GitHub Actions (Multi-stage Pipelines) |
+| **CI/CD & GitOps** | GitHub Actions, Multi-Platform Sync (GitHub + GitLab) |
+| **Social SEO** | Python (Pillow) Dynamic Open Graph Card Generation |
 
 ---
 
@@ -62,12 +66,18 @@ graph LR
 
 ```text
 .
-├── .github/workflows/   # CI/CD Pipeline definitions (Lint, Security, Deploy)
+├── .github/workflows/   # CI/CD Pipeline definitions (Lint, Security, Deploy, Monitor)
+├── .gitlab-ci.yml       # GitLab DR Pipeline (Manual Failover)
 ├── config/              # Centralized Site Content & Configuration (JSON)
 ├── docs/                # Architecture diagrams & technical documentation
 ├── public/              # Root-level static files (robots.txt, sitemap.xml)
 ├── scripts/             # Professional Build & Automation scripts (Node.js)
-├── src/                 # Source assets (Templates, Styles, Client-side JS)
+├── src/
+│   ├── assets/          # Images, favicons, OG cards, certifications
+│   ├── lambda/          # AWS Lambda microservice (Contact Form handler)
+│   ├── scripts/         # Client-side JS (main.js, terminal commands)
+│   ├── styles/          # Tailwind CSS source
+│   └── templates/       # HTML page templates (index, projects, resume)
 ├── terraform/           # Infrastructure as Code (Modules, Security Groups, CDN)
 └── dist/                # [GIT IGNORED] Production-ready build output
 ```
@@ -83,6 +93,17 @@ This project enforces high engineering standards through automated gates:
 - **IaC Linting**: TFLint ensures Terraform follows AWS best practices and tagging policies.
 - **Automated Cache Busting**: Implements cryptographic content hashing for JS/CSS assets to enable long-term immutable caching without staleness.
 - **Resume-as-Code Pipeline**: Automated headless rendering (Puppeteer) with professional metadata injection (`pdf-lib`) ensuring a high-fidelity, ATS-friendly PDF is always in sync with your JSON source data.
+- **Automated Uptime Monitoring**: A scheduled GitHub Actions workflow (`monitor.yml`) runs every 12 hours, health-checking the main site and resume page to ensure 100% availability.
+
+---
+
+## 🔄 Multi-Platform GitOps & Disaster Recovery
+
+The repository is synchronized across **GitHub** (primary) and **GitLab** (DR standby) for maximum resilience.
+
+- **GitHub Actions (Primary)**: Fully automated — every push to `main` triggers infrastructure provisioning, build, deploy, and health check.
+- **GitLab CI/CD (DR Failover)**: A standby `.gitlab-ci.yml` pipeline validates code on every push but holds deployment behind a **manual gate**. If GitHub experiences downtime, a single click deploys from GitLab.
+- **DR Build Mode**: A dedicated `npm run build:dr` command automatically swaps GitHub links to GitLab equivalents, ensuring the DR deployment is self-consistent.
 
 ---
 
@@ -105,6 +126,16 @@ The portfolio includes a sophisticated career-branding pipeline that treats your
 - **Rich Text support**: Full support for standard HTML tags (`<b>`, `<i>`, `<u>`) directly within `site-config.json` for precise typographic control.
 - **Automated PDF Metadata**: Injects professional metadata (Title, Author, Producer) into the final PDF artifact during the build process.
 - **Localized Asset Sync**: Manages professional certifications and documents within a localized asset vault for high-speed delivery and reliable verification.
+
+---
+
+## 🖼️ Social SEO & Brand Automation
+
+To maintain a premium professional presence across the web, the portfolio includes an automated Open Graph generation engine.
+
+- **Dynamic Card Generation**: Uses a custom Python script (`generate_og.py`) with `Pillow` to programmatically build a 1200x630 glassmorphism preview card.
+- **Cross-Platform Compatibility**: Optimized to render perfectly symmetrically across LinkedIn, Twitter, Facebook, Discord, and WhatsApp.
+- **Automated Compression**: Script dynamically compresses the final JPEG to remain under the strict 300KB social media limits while maintaining 4K-level clarity.
 
 ---
 
@@ -158,8 +189,32 @@ npm run deploy:localstack
 
 ---
 
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! To get started:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Ensure all quality gates pass (`npm run lint` & `npm run type-check`)
+4. Commit your changes (`git commit -m 'feat: add AmazingFeature'`)
+5. Push to the branch (`git push origin feature/AmazingFeature`)
+6. Open a Pull Request
+
+---
+
 ## 📜 License
 Distributed under the **MIT License**. See `LICENSE` for more information.
+
+---
+
+## 📬 Contact
+
+**Shubham Mate** — DevOps, Cloud & DevSecOps Engineer
+
+- 🌐 Website: [shubhammate.com](https://shubhammate.com)
+- 📧 Email: [contact@shubhammate.com](mailto:contact@shubhammate.com)
+- 💼 LinkedIn: [linkedin.com/in/shubham-mate](https://www.linkedin.com/in/shubham-mate)
+- 🐙 GitHub: [github.com/shubhmate](https://github.com/shubhmate)
 
 ---
 
